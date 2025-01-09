@@ -1,0 +1,8 @@
+job:
+  KIND: InferenceJob
+  inputs:
+    KIND: ParquetReader
+    path: data/inputs_test.parquet
+  outputs:
+    KIND: ParquetWriter
+    path: outputs/predictions_test.parquet
