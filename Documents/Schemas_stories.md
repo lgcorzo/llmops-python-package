@@ -2,8 +2,8 @@
 
 - [US Scchemas : Define structured data formats for input, output, and intermediate processes, ensuring consistency and validation throughout the pipeline](#us-scchemas--define-structured-data-formats-for-input-output-and-intermediate-processes-ensuring-consistency-and-validation-throughout-the-pipeline)
   - [classes relations](#classes-relations)
-  - [**User Story: Define and Validate DataFrame Schemas with Pandera**](#user-story-define-and-validate-dataframe-schemas-with-pandera)
-  - [**User Story: Define and Validate SHAP Values and Feature Importances Schemas**](#user-story-define-and-validate-shap-values-and-feature-importances-schemas)
+  - [**User Story: Validate Large String Inputs and JSON Outputs for Autogen Pipelines**](#user-story-validate-large-string-inputs-and-json-outputs-for-autogen-pipelines)
+  - [**User Story: Extend Metadata for Tracking and Debugging**](#user-story-extend-metadata-for-tracking-and-debugging)
   - [Code location](#code-location)
   - [Test location](#test-location)
 
@@ -17,9 +17,8 @@ classDiagram
     class Schema {
         <<abstract>>
         +Config
-        +check(data: pd.DataFrame): papd.DataFrame[TSchema]
+        +validate(data: dict): bool
     }
-    Schema ..> pa.DataFrameModel : "extends"
 
     %% Schema Config
     class SchemaConfig {
@@ -28,40 +27,27 @@ classDiagram
     }
     Schema ..> SchemaConfig : "inner class"
 
-    %% InputsSchema
-    class InputsSchema {
-        +instant: papd.Index[padt.UInt32]
-        +dteday: papd.Series[padt.DateTime]
-        +season: papd.Series[padt.UInt8]
-        +yr: papd.Series[padt.UInt8]
-        +mnth: papd.Series[padt.UInt8]
-        +hr: papd.Series[padt.UInt8]
-        +holiday: papd.Series[padt.Bool]
-        +weekday: papd.Series[padt.UInt8]
-        +workingday: papd.Series[padt.Bool]
-        +weathersit: papd.Series[padt.UInt8]
-        +temp: papd.Series[padt.Float16]
-        +atemp: papd.Series[padt.Float16]
-        +hum: papd.Series[padt.Float16]
-        +windspeed: papd.Series[padt.Float16]
-        +casual: papd.Series[padt.UInt32]
-        +registered: papd.Series[padt.UInt32]
+    %% InputSchema
+    class InputSchema {
+        +input: String
+        +max_length: int = 128000
+        +required: bool = True
     }
-    Schema <|-- InputsSchema
+    Schema <|-- InputSchema
 
-    %% TargetsSchema
-    class TargetsSchema {
-        +instant: papd.Index[padt.UInt32]
-        +cnt: papd.Series[padt.UInt32]
+    %% OutputSchema
+    class OutputSchema {
+        +response: String
+        +metadata: MetadataSchema
     }
-    Schema <|-- TargetsSchema
+    Schema <|-- OutputSchema
 
-    %% OutputsSchema
-    class OutputsSchema {
-        +instant: papd.Index[padt.UInt32]
-        +prediction: papd.Series[padt.UInt32]
+    %% MetadataSchema
+    class MetadataSchema {
+        +timestamp: String
+        +model_version: String
     }
-    Schema <|-- OutputsSchema
+    OutputSchema ..> MetadataSchema
 
     %% SHAPValuesSchema
     class SHAPValuesSchema {
@@ -77,159 +63,130 @@ classDiagram
 
     %% FeatureImportancesSchema
     class FeatureImportancesSchema {
-        +feature: papd.Series[padt.String]
-        +importance: papd.Series[padt.Float32]
+        +feature: String
+        +importance: Float32
     }
     Schema <|-- FeatureImportancesSchema
 
 
-
 ```
 
-## **User Story: Define and Validate DataFrame Schemas with Pandera**
+## **User Story: Validate Large String Inputs and JSON Outputs for Autogen Pipelines**
 
 ---
 
 **Title:**  
-As a **data engineer**, I want to define and validate schemas for data inputs, targets, and outputs, so that I can ensure data consistency and integrity throughout the pipeline.
+As a **developer**, I want to validate large string inputs and structured JSON outputs, so that I can ensure the integrity and consistency of data processed in autogen pipelines.
 
 ---
 
 **Description:**  
-The implementation uses `pandera` to define strict schemas for validating input, target, and output data in a machine learning project. These schemas enforce data type constraints, allowable ranges, and values to prevent errors and ensure that the data meets expected requirements before being processed by the model.  
+This implementation defines a schema for handling large text inputs (up to 128,000 tokens) and generating structured JSON responses. The schema ensures input validation and enforces a consistent format for outputs, enabling reliable integration into downstream processes and facilitating scalability.
 
 ---
 
 **Acceptance Criteria:**  
 
-1. **Base Schema Class (`Schema`)**  
-   - Provides a configurable foundation for all schemas with default settings:  
-     - `coerce=True`: Automatically convert data types if possible.  
-     - `strict=True`: Enforce exact column specifications.  
-   - Implements a `check` method to validate a DataFrame and ensure compliance with the schema.
+1. **Input Schema:**  
+   - Accepts a single string as input.  
+   - **Constraints:**  
+     - Maximum length of 128,000 tokens.  
+     - The input string is required and cannot be empty.  
 
-2. **Input Schema (`InputsSchema`)**  
-   - Defines the structure and constraints for input data, including:  
-     - Index:  
-       - `instant`: Unsigned 32-bit integers (`UInt32`), greater than or equal to 0.  
-     - Columns:  
-       - `dteday`: DateTime objects.  
-       - `season`: UInt8 values, limited to 1–4.  
-       - `yr`: UInt8 values, limited to 0–1.  
-       - `mnth`: UInt8 values, limited to 1–12.  
-       - `hr`: UInt8 values, limited to 0–23.  
-       - Boolean fields: `holiday`, `workingday`.  
-       - `weekday`: UInt8 values, limited to 0–6.  
-       - `weathersit`: UInt8 values, limited to 1–4.  
-       - Continuous features (`Float16`) ranging from 0 to 1: `temp`, `atemp`, `hum`, `windspeed`.  
-       - Count features (`UInt32`), greater than or equal to 0: `casual`, `registered`.  
+2. **Output Schema:**  
+   - Defines a structured JSON format for outputs.  
+   - **Required Properties:**  
+     - `response`: A string containing the generated output, capped at 128,000 tokens.  
+   - **Optional Properties:**  
+     - `metadata`: An object providing additional information about the output.  
+       - Includes `timestamp` (ISO 8601 format) and `model_version` (string) as optional fields.  
 
-3. **Target Schema (`TargetsSchema`)**  
-   - Defines the structure and constraints for target data:  
-     - Index:  
-       - `instant`: Unsigned 32-bit integers (`UInt32`), greater than or equal to 0.  
-     - Columns:  
-       - `cnt`: Unsigned 32-bit integers (`UInt32`), greater than or equal to 0.  
+3. **Validation Rules:**  
+   - Input validation:  
+     - Reject inputs that exceed the maximum token limit or are not strings.  
+   - Output validation:  
+     - Ensure the `response` field is always present and valid.  
+     - Verify optional `metadata` fields when included.  
 
-4. **Output Schema (`OutputsSchema`)**  
-   - Defines the structure and constraints for model outputs:  
-     - Index:  
-       - `instant`: Unsigned 32-bit integers (`UInt32`), greater than or equal to 0.  
-     - Columns:  
-       - `prediction`: Unsigned 32-bit integers (`UInt32`), greater than or equal to 0.  
+4. **Error Handling:**  
+   - For invalid inputs, raise descriptive errors indicating the specific violation (e.g., "Input exceeds 128,000 tokens").  
+   - For invalid outputs, log and flag inconsistencies for debugging.
 
-5. **Validation**  
-   - Ensure that DataFrame objects can be validated against their respective schemas using the `check` method.  
-   - Verify that invalid data types, out-of-range values, or missing columns raise appropriate validation errors.  
+5. **Testing:**  
+   - Create unit tests to verify:  
+     - Inputs are correctly validated against schema constraints.  
+     - Outputs conform to the required JSON structure, including valid `response` and optional `metadata`.  
+     - Error handling for invalid inputs and outputs works as expected.  
 
-6. **Testing**  
-   - Create unit tests for:  
-     - Validating correct input, target, and output DataFrames.  
-     - Handling of invalid DataFrames, such as missing columns or incorrect data types.  
-     - Conversion of data types (e.g., coercing a `float` to `UInt32`).  
-
-7. **Documentation**  
-   - Provide clear docstrings for each schema class:  
-     - Explain the purpose of the schema.  
-     - Describe the constraints for each field.  
-   - Include examples of how to validate a DataFrame using the `check` method.  
-
-8. **Extensibility**  
-   - Ensure the base `Schema` class can be extended for additional schemas in the future.  
-   - Allow the addition of new fields or constraints without breaking existing functionality.  
+6. **Documentation:**  
+   - Provide clear examples of:  
+     - Valid input strings and how they are processed.  
+     - Expected JSON output structure.  
+   - Include details on validation errors and how to handle them.  
 
 ---
 
 **Definition of Done (DoD):**  
 
-- The `Schema`, `InputsSchema`, `TargetsSchema`, and `OutputsSchema` classes are implemented and tested.  
-- All test cases for schema validation pass successfully.  
-- Documentation is complete with examples and usage instructions.  
-- The schemas are integrated into the project pipeline, ensuring data consistency during model training and prediction.  
+- The input and output schemas are implemented and validated.  
+- Unit tests for input and output validation pass successfully.  
+- Errors for invalid inputs/outputs are descriptive and actionable.  
+- Documentation is complete with usage examples, validation rules, and error handling details.  
+- The schema is integrated into the autogen pipeline, ensuring consistent input and output handling.
 
-## **User Story: Define and Validate SHAP Values and Feature Importances Schemas**
+---
+
+## **User Story: Extend Metadata for Tracking and Debugging**
 
 ---
 
 **Title:**  
-As a **data scientist**, I want to define and validate schemas for SHAP values and feature importances, so that I can ensure the integrity of model explainability data.
+As a **data scientist**, I want to extend the metadata in the JSON output schema, so that I can track model versions and processing timestamps for debugging and analysis.
 
 ---
 
 **Description:**  
-This implementation introduces schemas for managing SHAP values and feature importances in a machine learning project. These schemas ensure that explainability-related data, such as SHAP values and feature importance scores, comply with defined structural and type constraints, enabling consistent and reliable reporting.
+The metadata section of the output schema provides optional fields to track additional information, such as the time of response generation and the model version used. This facilitates debugging, auditability, and better insights into the processing pipeline.
 
 ---
 
 **Acceptance Criteria:**  
 
-1. **SHAP Values Schema (`SHAPValuesSchema`)**  
-   - Defines the structure for storing SHAP values associated with model predictions.  
-   - **Default Configurations:**  
-     - Data type (`dtype`) is set to `float32` for efficient storage and computation.  
-     - `strict=False`: Allows additional, unexpected columns to be present in the DataFrame.  
-   - Must allow validation of DataFrame objects containing SHAP values.  
+1. **Metadata Fields:**  
+   - `timestamp`: ISO 8601 date-time string representing when the output was generated.  
+   - `model_version`: String identifying the version of the model used for processing.  
 
-2. **Feature Importances Schema (`FeatureImportancesSchema`)**  
-   - Defines the structure for feature importance data.  
-   - **Columns:**  
-     - `feature`: Strings representing feature names.  
-     - `importance`: Float32 values representing feature importance scores.  
-   - Must enforce strict validation to ensure correct data types for feature importance data.
+2. **Extensibility:**  
+   - Ensure new fields can be added to `metadata` without breaking existing functionality.  
 
-3. **Validation**  
-   - Validate SHAP values and feature importance DataFrames against their respective schemas using the `check` method.  
-   - Verify that invalid data, such as incorrect data types or missing required fields, raises appropriate validation errors.  
+3. **Validation Rules:**  
+   - Verify that `timestamp` is in the correct format when present.  
+   - Ensure `model_version` is a valid string if included.  
 
-4. **Testing**  
-   - Create unit tests to:  
-     - Validate correct SHAP values and feature importance DataFrames.  
-     - Test handling of invalid data, including:  
-       - Missing columns.  
-       - Incorrect data types.  
-       - Extra columns (permitted only in `SHAPValuesSchema`).  
+4. **Testing:**  
+   - Validate outputs with and without `metadata`.  
+   - Verify incorrect `timestamp` formats or invalid `model_version` strings raise appropriate errors.  
 
-5. **Documentation**  
-   - Provide clear docstrings for each schema class:  
-     - Explain the purpose of the schema.  
-     - Describe the constraints for each field.  
-   - Include usage examples for validating SHAP values and feature importance DataFrames.  
-
-6. **Integration**  
-   - Ensure that the schemas are used in the pipeline for validating SHAP values and feature importance data during explainability computations.  
+5. **Documentation:**  
+   - Provide examples of outputs with and without `metadata`.  
+   - Include descriptions of how to use metadata for tracking and debugging.  
 
 ---
 
 **Definition of Done (DoD):**  
 
-- The `SHAPValuesSchema` and `FeatureImportancesSchema` classes are implemented and tested.  
-- All test cases for schema validation pass successfully.  
-- Documentation is complete, including examples and usage instructions.  
-- The schemas are integrated into the explainability pipeline, ensuring consistent and validated data for SHAP values and feature importances.  
+- Metadata fields are implemented and validated.  
+- Tests for metadata validation pass successfully.  
+- Documentation includes examples and usage scenarios.  
+- Metadata is integrated into the output schema for tracking and debugging purposes.
+
+---
+
+Let me know if you need further refinements!  
 
 ## Code location
 
-[src/model_name/core/schemas.py](../src/model_name/core/schemas.py)
+[src/autogen_team/core/schemas.py](../src/autogen_team/core/schemas.py)
 
 ## Test location
 
