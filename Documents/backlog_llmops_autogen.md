@@ -220,3 +220,61 @@ graph LR
     model_name.utils.splitters --> model_name.core.schemas
 
 ```
+
+```mermaid
+graph TD
+    A[FinRobot: An Open-Source AI Agent Platform for Financial Applications using Large Language Models]
+    A --> B[Financial AI Agents]
+    A --> C[Financial LLMs]
+    A --> D[LLMOps]
+    A --> E[Multi-Source LLM Foundation Models]
+
+    B --> B1[Market Forecasting Agents]
+    B --> B2[Document Analysis & Generation Agents]
+    
+    B1 --> B1A[Trading Strategist Agent]
+    B1 --> B1B[Multimodal Agent]
+    B1 --> B1C[Global Stock Market Agent]
+    
+    B2 --> B2A[Earnings Report Analysis Agent]
+    B2 --> B2B[Risk Assessment Report Analysis Agent]
+    B2 --> B2C[Financial Report Generation Agent]
+    B2 --> B2D[Equity Research Report Generation Agent]
+
+    C --> C1[Financial Large Language Model FinGPT]
+    C --> C2[Financial Reinforcement Learning FinRL]
+    C --> C3[Financial Machine Learning FinML]
+    
+    D --> D1[Prompt Engineering]
+    D --> D2[SFT]
+    D --> D3[Model Deployment]
+    D --> D4[LoRA/QLoRA]
+    D --> D5[Model Evaluation]
+    D --> D6[Smart Scheduler]
+    
+    D --> D7[Instruction Tuning]
+    D --> D8[RLHF]
+    D --> D9[CI/CD]
+
+    D --> F[DataOps]
+    F --> F1[FinRL-Meta]
+    F1 --> F1A[Tabular Data]
+    F1 --> F1B[Gym Env]
+    F --> F2[Financial Data & FinNLP]
+    F2 --> F2A[Market News]
+    F2 --> F2B[Social Media]
+    F2 --> F2C[Market Sentiment]
+    F2 --> F2D[Financial Ratios]
+    F --> F3[Vector Database]
+    F --> F4[RAG]
+    F --> F5[Knowledge Graph]
+
+    E --> E1[Llama3]
+    E --> E2[Falcon]
+    E --> E3[ChatGLM3]
+    E --> E4[ChatGPT]
+    E --> E5[Gemma]
+    E --> E6[Baichuan]
+    E --> E7[Mistral]
+
+```

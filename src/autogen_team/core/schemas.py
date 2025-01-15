@@ -1,120 +1,97 @@
 """Define and validate dataframe schemas."""
 
-# %% IMPORTS
-
 import typing as T
-
-import pandas as pd
 import pandera as pa
 import pandera.typing as papd
 import pandera.typing.common as padt
-
-# %% TYPES
-
-# Generic type for a dataframe container
-TSchema = T.TypeVar("TSchema", bound="pa.DataFrameModel")
 
 # %% SCHEMAS
 
 
 class Schema(pa.DataFrameModel):
-    """Base class for a dataframe schema.
-
-    Use a schema to type your dataframe object.
-    e.g., to communicate and validate its fields.
-    """
+    """Base class for defining schemas with validation capabilities."""
 
     class Config:
-        """Default configurations for all schemas.
-
-        Parameters:
-            coerce (bool): convert data type if possible.
-            strict (bool): ensure the data type is correct.
-        """
+        """Default configurations for all schemas."""
 
         coerce: bool = True
         strict: bool = True
 
     @classmethod
-    def check(cls: T.Type[TSchema], data: pd.DataFrame) -> papd.DataFrame[TSchema]:
-        """Check the dataframe with this schema.
+    def validate(cls, data: dict) -> bool:
+        """Validate a given data dictionary against the schema.
 
         Args:
-            data (pd.DataFrame): dataframe to check.
+            data (dict): The data to validate.
 
         Returns:
-            papd.DataFrame[TSchema]: validated dataframe.
+            bool: True if validation is successful, False otherwise.
         """
-        return T.cast(papd.DataFrame[TSchema], cls.validate(data))
+        try:
+            cls.validate(data)
+            return True
+        except Exception as e:
+            print(f"Validation failed: {e}")
+            return False
+
+
+class MetadataSchema(Schema):
+    """Schema for metadata in outputs."""
+
+    timestamp: papd.Series[padt.String] = pa.Field()
+    model_version: papd.Series[padt.String] = pa.Field()
 
 
 class InputsSchema(Schema):
-    """Schema for the project inputs."""
+    """Schema for validating large string inputs."""
 
-    instant: papd.Index[padt.UInt32] = pa.Field(ge=0)
-    dteday: papd.Series[padt.DateTime] = pa.Field()
-    season: papd.Series[padt.UInt8] = pa.Field(isin=[1, 2, 3, 4])
-    yr: papd.Series[padt.UInt8] = pa.Field(ge=0, le=1)
-    mnth: papd.Series[padt.UInt8] = pa.Field(ge=1, le=12)
-    hr: papd.Series[padt.UInt8] = pa.Field(ge=0, le=23)
-    holiday: papd.Series[padt.Bool] = pa.Field()
-    weekday: papd.Series[padt.UInt8] = pa.Field(ge=0, le=6)
-    workingday: papd.Series[padt.Bool] = pa.Field()
-    weathersit: papd.Series[padt.UInt8] = pa.Field(ge=1, le=4)
-    temp: papd.Series[padt.Float16] = pa.Field(ge=0, le=1)
-    atemp: papd.Series[padt.Float16] = pa.Field(ge=0, le=1)
-    hum: papd.Series[padt.Float16] = pa.Field(ge=0, le=1)
-    windspeed: papd.Series[padt.Float16] = pa.Field(ge=0, le=1)
-    casual: papd.Series[padt.UInt32] = pa.Field(ge=0)
-    registered: papd.Series[padt.UInt32] = pa.Field(ge=0)
+    input: papd.Series[padt.String] = pa.Field()
 
 
-Inputs = papd.DataFrame[InputsSchema]
+class OutputsSchema(Schema):
+    """Schema for structured JSON outputs."""
+
+    response: papd.Series[padt.String] = pa.Field()
+    metadata: T.Optional[MetadataSchema] = pa.Field()
 
 
 class TargetsSchema(Schema):
     """Schema for the project target."""
 
-    instant: papd.Index[padt.UInt32] = pa.Field(ge=0)
-    cnt: papd.Series[padt.UInt32] = pa.Field(ge=0)
-
-
-Targets = papd.DataFrame[TargetsSchema]
-
-
-class OutputsSchema(Schema):
-    """Schema for the project output."""
-
-    instant: papd.Index[padt.UInt32] = pa.Field(ge=0)
-    prediction: papd.Series[padt.UInt32] = pa.Field(ge=0)
-
-
-Outputs = papd.DataFrame[OutputsSchema]
+    input: papd.Series[padt.String] = pa.Field()
+    prediction: papd.Series[padt.String] = pa.Field()
 
 
 class SHAPValuesSchema(Schema):
-    """Schema for the project shap values."""
+    """Schema for SHAP values."""
 
     class Config:
-        """Default configurations this schema.
-
-        Parameters:
-            dtype (str): dataframe default data type.
-            strict (bool): ensure the data type is correct.
-        """
-
         dtype: str = "float32"
         strict: bool = False
 
 
-SHAPValues = papd.DataFrame[SHAPValuesSchema]
-
-
 class FeatureImportancesSchema(Schema):
-    """Schema for the project feature importances."""
+    """Schema for feature importances."""
 
     feature: papd.Series[padt.String] = pa.Field()
     importance: papd.Series[padt.Float32] = pa.Field()
 
 
+Inputs = papd.DataFrame[InputsSchema]
+Targets = papd.DataFrame[TargetsSchema]
+Outputs = papd.DataFrame[OutputsSchema]
+SHAPValues = papd.DataFrame[SHAPValuesSchema]
 FeatureImportances = papd.DataFrame[FeatureImportancesSchema]
+
+# Test examples to illustrate usage
+if __name__ == "__main__":
+    # Example for InputSchema validation
+    input_data = {"input": "Some large input string"}
+    print("Input validation result:", InputsSchema.validate(input_data))
+
+    # Example for OutputSchema validation
+    output_data = {
+        "response": "Generated output string",
+        "metadata": {"timestamp": "2025-01-15T12:00:00Z", "model_version": "v1.0.0"},
+    }
+    print("Output validation result:", OutputsSchema.validate(output_data))
