@@ -18,9 +18,9 @@
 
    The foundational components of the system that ensure efficient functionality across various modules:
 
+- **[US: Schemas](Schemas_stories.md)**: Define structured data formats for input, output, and intermediate processes, ensuring consistency and validation throughout the pipeline.
 - **[US: Metrics](Metrics_stories.md)**: Provide standardized measurements for model performance, accuracy, and evaluation. Useful for tracking improvement and identifying bottlenecks.
 - **[US: Models](Models_stories.md)**: Define the structure of machine learning models, including architectures and checkpoints, to standardize training and deployment.
-- **[US: Schemas](Schemas_stories.md)**: Define structured data formats for input, output, and intermediate processes, ensuring consistency and validation throughout the pipeline.
 
 ### **FE: Input Outputs**
 
@@ -46,16 +46,19 @@
 - **[US: Tuning](Tuning_stories.md)**: Optimize hyperparameters and configurations to improve model performance systematically.
 
 ### **FE: Utils**
+
 Auxiliary tools and configurations that enhance functionality and streamline development
+
 - **[US: Searchers](Searchers_stories.md)**: Define functionalities for finding the best hyperparameters for a model.
 - **[US: Signers](Signers_stories.md)**:  Generate signatures for AI/ML models.
-- **[US: Splitters](Splitters_stories.md)**: Split dataframes into subsets for model training and evaluation. 
+- **[US: Splitters](Splitters_stories.md)**: Split dataframes into subsets for model training and evaluation.
 
 ### **FE: main**
+
 General execution scripts
+
 - **[US. Scripts](Scripts_stories.md)**: Include utility scripts for automating tasks, data handling, and system management.
 - **[US: Settings](Settings_stories.md)**: Centralize settings and constants used across different modules for consistency and maintainability.
-
 
 ### **FE: Tasks for CI/CD**
 
