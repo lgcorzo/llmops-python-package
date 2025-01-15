@@ -19,7 +19,7 @@ You can use this package as part of your MLOps toolkit or platform (e.g., Model 
 
 # Table of Contents
 
-- [MLOps Python Package](#llmops-python-package)
+- [MLOps Python Package](#mlops-python-package)
 - [Table of Contents](#table-of-contents)
 - [Install](#install)
   - [Prerequisites](#prerequisites)
@@ -121,7 +121,7 @@ You can use this package as part of your MLOps toolkit or platform (e.g., Model 
 
 # Install
 
-This section details the requirements, actions, and next steps to kickstart your MLOps project.
+This section details the requirements, actions, and next steps to kicºkstart your MLOps project.
 
 ## Prerequisites
 
