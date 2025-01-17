@@ -1,55 +1,104 @@
-# %% IMPORTS
+# test_schemas.py
 
-from autogen_team.core import models, schemas
-from autogen_team.io import datasets
-
-# %% SCHEMAS
-
-
-def test_inputs_schema(inputs_reader: datasets.Reader) -> None:
-    # given
-    schema = schemas.InputsSchema
-    # when
-    data = inputs_reader.read()
-    # then
-    assert schema.check(data) is not None, "Inputs data should be valid!"
+import pytest
+import pandas as pd
+import pandera.errors as pa_errors
+from autogen_team.core.schemas import (
+    InputsSchema,
+    OutputsSchema,
+    MetadataSchema,
+    TargetsSchema,
+    FeatureImportancesSchema,
+)
 
 
-def test_targets_schema(targets_reader: datasets.Reader) -> None:
-    # given
-    schema = schemas.TargetsSchema
-    # when
-    data = targets_reader.read()
-    # then
-    assert schema.check(data) is not None, "Targets data should be valid!"
+def test_inputs_schema_valid():
+    """Test valid input data for InputsSchema."""
+    valid_data = pd.DataFrame({"input": ["Valid input string"]})
+    validated_data = InputsSchema.check(valid_data)
+    assert not validated_data.empty
 
 
-def test_outputs_schema(outputs_reader: datasets.Reader) -> None:
-    # given
-    schema = schemas.OutputsSchema
-    # when
-    data = outputs_reader.read()
-    # then
-    assert schema.check(data) is not None, "Outputs data should be valid!"
+def test_inputs_schema_invalid():
+    """Test invalid input data for InputsSchema."""
+    invalid_data = pd.DataFrame({"invalid_input": [12345]})  # Non-string input
+    with pytest.raises(pa_errors.SchemaError):
+        InputsSchema.check(invalid_data)
 
 
-def test_shap_values_schema(
-    model: models.Model,
-    train_test_sets: tuple[schemas.Inputs, schemas.Targets, schemas.Inputs, schemas.Targets],
-) -> None:
-    # given
-    schema = schemas.SHAPValuesSchema
-    _, _, inputs_test, _ = train_test_sets
-    # when
-    data = model.explain_samples(inputs=inputs_test)
-    # then
-    assert schema.check(data) is not None, "SHAP values data should be valid!"
+def test_outputs_schema_valid():
+    """Test valid output data for OutputsSchema."""
+    valid_data = pd.DataFrame(
+        {
+            "response": ["Generated response"],
+            "metadata": [{"timestamp": "2025-01-15T12:00:00Z", "model_version": "v1.0.0"}],
+        }
+    )
+    validated_data = OutputsSchema.check(valid_data)
+    assert not validated_data.empty
 
 
-def test_feature_importances_schema(model: models.Model) -> None:
-    # given
-    schema = schemas.FeatureImportancesSchema
-    # when
-    data = model.explain_model()
-    # then
-    assert schema.check(data) is not None, "Feature importance data should be valid!"
+def test_outputs_schema_invalid_metadata():
+    """Test invalid metadata in OutputsSchema."""
+    invalid_data = pd.DataFrame(
+        {
+            "response": ["Generated response"],
+            "metadata_invalid": ["Invalid metadata format"],  # Should be a dict-like structure
+        }
+    )
+    with pytest.raises(pa_errors.SchemaError):
+        OutputsSchema.check(invalid_data)
+
+
+def test_metadata_schema_valid():
+    """Test valid metadata validation using MetadataSchema."""
+    valid_metadata = pd.DataFrame({"timestamp": ["2025-01-15T12:00:00Z"], "model_version": ["v1.0.0"]})
+    validated_metadata = MetadataSchema.check(valid_metadata)
+    assert not validated_metadata.empty
+
+
+def test_metadata_schema_invalid_timestamp():
+    """Test invalid metadata using MetadataSchema."""
+    invalid_metadata = pd.DataFrame(
+        {"timestamp_invalid": [12345], "model_version": ["v1.0.0"]}  # Non-string timestamp
+    )
+    with pytest.raises(pa_errors.SchemaError):
+        MetadataSchema.check(invalid_metadata)
+
+def test_metadata_schema_invalid_model_version():
+    """Test invalid metadata using MetadataSchema."""
+    invalid_metadata = pd.DataFrame(
+        {"timestamp": [12345], "model_version_invalid": ["v1.0.0"]}  # Non-string timestamp
+    )
+    with pytest.raises(pa_errors.SchemaError):
+        MetadataSchema.check(invalid_metadata)
+
+
+def test_targets_schema_valid():
+    """Test valid target data for TargetsSchema."""
+    valid_data = pd.DataFrame({"input": ["Sample input"], "prediction": ["Sample prediction"]})
+    validated_data = TargetsSchema.check(valid_data)
+    assert not validated_data.empty
+
+
+def test_targets_schema_invalid():
+    """Test invalid target data for TargetsSchema."""
+    invalid_data = pd.DataFrame({"input": ["Valid input"]})  # Missing 'prediction' column
+    with pytest.raises(pa_errors.SchemaError):
+        TargetsSchema.check(invalid_data)
+
+
+def test_feature_importances_schema_valid():
+    """Test valid data for FeatureImportancesSchema."""
+    valid_data = pd.DataFrame({"feature": ["Feature A"], "importance": [0.5]})
+    validated_data = FeatureImportancesSchema.check(valid_data)
+    assert not validated_data.empty
+
+
+def test_feature_importances_schema_invalid():
+    """Test invalid data for FeatureImportancesSchema."""
+    invalid_data = pd.DataFrame(
+        {"feature": [123], "importance": ["Invalid importance"]}  # Non-string feature, non-float importance
+    )
+    with pytest.raises(pa_errors.SchemaError):
+        FeatureImportancesSchema.check(invalid_data)
