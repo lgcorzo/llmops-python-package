@@ -190,4 +190,4 @@ Let me know if you need further refinements!
 
 ## Test location
 
-[tests/core/test_schemas.py](../tests/core/schemas.py)
+[tests/core/test_schemas.py](../tests/core/test_schemas.py)
