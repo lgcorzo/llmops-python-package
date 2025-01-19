@@ -3,7 +3,7 @@
 - [US Models : Define the structure of machine learning models, including architectures and checkpoints, to standardize training and deployment](#us-models--define-the-structure-of-machine-learning-models-including-architectures-and-checkpoints-to-standardize-training-and-deployment)
   - [classes relations](#classes-relations)
   - [**User Story: Develop a Base Model Class for Machine Learning Frameworks**](#user-story-develop-a-base-model-class-for-machine-learning-frameworks)
-  - [**User Story: Develop a Baseline Scikit-Learn Model for Machine Learning**](#user-story-develop-a-baseline-scikit-learn-model-for-machine-learning)
+  - [User Story: Develop a Baseline Autogen chatgroup for LLM](#user-story-develop-a-baseline-autogen-chatgroup-for-llm)
   - [Code location](#code-location)
   - [Test location](#test-location)
 
@@ -27,15 +27,10 @@ classDiagram
     }
 
     %% Derived Class
-    class BaselineSklearnModel {
+    class BaselineAutogenModel {
         +KIND: T.Literal["BaselineSklearnModel"] = "BaselineSklearnModel"
-        +max_depth: int = 20
-        +n_estimators: int = 200
-        +random_state: int|None = 42
-        -_pipeline: pipeline.Pipeline|None
-        -_numericals: list[str]
-        -_categoricals: list[str]
-        +fit(inputs: schemas.Inputs, targets: schemas.Targets): BaselineSklearnModel
+        +max_tokens: int = 20
+        +Temperatre: int = 5
         +predict(inputs: schemas.Inputs): schemas.Outputs
         +explain_model(): schemas.FeatureImportances
         +explain_samples(inputs: schemas.Inputs): schemas.SHAPValues
@@ -43,7 +38,7 @@ classDiagram
     }
 
     %% Relationships
-    Model <|-- BaselineSklearnModel
+    Model <|-- BaselineAutogenModel
 
 ```
 
@@ -117,45 +112,36 @@ The `Model` class serves as an abstract base class for all machine learning mode
 - The code passes all CI/CD validation checks and integrates seamlessly with existing project modules.
   
 
-## **User Story: Develop a Baseline Scikit-Learn Model for Machine Learning**
+## User Story: Develop a Baseline Autogen chatgroup for LLM
 
 ---
 
 **Title:**  
-As a **data scientist**, I want a reusable **baseline model implementation using scikit-learn**, so that I can easily benchmark advanced models and understand the predictive performance of standard machine learning techniques.
+As a **data scientist**, I want a reusable baseline model implementation using [Autogen](https://microsoft.github.io/autogen/dev//index.html), so that I can easily benchmark advanced models and understand the  performance of chatgroup of LLM models.
 
 ---
 
 **Description:**  
-The `BaselineSklearnModel` class provides a baseline regression model leveraging scikit-learn's `RandomForestRegressor` wrapped in a preprocessing pipeline. This class is designed to be easily integrated into the project, with capabilities for training, predicting, and model explainability. It supports automated handling of numerical and categorical features and provides SHAP-based feature importance explanations.
+The `BaselineAutogenWorkflow` class provides a baseline chatgroup using  LLM leveraging autogen  `UserProxyAgent & AssistantAgent` wrapped in a agents workflow. This class is designed to be easily integrated into the project, with capabilities for predicting, and model explainability. It supports automated handling of prompts up to 128000 tokens features and provides SHAP-based feature  explanations for LLM
 
 ---
 
 **Acceptance Criteria:**  
 
-1. **Model Parameters**  
+1. **workflow Parameters**  
    - Define the following configurable parameters for the model:  
-     - `max_depth` (default: 20): Controls the depth of the random forest trees.  
-     - `n_estimators` (default: 200): Specifies the number of trees in the forest.  
-     - `random_state` (default: 42): Ensures reproducibility of the results.  
+     - `max_tokens` (default: 128000):limit of the maximun token that can be used by the model   
 
 2. **Feature Handling**  
-   - **Numerical Features:**  
-     - Include attributes such as `temp`, `atemp`, `hum`, `windspeed`, and other specified columns.  
-   - **Categorical Features:**  
-     - Use one-hot encoding for features like `season` and `weathersit`.  
-   - Exclude highly correlated features like `registered` to avoid data leakage.
+   - **prompt Features:**  
+     - String input as query ensuring the maximun length of the prompt
 
-3. **Pipeline Construction**  
-   - Combine preprocessing steps for numerical and categorical data using a `ColumnTransformer`.  
-   - Integrate the transformer with a `RandomForestRegressor` in a single scikit-learn `Pipeline`.
+3. **workflow Construction**  
+   - Combine agents  to  process and execute tasks defined.  
 
-4. **Model Training**  
-   - Implement the `fit` method to train the pipeline using input features and target values.  
-   - Ensure the model is correctly saved for future predictions.
 
 5. **Prediction**  
-   - Implement the `predict` method to generate predictions using the fitted pipeline.  
+   - Implement the `predict` method to generate predictions using the agent workflow
    - Output predictions in the defined `schemas.Outputs` format.
 
 6. **Model Explainability**  
@@ -163,8 +149,8 @@ The `BaselineSklearnModel` class provides a baseline regression model leveraging
      - Provide feature importance scores using the `explain_model` method.  
      - Map feature importance to transformed feature names for clear interpretation.  
    - **Local Explainability:**  
-     - Implement the `explain_samples` method to provide SHAP values for specific input samples.  
-     - Ensure SHAP values align with the transformed features.
+     - Implement the `explain_samples` method to provide SHAP for LLM values for specific input samples.  
+
 
 7. **Error Handling**  
    - Raise appropriate errors when attempting to use the model before training (`ValueError`).  
@@ -173,22 +159,25 @@ The `BaselineSklearnModel` class provides a baseline regression model leveraging
    - Validate the following scenarios:  
      - Training the model with valid inputs and targets.  
      - Generating predictions from trained models.  
-     - Explaining model structure and predictions.  
+     - Explaining model structure and predictions.  https://medium.com/@davidacad10/using-llms-for-shap-explanation-f106da74dd75
    - Write unit tests to ensure correct implementation of each method.  
 
 ---
 
 **Definition of Done (DoD):**  
-- All methods (`fit`, `predict`, `explain_model`, `explain_samples`, `get_internal_model`) are implemented and tested.  
+- All methods (predict`, `explain_model`, `explain_samples`, `get_internal_model) are implemented and tested.  
 - Documentation provides clear examples for model usage, training, prediction, and explanation.  
 - Code is integrated into the project and passes all CI/CD checks.  
 - SHAP-based explanations are verified for consistency with transformed features.  
 - Model outputs conform to `schemas.Outputs` and are reproducible with a fixed `random_state`.
 
+https://mlflow.org/blog/autogen-image-agent
+https://github.com/mlflow/mlflow/tree/master/examples/gateway/mlflow_models
+https://github.com/mlflow/mlflow/blob/master/examples/gateway/mlflow_models/README.md
 
 ## Code location
 
-[src/model_name/core/models.py](../src/model_name/core/models.py)
+[src/autogen_team/core/models.py](../src/autogen_team/core/models.py)
 
 ## Test location
 
