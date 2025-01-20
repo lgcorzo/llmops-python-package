@@ -122,45 +122,43 @@ As a **data scientist**, I want a reusable baseline model implementation using [
 ---
 
 **Description:**  
-The `BaselineAutogenWorkflow` class provides a baseline chatgroup using  LLM leveraging autogen  `UserProxyAgent & AssistantAgent` wrapped in a agents workflow. This class is designed to be easily integrated into the project, with capabilities for predicting, and model explainability. It supports automated handling of prompts up to 128000 tokens features and provides SHAP-based feature  explanations for LLM
+The `BaselineAutogenWorkflow` class provides a baseline chatgroup using LLM leveraging autogen `UserProxyAgent & AssistantAgent` wrapped in an agent's workflow. This class is designed to be easily integrated into the project, with capabilities for predicting and model explainability. It supports automated handling of prompts up to 128,000 tokens features and provides SHAP-based feature explanations for LLM.
 
 ---
 
-**Acceptance Criteria:**  
+**Acceptance Criteria:**
 
-1. **workflow Parameters**  
-   - Define the following configurable parameters for the model:  
-     - `max_tokens` (default: 128000):limit of the maximun token that can be used by the model   
+1. **workflow Parameters**
+   - Define the following configurable parameters for the model:
+     - `max_tokens` (default: 128000): limit of the maximum token that can be used by the model
 
-2. **Feature Handling**  
-   - **prompt Features:**  
-     - String input as query ensuring the maximun length of the prompt
+2. **Feature Handling**
+   - **prompt Features:**
+     - String input as query ensuring the maximum length of the prompt
 
-3. **workflow Construction**  
-   - Combine agents  to  process and execute tasks defined.  
+3. **workflow Construction**
+   - Combine agents to process and execute tasks defined.
 
-
-5. **Prediction**  
+4. **Prediction**
    - Implement the `predict` method to generate predictions using the agent workflow
    - Output predictions in the defined `schemas.Outputs` format.
 
-6. **Model Explainability**  
-   - **Global Explainability:**  
-     - Provide feature importance scores using the `explain_model` method.  
-     - Map feature importance to transformed feature names for clear interpretation.  
-   - **Local Explainability:**  
-     - Implement the `explain_samples` method to provide SHAP for LLM values for specific input samples.  
+5 **Model Explainability**
+   - **Global Explainability:**
+     - Provide feature importance scores using the `explain_model` method.
+     - Map feature importance to transformed feature names for clear interpretation.
+   - **Local Explainability:**
+     - Implement the `explain_samples` method to provide SHAP for LLM values for specific input samples.
 
+6. **Error Handling**
+   - Raise appropriate errors when attempting to use the model before training (`ValueError`).
 
-7. **Error Handling**  
-   - Raise appropriate errors when attempting to use the model before training (`ValueError`).  
-
-8. **Validation and Testing**  
-   - Validate the following scenarios:  
-     - Training the model with valid inputs and targets.  
-     - Generating predictions from trained models.  
+7. **Validation and Testing**
+   - Validate the following scenarios:
+     - Training the model with valid inputs and targets.
+     - Generating predictions from trained models.
      - Explaining model structure and predictions.  https://medium.com/@davidacad10/using-llms-for-shap-explanation-f106da74dd75
-   - Write unit tests to ensure correct implementation of each method.  
+   - Write unit tests to ensure correct implementation of each method.
 
 ---
 

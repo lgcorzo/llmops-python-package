@@ -7,7 +7,6 @@ import typing as T
 
 import pydantic as pdt
 import shap
-from sklearn import compose, ensemble, pipeline, preprocessing
 
 from autogen_team.core import schemas
 
@@ -112,76 +111,28 @@ class Model(abc.ABC, pdt.BaseModel, strict=True, frozen=False, extra="forbid"):
         raise NotImplementedError()
 
 
-class BaselineSklearnModel(Model):
-    """Simple baseline model based on scikit-learn.
+class BaselineAutogenModel(Model):
+    """Simple baseline model based on autogen.
 
     Parameters:
-        max_depth (int): maximum depth of the random forest.
-        n_estimators (int): number of estimators in the random forest.
-        random_state (int, optional): random state of the machine learning pipeline.
+        max_tokens (int): maximum token of the prompt
+        max_tokens (float): temperature for the sampling
+        promtp (str): prompt for the model
     """
 
-    KIND: T.Literal["BaselineSklearnModel"] = "BaselineSklearnModel"
+    KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
 
     # params
-    max_depth: int = 20
-    n_estimators: int = 200
-    random_state: int | None = 42
-    # private
-    _pipeline: pipeline.Pipeline | None = None
-    _numericals: list[str] = [
-        "yr",
-        "mnth",
-        "hr",
-        "holiday",
-        "weekday",
-        "workingday",
-        "temp",
-        "atemp",
-        "hum",
-        "windspeed",
-        "casual",
-        # "registered", # too correlated with target
-    ]
-    _categoricals: list[str] = [
-        "season",
-        "weathersit",
-    ]
-
-    @T.override
-    def fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> "BaselineSklearnModel":
-        # subcomponents
-        categoricals_transformer = preprocessing.OneHotEncoder(
-            sparse_output=False, handle_unknown="ignore"
-        )
-        # components
-        transformer = compose.ColumnTransformer(
-            [
-                ("categoricals", categoricals_transformer, self._categoricals),
-                ("numericals", "passthrough", self._numericals),
-            ],
-            remainder="drop",
-        )
-        regressor = ensemble.RandomForestRegressor(
-            max_depth=self.max_depth, n_estimators=self.n_estimators, random_state=self.random_state
-        )
-        # pipeline
-        self._pipeline = pipeline.Pipeline(
-            steps=[
-                ("transformer", transformer),
-                ("regressor", regressor),
-            ]
-        )
-        self._pipeline.fit(X=inputs, y=targets[schemas.TargetsSchema.cnt])
-        return self
+    max_tokens: int = 128000
+    temperature: float = 0.5
+    prompt: str = "imput text"
+    
 
     @T.override
     def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
         model = self.get_internal_model()
         prediction = model.predict(inputs)
-        outputs = schemas.Outputs(
-            {schemas.OutputsSchema.prediction: prediction}, index=inputs.index
-        )
+        outputs = schemas.Outputs({schemas.OutputsSchema.prediction: prediction}, index=inputs.index)
         return outputs
 
     @T.override
