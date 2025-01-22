@@ -6,6 +6,8 @@ import abc
 import typing as T
 
 import pydantic as pdt
+from pydantic import Field
+from typing import Optional
 from typing import Any, Dict
 
 from autogen_agentchat.agents import AssistantAgent
@@ -27,7 +29,6 @@ ParamValue = T.Any
 Params = dict[ParamKey, ParamValue]
 
 
-
 # %% MODELS
 
 
@@ -39,6 +40,9 @@ class Model(abc.ABC, pdt.BaseModel, strict=True, frozen=False, extra="forbid"):
     """
 
     KIND: str
+
+    class Config:
+        arbitrary_types_allowed = True
 
     def get_params(self, deep: bool = True) -> Params:
         """Get the model params.
@@ -69,29 +73,6 @@ class Model(abc.ABC, pdt.BaseModel, strict=True, frozen=False, extra="forbid"):
     def load_context(self, model_config: Dict[str, Any]):
         """
         Load the model from the specified artifacts directory.
-        """
-
-    @abc.abstractmethod
-    def fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> T.Self:
-        """Fit the model on the given inputs and targets.
-
-        Args:
-            inputs (schemas.Inputs): model training inputs.
-            targets (schemas.Targets): model training targets.
-
-        Returns:
-            T.Self: instance of the model.
-        """
-
-    @abc.abstractmethod
-    def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
-        """Generate outputs with the model for the given inputs.
-
-        Args:
-            inputs (schemas.Inputs): model prediction inputs.
-
-        Returns:
-            schemas.Outputs: model prediction outputs.
         """
 
     def explain_model(self) -> schemas.FeatureImportances:
@@ -138,9 +119,8 @@ class BaselineAutogenModel(Model):
     """
 
     KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
-
-    assistant_agent: AssistantAgent
-    team: RoundRobinGroupChat
+    assistant_agent: Optional[AssistantAgent] = Field(default=None)
+    team: Optional[RoundRobinGroupChat] = Field(default=None)
 
     @T.override
     def load_context(self, model_config: Dict[str, Any]):
@@ -166,7 +146,7 @@ class BaselineAutogenModel(Model):
 
         # Stream responses from the team
         response_stream = self.team.run(task=inputs)
-        for  msg in response_stream:
+        for msg in response_stream:
             if hasattr(msg, "content"):
                 # Collect content messages
                 results.append(msg.content)
