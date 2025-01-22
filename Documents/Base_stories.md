@@ -12,7 +12,7 @@
   - [Code location](#code-location)
   - [Test location](#test-location)
 
-------------
+---
 
 ## classes relations
 
@@ -72,7 +72,8 @@ As a **developer**, I want to define a context for executing high-level jobs, so
 **Description:**  
 The `Job` class serves as a base for executing high-level project jobs while managing the lifecycle of various services, including logging, alerts, and MLflow tracking. By using context management, it ensures that services are correctly initialized and cleaned up.
 
-**Acceptance Criteria:**  
+**Acceptance Criteria:**
+
 - The `__enter__` method initializes relevant services when entering the context.
 - The `__exit__` method cleans up and stops services when exiting the context.
 - Exceptions that occur during execution are properly propagated.
@@ -87,7 +88,8 @@ As a **developer**, I want to integrate a logging service within my job context,
 **Description:**  
 The `logger_service` attribute of the `Job` class allows for logging messages during the execution of the job, enabling visibility into the processing stages.
 
-**Acceptance Criteria:**  
+**Acceptance Criteria:**
+
 - Logging is initialized as soon as a job context is entered.
 - Log messages provide insights into the status of services being used (logger service, alerts service, MLflow service).
 - Cleanup of the logging service occurs upon exit of the job context.
@@ -102,7 +104,8 @@ As a **developer**, I want to manage an alerts service during job execution, so 
 **Description:**  
 The `alerts_service` attribute allows the job to manage notifications regarding alerting mechanisms, keeping the user informed about crucial events.
 
-**Acceptance Criteria:**  
+**Acceptance Criteria:**
+
 - The alerts service is started when entering the job context.
 - Notifications related to the job execution can be triggered through the alerts service.
 - The alerts service is stopped appropriately after job execution.
@@ -117,7 +120,8 @@ As a **data scientist**, I want to integrate MLflow tracking during job executio
 **Description:**  
 The `mlflow_service` attribute enables the job to track experiments and model metrics, making it easier to analyze the performance of various models.
 
-**Acceptance Criteria:**  
+**Acceptance Criteria:**
+
 - The MLflow service should be started in the job context, allowing active tracking of the job.
 - All relevant information logged during job execution should be captured via MLflow.
 - The MLflow service should be stopped properly when exiting the context.
@@ -127,13 +131,16 @@ The `mlflow_service` attribute enables the job to track experiments and model me
 ### **Common Acceptance Criteria**
 
 1. **Implementation Requirements:**
+
    - The `Job` class is abstract and cannot be instantiated directly; all subclasses must implement the `run` method.
    - The context management methods (`__enter__`, `__exit__`) must be properly implemented.
 
 2. **Error Handling:**
+
    - Any exceptions triggered in the context must be captured and logged appropriately, ensuring they propagate upwards for further handling.
 
 3. **Testing:**
+
    - Unit tests validate the context management behavior, ensuring services are started and stopped correctly without leaks or errors.
    - Tests check the logging output and alert notifications during execution.
 
@@ -143,7 +150,7 @@ The `mlflow_service` attribute enables the job to track experiments and model me
 
 ---
 
-### **Definition of Done (DoD):** 
+### **Definition of Done (DoD):**
 
 - The `Job` class is fully implemented with the required methods.
 - Subclasses of `Job` are created and demonstrate expected behavior during execution.

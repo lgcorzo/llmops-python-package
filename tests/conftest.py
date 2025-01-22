@@ -132,7 +132,7 @@ def outputs_reader(
     if not os.path.exists(outputs_path):
         inputs = schemas.InputsSchema.check(inputs_reader.read())
         targets = schemas.TargetsSchema.check(targets_reader.read())
-        model = models.BaselineSklearnModel().fit(inputs=inputs, targets=targets)
+        model = models.BaselineAutogenModel().fit(inputs=inputs, targets=targets)
         outputs = schemas.OutputsSchema.check(model.predict(inputs=inputs))
         outputs_writer = datasets.ParquetWriter(path=outputs_path)
         outputs_writer.write(data=outputs)
@@ -238,9 +238,9 @@ def train_test_sets(
 @pytest.fixture(scope="session")
 def model(
     train_test_sets: tuple[schemas.Inputs, schemas.Targets, schemas.Inputs, schemas.Targets],
-) -> models.BaselineSklearnModel:
+) -> models.BaselineAutogenModel:
     """Return a train model for testing."""
-    model = models.BaselineSklearnModel()
+    model = models.BaselineAutogenModel()
     inputs_train, targets_train, _, _ = train_test_sets
     model.fit(inputs=inputs_train, targets=targets_train)
     return model
@@ -250,9 +250,9 @@ def model(
 
 
 @pytest.fixture(scope="session")
-def metric() -> metrics.SklearnMetric:
+def metric() -> metrics.AutogenMetric:
     """Return the default metric."""
-    return metrics.SklearnMetric()
+    return metrics.AutogenMetric()
 
 
 # %% - Signers

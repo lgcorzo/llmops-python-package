@@ -28,14 +28,14 @@ classDiagram
     }
     Metric ..> pdt.BaseModel : "inherits"
 
-    %% SklearnMetric Class
-    class SklearnMetric {
-        +KIND: T.Literal["SklearnMetric"]
+    %% AutogenMetric Class
+    class AutogenMetric {
+        +KIND: T.Literal["AutogenMetric"]
         +name: str = "mean_squared_error"
         +greater_is_better: bool = False
         +score(targets: schemas.Targets, outputs: schemas.Outputs): float
     }
-    Metric <|-- SklearnMetric : "specializes"
+    Metric <|-- AutogenMetric : "specializes"
 
     %% Threshold Class
     class Threshold {
@@ -47,7 +47,7 @@ classDiagram
     Threshold ..> pdt.BaseModel : "inherits"
 
     %% Aliases and Relationships
-    MetricKind --> SklearnMetric : "type alias"
+    MetricKind --> AutogenMetric : "type alias"
     MetricsKind --> MetricKind : "list of metrics"
     Metric ..> MlflowMetric : "returns"
     Threshold ..> MlflowThreshold : "returns"
@@ -135,12 +135,12 @@ The `Metric` class serves as a base for implementing various evaluation metrics,
 ---
 
 **Title:**  
-As a **data scientist**, I want to use `SklearnMetric` to compute evaluation metrics using scikit-learn functions, so that I can easily integrate standardized metrics into my machine learning workflows.
+As a **data scientist**, I want to use `AutogenMetric` to compute evaluation metrics using scikit-learn functions, so that I can easily integrate standardized metrics into my machine learning workflows.
 
 ---
 
 **Description:**  
-The `SklearnMetric` class extends the `Metric` base class to utilize scikit-learn's extensive library of evaluation metrics. This class enables the computation of metrics such as Mean Squared Error (MSE), Mean Absolute Error (MAE), and others with minimal configuration, ensuring flexibility and compatibility with existing tools and pipelines.
+The `AutogenMetric` class extends the `Metric` base class to utilize scikit-learn's extensive library of evaluation metrics. This class enables the computation of metrics such as Mean Squared Error (MSE), Mean Absolute Error (MAE), and others with minimal configuration, ensuring flexibility and compatibility with existing tools and pipelines.
 
 ---
 
@@ -148,7 +148,7 @@ The `SklearnMetric` class extends the `Metric` base class to utilize scikit-lear
 
 1. **Attributes**  
    - **KIND**:  
-     - Set to `"SklearnMetric"` to identify this metric type.  
+     - Set to `"AutogenMetric"` to identify this metric type.  
    - **name**:  
      - Default to `"mean_squared_error"`.  
      - Represents the name of the scikit-learn metric function to be used.  
@@ -178,11 +178,11 @@ The `SklearnMetric` class extends the `Metric` base class to utilize scikit-lear
 
 5. **Documentation**  
    - Provide clear docstrings for:  
-     - The `SklearnMetric` class, explaining its purpose and usage.  
+     - The `AutogenMetric` class, explaining its purpose and usage.  
      - Each parameter, including examples of valid scikit-learn metric names.  
      - The `score` method, detailing how it calculates the metric value.  
    - Add usage examples demonstrating:  
-     - Instantiation of a `SklearnMetric` object.  
+     - Instantiation of a `AutogenMetric` object.  
      - Computation of a metric using `score`.  
 
 6. **Compatibility**  
@@ -193,7 +193,7 @@ The `SklearnMetric` class extends the `Metric` base class to utilize scikit-lear
 
 **Definition of Done (DoD):**  
 
-- The `SklearnMetric` class is implemented and passes all specified test cases.  
+- The `AutogenMetric` class is implemented and passes all specified test cases.  
 - Clear and comprehensive documentation is provided, including usage examples.  
 - The class integrates with the `Metric` base class and other tools like `mlflow`.  
 - The code passes CI/CD validation and is ready for deployment in the machine learning project.

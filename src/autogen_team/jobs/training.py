@@ -39,9 +39,9 @@ class TrainingJob(base.Job):
     inputs: datasets.ReaderKind = pdt.Field(..., discriminator="KIND")
     targets: datasets.ReaderKind = pdt.Field(..., discriminator="KIND")
     # Model
-    model: models.ModelKind = pdt.Field(models.BaselineSklearnModel(), discriminator="KIND")
+    model: models.ModelKind = pdt.Field(models.BaselineAutogenModel(), discriminator="KIND")
     # Metrics
-    metrics: metrics_.MetricsKind = [metrics_.SklearnMetric()]
+    metrics: metrics_.MetricsKind = [metrics_.AutogenMetric()]
     # Splitter
     splitter: splitters.SplitterKind = pdt.Field(
         splitters.TrainTestSplitter(), discriminator="KIND"

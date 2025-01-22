@@ -27,7 +27,7 @@ def test_sklearn_metric(
     # given
     low, high = interval
     data = pd.concat([targets, outputs], axis="columns")
-    metric = metrics.SklearnMetric(name=name, greater_is_better=greater_is_better)
+    metric = metrics.AutogenMetric(name=name, greater_is_better=greater_is_better)
     # when
     score = metric.score(targets=targets, outputs=outputs)
     scorer = metric.scorer(model=model, inputs=inputs, targets=targets)

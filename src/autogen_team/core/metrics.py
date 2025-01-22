@@ -102,7 +102,7 @@ class Metric(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
         )
 
 
-class SklearnMetric(Metric):
+class AutogenMetric(Metric):
     """Compute metrics with sklearn.
 
     Parameters:
@@ -110,7 +110,7 @@ class SklearnMetric(Metric):
         greater_is_better (bool): maximize or minimize.
     """
 
-    KIND: T.Literal["SklearnMetric"] = "SklearnMetric"
+    KIND: T.Literal["AutogenMetric"] = "AutogenMetric"
 
     name: str = "mean_squared_error"
     greater_is_better: bool = False
@@ -125,7 +125,7 @@ class SklearnMetric(Metric):
         return float(score)
 
 
-MetricKind = SklearnMetric
+MetricKind = AutogenMetric
 MetricsKind: T.TypeAlias = list[T.Annotated[MetricKind, pdt.Field(discriminator="KIND")]]
 
 # %% THRESHOLDS

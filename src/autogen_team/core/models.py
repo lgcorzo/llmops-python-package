@@ -6,9 +6,18 @@ import abc
 import typing as T
 
 import pydantic as pdt
-import shap
+from typing import Any, Dict
+
+from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.base import TaskResult
+from autogen_agentchat.conditions import MaxMessageTermination, TextMentionTermination
+from autogen_agentchat.teams import RoundRobinGroupChat
+
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+
 
 from autogen_team.core import schemas
+from autogen_team.tools.weather import get_weather
 
 # %% TYPES
 
@@ -16,6 +25,8 @@ from autogen_team.core import schemas
 ParamKey = str
 ParamValue = T.Any
 Params = dict[ParamKey, ParamValue]
+
+
 
 # %% MODELS
 
@@ -53,6 +64,12 @@ class Model(abc.ABC, pdt.BaseModel, strict=True, frozen=False, extra="forbid"):
         for key, value in params.items():
             setattr(self, key, value)
         return self
+
+    @abc.abstractmethod
+    def load_context(self, model_config: Dict[str, Any]):
+        """
+        Load the model from the specified artifacts directory.
+        """
 
     @abc.abstractmethod
     def fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> T.Self:
@@ -122,52 +139,51 @@ class BaselineAutogenModel(Model):
 
     KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
 
-    # params
-    max_tokens: int = 128000
-    temperature: float = 0.5
-    prompt: str = "imput text"
-    
+    assistant_agent: AssistantAgent
+    team: RoundRobinGroupChat
+
+    @T.override
+    def load_context(self, model_config: Dict[str, Any]):
+        """
+        Load the model from the specified artifacts directory.
+        """
+        self.assistant_agent = AssistantAgent(
+            name="assistant_agent",
+            tools=[get_weather],
+            model_client=OpenAIChatCompletionClient(model="gpt-4o-2024-08-06"),
+        )
+
+        termination = TextMentionTermination("TERMINATE") | MaxMessageTermination(10)
+        self.team = RoundRobinGroupChat(participants=[self.assistant_agent], termination_condition=termination)
 
     @T.override
     def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
-        model = self.get_internal_model()
-        prediction = model.predict(inputs)
+        """
+        Predicts the output using the assistant team based on the given inputs.
+        """
+        # Initialize a list to collect messages or results
+        results = []
+
+        # Stream responses from the team
+        response_stream = self.team.run(task=inputs)
+        for  msg in response_stream:
+            if hasattr(msg, "content"):
+                # Collect content messages
+                results.append(msg.content)
+
+            if isinstance(msg, TaskResult):
+                # Handle the final task result if needed
+                results.append(f"Task Result: {msg.result}")
+                # Break or terminate loop if needed after TaskResult
+                break
+
+        # Join results or format as needed
+        prediction = "\n".join(results)
+
+        # Return the outputs schema
         outputs = schemas.Outputs({schemas.OutputsSchema.prediction: prediction}, index=inputs.index)
+
         return outputs
 
-    @T.override
-    def explain_model(self) -> schemas.FeatureImportances:
-        model = self.get_internal_model()
-        regressor = model.named_steps["regressor"]
-        transformer = model.named_steps["transformer"]
-        column_names = transformer.get_feature_names_out()
-        feature_importances = schemas.FeatureImportances(
-            data={
-                "feature": column_names,
-                "importance": regressor.feature_importances_,
-            }
-        )
-        return feature_importances
 
-    @T.override
-    def explain_samples(self, inputs: schemas.Inputs) -> schemas.SHAPValues:
-        model = self.get_internal_model()
-        regressor = model.named_steps["regressor"]
-        transformer = model.named_steps["transformer"]
-        transformed = transformer.transform(X=inputs)
-        explainer = shap.TreeExplainer(model=regressor)
-        shap_values = schemas.SHAPValues(
-            data=explainer.shap_values(X=transformed),
-            columns=transformer.get_feature_names_out(),
-        )
-        return shap_values
-
-    @T.override
-    def get_internal_model(self) -> pipeline.Pipeline:
-        model = self._pipeline
-        if model is None:
-            raise ValueError("Model is not fitted yet!")
-        return model
-
-
-ModelKind = BaselineSklearnModel
+ModelKind = BaselineAutogenModel

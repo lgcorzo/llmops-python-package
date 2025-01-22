@@ -21,6 +21,19 @@ You can use this package as part of your MLOps toolkit or platform (e.g., Model 
 
 - [MLOps Python Package](#mlops-python-package)
 - [Table of Contents](#table-of-contents)
+    - [1. **Asociación**](#1-asociación)
+      - [Código Python:](#código-python)
+      - [Representación UML:](#representación-uml)
+    - [2. **Agregación**](#2-agregación)
+      - [Código Python:](#código-python-1)
+      - [Representación UML:](#representación-uml-1)
+    - [3. **Composición**](#3-composición)
+      - [Código Python:](#código-python-2)
+      - [Representación UML:](#representación-uml-2)
+    - [4. **Dependencia**](#4-dependencia)
+      - [Código Python:](#código-python-3)
+      - [Representación UML:](#representación-uml-3)
+    - [Resumen de Relaciones:](#resumen-de-relaciones)
 - [Install](#install)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -107,6 +120,167 @@ You can use this package as part of your MLOps toolkit or platform (e.g., Model 
     - [Config Typing](#config-typing)
     - [Dataframe Typing](#dataframe-typing)
     - [Object Oriented](#object-oriented)
+    - [Semantic Versioning](#semantic-versioning)
+  - [Testing Tricks](#testing-tricks)
+    - [Parallel Testing](#parallel-testing)
+    - [Test Fixtures](#test-fixtures)
+  - [VS Code](#vs-code)
+    - [Code Workspace](#code-workspace)
+    - [GitHub Copilot](#github-copilot)
+    - [VSCode VIM](#vscode-vim)
+- [Resources](#resources)
+  - [Python](#python)
+  - [AI/ML/MLOps](#aimlmlops)
+  - [UML course:](#uml-course)
+    - [1. **Asociación**](#1-asociación-1)
+      - [Código Python:](#código-python-4)
+      - [Representación UML:](#representación-uml-4)
+    - [2. **Agregación**](#2-agregación-1)
+      - [Código Python:](#código-python-5)
+      - [Representación UML:](#representación-uml-5)
+    - [3. **Composición**](#3-composición-1)
+      - [Código Python:](#código-python-6)
+      - [Representación UML:](#representación-uml-6)
+    - [4. **Dependencia**](#4-dependencia-1)
+      - [Código Python:](#código-python-7)
+      - [Representación UML:](#representación-uml-7)
+    - [Resumen de Relaciones:](#resumen-de-relaciones-1)
+    - [1. Asociación](#1-asociación-2)
+    - [2. Agregación](#2-agregación-2)
+    - [3. Composición](#3-composición-2)
+    - [4. Dependencia](#4-dependencia-2)
+    - [Cómo interpretar:](#cómo-interpretar)
+    - [Ejemplo en Python](#ejemplo-en-python)
+    - [Representación en Mermaid para UML](#representación-en-mermaid-para-uml)
+    - [Explicación:](#explicación)
+
+---
+
+### 1. **Asociación**
+- Representa una relación entre dos clases que colaboran entre sí.
+- Es una relación débil y bidireccional (en general).
+- Ejemplo: Un `Alumno` se asocia con un `Profesor`.
+
+#### Código Python:
+```python
+class Profesor:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+class Alumno:
+    def __init__(self, nombre, profesor):
+        self.nombre = nombre
+        self.profesor = profesor  # Relación de asociación
+
+# Ejemplo de uso
+profesor = Profesor("Dr. García")
+alumno = Alumno("Juan", profesor)
+
+print(f"{alumno.nombre} tiene como profesor a {alumno.profesor.nombre}")
+```
+
+#### Representación UML:
+- Línea sólida simple entre `Alumno` y `Profesor`.
+
+---
+
+### 2. **Agregación**
+- Es un tipo especial de asociación.
+- Representa una relación "todo-parte", pero donde las partes pueden existir independientemente del todo.
+- Ejemplo: Un `Departamento` tiene varios `Empleado`s, pero si el departamento deja de existir, los empleados pueden seguir existiendo.
+
+#### Código Python:
+```python
+class Empleado:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+class Departamento:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.empleados = []  # Relación de agregación
+
+    def agregar_empleado(self, empleado):
+        self.empleados.append(empleado)
+
+# Ejemplo de uso
+empleado1 = Empleado("Alice")
+empleado2 = Empleado("Bob")
+departamento = Departamento("Recursos Humanos")
+departamento.agregar_empleado(empleado1)
+departamento.agregar_empleado(empleado2)
+
+print(f"El departamento {departamento.nombre} tiene a:")
+for empleado in departamento.empleados:
+    print(f"- {empleado.nombre}")
+```
+
+#### Representación UML:
+- Línea con un rombo vacío en el lado del "todo" (`Departamento`).
+
+---
+
+### 3. **Composición**
+- Es una relación "todo-parte" más fuerte.
+- Las partes no pueden existir sin el todo.
+- Ejemplo: Un `Coche` tiene un `Motor`, y si el coche deja de existir, el motor también.
+
+#### Código Python:
+```python
+class Motor:
+    def __init__(self, tipo):
+        self.tipo = tipo
+
+class Coche:
+    def __init__(self, marca, tipo_motor):
+        self.marca = marca
+        self.motor = Motor(tipo_motor)  # Relación de composición
+
+# Ejemplo de uso
+coche = Coche("Toyota", "V8")
+print(f"El coche {coche.marca} tiene un motor {coche.motor.tipo}")
+```
+
+#### Representación UML:
+- Línea con un rombo sólido en el lado del "todo" (`Coche`).
+
+---
+
+### 4. **Dependencia**
+- Representa que una clase utiliza otra temporalmente.
+- Es la relación más débil y generalmente unidireccional.
+- Ejemplo: Una `Impresora` depende de un `Documento` para imprimirlo.
+
+#### Código Python:
+```python
+class Documento:
+    def __init__(self, texto):
+        self.texto = texto
+
+class Impresora:
+    def imprimir(self, documento):
+        print(f"Imprimiendo documento: {documento.texto}")
+
+# Ejemplo de uso
+doc = Documento("Informe Anual")
+impresora = Impresora()
+impresora.imprimir(doc)
+```
+
+#### Representación UML:
+- Línea punteada con una flecha hacia la clase que se utiliza (`Documento`).
+
+---
+
+### Resumen de Relaciones:
+| Relación      | Código Python               | UML                       |
+|---------------|-----------------------------|---------------------------|
+| Asociación    | `profesor` dentro de `Alumno` | Línea sólida simple       |
+| Agregación    | `empleados` dentro de `Departamento` | Línea con rombo vacío     |
+| Composición   | `motor` dentro de `Coche`    | Línea con rombo sólido    |
+| Dependencia   | `Impresora` usa `Documento` | Línea punteada            |
+
+Estos conceptos y ejemplos deberían ayudarte a entender y representar las dependencias en UML. ¿Quieres que genere diagramas para alguno?#object-oriented)
     - [Semantic Versioning](#semantic-versioning)
   - [Testing Tricks](#testing-tricks)
     - [Parallel Testing](#parallel-testing)
@@ -1179,3 +1353,253 @@ This section provides resources for building packages for Python and AI/ML/MLOps
 
 - https://github.com/josephmisiti/awesome-machine-learning
 - https://github.com/visenger/awesome-mlops
+
+## UML course:
+
+En UML, las relaciones entre clases suelen dividirse en cuatro tipos principales de dependencias o relaciones: **asociación**, **agregación**, **composición**, y **dependencia**. A continuación, se explican cada una con ejemplos en Python y cómo se representan en un diagrama UML.
+
+---
+
+### 1. **Asociación**
+- Representa una relación entre dos clases que colaboran entre sí.
+- Es una relación débil y bidireccional (en general).
+- Ejemplo: Un `Alumno` se asocia con un `Profesor`.
+
+#### Código Python:
+```python
+class Profesor:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+class Alumno:
+    def __init__(self, nombre, profesor):
+        self.nombre = nombre
+        self.profesor = profesor  # Relación de asociación
+
+# Ejemplo de uso
+profesor = Profesor("Dr. García")
+alumno = Alumno("Juan", profesor)
+
+print(f"{alumno.nombre} tiene como profesor a {alumno.profesor.nombre}")
+```
+
+#### Representación UML:
+- Línea sólida simple entre `Alumno` y `Profesor`.
+
+---
+
+### 2. **Agregación**
+- Es un tipo especial de asociación.
+- Representa una relación "todo-parte", pero donde las partes pueden existir independientemente del todo.
+- Ejemplo: Un `Departamento` tiene varios `Empleado`s, pero si el departamento deja de existir, los empleados pueden seguir existiendo.
+
+#### Código Python:
+```python
+class Empleado:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+class Departamento:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.empleados = []  # Relación de agregación
+
+    def agregar_empleado(self, empleado):
+        self.empleados.append(empleado)
+
+# Ejemplo de uso
+empleado1 = Empleado("Alice")
+empleado2 = Empleado("Bob")
+departamento = Departamento("Recursos Humanos")
+departamento.agregar_empleado(empleado1)
+departamento.agregar_empleado(empleado2)
+
+print(f"El departamento {departamento.nombre} tiene a:")
+for empleado in departamento.empleados:
+    print(f"- {empleado.nombre}")
+```
+
+#### Representación UML:
+- Línea con un rombo vacío en el lado del "todo" (`Departamento`).
+
+---
+
+### 3. **Composición**
+- Es una relación "todo-parte" más fuerte.
+- Las partes no pueden existir sin el todo.
+- Ejemplo: Un `Coche` tiene un `Motor`, y si el coche deja de existir, el motor también.
+
+#### Código Python:
+```python
+class Motor:
+    def __init__(self, tipo):
+        self.tipo = tipo
+
+class Coche:
+    def __init__(self, marca, tipo_motor):
+        self.marca = marca
+        self.motor = Motor(tipo_motor)  # Relación de composición
+
+# Ejemplo de uso
+coche = Coche("Toyota", "V8")
+print(f"El coche {coche.marca} tiene un motor {coche.motor.tipo}")
+```
+
+#### Representación UML:
+- Línea con un rombo sólido en el lado del "todo" (`Coche`).
+
+---
+
+### 4. **Dependencia**
+- Representa que una clase utiliza otra temporalmente.
+- Es la relación más débil y generalmente unidireccional.
+- Ejemplo: Una `Impresora` depende de un `Documento` para imprimirlo.
+
+#### Código Python:
+```python
+class Documento:
+    def __init__(self, texto):
+        self.texto = texto
+
+class Impresora:
+    def imprimir(self, documento):
+        print(f"Imprimiendo documento: {documento.texto}")
+
+# Ejemplo de uso
+doc = Documento("Informe Anual")
+impresora = Impresora()
+impresora.imprimir(doc)
+```
+
+#### Representación UML:
+- Línea punteada con una flecha hacia la clase que se utiliza (`Documento`).
+
+---
+
+### Resumen de Relaciones:
+| Relación      | Código Python               | UML                       |
+|---------------|-----------------------------|---------------------------|
+| Asociación    | `profesor` dentro de `Alumno` | Línea sólida simple       |
+| Agregación    | `empleados` dentro de `Departamento` | Línea con rombo vacío     |
+| Composición   | `motor` dentro de `Coche`    | Línea con rombo sólido    |
+| Dependencia   | `Impresora` usa `Documento` | Línea punteada            |
+
+Aquí tienes los ejemplos representados en **Mermaid**, un lenguaje para generar diagramas en Markdown. Puedes copiar y pegar estos diagramas en un entorno compatible con Mermaid (como un editor Markdown con soporte, GitHub, o un visor en línea).
+
+---
+
+### 1. Asociación
+```mermaid
+classDiagram
+    class Alumno {
+        -nombre: string
+        -profesor: Profesor
+    }
+    class Profesor {
+        -nombre: string
+    }
+    Alumno --> Profesor : tiene
+```
+
+---
+
+### 2. Agregación
+```mermaid
+classDiagram
+    class Departamento {
+        -nombre: string
+        -empleados: List<Empleado>
+        +agregar_empleado(empleado: Empleado): void
+    }
+    class Empleado {
+        -nombre: string
+    }
+    Departamento o-- Empleado : contiene
+```
+
+---
+
+### 3. Composición
+```mermaid
+classDiagram
+    class Coche {
+        -marca: string
+        -motor: Motor
+    }
+    class Motor {
+        -tipo: string
+    }
+    Coche *-- Motor : contiene
+```
+
+---
+
+### 4. Dependencia
+```mermaid
+classDiagram
+    class Impresora {
+        +imprimir(documento: Documento): void
+    }
+    class Documento {
+        -texto: string
+    }
+    Impresora ..> Documento : usa
+```
+
+---
+
+### Cómo interpretar:
+- **Línea sólida simple (`-->`)**: Representa una asociación.
+- **Rombo vacío (`o--`)**: Representa una agregación.
+- **Rombo sólido (`*--`)**: Representa una composición.
+- **Línea punteada (`..>`)**: Representa una dependencia.
+Cuando una clase es **derivada** de otra, la relación entre ellas es de **herencia**. En UML, la herencia se representa con una **línea sólida con una flecha hueca** que apunta de la clase derivada a la clase base.
+
+### Ejemplo en Python
+```python
+class Animal:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def hacer_sonido(self):
+        pass
+
+class Perro(Animal):
+    def hacer_sonido(self):
+        return "Ladra"
+
+class Gato(Animal):
+    def hacer_sonido(self):
+        return "Maulla"
+
+# Ejemplo de uso
+perro = Perro("Firulais")
+gato = Gato("Misu")
+
+print(f"{perro.nombre} {perro.hacer_sonido()}")
+print(f"{gato.nombre} {gato.hacer_sonido()}")
+```
+
+### Representación en Mermaid para UML
+```mermaid
+classDiagram
+    class Animal {
+        -nombre: string
+        +hacer_sonido(): string
+    }
+    class Perro {
+        +hacer_sonido(): string
+    }
+    class Gato {
+        +hacer_sonido(): string
+    }
+    Animal <|-- Perro
+    Animal <|-- Gato
+```
+
+---
+
+### Explicación:
+- **Animal** es la clase base o superclase.
+- **Perro** y **Gato** son clases derivadas o subclases.
+- La relación de herencia indica que las subclases heredan los atributos y métodos de la clase base, pero pueden sobrescribirlos (como `hacer_sonido` en este caso).

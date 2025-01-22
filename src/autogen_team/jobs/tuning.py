@@ -36,9 +36,9 @@ class TuningJob(base.Job):
     inputs: datasets.ReaderKind = pdt.Field(..., discriminator="KIND")
     targets: datasets.ReaderKind = pdt.Field(..., discriminator="KIND")
     # Model
-    model: models.ModelKind = pdt.Field(models.BaselineSklearnModel(), discriminator="KIND")
+    model: models.ModelKind = pdt.Field(models.BaselineAutogenModel(), discriminator="KIND")
     # Metric
-    metric: metrics.MetricKind = pdt.Field(metrics.SklearnMetric(), discriminator="KIND")
+    metric: metrics.MetricKind = pdt.Field(metrics.AutogenMetric(), discriminator="KIND")
     # splitter
     splitter: splitters.SplitterKind = pdt.Field(
         splitters.TimeSeriesSplitter(), discriminator="KIND"

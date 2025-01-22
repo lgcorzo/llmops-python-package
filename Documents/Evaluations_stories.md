@@ -47,7 +47,7 @@ classDiagram
         +to_mlflow() : dict
     }
 
-    class SklearnMetric {
+    class AutogenMetric {
         +to_mlflow() : dict
     }
 
@@ -62,12 +62,12 @@ classDiagram
     EvaluationsJob --> MlflowService : "uses"
     EvaluationsJob --> ReaderKind : "inputs & targets"
     EvaluationsJob --> MetricsKind : "metrics"
-    EvaluationsJob --> SklearnMetric : "metrics"
+    EvaluationsJob --> AutogenMetric : "metrics"
     EvaluationsJob --> AlertsService : "notifies"
     EvaluationsJob --> Threshold : "thresholds"
     MlflowService --> MlflowClient : "provides client"
     ReaderKind --> pd.DataFrame : "returns"
-    SklearnMetric --> dict : "to_mlflow"
+    AutogenMetric --> dict : "to_mlflow"
     Threshold --> dict : "to_mlflow"
 
 ```

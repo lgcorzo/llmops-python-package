@@ -43,7 +43,7 @@ class EvaluationsJob(base.Job):
     model_type: str = "regressor"
     alias_or_version: str | int = "Champion"
     # Metrics
-    metrics: metrics_.MetricsKind = [metrics_.SklearnMetric()]
+    metrics: metrics_.MetricsKind = [metrics_.AutogenMetric()]
     # Evaluators
     evaluators: list[str] = ["default"]
     # Thresholds

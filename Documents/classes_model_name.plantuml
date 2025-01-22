@@ -22,14 +22,14 @@ class "AlertsService" as model_name.io.services.AlertsService {
   notify(title: str, message: str) -> None
   {abstract}start() -> None
 }
-class "BaselineSklearnModel" as model_name.core.models.BaselineSklearnModel {
-  KIND : T.Literal['BaselineSklearnModel']
+class "BaselineAutogenModel" as model_name.core.models.BaselineAutogenModel {
+  KIND : T.Literal['BaselineAutogenModel']
   max_depth : int
   n_estimators : int
   random_state : int | None
   explain_model() -> schemas.FeatureImportances
   explain_samples(inputs: schemas.Inputs) -> schemas.SHAPValues
-  fit(inputs: schemas.Inputs, targets: schemas.Targets) -> 'BaselineSklearnModel'
+  fit(inputs: schemas.Inputs, targets: schemas.Targets) -> 'BaselineAutogenModel'
   get_internal_model() -> pipeline.Pipeline
   predict(inputs: schemas.Inputs) -> schemas.Outputs
 }
@@ -273,8 +273,8 @@ class "Signer" as model_name.utils.signers.Signer {
 }
 class "Singleton" as model_name.io.osvariables.Singleton {
 }
-class "SklearnMetric" as model_name.core.metrics.SklearnMetric {
-  KIND : T.Literal['SklearnMetric']
+class "AutogenMetric" as model_name.core.metrics.AutogenMetric {
+  KIND : T.Literal['AutogenMetric']
   greater_is_better : bool
   name : str
   score(targets: schemas.Targets, outputs: schemas.Outputs) -> float
@@ -337,8 +337,8 @@ class "Writer" as model_name.io.datasets.Writer {
   KIND : str
   {abstract}write(data: pd.DataFrame) -> None
 }
-model_name.core.metrics.SklearnMetric --|> model_name.core.metrics.Metric
-model_name.core.models.BaselineSklearnModel --|> model_name.core.models.Model
+model_name.core.metrics.AutogenMetric --|> model_name.core.metrics.Metric
+model_name.core.models.BaselineAutogenModel --|> model_name.core.models.Model
 model_name.core.schemas.FeatureImportancesSchema --|> model_name.core.schemas.Schema
 model_name.core.schemas.InputsSchema --|> model_name.core.schemas.Schema
 model_name.core.schemas.OutputsSchema --|> model_name.core.schemas.Schema
@@ -368,9 +368,9 @@ model_name.utils.searchers.GridCVSearcher --|> model_name.utils.searchers.Search
 model_name.utils.signers.InferSigner --|> model_name.utils.signers.Signer
 model_name.utils.splitters.TimeSeriesSplitter --|> model_name.utils.splitters.Splitter
 model_name.utils.splitters.TrainTestSplitter --|> model_name.utils.splitters.Splitter
-model_name.core.metrics.SklearnMetric --* model_name.jobs.tuning.TuningJob : metric
-model_name.core.models.BaselineSklearnModel --* model_name.jobs.training.TrainingJob : model
-model_name.core.models.BaselineSklearnModel --* model_name.jobs.tuning.TuningJob : model
+model_name.core.metrics.AutogenMetric --* model_name.jobs.tuning.TuningJob : metric
+model_name.core.models.BaselineAutogenModel --* model_name.jobs.training.TrainingJob : model
+model_name.core.models.BaselineAutogenModel --* model_name.jobs.tuning.TuningJob : model
 model_name.io.datasets.ParquetReader --* model_name.jobs.evaluations.EvaluationsJob : inputs
 model_name.io.datasets.ParquetReader --* model_name.jobs.evaluations.EvaluationsJob : targets
 model_name.io.datasets.ParquetReader --* model_name.jobs.explanations.ExplanationsJob : inputs_samples
