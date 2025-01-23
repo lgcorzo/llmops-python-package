@@ -6,6 +6,7 @@ import abc
 import typing as T
 
 import pydantic as pdt
+import pandas as pd
 from pydantic import Field
 from typing import Optional
 from typing import Any, Dict
@@ -161,9 +162,20 @@ class BaselineAutogenModel(Model):
         prediction = "\n".join(results)
 
         # Return the outputs schema
-        outputs = schemas.Outputs({schemas.OutputsSchema.prediction: prediction}, index=inputs.index)
+        outputs = schemas.Outputs(
+            pd.DataFrame(
+                {
+                    "response": [prediction],
+                    "metadata": [{"timestamp": "2025-01-15T12:00:00Z", "model_version": "v1.0.0"}],
+                }
+            )
+        )
 
         return outputs
+
+    @T.override
+    def get_internal_model(self) -> RoundRobinGroupChat:
+        return self.team
 
 
 ModelKind = BaselineAutogenModel

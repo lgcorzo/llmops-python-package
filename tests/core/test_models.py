@@ -1,8 +1,9 @@
 # %% IMPORTS
 import pytest
 from unittest.mock import MagicMock, patch
+import pandas as pd
 
-
+from autogen_agentchat.base import TaskResult
 from autogen_team.core.models import BaselineAutogenModel, Model
 from autogen_team.core import schemas
 
@@ -43,31 +44,48 @@ def test_set_params(baseline_model):
 
 
 def test_predict(baseline_model):
-    """Test the predict method."""
+    """Test the predict method of BaselineAutogenModel."""
     # Setup
-    inputs = schemas.Inputs(index=0, data={"input_data": "test"})
-    outputs_schema_mock = schemas.OutputsSchema(prediction="mock_prediction")
+    input_data = pd.DataFrame({"input": ["Some large input string"]})
+    inputs = schemas.Inputs(input_data)
 
-    with patch("autogen_team.core.models.RoundRobinGroupChat.run") as MockRun:
+    # Mock output
+    mock_result = schemas.Outputs(
+        pd.DataFrame(
+            {
+                "response": ["Message 1\nMessage 2\nTask Result: Result 1"],
+                "metadata": [{"timestamp": "2025-01-15T12:00:00Z", "model_version": "v1.0.0"}],
+            }
+        )
+    )
+
+    with patch("autogen_team.core.models.RoundRobinGroupChat") as MockRun:
         # Mocking the response stream
-        task_result = MagicMock(spec=schemas.TaskResult)
-        task_result.result = "mock_result"
+        mock_task_result = MagicMock()
 
-        MockRun.return_value = [
+
+        MockRun.run.return_value = [
             MagicMock(content="Message 1"),
             MagicMock(content="Message 2"),
-            task_result,
+            MagicMock(spec=TaskResult, result="Result 1")
         ]
 
-        baseline_model.team = MagicMock()
-        baseline_model.team.run = MockRun
+        # Ensure the baseline model's `team` uses the mock
+        baseline_model.team = MockRun
 
         # Execute
         outputs = baseline_model.predict(inputs)
 
         # Verify
-        assert outputs is not None
-        assert outputs.schema[outputs_schema_mock.prediction] == "Message 1\nMessage 2\nTask Result: mock_result"
+        assert outputs is not None, "Outputs should not be None"
+        assert "Message 1" in outputs.data["response"][0], "First message content is missing"
+        assert "Message 2" in outputs.data["response"][0], "Second message content is missing"
+        assert "Task Result: mock_result" in outputs.data["response"][0], "Task result is missing"
+
+        # Additional metadata validation (optional)
+        assert isinstance(outputs.data["metadata"][0], dict), "Metadata should be a dictionary"
+        assert "timestamp" in outputs.data["metadata"][0], "Metadata timestamp is missing"
+        assert "model_version" in outputs.data["metadata"][0], "Metadata model_version is missing"
 
 
 def test_explain_model_not_implemented(baseline_model):
