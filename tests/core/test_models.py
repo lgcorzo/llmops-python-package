@@ -77,15 +77,15 @@ def test_predict(baseline_model):
         outputs = baseline_model.predict(inputs)
 
         # Verify
-        assert outputs is not None, "Outputs should not be None"
-        assert "Message 1" in outputs.data["response"][0], "First message content is missing"
-        assert "Message 2" in outputs.data["response"][0], "Second message content is missing"
-        assert "Task Result: mock_result" in outputs.data["response"][0], "Task result is missing"
+        assert outputs is not None
+        assert "Message 1" in outputs["response"][0]
+        assert "Message 2" in outputs["response"][0]
+        assert "Task Result: Result 1" in outputs["response"][0]
 
         # Additional metadata validation (optional)
-        assert isinstance(outputs.data["metadata"][0], dict), "Metadata should be a dictionary"
-        assert "timestamp" in outputs.data["metadata"][0], "Metadata timestamp is missing"
-        assert "model_version" in outputs.data["metadata"][0], "Metadata model_version is missing"
+        assert isinstance(outputs["metadata"][0], dict), "Metadata should be a dictionary"
+        assert "timestamp" in outputs["metadata"][0], "Metadata timestamp is missing"
+        assert "model_version" in outputs["metadata"][0], "Metadata model_version is missing"
 
 
 def test_explain_model_not_implemented(baseline_model):
