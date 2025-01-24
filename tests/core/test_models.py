@@ -2,6 +2,7 @@
 import pytest
 from unittest.mock import MagicMock, patch
 import pandas as pd
+import typing as T
 
 from autogen_agentchat.base import TaskResult
 from autogen_team.core.models import BaselineAutogenModel, Model
@@ -96,23 +97,31 @@ def test_explain_model_not_implemented(baseline_model):
 
 def test_explain_samples_not_implemented(baseline_model):
     """Test explain_samples raises NotImplementedError."""
-    inputs = schemas.Inputs(index=0, data={"input_data": "test"})
+    input_data = pd.DataFrame({"input": ["Some large input string"]})
+    inputs = schemas.Inputs(input_data)
     with pytest.raises(NotImplementedError):
         baseline_model.explain_samples(inputs)
 
 
-def test_get_internal_model_not_implemented(baseline_model):
-    """Test get_internal_model raises NotImplementedError."""
-    with pytest.raises(NotImplementedError):
-        baseline_model.get_internal_model()
+def test_get_internal_model(baseline_model):
+    """Test get_internal_model returns the team."""
+    # Setup
+    mock_team = MagicMock()
+    baseline_model.team = mock_team
+
+    # Execute
+    internal_model = baseline_model.get_internal_model()
+
+    # Verify
+    assert internal_model == mock_team, "get_internal_model should return the team attribute"
 
 
 def test_model_class_config():
     """Test the Config settings for the Model class."""
 
     class CustomModel(Model):
-        KIND = "CustomModel"
-
+        KIND: T.Literal["CustomModel"] = "CustomModel"
+        @T.override
         def load_context(self, model_config):
             pass
 
