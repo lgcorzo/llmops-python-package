@@ -50,15 +50,6 @@ def test_predict(baseline_model):
     input_data = pd.DataFrame({"input": ["Some large input string"]})
     inputs = schemas.Inputs(input_data)
 
-    # Mock output
-    mock_result = schemas.Outputs(
-        pd.DataFrame(
-            {
-                "response": ["Message 1\nMessage 2\nTask Result: Result 1"],
-                "metadata": [{"timestamp": "2025-01-15T12:00:00Z", "model_version": "v1.0.0"}],
-            }
-        )
-    )
 
     with patch("autogen_team.core.models.RoundRobinGroupChat") as MockRun:
         # Mocking the response stream

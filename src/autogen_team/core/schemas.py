@@ -70,7 +70,7 @@ class TargetsSchema(Schema):
     """Schema for the project target."""
 
     input: papd.Series[padt.String] = pa.Field()
-    prediction: papd.Series[padt.String] = pa.Field()
+    response: papd.Series[padt.String] = pa.Field()
 
 
 class SHAPValuesSchema(Schema):

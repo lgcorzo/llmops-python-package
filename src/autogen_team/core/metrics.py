@@ -101,7 +101,6 @@ class AutogenMetric(Metric):
     """
 
     KIND: T.Literal["AutogenMetric"] = "AutogenMetric"
-
     metric_type: T.Literal["exact_match", "similarity", "length_ratio"] = "similarity"
     similarity_threshold: Optional[float] = 0.7
 

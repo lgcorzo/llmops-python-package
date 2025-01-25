@@ -76,7 +76,7 @@ def test_metadata_schema_invalid_model_version():
 
 def test_targets_schema_valid():
     """Test valid target data for TargetsSchema."""
-    valid_data = pd.DataFrame({"input": ["Sample input"], "prediction": ["Sample prediction"]})
+    valid_data = pd.DataFrame({"input": ["Sample input"], "response": ["Sample prediction"]})
     validated_data = TargetsSchema.check(valid_data)
     assert not validated_data.empty
 
