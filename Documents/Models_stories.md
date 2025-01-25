@@ -3,6 +3,11 @@
 - [US Models : Define the structure of machine learning models, including architectures and checkpoints, to standardize training and deployment](#us-models--define-the-structure-of-machine-learning-models-including-architectures-and-checkpoints-to-standardize-training-and-deployment)
   - [classes relations](#classes-relations)
   - [**User Story: Develop a Base Model Class for Machine Learning Frameworks**](#user-story-develop-a-base-model-class-for-machine-learning-frameworks)
+  - [User Stories: BaselineAutogenModel Class](#user-stories-baselineautogenmodel-class)
+    - [**1. User Story: Load Assistant Agent for Predictions**](#1-user-story-load-assistant-agent-for-predictions)
+    - [**2. User Story: Predict Outputs Using Inputs**](#2-user-story-predict-outputs-using-inputs)
+    - [**Common Acceptance Criteria**](#common-acceptance-criteria)
+    - [**Definition of Done (DoD):**](#definition-of-done-dod)
   - [references:](#references)
   - [Code location](#code-location)
   - [Test location](#test-location)
@@ -13,38 +18,63 @@
 
 ```mermaid
 classDiagram
-    %% Abstract Base Class
     class Model {
-        <<abstract>>
+        <<Abstract>>
         +KIND: str
         +get_params(deep: bool = True): Params
         +set_params(**params: ParamValue): T.Self
-        +load_context()
-        +fit(inputs: schemas.Inputs, targets: schemas.Targets): T.Self
-        +predict(inputs: schemas.Inputs): schemas.Outputs
+        +load_context(model_config: Dict[str, Any])*: void
         +explain_model(): schemas.FeatureImportances
         +explain_samples(inputs: schemas.Inputs): schemas.SHAPValues
         +get_internal_model(): T.Any
     }
 
-    %% Derived Class
     class BaselineAutogenModel {
         +KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
-        - assistant_agent: AssistantAgent
-        - team: RoundRobinGroupChat
-        +load_context()
-        +fit(inputs: schemas.Inputs, targets: schemas.Targets): T.Self
+        +assistant_agent: Optional~AssistantAgent~
+        +team: Optional~RoundRobinGroupChat~
+        +load_context(model_config: Dict[str, Any]): void
         +predict(inputs: schemas.Inputs): schemas.Outputs
-        +explain_model(): schemas.FeatureImportances
-        +explain_samples(inputs: schemas.Inputs): schemas.SHAPValues
-        +get_internal_model(): AutogenWorkflow
+        +get_internal_model(): RoundRobinGroupChat
     }
 
-   %% Relationships
-    BaselineAutogenModel *-- AssistantAgent : 
-    BaselineAutogenModel *-- RoundRobinGroupChat : 
+    class AssistantAgent {
+        +name: str
+        +tools: List~Any~
+        +model_client: OpenAIChatCompletionClient
+    }
+
+    class RoundRobinGroupChat {
+        +participants: List~AssistantAgent~
+        +termination_condition: Any
+        +run(task: Any): Any
+    }
+
+    class OpenAIChatCompletionClient {
+        +model: str
+    }
+
+   
+    class schemas.Inputs {
+        <<DataClass>>
+    }
+
+    class schemas.Outputs {
+        <<DataClass>>
+    }
+
+    class TaskResult {
+        +result: Any
+    }
 
     Model <|-- BaselineAutogenModel
+    BaselineAutogenModel --> AssistantAgent
+    BaselineAutogenModel --> RoundRobinGroupChat
+    RoundRobinGroupChat --> AssistantAgent
+    AssistantAgent --> OpenAIChatCompletionClient
+    BaselineAutogenModel --> schemas.Outputs
+    BaselineAutogenModel --> schemas.Inputs
+    RoundRobinGroupChat --> TaskResult
 
 ```
 
@@ -129,6 +159,53 @@ The `Model` class serves as an abstract base class for all machine learning mode
 - The class is well-documented, including detailed examples of usage.
 - The code passes all CI/CD validation checks and integrates seamlessly with existing project modules.
 
+## User Stories: BaselineAutogenModel Class
+
+### **1. User Story: Load Assistant Agent for Predictions**
+
+**Title:**  
+As a **data engineer**, I want to load an assistant agent into the baseline model to leverage external tools and AI capabilities for generating responses.
+
+**Description:**  
+The `BaselineAutogenModel` class initializes an assistant agent that interacts with external resources (like weather information) to augment its predictions.
+
+**Acceptance Criteria:**  
+- The `load_context` method initializes the `assistant_agent` with the correct tools.
+- The team setup (e.g., `RoundRobinGroupChat`) is properly configured with the termination conditions.
+
+### **2. User Story: Predict Outputs Using Inputs**
+
+**Title:**  
+As a **data scientist**, I want to run predictions based on input data and obtain structured results so that I can analyze and use these outputs in my workflows.
+
+**Description:**  
+The `predict` method generates outputs based on a set of inputs, using the initialized assistant team and returning results in a structured format.
+
+**Acceptance Criteria:**  
+- The `predict` method processes the provided inputs and streams responses correctly.
+- Outputs are formatted into a defined schema including response content and metadata such as timestamps.
+
+### **Common Acceptance Criteria**
+1. **Implementation Requirements:**
+   - The `BaselineAutogenModel` extends the `Model` class and implements all abstract methods.
+   - The `KIND` attribute must be correctly set to `"BaselineAutogenModel"`.
+
+2. **Error Handling:**
+   - Both `load_context` and `predict` methods raise informative errors for invalid configurations and inputs.
+   - Predict method should handle any potential issues when streaming responses from the team.
+
+3. **Testing:**
+   - Unit tests validate the initialization of both the assistant agent and the response outputs.
+   - Edge cases are tested, including invalid inputs and behavior of external dependencies.
+
+4. **Documentation:**
+   - Comprehensive documentation exists for both `load_context` and `predict` methods.
+   - Provide examples of loading the model and executing predictions.
+
+### **Definition of Done (DoD):**
+- The `BaselineAutogenModel` class is implemented with fully functional load and predict capabilities.
+- All methods in `BaselineAutogenModel` are covered by unit tests.
+- Documentation includes thorough explanations and practical examples of model usage.
 
 -
 ## references:
