@@ -1,12 +1,21 @@
-# US [Metrics](./backlog_mlops_regresion.md) : Provide standardized measurements for model performance, accuracy, and evaluation
+# US [Model Performance Evaluation](./backlog_mlops_performance.md) : Evaluate model performances using various metrics and thresholds.
 
-Provide standardized measurements for model performance, accuracy, and evaluation. Useful for tracking improvement and identifying bottlenecks.
-
-- [US Metrics : Provide standardized measurements for model performance, accuracy, and evaluation](#us-metrics--provide-standardized-measurements-for-model-performance-accuracy-and-evaluation)
+- [US Model Performance Evaluation : Evaluate model performances using various metrics and thresholds.](#us-model-performance-evaluation--evaluate-model-performances-using-various-metrics-and-thresholds)
   - [classes relations](#classes-relations)
-  - [**User Story: Develop a Base Metric Class for Model Evaluation**](#user-story-develop-a-base-metric-class-for-model-evaluation)
-  - [**User Story: Implement a Scikit-learn Metric Wrapper**](#user-story-implement-a-scikit-learn-metric-wrapper)
-  - [**User Story: Implement a Threshold Class for Metric Monitoring**](#user-story-implement-a-threshold-class-for-metric-monitoring)
+  - [**User Stories: Metric Evaluation**](#user-stories-metric-evaluation)
+    - [**1. User Story: Evaluate Model Performance Using Metrics**](#1-user-story-evaluate-model-performance-using-metrics)
+    - [**2. User Story: Convert Metrics to MLflow Format**](#2-user-story-convert-metrics-to-mlflow-format)
+    - [**Common Acceptance Criteria**](#common-acceptance-criteria)
+    - [**Definition of Done (DoD):**](#definition-of-done-dod)
+  - [**User Stories: Autogen Metric Implementation**](#user-stories-autogen-metric-implementation)
+    - [**1. User Story: Evaluate Text-Based Responses**](#1-user-story-evaluate-text-based-responses)
+    - [**2. User Story: Calculate Similarity Score for Responses**](#2-user-story-calculate-similarity-score-for-responses)
+    - [**Common Acceptance Criteria**](#common-acceptance-criteria-1)
+    - [**Definition of Done (DoD):**](#definition-of-done-dod-1)
+  - [**User Stories: Conversation Metrics Implementation**](#user-stories-conversation-metrics-implementation)
+    - [**1. User Story: Assess Conversation Quality**](#1-user-story-assess-conversation-quality)
+    - [**Common Acceptance Criteria**](#common-acceptance-criteria-2)
+    - [**Definition of Done (DoD):**](#definition-of-done-dod-2)
   - [Code location](#code-location)
   - [Test location](#test-location)
 
@@ -31,13 +40,22 @@ classDiagram
     %% AutogenMetric Class
     class AutogenMetric {
         +KIND: T.Literal["AutogenMetric"]
-        +name: str = "mean_squared_error"
-        +greater_is_better: bool = False
+        +metric_type: T.Literal["exact_match", "similarity", "length_ratio"]
+        +similarity_threshold: Optional[float]
         +score(targets: schemas.Targets, outputs: schemas.Outputs): float
     }
     Metric <|-- AutogenMetric : "specializes"
 
-    %% Threshold Class
+    %% AutogenConversationMetric Class
+    class AutogenConversationMetric {
+        +KIND: T.Literal["AutogenConversationMetric"]
+        +check_termination: bool
+        +check_error_messages: bool
+        +score(targets: schemas.Targets, outputs: schemas.Outputs): float
+    }
+    Metric <|-- AutogenConversationMetric : "specializes"
+
+    %% Base Class: Threshold
     class Threshold {
         <<abstract>>
         +threshold: int | float
@@ -46,230 +64,169 @@ classDiagram
     }
     Threshold ..> pdt.BaseModel : "inherits"
 
-    %% Aliases and Relationships
-    MetricKind --> AutogenMetric : "type alias"
-    MetricsKind --> MetricKind : "list of metrics"
-    Metric ..> MlflowMetric : "returns"
-    Threshold ..> MlflowThreshold : "returns"
+    %% Relationships
     Metric ..> schemas.Targets : "uses"
     Metric ..> schemas.Outputs : "uses"
-    Metric ..> models.Model : "uses"
-
-
+    AutogenMetric ..> pd.Series : "uses"
+    AutogenConversationMetric ..> pd.Series : "uses"
 ```
 
-## **User Story: Develop a Base Metric Class for Model Evaluation**
+## **User Stories: Metric Evaluation**
 
 ---
+
+### **1. User Story: Evaluate Model Performance Using Metrics**
 
 **Title:**  
-As a **machine learning engineer**, I want a **base `Metric` class** to standardize the evaluation of model performance, so that I can consistently compute and report metrics across different models and use cases.
-
----
+As a **data analyst**, I want to evaluate the performance of machine learning models using various metrics to determine their effectiveness.
 
 **Description:**  
-The `Metric` class serves as a base for implementing various evaluation metrics, such as accuracy, precision, recall, F1, and MAE. It defines the core attributes and methods required for metric computation, ensures compatibility with external tools like `mlflow`, and facilitates seamless integration into machine learning pipelines.
-
----
+The `Metric` base class provides a standardized way to implement various performance evaluation metrics (e.g., accuracy, recall). This system allows for accurate model performance assessment.
 
 **Acceptance Criteria:**  
-
-1. **Attributes**  
-   - Define `KIND` to identify the metric type.  
-   - Include the following attributes:  
-     - `name` (str): The name of the metric for reporting purposes.  
-     - `greater_is_better` (bool): Indicates whether the metric should be maximized or minimized.  
-
-2. **Abstract Method: `score`**  
-   - Define `score` as an abstract method to compute the metric value.  
-   - The method should:  
-     - Accept `targets` (expected values) and `outputs` (predicted values) as inputs.  
-     - Return a single float value representing the metric score.  
-
-3. **Helper Method: `scorer`**  
-   - Implement the `scorer` method to evaluate a model's predictions against targets using the metric.  
-   - The method should:  
-     - Accept a `model`, `inputs`, and `targets` as arguments.  
-     - Use the model's `predict` method to generate predictions (`outputs`).  
-     - Compute the metric score using the `score` method and return the result.  
-
-4. **Integration with `mlflow`: `to_mlflow`**  
-   - Provide a `to_mlflow` method to convert the metric into an `mlflow`-compatible metric object.  
-   - The method should:  
-     - Include an internal `eval_fn` function that maps model predictions and targets to the metric computation.  
-     - Adjust the computed metric score based on the `greater_is_better` flag to ensure correct interpretation in `mlflow`.  
-     - Use `mlflow.metrics.make_metric` to create the `mlflow` metric object.  
-
-5. **Validation and Enforcement**  
-   - Use `pydantic.BaseModel` to enforce strict data validation for the metric's attributes.  
-   - Set `strict=True`, `frozen=True`, and `extra="forbid"` to ensure immutability and disallow undefined attributes.  
-
-6. **Testing**  
-   - Write unit tests for the following scenarios:  
-     - Successful instantiation of metric subclasses with valid attributes.  
-     - Enforcement of `score` implementation in subclasses.  
-     - Accurate computation of metric scores using the `score` and `scorer` methods.  
-     - Successful conversion of metrics to `mlflow`-compatible objects using `to_mlflow`.  
-   - Ensure the tests cover edge cases, such as invalid inputs or incompatible attribute values.  
-
-7. **Documentation**  
-   - Provide clear and comprehensive docstrings for all attributes and methods.  
-   - Include usage examples, demonstrating how to:  
-     - Define a custom metric by subclassing `Metric`.  
-     - Compute a metric score using `scorer`.  
-     - Convert a metric to an `mlflow` metric object.  
+- The `score` method calculates the performance score based on targets and outputs.
+- The system supports various metrics such as accuracy, precision, etc.
+- Implementations must override the `score` method to provide specific scoring logic.
 
 ---
 
-**Definition of Done (DoD):**  
-
-- The `Metric` class is implemented with all specified attributes and methods.  
-- Abstract methods enforce implementation in derived classes.  
-- The class integrates seamlessly with `mlflow`.  
-- Unit tests validate the functionality and robustness of the class.  
-- Documentation is complete, with examples and clear explanations.  
-- The code passes all CI/CD validation checks and is ready for deployment.
-
-## **User Story: Implement a Scikit-learn Metric Wrapper**
-
----
+### **2. User Story: Convert Metrics to MLflow Format**
 
 **Title:**  
-As a **data scientist**, I want to use `AutogenMetric` to compute evaluation metrics using scikit-learn functions, so that I can easily integrate standardized metrics into my machine learning workflows.
-
----
+As a **machine learning engineer**, I want to convert model evaluation metrics to an MLflow-compatible format to facilitate tracking and visualization of performance metrics.
 
 **Description:**  
-The `AutogenMetric` class extends the `Metric` base class to utilize scikit-learn's extensive library of evaluation metrics. This class enables the computation of metrics such as Mean Squared Error (MSE), Mean Absolute Error (MAE), and others with minimal configuration, ensuring flexibility and compatibility with existing tools and pipelines.
-
----
+The `to_mlflow` method in `Metric` allows for the automatic conversion of scoring results into a format compatible with MLflow, enabling easier integration into the MLflow tracking system.
 
 **Acceptance Criteria:**  
-
-1. **Attributes**  
-   - **KIND**:  
-     - Set to `"AutogenMetric"` to identify this metric type.  
-   - **name**:  
-     - Default to `"mean_squared_error"`.  
-     - Represents the name of the scikit-learn metric function to be used.  
-   - **greater_is_better**:  
-     - Default to `False`.  
-     - Indicates whether the metric should be maximized or minimized during evaluation.  
-
-2. **`score` Method**  
-   - Computes the metric value using the specified scikit-learn metric function.  
-   - Functionality:  
-     - Retrieve the appropriate metric function using `getattr(metrics, name)`.  
-     - Extract `y_true` and `y_pred` from the provided `targets` and `outputs`.  
-     - Adjust the metric value's sign based on the `greater_is_better` attribute.  
-     - Return the computed score as a float.  
-
-3. **Integration with `Metric`**  
-   - Ensure compatibility with the `Metric` base class by:  
-     - Implementing the `score` method.  
-     - Using attributes and functionality inherited from `Metric`.  
-
-4. **Testing**  
-   - Validate the following scenarios:  
-     - Computation of supported scikit-learn metrics (e.g., MSE, MAE, accuracy).  
-     - Proper adjustment of the score sign when `greater_is_better` is `True` or `False`.  
-     - Handling of invalid or unsupported metric names with appropriate error messages.  
-   - Include edge cases for mismatched input sizes or data types.  
-
-5. **Documentation**  
-   - Provide clear docstrings for:  
-     - The `AutogenMetric` class, explaining its purpose and usage.  
-     - Each parameter, including examples of valid scikit-learn metric names.  
-     - The `score` method, detailing how it calculates the metric value.  
-   - Add usage examples demonstrating:  
-     - Instantiation of a `AutogenMetric` object.  
-     - Computation of a metric using `score`.  
-
-6. **Compatibility**  
-   - Ensure the class works seamlessly with the `Metric` base class and supports serialization through `pydantic`.  
-   - Validate that it integrates with external tools, such as `mlflow`, via the `Metric` interface.
+- The `to_mlflow` method must return a valid MLflow metric.
+- The conversion should correctly indicate whether higher metric values are better or worse, based on the `greater_is_better` attribute.
 
 ---
 
-**Definition of Done (DoD):**  
+### **Common Acceptance Criteria**
 
-- The `AutogenMetric` class is implemented and passes all specified test cases.  
-- Clear and comprehensive documentation is provided, including usage examples.  
-- The class integrates with the `Metric` base class and other tools like `mlflow`.  
-- The code passes CI/CD validation and is ready for deployment in the machine learning project.
+1. **Implementation Requirements:**
+   - The `Metric` class is abstract and cannot be instantiated directly.
+   - Subclasses must implement the `score` method.
 
-## **User Story: Implement a Threshold Class for Metric Monitoring**
+2. **Error Handling:**
+   - If the `score` method is not implemented in a subclass, an appropriate error is raised.
+
+3. **Testing:**
+   - Unit tests validate correct metric calculations and conversions to MLflow metrics.
+
+4. **Documentation:**
+   - Clear documentation is provided for the `score` and `to_mlflow` methods, including examples.
 
 ---
+
+### **Definition of Done (DoD):**
+
+- The `Metric` class and associated methods are fully implemented, documented, and tested.
+- The conversion method successfully produces the correct format for MLflow.
+- Code passes peer review with adherence to established coding standards.
+
+## **User Stories: Autogen Metric Implementation**
+
+---
+
+### **1. User Story: Evaluate Text-Based Responses**
 
 **Title:**  
-As a **machine learning engineer**, I want to define a `Threshold` class for metrics, so that I can monitor model performance and trigger alerts when thresholds are met.
-
----
+As a **data scientist**, I want to evaluate the text responses generated by the model using an autogen metric to ensure the quality of the model's output.
 
 **Description:**  
-The `Threshold` class provides a way to define and manage thresholds for metrics used in machine learning models. By setting specific threshold values, this class helps ensure model performance stays within acceptable limits and enables automatic triggering of alerts or actions when thresholds are breached. The class also supports seamless integration with tools like `mlflow`.
-
----
+The `AutogenMetric` class allows for scoring text-based outputs using different evaluation types (exact match, similarity). This enables a quantitative approach for assessing how well the model generates desired responses.
 
 **Acceptance Criteria:**  
-
-1. **Attributes**  
-   - **`threshold`**:  
-     - Represents the absolute threshold value as an `int` or `float`.  
-   - **`greater_is_better`**:  
-     - A boolean indicating whether exceeding the threshold (`True`) or staying below it (`False`) is considered better performance.  
-
-2. **Method: `to_mlflow`**  
-   - Converts the `Threshold` instance into an `MlflowThreshold` object for use in monitoring and alerting within the `mlflow` framework.  
-   - Functionality:  
-     - Returns an `MlflowThreshold` object initialized with the `threshold` and `greater_is_better` attributes.  
-
-3. **Validation**  
-   - Use `pydantic` to enforce strict validation of input types and constraints:  
-     - `threshold` must be an `int` or `float`.  
-     - `greater_is_better` must be a `bool`.  
-     - Enforce immutability with `frozen=True`.  
-   - Ensure the class is marked as `strict=True` and forbids extra fields with `extra="forbid"`.  
-
-4. **Integration**  
-   - The class should be compatible with metric-related functionality in the project, allowing thresholds to be defined and monitored alongside metrics.  
-   - Seamless integration with `mlflow` for defining thresholds in monitoring workflows.  
-
-5. **Testing**  
-   - Validate the following scenarios:  
-     - Correct initialization of the `Threshold` object with valid inputs.  
-     - Conversion of a `Threshold` instance to an `MlflowThreshold` object.  
-     - Handling of invalid data types or missing attributes with appropriate error messages.  
-   - Include edge cases, such as:  
-     - Extremely high or low threshold values.  
-     - Opposite configurations of `greater_is_better` (e.g., maximizing vs. minimizing).  
-
-6. **Documentation**  
-   - Provide detailed docstrings for:  
-     - The `Threshold` class, including its purpose and parameters.  
-     - The `to_mlflow` method, explaining its functionality and return value.  
-   - Add usage examples demonstrating:  
-     - Initialization of a `Threshold` object.  
-     - Conversion to an `MlflowThreshold`.  
-
-7. **Extensibility**  
-   - Ensure the class can be extended in the future to support additional threshold-related functionality, such as dynamic threshold adjustment or multi-metric thresholds.  
+- The `score` method can compute scores for exact matches, similarity, or length ratios.
+- The metric type must be set correctly before scoring.
 
 ---
 
-**Definition of Done (DoD):**  
+### **2. User Story: Calculate Similarity Score for Responses**
 
-- The `Threshold` class is implemented and passes all specified test cases.  
-- The class integrates with `mlflow` via the `to_mlflow` method.  
-- Clear documentation and usage examples are provided.  
-- The implementation is validated in the project's CI/CD pipeline and is deployment-ready.
+**Title:**  
+As a **data engineer**, I want to calculate the similarity between generated and target text responses to understand how closely the outputs resemble the expected results.
 
+**Description:**  
+The `similarity` metric type within `AutogenMetric` utilizes a scoring mechanism based on the SequenceMatcher to gauge text similarity.
+
+**Acceptance Criteria:**  
+- The similarity score calculation must use the `SequenceMatcher` class.
+- Responses must be processed as strings prior to scoring.
+
+---
+
+### **Common Acceptance Criteria**
+
+1. **Implementation Requirements:**
+   - The `AutogenMetric` class properly inherits from the `Metric` class.
+   - All metrics are clearly defined with appropriate parameters.
+
+2. **Error Handling:**
+   - The implementation must handle unknown metric types gracefully.
+
+3. **Testing:**
+   - Unit tests cover various input scenarios for text-based scoring.
+
+4. **Documentation:**
+   - Each method contains clear docstrings explaining the logic and expected input/output.
+
+---
+
+### **Definition of Done (DoD):**
+
+- The `AutogenMetric` class is implemented with valid scoring methods.
+- Code and unit tests pass, demonstrating correct functionality for various inputs.
+- Documentation and examples are clear for end users.
+
+## **User Stories: Conversation Metrics Implementation**
+
+---
+
+### **1. User Story: Assess Conversation Quality**
+
+**Title:**  
+As a **machine learning specialist**, I want to evaluate the quality of conversations produced by the model to ensure satisfactory interactions.
+
+**Description:**  
+The `AutogenConversationMetric` class enables assessment of conversation quality based on specified conditions, such as termination and the presence of errors.
+
+**Acceptance Criteria:**  
+- The `score` method must check both termination status and error messages.
+- The metrics should provide a score representing the conversation quality.
+
+---
+
+### **Common Acceptance Criteria**
+
+1. **Implementation Requirements:**
+   - The `AutogenConversationMetric` class must accurately inherit from `Metric`.
+   - Attributes for checking termination and error messages need to be implemented.
+
+2. **Error Handling:**
+   - Robust handling of any missing or malformed metadata.
+
+3. **Testing:**
+   - Unit tests validate scoring under different conversation circumstances.
+
+4. **Documentation:**
+   - Document all public methods and important parameters.
+
+---
+
+### **Definition of Done (DoD):**
+
+- The `AutogenConversationMetric` is fully implemented and tested.
+- Scoring based on quality metrics is verified.
+- Documentation is available and easy to follow for usage and understanding.
 
 ## Code location
 
-[src/model_name/core/models.py](../src/model_name/core/metrics.py)
+[src/model_name/core/metrics.py](../src/model_name/core/metrics.py)
 
 ## Test location
 
-[tests/core/test_models.py](../tests/core/test_metrics.py)
+[tests/core/test_metrics.py](../tests/core/test_metrics.py)
