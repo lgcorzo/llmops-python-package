@@ -165,7 +165,8 @@ class AutogenConversationMetric(Metric):
 
 
 # Update MetricKind to include new Autogen metrics
-MetricKind = AutogenMetric | AutogenConversationMetric
+# MetricKind = AutogenMetric | AutogenConversationMetric
+MetricKind = AutogenMetric
 MetricsKind: T.TypeAlias = list[T.Annotated[MetricKind, pdt.Field(discriminator="KIND")]]
 
 

@@ -41,7 +41,7 @@ class TrainingJob(base.Job):
     # Model
     model: models.ModelKind = pdt.Field(models.BaselineAutogenModel(), discriminator="KIND")
     # Metrics
-    metrics: metrics_.MetricsKind = [metrics_.AutogenMetric()]
+    metrics: metrics_.MetricsKind = [metrics_.AutogenMetric(name="AutogenMetric", metric_type="exact_match", greater_is_better=True)]
     # Splitter
     splitter: splitters.SplitterKind = pdt.Field(
         splitters.TrainTestSplitter(), discriminator="KIND"

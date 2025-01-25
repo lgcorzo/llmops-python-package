@@ -38,7 +38,7 @@ class TuningJob(base.Job):
     # Model
     model: models.ModelKind = pdt.Field(models.BaselineAutogenModel(), discriminator="KIND")
     # Metric
-    metric: metrics.MetricKind = pdt.Field(metrics.AutogenMetric(), discriminator="KIND")
+    metric: metrics.MetricKind = pdt.Field(metrics.AutogenMetric(name="AutogenMetric", metric_type="exact_match", greater_is_better=True), discriminator="KIND")
     # splitter
     splitter: splitters.SplitterKind = pdt.Field(
         splitters.TimeSeriesSplitter(), discriminator="KIND"

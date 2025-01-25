@@ -252,7 +252,7 @@ def model(
 @pytest.fixture(scope="session")
 def metric() -> metrics.AutogenMetric:
     """Return the default metric."""
-    return metrics.AutogenMetric()
+    return metrics.AutogenMetric(name="AutogenMetricTest", metric_type="exact_match", greater_is_better=True)
 
 
 # %% - Signers

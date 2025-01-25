@@ -33,9 +33,7 @@ class EvaluationsJob(base.Job):
     KIND: T.Literal["EvaluationsJob"] = "EvaluationsJob"
 
     # Run
-    run_config: services.MlflowService.RunConfig = services.MlflowService.RunConfig(
-        name="Evaluations"
-    )
+    run_config: services.MlflowService.RunConfig = services.MlflowService.RunConfig(name="Evaluations")
     # Data
     inputs: datasets.ReaderKind = pdt.Field(..., discriminator="KIND")
     targets: datasets.ReaderKind = pdt.Field(..., discriminator="KIND")
@@ -43,13 +41,13 @@ class EvaluationsJob(base.Job):
     model_type: str = "regressor"
     alias_or_version: str | int = "Champion"
     # Metrics
-    metrics: metrics_.MetricsKind = [metrics_.AutogenMetric()]
+    metrics: metrics_.MetricsKind = [
+        metrics_.AutogenMetric(name="AutogenMetric", metric_type="exact_match", greater_is_better=True)
+    ]
     # Evaluators
     evaluators: list[str] = ["default"]
     # Thresholds
-    thresholds: dict[str, metrics_.Threshold] = {
-        "r2_score": metrics_.Threshold(threshold=0.5, greater_is_better=True)
-    }
+    thresholds: dict[str, metrics_.Threshold] = {"r2_score": metrics_.Threshold(threshold=0.5, greater_is_better=True)}
 
     @T.override
     def run(self) -> base.Locals:
@@ -81,9 +79,7 @@ class EvaluationsJob(base.Job):
             logger.debug("- Inputs lineage: {}", inputs_lineage.to_dict())
             # - targets
             logger.info("Log lineage: targets")
-            targets_lineage = self.targets.lineage(
-                data=targets, name="targets", targets=schemas.TargetsSchema.cnt
-            )
+            targets_lineage = self.targets.lineage(data=targets, name="targets", targets=schemas.TargetsSchema.cnt)
             mlflow.log_input(dataset=targets_lineage, context=self.run_config.name)
             logger.debug("- Targets lineage: {}", targets_lineage.to_dict())
             # dataset
@@ -107,9 +103,7 @@ class EvaluationsJob(base.Job):
             logger.debug("- Extra metrics: {}", extra_metrics)
             # thresholds
             logger.info("Convert thresholds: {}", self.thresholds)
-            validation_thresholds = {
-                name: threshold.to_mlflow() for name, threshold in self.thresholds.items()
-            }
+            validation_thresholds = {name: threshold.to_mlflow() for name, threshold in self.thresholds.items()}
             logger.debug("- Validation thresholds: {}", validation_thresholds)
             # evaluations
             logger.info("Compute evaluations: {}", self.model_type)
