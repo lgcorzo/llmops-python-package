@@ -76,6 +76,29 @@ class Model(abc.ABC, pdt.BaseModel, strict=True, frozen=False, extra="forbid"):
         Load the model from the specified artifacts directory.
         """
 
+    @abc.abstractmethod
+    def fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> T.Self:
+        """Fit the model on the given inputs and targets.
+
+        Args:
+            inputs (schemas.Inputs): model training inputs.
+            targets (schemas.Targets): model training targets.
+
+        Returns:
+            T.Self: instance of the model.
+        """
+
+    @abc.abstractmethod
+    def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
+        """Generate outputs with the model for the given inputs.
+
+        Args:
+            inputs (schemas.Inputs): model prediction inputs.
+
+        Returns:
+            schemas.Outputs: model prediction outputs.
+        """
+
     def explain_model(self) -> schemas.FeatureImportances:
         """Explain the internal model structure.
 
@@ -136,6 +159,12 @@ class BaselineAutogenModel(Model):
 
         termination = TextMentionTermination("TERMINATE") | MaxMessageTermination(10)
         self.team = RoundRobinGroupChat(participants=[self.assistant_agent], termination_condition=termination)
+
+    @T.override
+    def fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> "BaselineAutogenModel":
+        # TBD LORA
+        # self.load_context(model_config={})
+        return self
 
     @T.override
     def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
