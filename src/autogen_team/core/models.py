@@ -162,7 +162,7 @@ class BaselineAutogenModel(Model):
 
     @T.override
     def fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> "BaselineAutogenModel":
-        # TBD LORA
+        # TBD LORA project Iñaki
         # self.load_context(model_config={})
         return self
 
