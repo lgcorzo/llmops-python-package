@@ -101,6 +101,8 @@ class CustomSaver(Saver):
     """Saver for project models using the Mlflow PyFunc module.
 
     https://mlflow.org/docs/latest/python_api/mlflow.pyfunc.html
+    https://mlflow.org/blog/autogen-image-agent
+    https://mlflow.org/blog/custom-pyfunc
     """
 
     KIND: T.Literal["CustomSaver"] = "CustomSaver"
