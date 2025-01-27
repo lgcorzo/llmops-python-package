@@ -150,11 +150,24 @@ class BaselineAutogenModel(Model):
     def load_context(self, model_config: Dict[str, Any]):
         """
         Load the model from the specified artifacts directory.
+        https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/cookbook/local-llms-ollama-litellm.html
         """
+        # Load the client
+        client = OpenAIChatCompletionClient(
+        model=model_config['config']['model'],
+        api_key=model_config['config']['api_key'],
+        base_url=model_config['config']['api_base'],
+        model_capabilities={
+            "json_output": False,
+            "vision": False,
+            "function_calling": True,
+        },
+    )
+
         self.assistant_agent = AssistantAgent(
             name="assistant_agent",
             tools=[get_weather],
-            model_client=OpenAIChatCompletionClient(model="gpt-4o-2024-08-06"),
+            model_client=client,
         )
 
         termination = TextMentionTermination("TERMINATE") | MaxMessageTermination(10)

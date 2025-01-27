@@ -130,9 +130,21 @@ def outputs_reader(
     """Return a reader for the outputs dataset."""
     # generate outputs if it is missing
     if not os.path.exists(outputs_path):
+        model_config = {
+            "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
+            "config": {
+                "model": "azure-gpt",  # LiteLLM model
+                "api_base": "https://localhost:4000",  # LiteLLM Gateway URL
+                "api_key": "sk-12345",
+                "temperature": 0.7,  # Optional
+                "max_tokens": 512,  # Optional
+            },
+        }
         inputs = schemas.InputsSchema.check(inputs_reader.read())
         targets = schemas.TargetsSchema.check(targets_reader.read())
-        model = models.BaselineAutogenModel().fit(inputs=inputs, targets=targets)
+        model = models.BaselineAutogenModel()
+        model.load_context(model_config=model_config)
+        model.fit(inputs=inputs, targets=targets)
         outputs = schemas.OutputsSchema.check(model.predict(inputs=inputs))
         outputs_writer = datasets.ParquetWriter(path=outputs_path)
         outputs_writer.write(data=outputs)
@@ -348,9 +360,7 @@ def tmp_path_resolver(tmp_path: str) -> str:
 
 
 @pytest.fixture(scope="session")
-def signature(
-    signer: signers.Signer, inputs: schemas.Inputs, outputs: schemas.Outputs
-) -> signers.Signature:
+def signature(signer: signers.Signer, inputs: schemas.Inputs, outputs: schemas.Outputs) -> signers.Signature:
     """Return the signature for the testing model."""
     return signer.sign(inputs=inputs, outputs=outputs)
 
@@ -402,8 +412,6 @@ def model_alias(
     """Promote the default model version with an alias."""
     alias = "Promotion"
     client = mlflow_service.client()
-    client.set_registered_model_alias(
-        name=mlflow_service.registry_name, alias=alias, version=model_version.version
-    )
+    client.set_registered_model_alias(name=mlflow_service.registry_name, alias=alias, version=model_version.version)
     model_alias = client.get_model_version_by_alias(name=mlflow_service.registry_name, alias=alias)
     return model_alias

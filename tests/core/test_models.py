@@ -122,7 +122,16 @@ def test_model_class_config():
 
 def test_load_context(baseline_model):
     # Setup
-    model_config = {}  # Provide your model config as necessary
+    model_config = {
+            "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
+            "config": {
+                "model": "azure-gpt",  # LiteLLM model
+                "api_base": "https://localhost:4000",  # LiteLLM Gateway URL
+                "api_key": "sk-12345",
+                "temperature": 0.7,  # Optional
+                "max_tokens": 512,  # Optional
+            },
+        }  # Provide your model config as necessary
     with (
         patch("autogen_team.core.models.AssistantAgent") as MockAgent,
         patch("autogen_team.core.models.RoundRobinGroupChat") as MockGroupChat,

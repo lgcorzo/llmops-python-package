@@ -3,14 +3,16 @@
 # %% IMPORTS
 
 import abc
+import json
+import os
 import typing as T
 
 import mlflow
+import pandas as pd
 import pydantic as pdt
 
 from autogen_team.core import models, schemas
 from autogen_team.utils import signers
-import pandas as pd
 
 # %% TYPES
 
@@ -80,11 +82,10 @@ class Saver(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
     KIND: str
 
     path: str = "model"
+    config_file: str = "model_config.json"
 
     @abc.abstractmethod
-    def save(
-        self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs
-    ) -> Info:
+    def save(self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info:
         """Save a model in the model registry.
 
         Args:
@@ -112,7 +113,8 @@ class CustomSaver(Saver):
 
         https://mlflow.org/docs/latest/python_api/mlflow.pyfunc.html?#mlflow.pyfunc.PythonModel
         """
-        # TBD load context: 
+
+        # TBD load context:
         def __init__(self, model: models.Model):
             """Initialize the custom saver adapter.
 
@@ -120,12 +122,32 @@ class CustomSaver(Saver):
                 model (models.Model): project model.
             """
             self.model = model
+            self.model_config = {
+                "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
+                "config": {
+                    "model": "azure-gpt",  # LiteLLM model
+                    "api_base": "https://litellm:4000",  # LiteLLM Gateway URL
+                    "api_key": "sk-12345",
+                    "temperature": 0.7,  # Optional
+                    "max_tokens": 512,  # Optional
+                },
+            }
 
+        def load_context(self):
+            """
+            Load the model from the specified artifacts directory.
+            """
+            artifacts_path = self.path
+            configfile_name = self.config_file
+            model_file_path = os.path.join(artifacts_path, configfile_name)
+            # Define the configuration
+            model_config = json.load(open(model_file_path, "r", encoding="utf-8"))
+            # Load the model
+            self.model.load_context(model_config)
+            
         def predict(
             self,
-            context: mlflow.pyfunc.PythonModelContext,
-            model_input: schemas.Inputs,
-            params: dict[str, T.Any] | None = None,
+            model_input: schemas.Inputs
         ) -> schemas.Outputs:
             """Generate predictions with a custom model for the given inputs.
 
@@ -141,14 +163,13 @@ class CustomSaver(Saver):
             return T.cast(schemas.Outputs, output.prediction)
 
     @T.override
-    def save(
-        self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs
-    ) -> Info:
+    def save(self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info:
         adapter = CustomSaver.Adapter(model=model)
         return mlflow.pyfunc.log_model(
             python_model=adapter,
             signature=signature,
             artifact_path=self.path,
+            artifacts={"config_file": os.path.join(self.path, self.config_file)},
             input_example=input_example,
         )
 
@@ -196,6 +217,12 @@ class Loader(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
 
     class Adapter(abc.ABC):
         """Adapt any model for the project inference."""
+        
+        @abc.abstractmethod
+        def load_context(self, context: mlflow.pyfunc.PythonModelContext):
+            """
+            Load the model from the specified artifacts directory.
+            """
 
         @abc.abstractmethod
         def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
@@ -238,6 +265,20 @@ class CustomLoader(Loader):
                 model (mlflow.pyfunc.PyFuncModel): mlflow pyfunc model.
             """
             self.model = model
+            
+        @T.override
+        def load_context(self, context: mlflow.pyfunc.PythonModelContext):
+            """
+            Load the model from the specified artifacts directory.
+            """
+            artifacts_path = context.artifacts_path
+            configfile_name = context.artifacts['config_file']
+            model_file_path = os.path.join(artifacts_path, configfile_name)
+            # Define the configuration
+            model_config = json.load(open(model_file_path, "r", encoding="utf-8"))
+            # Load the model
+            self.model.load_context(model_config)
+
 
         @T.override
         def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
