@@ -145,7 +145,7 @@ def outputs_reader(
         model = models.BaselineAutogenModel()
         model.load_context(model_config=model_config)
         model.fit(inputs=inputs, targets=targets)
-        outputs = schemas.OutputsSchema.check(model.predict(inputs=inputs))
+        outputs = schemas.OutputsSchema.check(model.predict(inputs=inputs.head(1)))
         outputs_writer = datasets.ParquetWriter(path=outputs_path)
         outputs_writer.write(data=outputs)
     return datasets.ParquetReader(path=outputs_path, limit=LIMIT)

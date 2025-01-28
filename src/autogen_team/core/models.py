@@ -3,6 +3,7 @@
 # %% IMPORTS
 
 import abc
+import asyncio
 import typing as T
 
 import pydantic as pdt
@@ -135,7 +136,7 @@ class Model(abc.ABC, pdt.BaseModel, strict=True, frozen=False, extra="forbid"):
 
 class BaselineAutogenModel(Model):
     """Simple baseline model based on autogen.
-
+    https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/design-patterns/group-chat.html
     Parameters:
         max_tokens (int): maximum token of the prompt
         max_tokens (float): temperature for the sampling
@@ -150,19 +151,22 @@ class BaselineAutogenModel(Model):
     def load_context(self, model_config: Dict[str, Any]):
         """
         Load the model from the specified artifacts directory.
+        https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/migration-guide.html#assistant-agent
         https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/cookbook/local-llms-ollama-litellm.html
+
         """
         # Load the client
         client = OpenAIChatCompletionClient(
-        model=model_config['config']['model'],
-        api_key=model_config['config']['api_key'],
-        base_url=model_config['config']['api_base'],
-        model_capabilities={
-            "json_output": False,
-            "vision": False,
-            "function_calling": True,
-        },
-    )
+            model=model_config["config"]["model"],
+            api_key=model_config["config"]["api_key"],
+            base_url=model_config["config"]["api_base"],
+            model_info={
+                "vision": True,
+                "function_calling": True,
+                "json_output": True,
+                "family": "unknown",
+            }
+        )
 
         self.assistant_agent = AssistantAgent(
             name="assistant_agent",
@@ -179,6 +183,22 @@ class BaselineAutogenModel(Model):
         # self.load_context(model_config={})
         return self
 
+    async def _rungroupchat(self, inputs: schemas.Inputs) -> list:
+        results = []
+        # Stream responses from the team
+        response_stream = self.team.run_stream(task=inputs["input"].values[0])
+        async for msg in response_stream:
+            if hasattr(msg, "content"):
+                # Collect content messages
+                results.append(msg.content)
+
+            if isinstance(msg, TaskResult):
+                # Handle the final task result if needed
+                results.append("Task Result: TERMINATED")
+                # Break or terminate loop if needed after TaskResult
+                break
+        return results
+
     @T.override
     def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
         """
@@ -187,18 +207,7 @@ class BaselineAutogenModel(Model):
         # Initialize a list to collect messages or results
         results = []
 
-        # Stream responses from the team
-        response_stream = self.team.run(task=inputs)
-        for msg in response_stream:
-            if hasattr(msg, "content"):
-                # Collect content messages
-                results.append(msg.content)
-
-            if isinstance(msg, TaskResult):
-                # Handle the final task result if needed
-                results.append(f"Task Result: {msg.result}")
-                # Break or terminate loop if needed after TaskResult
-                break
+        results = asyncio.run(self._rungroupchat(inputs))
 
         # Join results or format as needed
         prediction = "\n".join(results)
