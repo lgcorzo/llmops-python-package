@@ -44,23 +44,22 @@ def test_set_params(baseline_model):
     assert baseline_model.team == "NewTeam"
 
 
+# Define an async generator for the response stream
+async def async_response_stream():
+    yield MagicMock(content="Message 1")
+    yield MagicMock(content="Message 2")
+    yield MagicMock(spec=TaskResult, result="Result 1")
+
+
 def test_predict(baseline_model):
     """Test the predict method of BaselineAutogenModel."""
     # Setup
     input_data = pd.DataFrame({"input": ["Some large input string"]})
     inputs = schemas.Inputs(input_data)
 
-
     with patch("autogen_team.core.models.RoundRobinGroupChat") as MockRun:
-        # Mocking the response stream
-        mock_task_result = MagicMock()
-
-
-        MockRun.run.return_value = [
-            MagicMock(content="Message 1"),
-            MagicMock(content="Message 2"),
-            MagicMock(spec=TaskResult, result="Result 1")
-        ]
+        # Instead of returning a list, return an async generator
+        MockRun.run_stream.return_value = async_response_stream()
 
         # Ensure the baseline model's `team` uses the mock
         baseline_model.team = MockRun
@@ -68,7 +67,7 @@ def test_predict(baseline_model):
         # Execute
         outputs = baseline_model.predict(inputs)
 
-        # Verify
+        # Verify the response contains the messages and task result as expected
         assert outputs is not None
         assert "Message 1" in outputs["response"][0]
         assert "Message 2" in outputs["response"][0]
@@ -112,6 +111,7 @@ def test_model_class_config():
 
     class CustomModel(Model):
         KIND: T.Literal["CustomModel"] = "CustomModel"
+
         @T.override
         def load_context(self, model_config):
             pass
@@ -123,15 +123,15 @@ def test_model_class_config():
 def test_load_context(baseline_model):
     # Setup
     model_config = {
-            "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
-            "config": {
-                "model": "azure-gpt",  # LiteLLM model
-                "api_base": "https://localhost:4000",  # LiteLLM Gateway URL
-                "api_key": "sk-12345",
-                "temperature": 0.7,  # Optional
-                "max_tokens": 512,  # Optional
-            },
-        }  # Provide your model config as necessary
+        "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
+        "config": {
+            "model": "azure-gpt",  # LiteLLM model
+            "api_base": "https://localhost:4000",  # LiteLLM Gateway URL
+            "api_key": "sk-12345",
+            "temperature": 0.7,  # Optional
+            "max_tokens": 512,  # Optional
+        },
+    }  # Provide your model config as necessary
     with (
         patch("autogen_team.core.models.AssistantAgent") as MockAgent,
         patch("autogen_team.core.models.RoundRobinGroupChat") as MockGroupChat,

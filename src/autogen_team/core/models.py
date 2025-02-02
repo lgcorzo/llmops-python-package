@@ -194,7 +194,7 @@ class BaselineAutogenModel(Model):
 
             if isinstance(msg, TaskResult):
                 # Handle the final task result if needed
-                results.append("Task Result: TERMINATED")
+                results.append(f"Task Result: {msg.result} TERMINATED")
                 # Break or terminate loop if needed after TaskResult
                 break
         return results
