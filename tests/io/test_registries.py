@@ -99,7 +99,7 @@ def test_builtin_pipeline(
     # given
     path = "tests/confs/valid"
     name = "valid_confs"
-    flavor = "pyfunc"
+    flavor = "openai"
     tags = {"registry": "mlflow"}
     saver = registries.BuiltinSaver(path=path, flavor=flavor)
     loader = registries.BuiltinLoader()
