@@ -252,7 +252,18 @@ def model(
     train_test_sets: tuple[schemas.Inputs, schemas.Targets, schemas.Inputs, schemas.Targets],
 ) -> models.BaselineAutogenModel:
     """Return a train model for testing."""
+    model_config = {
+            "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
+            "config": {
+                "model": "azure-gpt",  # LiteLLM model
+                "api_base": "https://localhost:4000",  # LiteLLM Gateway URL
+                "api_key": "sk-12345",
+                "temperature": 0.7,  # Optional
+                "max_tokens": 512,  # Optional
+            },
+    }
     model = models.BaselineAutogenModel()
+    model.load_context(model_config=model_config)
     inputs_train, targets_train, _, _ = train_test_sets
     model.fit(inputs=inputs_train, targets=targets_train)
     return model

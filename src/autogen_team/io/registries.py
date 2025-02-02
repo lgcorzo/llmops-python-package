@@ -10,6 +10,7 @@ import typing as T
 import mlflow
 import pandas as pd
 import pydantic as pdt
+from typing import Any, Dict
 
 from autogen_team.core import models, schemas
 from autogen_team.utils import signers
@@ -133,22 +134,17 @@ class CustomSaver(Saver):
                 },
             }
 
-        def load_context(self):
+        def load_context(self, context: mlflow.pyfunc.PythonModelContext):
             """
             Load the model from the specified artifacts directory.
             """
-            artifacts_path = self.path
-            configfile_name = self.config_file
-            model_file_path = os.path.join(artifacts_path, configfile_name)
+            model_file_path = context.artifacts["config_file"]
             # Define the configuration
             model_config = json.load(open(model_file_path, "r", encoding="utf-8"))
             # Load the model
             self.model.load_context(model_config)
-            
-        def predict(
-            self,
-            model_input: schemas.Inputs
-        ) -> schemas.Outputs:
+
+        def predict(self, context: mlflow.pyfunc.PythonModelContext, inputs: schemas.Inputs) -> schemas.Outputs:
             """Generate predictions with a custom model for the given inputs.
 
             Args:
@@ -159,7 +155,7 @@ class CustomSaver(Saver):
             Returns:
                 schemas.Outputs: validated outputs of the project model.
             """
-            output = self.model.predict(inputs=model_input)
+            output = self.model.predict(inputs=inputs)
             return T.cast(schemas.Outputs, output.prediction)
 
     @T.override
@@ -217,9 +213,9 @@ class Loader(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
 
     class Adapter(abc.ABC):
         """Adapt any model for the project inference."""
-        
+
         @abc.abstractmethod
-        def load_context(self, context: mlflow.pyfunc.PythonModelContext):
+        def load_context(self, model_config: Dict[str, Any]):
             """
             Load the model from the specified artifacts directory.
             """
@@ -265,20 +261,13 @@ class CustomLoader(Loader):
                 model (mlflow.pyfunc.PyFuncModel): mlflow pyfunc model.
             """
             self.model = model
-            
+
         @T.override
-        def load_context(self, context: mlflow.pyfunc.PythonModelContext):
+        def load_context(self, model_config: Dict[str, Any]):
             """
             Load the model from the specified artifacts directory.
             """
-            artifacts_path = context.artifacts_path
-            configfile_name = context.artifacts['config_file']
-            model_file_path = os.path.join(artifacts_path, configfile_name)
-            # Define the configuration
-            model_config = json.load(open(model_file_path, "r", encoding="utf-8"))
-            # Load the model
             self.model.load_context(model_config)
-
 
         @T.override
         def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
@@ -317,7 +306,7 @@ class BuiltinLoader(Loader):
         @T.override
         def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
             columns = list(schemas.OutputsSchema.to_schema().columns)
-            outputs = self.model.predict(data=inputs)  # unchecked data!
+            outputs = self.model.predict(inputs=inputs)  # unchecked data!
             return schemas.Outputs(outputs, columns=columns, index=inputs.index)
 
     @T.override

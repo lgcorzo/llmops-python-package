@@ -54,8 +54,8 @@ def test_custom_pipeline(
     mlflow_service: services.MlflowService,
 ) -> None:
     # given
-    path = "custom"
-    name = "Custom"
+    path = "tests/confs/valid"
+    name = "valid_confs"
     tags = {"registry": "mlflow"}
     saver = registries.CustomSaver(path=path)
     loader = registries.CustomLoader()
@@ -104,7 +104,7 @@ def test_builtin_pipeline(
     # given
     path = "builtin"
     name = "Builtin"
-    flavor = "sklearn"
+    flavor = "pyfunc"
     tags = {"registry": "mlflow"}
     saver = registries.BuiltinSaver(path=path, flavor=flavor)
     loader = registries.BuiltinLoader()
