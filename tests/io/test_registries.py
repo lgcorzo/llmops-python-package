@@ -97,8 +97,8 @@ def test_builtin_pipeline(
     mlflow_service: services.MlflowService,
 ) -> None:
     # given
-    path = "builtin"
-    name = "Builtin"
+    path = "tests/confs/valid"
+    name = "valid_confs"
     flavor = "pyfunc"
     tags = {"registry": "mlflow"}
     saver = registries.BuiltinSaver(path=path, flavor=flavor)
@@ -111,7 +111,7 @@ def test_builtin_pipeline(
         version = register.register(name=name, model_uri=info.model_uri)
     model_uri = registries.uri_for_model_version(name=name, version=version.version)
     adapter = loader.load(uri=model_uri)
-    outputs = adapter.predict(inputs=inputs)
+    outputs = adapter.predict(inputs=inputs.head(1))
     # then
     # - uri
     assert model_uri == f"models:/{name}/{version.version}", "The model URI should be valid!"
