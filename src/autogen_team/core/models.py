@@ -186,6 +186,7 @@ class BaselineAutogenModel(Model):
     async def _rungroupchat(self, inputs: schemas.Inputs) -> list:
         results = []
         # Stream responses from the team
+        # TBD solo lee el primer mensage
         response_stream = self.team.run_stream(task=inputs["input"].values[0])
         async for msg in response_stream:
             if hasattr(msg, "content"):
@@ -194,7 +195,7 @@ class BaselineAutogenModel(Model):
 
             if isinstance(msg, TaskResult):
                 # Handle the final task result if needed
-                results.append(f"Task Result: {msg.result} TERMINATED")
+                results.append(f"Task Result: {msg.messages[0].content} TERMINATED")
                 # Break or terminate loop if needed after TaskResult
                 break
         return results

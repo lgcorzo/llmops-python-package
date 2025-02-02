@@ -48,7 +48,10 @@ def test_set_params(baseline_model):
 async def async_response_stream():
     yield MagicMock(content="Message 1")
     yield MagicMock(content="Message 2")
-    yield MagicMock(spec=TaskResult, result="Result 1")
+    # Create a mock message with attribute 'content'
+    result_message = MagicMock(content="Result 1")
+    # Yield a MagicMock simulating a TaskResult with a messages attribute containing our mock message.
+    yield MagicMock(spec=TaskResult, messages=[result_message])
 
 
 def test_predict(baseline_model):

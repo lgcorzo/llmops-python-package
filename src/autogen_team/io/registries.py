@@ -156,7 +156,7 @@ class CustomSaver(Saver):
                 schemas.Outputs: validated outputs of the project model.
             """
             output = self.model.predict(inputs=inputs)
-            return T.cast(schemas.Outputs, output.prediction)
+            return T.cast(schemas.Outputs, output.response)
 
     @T.override
     def save(self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info:
