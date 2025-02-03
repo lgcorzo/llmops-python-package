@@ -170,34 +170,7 @@ class CustomSaver(Saver):
         )
 
 
-class BuiltinSaver(Saver):
-    """Saver for built-in models using an Mlflow flavor module.
-
-    https://mlflow.org/docs/latest/models.html#built-in-model-flavors
-
-    Parameters:
-        flavor (str): Mlflow flavor module to use for the serialization.
-    """
-
-    KIND: T.Literal["BuiltinSaver"] = "BuiltinSaver"
-
-    flavor: str
-
-    @T.override
-    def save(
-        self,
-        model: models.Model,
-        signature: signers.Signature,
-        input_example: schemas.Inputs | None = None,
-    ) -> mlflow.entities.model_registry.ModelVersion:
-        builtin_model = model.get_internal_model()
-        module = getattr(mlflow, self.flavor)
-        return module.log_model(
-            builtin_model, artifact_path=self.path, signature=signature, input_example=input_example
-        )
-
-
-SaverKind = CustomSaver | BuiltinSaver
+SaverKind = CustomSaver 
 
 # %% LOADERS
 
@@ -282,41 +255,7 @@ class CustomLoader(Loader):
         return adapter
 
 
-class BuiltinLoader(Loader):
-    """Loader for built-in models using the Mlflow PyFunc module.
-
-    Note: use Mlflow PyFunc instead of flavors to use standard API.
-
-    https://mlflow.org/docs/latest/models.html#built-in-model-flavors
-    """
-
-    KIND: T.Literal["BuiltinLoader"] = "BuiltinLoader"
-
-    class Adapter(Loader.Adapter):
-        """Adapt a builtin model for the project inference."""
-
-        def __init__(self, model: mlflow.pyfunc.PyFuncModel) -> None:
-            """Initialize the adapter from an mlflow pyfunc model.
-
-            Args:
-                model (mlflow.pyfunc.PyFuncModel): mlflow pyfunc model.
-            """
-            self.model = model
-
-        @T.override
-        def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
-            columns = list(schemas.OutputsSchema.to_schema().columns)
-            outputs = self.model.predict(inputs=inputs)  # unchecked data!
-            return schemas.Outputs(outputs, columns=columns, index=inputs.index)
-
-    @T.override
-    def load(self, uri: str) -> "BuiltinLoader.Adapter":
-        model = mlflow.pyfunc.load_model(model_uri=uri)
-        adapter = BuiltinLoader.Adapter(model=model)
-        return adapter
-
-
-LoaderKind = CustomLoader | BuiltinLoader
+LoaderKind = CustomLoader 
 
 # %% REGISTERS
 
