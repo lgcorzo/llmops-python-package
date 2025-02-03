@@ -107,13 +107,13 @@ def test_evaluations_job(
         out["targets_lineage"].source.uri == targets_reader.path
     ), "Targets lineage source should be the targets reader path!"
     assert (
-        out["targets_lineage"].targets == schemas.TargetsSchema.cnt
-    ), "Targets lineage target should be cnt!"
+        out["targets_lineage"].targets == schemas.TargetsSchema.response
+    ), "Targets lineage target should be response!"
     # - dataset
     assert out["dataset"].name == "evaluation", "Dataset name should be evaluation!"
     assert out["dataset"].predictions is None, "Dataset predictions should be None!"
     assert (
-        out["dataset"].targets == schemas.TargetsSchema.cnt
+        out["dataset"].targets == schemas.TargetsSchema.response
     ), "Dataset targets should be the target column!"
     assert (
         inputs_reader.path in out["dataset"].source.uri

@@ -156,7 +156,7 @@ class CustomSaver(Saver):
                 schemas.Outputs: validated outputs of the project model.
             """
             output = self.model.predict(inputs=inputs)
-            return T.cast(schemas.Outputs, output.response)
+            return output
 
     @T.override
     def save(self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info:
@@ -245,8 +245,18 @@ class CustomLoader(Loader):
         @T.override
         def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
             # model validation is already done in predict
-            outputs = self.model.predict(data=inputs)
-            return T.cast(schemas.Outputs, outputs)
+            prediction = self.model.predict(data=inputs)
+            
+            # Return the outputs schema
+            outputs = schemas.Outputs(
+                pd.DataFrame(
+                    {
+                        "response": [prediction],
+                        "metadata": [{"timestamp": "2025-01-15T12:00:00Z", "model_version": "v1.0.0"}],
+                    }
+                )
+            )
+            return outputs
 
     @T.override
     def load(self, uri: str) -> "CustomLoader.Adapter":

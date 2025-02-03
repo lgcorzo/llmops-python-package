@@ -38,7 +38,7 @@ class EvaluationsJob(base.Job):
     inputs: datasets.ReaderKind = pdt.Field(..., discriminator="KIND")
     targets: datasets.ReaderKind = pdt.Field(..., discriminator="KIND")
     # Model
-    model_type: str = "regressor"
+    model_type: str = "Autogen_model"
     alias_or_version: str | int = "Champion"
     # Metrics
     metrics: metrics_.MetricsKind = [
@@ -79,7 +79,7 @@ class EvaluationsJob(base.Job):
             logger.debug("- Inputs lineage: {}", inputs_lineage.to_dict())
             # - targets
             logger.info("Log lineage: targets")
-            targets_lineage = self.targets.lineage(data=targets, name="targets", targets=schemas.TargetsSchema.cnt)
+            targets_lineage = self.targets.lineage(data=targets, name="targets", targets=schemas.TargetsSchema.response)
             mlflow.log_input(dataset=targets_lineage, context=self.run_config.name)
             logger.debug("- Targets lineage: {}", targets_lineage.to_dict())
             # dataset
@@ -88,7 +88,7 @@ class EvaluationsJob(base.Job):
                 df=pd.concat([inputs, targets], axis="columns"),
                 name="evaluation",
                 source=f"{inputs_lineage.source.uri} & {targets_lineage.source.uri}",
-                targets=schemas.TargetsSchema.cnt,
+                targets=schemas.TargetsSchema.response,
             )
             logger.debug("- Dataset: {}", dataset.to_dict())
             # model

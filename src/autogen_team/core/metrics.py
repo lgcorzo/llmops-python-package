@@ -83,7 +83,7 @@ class Metric(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
             Returns:
                 MlflowMetric: the mlflow metric.
             """
-            score_targets = schemas.Targets({schemas.TargetsSchema.cnt: targets}, index=targets.index)
+            score_targets = schemas.Targets({schemas.TargetsSchema.response: targets}, index=targets.index)
             score_outputs = schemas.Outputs({schemas.OutputsSchema.prediction: predictions}, index=predictions.index)
             sign = 1 if self.greater_is_better else -1  # reverse the effect
             score = self.score(targets=score_targets, outputs=score_outputs)
