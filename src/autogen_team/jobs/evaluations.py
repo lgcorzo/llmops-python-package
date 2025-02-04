@@ -38,7 +38,7 @@ class EvaluationsJob(base.Job):
     inputs: datasets.ReaderKind = pdt.Field(..., discriminator="KIND")
     targets: datasets.ReaderKind = pdt.Field(..., discriminator="KIND")
     # Model
-    model_type: str = "Autogen_model"
+    model_type: str = "question-answering"
     alias_or_version: str | int = "Champion"
     # Metrics
     metrics: metrics_.MetricsKind = [
@@ -47,7 +47,7 @@ class EvaluationsJob(base.Job):
     # Evaluators
     evaluators: list[str] = ["default"]
     # Thresholds
-    thresholds: dict[str, metrics_.Threshold] = {"r2_score": metrics_.Threshold(threshold=0.5, greater_is_better=True)}
+    thresholds: dict[str, metrics_.Threshold] = {"exact_match": metrics_.Threshold(threshold=0.5, greater_is_better=True)}
 
     @T.override
     def run(self) -> base.Locals:
@@ -114,6 +114,7 @@ class EvaluationsJob(base.Job):
                 evaluators=self.evaluators,
                 extra_metrics=extra_metrics,
                 validation_thresholds=validation_thresholds,
+                predictions=schemas.OutputsSchema.response,
             )
             logger.debug("- Evaluations metrics: {}", evaluations.metrics)
             # notify

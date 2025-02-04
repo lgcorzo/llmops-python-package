@@ -69,7 +69,7 @@ class OutputsSchema(Schema):
 class TargetsSchema(Schema):
     """Schema for the project target."""
 
-    input: papd.Series[padt.String] = pa.Field()
+    input_target: papd.Series[padt.String] = pa.Field()
     response: papd.Series[padt.String] = pa.Field()
 
 

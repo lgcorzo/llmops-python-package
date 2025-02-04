@@ -15,7 +15,7 @@ from autogen_team.io import datasets, registries, services
         (
             1,
             {
-                "mean_squared_error": metrics.Threshold(
+                "AutogenMetricTest": metrics.Threshold(
                     threshold=float("inf"), greater_is_better=False
                 )
             },

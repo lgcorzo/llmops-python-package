@@ -75,7 +75,7 @@ class Metric(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
 
         def eval_fn(predictions: pd.Series[int], targets: pd.Series[int]) -> MlflowMetric:
             """Evaluation function associated with the mlflow metric.
-
+            https://mlflow.org/docs/latest/llms/llm-evaluate/index.html
             Args:
                 predictions (pd.Series): model predictions.
                 targets (pd.Series | None): model targets.
