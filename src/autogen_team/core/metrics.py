@@ -40,7 +40,7 @@ class Metric(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
     greater_is_better: bool
 
     @abc.abstractmethod
-    def score(self, targets: schemas.Targets, outputs: schemas.Outputs) -> float:
+    def score(self, targets: schemas.input, outputs: schemas.input) -> float:
         """Score the outputs against the targets.
 
         Args:
@@ -73,7 +73,7 @@ class Metric(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
             MlflowMetric: the Mlflow metric.
         """
 
-        def eval_fn(predictions: pd.Series[int], targets: pd.Series[int]) -> MlflowMetric:
+        def eval_fn(predictions: pd.Series[str], targets: pd.Series[str]) -> MlflowMetric:
             """Evaluation function associated with the mlflow metric.
             https://mlflow.org/docs/latest/llms/llm-evaluate/index.html
             Args:
@@ -83,8 +83,9 @@ class Metric(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
             Returns:
                 MlflowMetric: the mlflow metric.
             """
-            score_targets = schemas.Targets({schemas.TargetsSchema.response: targets}, index=targets.index)
-            score_outputs = schemas.Outputs({schemas.OutputsSchema.prediction: predictions}, index=predictions.index)
+            score_outputs = schemas.Inputs({schemas.InputsSchema.input: predictions}, index=predictions.index)
+            score_targets = schemas.Inputs({schemas.InputsSchema.input: targets}, index=targets.index)
+
             sign = 1 if self.greater_is_better else -1  # reverse the effect
             score = self.score(targets=score_targets, outputs=score_outputs)
             return MlflowMetric(aggregate_results={self.name: score * sign})
@@ -105,10 +106,10 @@ class AutogenMetric(Metric):
     similarity_threshold: Optional[float] = 0.7
 
     @T.override
-    def score(self, targets: schemas.Targets, outputs: schemas.Outputs) -> float:
+    def score(self, targets: schemas.input, outputs: schemas.input) -> float:
         # Extract text responses from targets and outputs
-        y_true = targets[schemas.TargetsSchema.response].astype(str)
-        y_pred = outputs[schemas.OutputsSchema.response].astype(str)
+        y_true = targets[schemas.InputsSchema.input].astype(str)
+        y_pred = outputs[schemas.InputsSchema.input].astype(str)
 
         if self.metric_type == "exact_match":
             return self._exact_match_score(y_true, y_pred)

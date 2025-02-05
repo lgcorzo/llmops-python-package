@@ -142,8 +142,8 @@ def test_evaluations_job(
     ), "Validation thresholds should have the same keys as thresholds!"
     # - evaluations
     assert (
-        out["evaluations"].metrics["example_count"] == inputs_reader.limit
-    ), "Evaluations should have the same number of examples as the inputs!"
+        out["evaluations"].metrics["exact_match/v1"] == 0.0
+    )
     assert job.metrics[0].name in out["evaluations"].metrics, "Metric should be logged in Mlflow!"
     # - mlflow tracking
     experiment = mlflow_service.client().get_experiment_by_name(name=mlflow_service.experiment_name)

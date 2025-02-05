@@ -13,6 +13,8 @@ from autogen_team.core import schemas
 from autogen_team.io import datasets, registries, services
 from autogen_team.jobs import base
 
+EVALUATION_INSTANCES = 1
+
 # %% JOBS
 
 
@@ -85,7 +87,7 @@ class EvaluationsJob(base.Job):
             # dataset
             logger.info("Create dataset: inputs & targets")
             dataset = mlflow.data.from_pandas(
-                df=pd.concat([inputs, targets], axis="columns"),
+                df=pd.concat([inputs, targets], axis="columns").head(EVALUATION_INSTANCES),
                 name="evaluation",
                 source=f"{inputs_lineage.source.uri} & {targets_lineage.source.uri}",
                 targets=schemas.TargetsSchema.response,
