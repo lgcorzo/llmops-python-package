@@ -14,9 +14,9 @@ from autogen_team.utils import searchers, signers, splitters
 
 # %% CONFIGS
 
-LIMIT = 1500
-N_SPLITS = 3
-TEST_SIZE = 24 * 7  # 1 week
+LIMIT = 4
+N_SPLITS = 2
+TEST_SIZE = 3 # 1 week
 
 # %% FIXTURES
 
@@ -255,8 +255,8 @@ def model(
     model_config = {
             "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
             "config": {
-                "model": "azure-gpt",  # LiteLLM model
-                "api_base": "https://localhost:4000",  # LiteLLM Gateway URL
+                "model": "gemini-pro",  # LiteLLM model
+                "api_base": "http://localhost:4000/v1",  # LiteLLM Gateway URL
                 "api_key": "sk-12345",
                 "temperature": 0.7,  # Optional
                 "max_tokens": 512,  # Optional

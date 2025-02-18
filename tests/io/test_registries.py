@@ -66,7 +66,7 @@ def test_custom_pipeline(
         version = register.register(name=name, model_uri=info.model_uri)
     model_uri = registries.uri_for_model_version(name=name, version=version.version)
     adapter = loader.load(uri=model_uri)
-    outputs = adapter.predict(inputs=inputs.head(1))
+    outputs = adapter.predict(inputs=inputs)
     # then
     # - uri
     assert model_uri == f"models:/{name}/{version.version}", "The model URI should be valid!"

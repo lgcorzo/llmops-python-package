@@ -1,6 +1,6 @@
 # %% IMPORTS
 import pytest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, AsyncMock
 import pandas as pd
 import typing as T
 
@@ -18,63 +18,49 @@ def baseline_model():
 def test_get_params(baseline_model):
     """Test the get_params method."""
     # Setup
-    baseline_model.assistant_agent = "MockAssistantAgent"
-    baseline_model.team = "MockTeam"
+    baseline_model.model_client = "MockOpenAIChatCompletionClient"
 
     # Execute
     params = baseline_model.get_params()
 
     # Verify
-    assert "assistant_agent" in params
-    assert "team" in params
-    assert params["assistant_agent"] == "MockAssistantAgent"
-    assert params["team"] == "MockTeam"
+    assert "model_client" in params
+    assert params["model_client"] == "MockOpenAIChatCompletionClient"
 
 
 def test_set_params(baseline_model):
     """Test the set_params method."""
     # Setup
-    new_params = {"assistant_agent": "NewAgent", "team": "NewTeam"}
+    new_params = {"model_client": "NewAgent"}
 
     # Execute
     baseline_model.set_params(**new_params)
 
     # Verify
-    assert baseline_model.assistant_agent == "NewAgent"
-    assert baseline_model.team == "NewTeam"
+    assert baseline_model.model_client == "NewAgent"
 
 
-# Define an async generator for the response stream
-async def async_response_stream():
-    yield MagicMock(content="Message 1")
-    yield MagicMock(content="Message 2")
-    # Create a mock message with attribute 'content'
-    result_message = MagicMock(content="Result 1")
-    # Yield a MagicMock simulating a TaskResult with a messages attribute containing our mock message.
-    yield MagicMock(spec=TaskResult, messages=[result_message])
+@pytest.fixture
+def async_response_stream():
+    return MagicMock(content="Result 1")
 
 
-def test_predict(baseline_model):
+def test_predict(baseline_model, async_response_stream):
     """Test the predict method of BaselineAutogenModel."""
     # Setup
     input_data = pd.DataFrame({"input": ["Some large input string"]})
     inputs = schemas.Inputs(input_data)
 
-    with patch("autogen_team.core.models.RoundRobinGroupChat") as MockRun:
-        # Instead of returning a list, return an async generator
-        MockRun.run_stream.return_value = async_response_stream()
+    with patch("autogen_team.core.models.asyncio.run") as MockModelrun:
+        # Mock the create method to return our async generator
+        MockModelrun.return_value = async_response_stream
 
-        # Ensure the baseline model's `team` uses the mock
-        baseline_model.team = MockRun
-
-        # Execute
+        # Execute the predict function (await is needed since predict must be async)
         outputs = baseline_model.predict(inputs)
 
-        # Verify the response contains the messages and task result as expected
+        # Check the outputs
         assert outputs is not None
-        assert "Message 1" in outputs["response"][0]
-        assert "Message 2" in outputs["response"][0]
-        assert "Task Result: Result 1" in outputs["response"][0]
+        assert "Result 1" in outputs["response"][0]
 
         # Additional metadata validation (optional)
         assert isinstance(outputs["metadata"][0], dict), "Metadata should be a dictionary"
@@ -100,7 +86,7 @@ def test_get_internal_model(baseline_model):
     """Test get_internal_model returns the team."""
     # Setup
     mock_team = MagicMock()
-    baseline_model.team = mock_team
+    baseline_model.model_client = mock_team
 
     # Execute
     internal_model = baseline_model.get_internal_model()
@@ -135,22 +121,8 @@ def test_load_context(baseline_model):
             "max_tokens": 512,  # Optional
         },
     }  # Provide your model config as necessary
-    with (
-        patch("autogen_team.core.models.AssistantAgent") as MockAgent,
-        patch("autogen_team.core.models.RoundRobinGroupChat") as MockGroupChat,
-        patch("autogen_team.core.models.OpenAIChatCompletionClient") as MockOpenAIChatCompletionClient,
-        patch("autogen_team.core.models.TextMentionTermination") as MockTextMentionTermination,
-    ):
-        MockAgent.return_value = MagicMock()
-        MockGroupChat.return_value = MagicMock()
-        MockOpenAIChatCompletionClient.return_value = MagicMock()
-        MockTextMentionTermination.return_value = MagicMock()
-
+    with patch("autogen_team.core.models.OpenAIChatCompletionClient") as MockOpenAIChatCompletionClient:
         # Execute
         baseline_model.load_context(model_config)
-
         # Verify
-        MockAgent.assert_called_once()  # Verify AssistantAgent was called
-        MockGroupChat.assert_called_once()  # Verify RoundRobinGroupChat was called
         MockOpenAIChatCompletionClient.assert_called_once()  # Verify AssistantAgent was called
-        MockTextMentionTermination.assert_called_once()  # Verify RoundRobinGroupChat was called

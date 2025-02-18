@@ -11,17 +11,13 @@ import pandas as pd
 from pydantic import Field
 from typing import Optional
 from typing import Any, Dict
+from datetime import datetime, timezone
 
-from autogen_agentchat.agents import AssistantAgent
-from autogen_agentchat.base import TaskResult
-from autogen_agentchat.conditions import MaxMessageTermination, TextMentionTermination
-from autogen_agentchat.teams import RoundRobinGroupChat
-
+from autogen_core.models import UserMessage
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
-
 from autogen_team.core import schemas
-from autogen_team.tools.weather import get_weather
+
 
 # %% TYPES
 
@@ -144,8 +140,7 @@ class BaselineAutogenModel(Model):
     """
 
     KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
-    assistant_agent: Optional[AssistantAgent] = Field(default=None)
-    team: Optional[RoundRobinGroupChat] = Field(default=None)
+    model_client: Optional[OpenAIChatCompletionClient] = Field(default=None)
 
     @T.override
     def load_context(self, model_config: Dict[str, Any]):
@@ -156,26 +151,17 @@ class BaselineAutogenModel(Model):
 
         """
         # Load the client
-        client = OpenAIChatCompletionClient(
+        self.model_client = OpenAIChatCompletionClient(
             model=model_config["config"]["model"],
             api_key=model_config["config"]["api_key"],
             base_url=model_config["config"]["api_base"],
             model_info={
                 "vision": True,
-                "function_calling": True,
-                "json_output": True,
+                "function_calling": False,
+                "json_output": False,
                 "family": "unknown",
-            }
+            },
         )
-
-        self.assistant_agent = AssistantAgent(
-            name="assistant_agent",
-            tools=[get_weather],
-            model_client=client,
-        )
-
-        termination = TextMentionTermination("TERMINATE") | MaxMessageTermination(10)
-        self.team = RoundRobinGroupChat(participants=[self.assistant_agent], termination_condition=termination)
 
     @T.override
     def fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> "BaselineAutogenModel":
@@ -183,51 +169,43 @@ class BaselineAutogenModel(Model):
         # self.load_context(model_config={})
         return self
 
-    async def _rungroupchat(self, inputs: schemas.Inputs) -> list:
-        results = []
-        # Stream responses from the team
-        # TBD solo lee el primer mensage
-        response_stream = self.team.run_stream(task=inputs["input"].values[0])
-        async for msg in response_stream:
-            if hasattr(msg, "content"):
-                # Collect content messages
-                results.append(msg.content)
-
-            if isinstance(msg, TaskResult):
-                # Handle the final task result if needed
-                results.append(f"Task Result: {msg.messages[0].content} TERMINATED")
-                # Break or terminate loop if needed after TaskResult
-                break
-        return results
+    async def _rungroupchat(self, content: str) -> str:
+        response = await self.model_client.create([UserMessage(content=content, source="user")])
+        return response
 
     @T.override
     def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
         """
         Predicts the output using the assistant team based on the given inputs.
+        Processes each input element iteratively and appends results to the output DataFrame.
         """
         # Initialize a list to collect messages or results
         results = []
 
-        results = asyncio.run(self._rungroupchat(inputs))
+        # Iterate over each input element
+        for row in inputs.itertuples(index=False):
+            response = asyncio.run(self._rungroupchat(row.input))
 
-        # Join results or format as needed
-        prediction = "\n".join(results)
+            if response:  # Check if response is not empty
+                results.append(
+                    {
+                        "response": response.content,  # Getting the response content
+                        "metadata": {
+                            "timestamp": datetime.now(timezone.utc).isoformat(),  # Current time in ISO-8601 format
+                            "model_version": "v1.0.0",
+                        },
+                    }
+                )
 
-        # Return the outputs schema
+        # Prepare outputs schema
         outputs = schemas.Outputs(
-            pd.DataFrame(
-                {
-                    "response": [prediction],
-                    "metadata": [{"timestamp": "2025-01-15T12:00:00Z", "model_version": "v1.0.0"}],
-                }
-            )
+            pd.DataFrame(results)  # Create DataFrame from the list of dictionaries
         )
-
         return outputs
 
     @T.override
-    def get_internal_model(self) -> RoundRobinGroupChat:
-        return self.team
+    def get_internal_model(self) -> OpenAIChatCompletionClient:
+        return self.model_client
 
 
 ModelKind = BaselineAutogenModel
