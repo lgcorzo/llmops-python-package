@@ -198,6 +198,7 @@ class BaselineAutogenModel(Model):
                 )
 
         # Prepare outputs schema
+
         outputs = schemas.Outputs(
             pd.DataFrame(results)  # Create DataFrame from the list of dictionaries
         )
@@ -206,6 +207,57 @@ class BaselineAutogenModel(Model):
     @T.override
     def get_internal_model(self) -> OpenAIChatCompletionClient:
         return self.model_client
+
+    @T.override
+    def explain_model(self) -> schemas.FeatureImportances:
+        """
+        Provides a text-based explanation of the model's internal structure.
+        Since this model leverages the OpenAI Chat API for generating responses,
+        it does not produce traditional numerical feature importances.
+        """
+        explanation = {
+            "feature": (
+                "BaselineAutogenModel utilizes the OpenAI Chat Completion client to generate responses "
+                "in a group chat setting. Unlike conventional machine learning models that compute "
+                "numerical feature importances, this model relies on prompt-driven generation and context "
+                "management to produce outputs. As such, it does not support feature importance metrics in the usual sense."
+            ),
+            "importance": 1.0,
+        }
+
+        # Create DataFrame from a list of dictionaries (one row)
+        explanation_df = pd.DataFrame([explanation])
+        return schemas.FeatureImportances(explanation_df)
+    
+    @T.override
+    def explain_samples(self, inputs: schemas.Inputs) -> schemas.SHAPValues:
+        """
+        Explains model outputs for the given input samples by leveraging the predict function.
+        For each input, a textual explanation is provided along with a dummy SHAP value.
+        """
+        explanations = []
+
+        # Obtain predictions for the input samples
+        outputs = self.predict(inputs)
+        # Assuming outputs is a DataFrame; if wrapped in an attribute, adjust accordingly.
+        output_df = outputs
+
+        # Iterate over each input and its corresponding prediction to build explanations.
+        for input_row, output_row in zip(inputs.itertuples(index=False), output_df.itertuples(index=False)):
+            explanation_text = (
+                f"For input '{input_row.input}', the model generated response '{output_row.response}'. "
+                "This response is produced using prompt-driven generation and context management. "
+                "Since traditional SHAP values are not applicable for a chat-based model, a dummy attribution of 1.0 is used."
+            )
+            explanations.append({
+                "sample": input_row.input,
+                "explanation": explanation_text,
+                "shap_value": 1.0
+            })
+
+        explanation_df = pd.DataFrame(explanations)
+        # Return the DataFrame as a SHAPValues type. Note that schemas.SHAPValues is defined as a type alias.
+        return schemas.SHAPValues(explanation_df)
 
 
 ModelKind = BaselineAutogenModel
