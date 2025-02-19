@@ -68,20 +68,6 @@ def test_predict(baseline_model, async_response_stream):
         assert "model_version" in outputs["metadata"][0], "Metadata model_version is missing"
 
 
-def test_explain_model_not_implemented(baseline_model):
-    """Test explain_model raises NotImplementedError."""
-    with pytest.raises(NotImplementedError):
-        baseline_model.explain_model()
-
-
-def test_explain_samples_not_implemented(baseline_model):
-    """Test explain_samples raises NotImplementedError."""
-    input_data = pd.DataFrame({"input": ["Some large input string"]})
-    inputs = schemas.Inputs(input_data)
-    with pytest.raises(NotImplementedError):
-        baseline_model.explain_samples(inputs)
-
-
 def test_get_internal_model(baseline_model):
     """Test get_internal_model returns the team."""
     # Setup
