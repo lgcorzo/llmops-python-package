@@ -83,8 +83,8 @@ class Metric(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
             Returns:
                 MlflowMetric: the mlflow metric.
             """
-            score_outputs = schemas.Inputs({schemas.InputsSchema.input: predictions}, index=predictions.index)
-            score_targets = schemas.Inputs({schemas.InputsSchema.input: targets}, index=targets.index)
+            score_outputs = pd.DataFrame({schemas.OutputsSchema.response: predictions}, index=predictions.index)
+            score_targets = pd.DataFrame({schemas.TargetsSchema.response: targets}, index=targets.index)
 
             sign = 1 if self.greater_is_better else -1  # reverse the effect
             score = self.score(targets=score_targets, outputs=score_outputs)
@@ -106,11 +106,11 @@ class AutogenMetric(Metric):
     similarity_threshold: Optional[float] = 0.7
 
     @T.override
-    def score(self, targets: schemas.input, outputs: schemas.input) -> float:
+    def score(self, targets: schemas.Targets, outputs: schemas.Outputs) -> float:
         # Extract text responses from targets and outputs
-        y_true = targets[schemas.InputsSchema.input].astype(str)
-        y_pred = outputs[schemas.InputsSchema.input].astype(str)
-
+        y_true = targets.response
+        y_pred = outputs.response
+        
         if self.metric_type == "exact_match":
             return self._exact_match_score(y_true, y_pred)
         elif self.metric_type == "similarity":
@@ -121,6 +121,9 @@ class AutogenMetric(Metric):
             raise ValueError(f"Unknown metric type: {self.metric_type}")
 
     def _exact_match_score(self, y_true: pd.Series, y_pred: pd.Series) -> float:
+         # Reset index to align the series
+        y_true = y_true.reset_index(drop=True)
+        y_pred = y_pred.reset_index(drop=True)
         return (y_true == y_pred).mean()
 
     def _similarity_score(self, y_true: pd.Series, y_pred: pd.Series) -> float:

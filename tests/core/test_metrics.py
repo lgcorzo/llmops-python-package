@@ -71,9 +71,9 @@ class TestAutogenTextMetric:
     def test_score(self, metric_type, y_true, y_pred, expected, threshold):
         # Mock targets and outputs
         targets = MagicMock()
-        targets.__getitem__.return_value = pd.Series(y_true)
+        targets.response = pd.Series(y_true)
         outputs = MagicMock()
-        outputs.__getitem__.return_value = pd.Series(y_pred)
+        outputs.response = pd.Series(y_pred)
 
         # Initialize metric
         metric = AutogenMetric(

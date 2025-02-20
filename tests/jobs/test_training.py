@@ -63,7 +63,6 @@ def test_training_job(
         "test_index",
         "inputs_test",
         "inputs_train",
-        "inputs_test",
         "targets_train",
         "targets_test",
         "outputs_test",

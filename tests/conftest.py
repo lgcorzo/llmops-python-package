@@ -114,7 +114,7 @@ def inputs_reader(inputs_path: str) -> datasets.ParquetReader:
 @pytest.fixture(scope="session")
 def inputs_samples_reader(inputs_path: str) -> datasets.ParquetReader:
     """Return a reader for the inputs samples dataset."""
-    return datasets.ParquetReader(path=inputs_path, limit=100)
+    return datasets.ParquetReader(path=inputs_path, limit=LIMIT)
 
 
 @pytest.fixture(scope="session")
@@ -145,7 +145,7 @@ def outputs_reader(
         model = models.BaselineAutogenModel()
         model.load_context(model_config=model_config)
         model.fit(inputs=inputs, targets=targets)
-        outputs = schemas.OutputsSchema.check(model.predict(inputs=inputs.head(1)))
+        outputs = schemas.OutputsSchema.check(model.predict(inputs=inputs))
         outputs_writer = datasets.ParquetWriter(path=outputs_path)
         outputs_writer.write(data=outputs)
     return datasets.ParquetReader(path=outputs_path, limit=LIMIT)
