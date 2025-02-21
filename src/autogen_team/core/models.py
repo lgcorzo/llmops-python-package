@@ -141,6 +141,8 @@ class BaselineAutogenModel(Model):
 
     KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
     model_client: Optional[OpenAIChatCompletionClient] = Field(default=None)
+    max_tokens: Optional[int] = Field(default=320000)
+    temperature: Optional[float] = Field(default=0.5)
 
     @T.override
     def load_context(self, model_config: Dict[str, Any]):

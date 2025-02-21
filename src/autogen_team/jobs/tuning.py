@@ -17,6 +17,8 @@ from autogen_team.utils import searchers, splitters
 
 class TuningJob(base.Job):
     """Find the best hyperparameters for a model.
+    https://microsoft.github.io/FLAML/docs/Examples/AutoGen-OpenAI/
+    https://github.com/microsoft/FLAML/blob/main/notebook/autogen_openai_completion.ipynb
 
     Parameters:
         run_config (services.MlflowService.RunConfig): mlflow run config.
@@ -47,7 +49,7 @@ class TuningJob(base.Job):
     searcher: searchers.SearcherKind = pdt.Field(
         searchers.GridCVSearcher(
             param_grid={
-                "max_depth": [3, 5, 7],
+                "max_tokens": [3000, 50000, 128000],
             }
         ),
         discriminator="KIND",

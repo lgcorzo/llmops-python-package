@@ -16,7 +16,7 @@ from autogen_team.utils import searchers, signers, splitters
 
 LIMIT = 4
 N_SPLITS = 2
-TEST_SIZE = 3 # 1 week
+TEST_SIZE = 1 # 1 week
 
 # %% FIXTURES
 
@@ -221,7 +221,7 @@ def time_series_splitter() -> splitters.TimeSeriesSplitter:
 @pytest.fixture(scope="session")
 def searcher() -> searchers.Searcher:
     """Return the default searcher object."""
-    param_grid = {"max_depth": [1, 2], "n_estimators": [3]}
+    param_grid = {"max_tokens": [10000, 20000], "temperature": [3.0]}
     return searchers.GridCVSearcher(param_grid=param_grid)
 
 
