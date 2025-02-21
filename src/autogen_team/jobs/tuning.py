@@ -48,9 +48,7 @@ class TuningJob(base.Job):
     # Searcher
     searcher: searchers.SearcherKind = pdt.Field(
         searchers.GridCVSearcher(
-            param_grid={
-                "max_tokens": [3000, 50000, 128000],
-            }
+             param_grid = {"max_tokens": [10000, 128000], "temperature": [3.0]}
         ),
         discriminator="KIND",
     )
