@@ -18,26 +18,26 @@ def baseline_model():
 def test_get_params(baseline_model):
     """Test the get_params method."""
     # Setup
-    baseline_model.model_client = "MockOpenAIChatCompletionClient"
+    baseline_model.model_config_path = "Newpath"
 
     # Execute
     params = baseline_model.get_params()
 
     # Verify
-    assert "model_client" in params
-    assert params["model_client"] == "MockOpenAIChatCompletionClient"
+    assert "model_config_path" in params
+    assert params["model_config_path"] == "Newpath"
 
 
 def test_set_params(baseline_model):
     """Test the set_params method."""
     # Setup
-    new_params = {"model_client": "NewAgent"}
+    new_params = {"model_config_path": "Newpath"}
 
     # Execute
     baseline_model.set_params(**new_params)
 
     # Verify
-    assert baseline_model.model_client == "NewAgent"
+    assert baseline_model.model_config_path == "Newpath"
 
 
 @pytest.fixture

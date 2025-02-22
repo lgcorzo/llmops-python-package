@@ -142,7 +142,7 @@ class BaselineAutogenModel(Model):
 
     KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
     model_config_path: Optional[str] = Field(default=None)
-    model_client: Optional[str] = Field(default=None)
+    model_client: Optional[Any] = Field(default=None)
     max_tokens: Optional[int] = Field(default=320000)
     temperature: Optional[float] = Field(default=0.5)
 

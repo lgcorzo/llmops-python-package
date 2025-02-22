@@ -6,3 +6,10 @@ job:
   targets:
     KIND: ParquetReader
     path: data/targets_train.parquet
+  splitter:
+    KIND: TimeSeriesSplitter
+    n_splits: 2
+    test_size: 100
+  model:
+    KIND: BaselineAutogenModel
+    model_config_path: "confs/valid/model_config.json"
