@@ -127,7 +127,7 @@ class CustomSaver(Saver):
                 "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
                 "config": {
                     "model": "azure-gpt",  # LiteLLM model
-                    "api_base": "https://litellm:4000",  # LiteLLM Gateway URL
+                    "api_base": "http://litellm:4000/v1",  # LiteLLM Gateway URL
                     "api_key": "sk-12345",
                     "temperature": 0.7,  # Optional
                     "max_tokens": 512,  # Optional

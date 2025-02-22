@@ -134,7 +134,7 @@ def outputs_reader(
             "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
             "config": {
                 "model": "azure-gpt",  # LiteLLM model
-                "api_base": "https://localhost:4000",  # LiteLLM Gateway URL
+                "api_base": "http://localhost:4000",  # LiteLLM Gateway URL
                 "api_key": "sk-12345",
                 "temperature": 0.7,  # Optional
                 "max_tokens": 512,  # Optional
