@@ -4,6 +4,7 @@
 
 import abc
 import asyncio
+import json
 import typing as T
 
 import pydantic as pdt
@@ -144,6 +145,15 @@ class BaselineAutogenModel(Model):
     max_tokens: Optional[int] = Field(default=320000)
     temperature: Optional[float] = Field(default=0.5)
 
+
+    def load_context_path(self, model_config_path: str):
+        """
+        Load the model from the specified artifacts directory.
+        """
+        model_config = json.load(open(model_config_path, "r", encoding="utf-8"))
+        # Load the model
+        self.model.load_context(model_config)
+
     @T.override
     def load_context(self, model_config: Dict[str, Any]):
         """
@@ -230,7 +240,7 @@ class BaselineAutogenModel(Model):
         # Create DataFrame from a list of dictionaries (one row)
         explanation_df = pd.DataFrame([explanation])
         return schemas.FeatureImportances(explanation_df)
-    
+
     @T.override
     def explain_samples(self, inputs: schemas.Inputs) -> schemas.SHAPValues:
         """
@@ -251,11 +261,7 @@ class BaselineAutogenModel(Model):
                 "This response is produced using prompt-driven generation and context management. "
                 "Since traditional SHAP values are not applicable for a chat-based model, a dummy attribution of 1.0 is used."
             )
-            explanations.append({
-                "sample": input_row.input,
-                "explanation": explanation_text,
-                "shap_value": 1.0
-            })
+            explanations.append({"sample": input_row.input, "explanation": explanation_text, "shap_value": 1.0})
 
         explanation_df = pd.DataFrame(explanations)
         # Return the DataFrame as a SHAPValues type. Note that schemas.SHAPValues is defined as a type alias.
