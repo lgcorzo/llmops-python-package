@@ -5,6 +5,7 @@
 import abc
 import asyncio
 import json
+import os
 import typing as T
 
 import pydantic as pdt
@@ -136,23 +137,33 @@ class BaselineAutogenModel(Model):
     https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/design-patterns/group-chat.html
     Parameters:
         max_tokens (int): maximum token of the prompt
-        max_tokens (float): temperature for the sampling
-        promtp (str): prompt for the model
+        temperature (float): temperature for the sampling
     """
 
     KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
+    model_config_path: Optional[str] = Field(default=None)
     model_client: Optional[OpenAIChatCompletionClient] = Field(default=None)
     max_tokens: Optional[int] = Field(default=320000)
     temperature: Optional[float] = Field(default=0.5)
 
-
-    def load_context_path(self, model_config_path: str):
+    def load_context_path(self, model_config_path: str = None):
         """
         Load the model from the specified artifacts directory.
         """
-        model_config = json.load(open(model_config_path, "r", encoding="utf-8"))
+        if self.model_client is not None:
+            return
+
+        if model_config_path is None:
+            raise ValueError("No configuration file path provided.")
+
+        if not os.path.isfile(model_config_path):
+            raise FileNotFoundError(f"Configuration file '{model_config_path}' not found.")
+
+        with open(model_config_path, "r", encoding="utf-8") as config_file:
+            model_config = json.load(config_file)
+
         # Load the model
-        self.model.load_context(model_config)
+        self.load_context(model_config)
 
     @T.override
     def load_context(self, model_config: Dict[str, Any]):

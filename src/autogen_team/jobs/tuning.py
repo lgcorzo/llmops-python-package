@@ -87,6 +87,7 @@ class TuningJob(base.Job):
             mlflow.log_input(dataset=targets_lineage, context=self.run_config.name)
             logger.debug("- Targets lineage: {}", targets_lineage.to_dict())
             # model
+            self.model.load_context_path(model_config_path=self.model.model_config_path)
             logger.info("With model: {}", self.model)
             # metric
             logger.info("With metric: {}", self.metric)

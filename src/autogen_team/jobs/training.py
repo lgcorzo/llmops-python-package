@@ -105,6 +105,7 @@ class TrainingJob(base.Job):
             logger.debug("- Targets test shape: {}", targets_test.shape)
             # model
             logger.info("Fit model: {}", self.model)
+            self.model.load_context_path(model_config_path=self.model.model_config_path)
             self.model.fit(inputs=inputs_train, targets=targets_train)
             # outputs
             logger.info("Predict outputs: {}", len(inputs_test))
