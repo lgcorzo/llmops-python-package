@@ -13,7 +13,7 @@ job:
     test_size: 2
   model:
     KIND: BaselineAutogenModel
-    model_config_path: "confs/valid/model_config.json"
+    model_config_path: "confs/model_config.json"
   saver:
     KIND: CustomSaver
     path: "confs"
