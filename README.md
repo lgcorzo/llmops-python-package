@@ -435,6 +435,8 @@ Edition, validation, and versioning of your project source code.
 
 ### Coverage: [Coverage](https://coverage.readthedocs.io/en/latest/)
 
+https://krijnvanderburg.medium.com/automatically-generate-and-visualize-python-code-coverage-308e65627925
+
 - **Motivations**:
   - Report code covered by tests
   - Identify code path to test
