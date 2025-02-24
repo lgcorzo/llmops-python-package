@@ -110,7 +110,7 @@ class AutogenMetric(Metric):
         # Extract text responses from targets and outputs
         y_true = targets.response
         y_pred = outputs.response
-        
+
         if self.metric_type == "exact_match":
             return self._exact_match_score(y_true, y_pred)
         elif self.metric_type == "similarity":
@@ -121,7 +121,7 @@ class AutogenMetric(Metric):
             raise ValueError(f"Unknown metric type: {self.metric_type}")
 
     def _exact_match_score(self, y_true: pd.Series, y_pred: pd.Series) -> float:
-         # Reset index to align the series
+        # Reset index to align the series
         y_true = y_true.reset_index(drop=True)
         y_pred = y_pred.reset_index(drop=True)
         return (y_true == y_pred).mean()

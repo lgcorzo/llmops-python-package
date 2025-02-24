@@ -170,7 +170,7 @@ class CustomSaver(Saver):
         )
 
 
-SaverKind = CustomSaver 
+SaverKind = CustomSaver
 
 # %% LOADERS
 
@@ -246,7 +246,7 @@ class CustomLoader(Loader):
         def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
             # model validation is already done in predict
             prediction = self.model.predict(data=inputs)
-            
+
             # Return the outputs schema
             outputs = schemas.Outputs(
                 pd.DataFrame(
@@ -265,7 +265,7 @@ class CustomLoader(Loader):
         return adapter
 
 
-LoaderKind = CustomLoader 
+LoaderKind = CustomLoader
 
 # %% REGISTERS
 
