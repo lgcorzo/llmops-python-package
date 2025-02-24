@@ -80,7 +80,7 @@ class TestAutogenTextMetric:
             name="test_metric",
             metric_type=metric_type,
             similarity_threshold=threshold or 0.7,
-            greater_is_better=True
+            greater_is_better=True,
         )
 
         # Calculate and verify score
@@ -88,6 +88,7 @@ class TestAutogenTextMetric:
 
 
 # Test AutogenConversationMetric
+
 
 class TestAutogenConversationMetric:
     @pytest.mark.parametrize(
@@ -109,7 +110,9 @@ class TestAutogenConversationMetric:
                 ],
                 True,
                 True,
-                pytest.approx((2 / 3) * (1 - 2 / 3), rel=0.01), # corrected to pytest.approx for float comparison
+                pytest.approx(
+                    (2 / 3) * (1 - 2 / 3), rel=0.01
+                ),  # corrected to pytest.approx for float comparison
             ),
             # Only check termination
             (
@@ -129,13 +132,15 @@ class TestAutogenConversationMetric:
             name="conv_metric",
             check_termination=check_term,
             check_error_messages=check_err,
-            greater_is_better=True
+            greater_is_better=True,
         )
 
         # Mock targets (not used)
         targets = MagicMock()
 
-        assert metric.score(targets, outputs) == expected # removed pytest.approx here as it is already in expected values
+        assert (
+            metric.score(targets, outputs) == expected
+        )  # removed pytest.approx here as it is already in expected values
 
 
 # Test Threshold
@@ -171,7 +176,9 @@ class TestMetricIntegration:
         mock_model.predict.return_value = mock_outputs
 
         # Create metric with mocked score method
-        metric = AutogenMetric(name="AutogenMetricTest", metric_type="exact_match", greater_is_better=True)
+        metric = AutogenMetric(
+            name="AutogenMetricTest", metric_type="exact_match", greater_is_better=True
+        )
 
         # Execute scorer
         with patch("autogen_team.core.metrics.AutogenMetric.score") as mock_score:

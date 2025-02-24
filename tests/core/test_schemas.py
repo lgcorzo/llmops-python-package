@@ -52,7 +52,9 @@ def test_outputs_schema_invalid_metadata():
 
 def test_metadata_schema_valid():
     """Test valid metadata validation using MetadataSchema."""
-    valid_metadata = pd.DataFrame({"timestamp": ["2025-01-15T12:00:00Z"], "model_version": ["v1.0.0"]})
+    valid_metadata = pd.DataFrame(
+        {"timestamp": ["2025-01-15T12:00:00Z"], "model_version": ["v1.0.0"]}
+    )
     validated_metadata = MetadataSchema.check(valid_metadata)
     assert not validated_metadata.empty
 
@@ -64,6 +66,7 @@ def test_metadata_schema_invalid_timestamp():
     )
     with pytest.raises(pa_errors.SchemaError):
         MetadataSchema.check(invalid_metadata)
+
 
 def test_metadata_schema_invalid_model_version():
     """Test invalid metadata using MetadataSchema."""
@@ -98,7 +101,10 @@ def test_feature_importances_schema_valid():
 def test_feature_importances_schema_invalid():
     """Test invalid data for FeatureImportancesSchema."""
     invalid_data = pd.DataFrame(
-        {"feature": [123], "importance": ["Invalid importance"]}  # Non-string feature, non-float importance
+        {
+            "feature": [123],
+            "importance": ["Invalid importance"],
+        }  # Non-string feature, non-float importance
     )
     with pytest.raises(pa_errors.SchemaError):
         FeatureImportancesSchema.check(invalid_data)

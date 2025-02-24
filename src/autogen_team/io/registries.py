@@ -86,7 +86,9 @@ class Saver(abc.ABC, pdt.BaseModel, strict=True, frozen=True, extra="forbid"):
     config_file: str = "model_config.json"
 
     @abc.abstractmethod
-    def save(self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info:
+    def save(
+        self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs
+    ) -> Info:
         """Save a model in the model registry.
 
         Args:
@@ -144,7 +146,9 @@ class CustomSaver(Saver):
             # Load the model
             self.model.load_context(model_config)
 
-        def predict(self, context: mlflow.pyfunc.PythonModelContext, inputs: schemas.Inputs) -> schemas.Outputs:
+        def predict(
+            self, context: mlflow.pyfunc.PythonModelContext, inputs: schemas.Inputs
+        ) -> schemas.Outputs:
             """Generate predictions with a custom model for the given inputs.
 
             Args:
@@ -159,7 +163,9 @@ class CustomSaver(Saver):
             return output
 
     @T.override
-    def save(self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info:
+    def save(
+        self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs
+    ) -> Info:
         adapter = CustomSaver.Adapter(model=model)
         return mlflow.pyfunc.log_model(
             python_model=adapter,
@@ -252,7 +258,9 @@ class CustomLoader(Loader):
                 pd.DataFrame(
                     {
                         "response": [prediction],
-                        "metadata": [{"timestamp": "2025-01-15T12:00:00Z", "model_version": "v1.0.0"}],
+                        "metadata": [
+                            {"timestamp": "2025-01-15T12:00:00Z", "model_version": "v1.0.0"}
+                        ],
                     }
                 )
             )

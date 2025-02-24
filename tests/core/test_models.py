@@ -107,7 +107,9 @@ def test_load_context(baseline_model):
             "max_tokens": 512,  # Optional
         },
     }  # Provide your model config as necessary
-    with patch("autogen_team.core.models.OpenAIChatCompletionClient") as MockOpenAIChatCompletionClient:
+    with patch(
+        "autogen_team.core.models.OpenAIChatCompletionClient"
+    ) as MockOpenAIChatCompletionClient:
         # Execute
         baseline_model.load_context(model_config)
         # Verify

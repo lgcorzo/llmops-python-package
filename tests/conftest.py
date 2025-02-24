@@ -16,7 +16,7 @@ from autogen_team.utils import searchers, signers, splitters
 
 LIMIT = 4
 N_SPLITS = 2
-TEST_SIZE = 1 # 1 week
+TEST_SIZE = 1  # 1 week
 
 # %% FIXTURES
 
@@ -253,14 +253,14 @@ def model(
 ) -> models.BaselineAutogenModel:
     """Return a train model for testing."""
     model_config = {
-            "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
-            "config": {
-                "model": "azure-gpt",  # LiteLLM model
-                "api_base": "http://localhost:4000/v1",  # LiteLLM Gateway URL
-                "api_key": "sk-12345",
-                "temperature": 0.7,  # Optional
-                "max_tokens": 512,  # Optional
-            },
+        "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
+        "config": {
+            "model": "azure-gpt",  # LiteLLM model
+            "api_base": "http://localhost:4000/v1",  # LiteLLM Gateway URL
+            "api_key": "sk-12345",
+            "temperature": 0.7,  # Optional
+            "max_tokens": 512,  # Optional
+        },
     }
     model = models.BaselineAutogenModel()
     model.load_context(model_config=model_config)
@@ -275,7 +275,9 @@ def model(
 @pytest.fixture(scope="session")
 def metric() -> metrics.AutogenMetric:
     """Return the default metric."""
-    return metrics.AutogenMetric(name="AutogenMetricTest", metric_type="exact_match", greater_is_better=True)
+    return metrics.AutogenMetric(
+        name="AutogenMetricTest", metric_type="exact_match", greater_is_better=True
+    )
 
 
 # %% - Signers
@@ -371,7 +373,9 @@ def tmp_path_resolver(tmp_path: str) -> str:
 
 
 @pytest.fixture(scope="session")
-def signature(signer: signers.Signer, inputs: schemas.Inputs, outputs: schemas.Outputs) -> signers.Signature:
+def signature(
+    signer: signers.Signer, inputs: schemas.Inputs, outputs: schemas.Outputs
+) -> signers.Signature:
     """Return the signature for the testing model."""
     return signer.sign(inputs=inputs, outputs=outputs)
 
@@ -423,6 +427,8 @@ def model_alias(
     """Promote the default model version with an alias."""
     alias = "Promotion"
     client = mlflow_service.client()
-    client.set_registered_model_alias(name=mlflow_service.registry_name, alias=alias, version=model_version.version)
+    client.set_registered_model_alias(
+        name=mlflow_service.registry_name, alias=alias, version=model_version.version
+    )
     model_alias = client.get_model_version_by_alias(name=mlflow_service.registry_name, alias=alias)
     return model_alias
