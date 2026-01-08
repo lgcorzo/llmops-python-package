@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - fix/correct-model-alias
   release:
     types:
       - edited
