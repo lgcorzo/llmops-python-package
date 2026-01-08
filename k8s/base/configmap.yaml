@@ -17,3 +17,5 @@ data:
   DEFAULT_FASTAPI_HOST: "0.0.0.0"
   DEFAULT_FASTAPI_PORT: "8100"
   MLFLOW_MODEL_ALIAS: "Champion"
+  MLFLOW_S3_ENDPOINT_URL: "https://mlflow-minio-hl.storage.svc.cluster.local:9000"
+  MLFLOW_S3_IGNORE_TLS: "true"
