@@ -16,6 +16,7 @@ spec:
       containers:
         - name: llmops-app
           image: lgcorzo/llmops-python-package:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8100
           envFrom:
