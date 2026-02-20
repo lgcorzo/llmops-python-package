@@ -9,3 +9,8 @@
 **Learning:** In event-driven architectures like Kafka, error handling often involves producing to an error topic or the same output topic. Great care must be taken to sanitize these error messages. Also, logging "raw" messages for debugging is a common privacy trap.
 **Prevention:** Always catch exceptions at the top level of the message processor, log the full stack trace securely (server-side), but return/produce only generic error codes or messages to the downstream systems. Sanitize input logs to exclude data fields.
 >>>>>>> 36194fc (feat: Sanitize Kafka service logs and error responses)
+
+## 2026-02-20 - [Path Traversal in MCP Tools]
+**Vulnerability:** The `execute_code` and `run_tests` MCP tools allowed arbitrary file writes outside the sandbox directory via path traversal payloads (e.g., `../../etc/passwd` or absolute paths).
+**Learning:** `os.path.join` is unsafe for untrusted input as it allows absolute paths to override the base directory and does not resolve `..` segments.
+**Prevention:** Always use `os.path.abspath` to resolve paths and verify that the resulting path starts with the intended base directory (using `os.path.commonpath` or `startswith`). Implemented `safe_join` utility in `core/security.py`.
