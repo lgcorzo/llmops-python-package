@@ -1,12 +1,12 @@
 import pytest
-import os
 import json
 from unittest.mock import patch, MagicMock, AsyncMock
+from pathlib import Path
 from autogen_team.application.mcp.tools.execute_code import execute_code
 
 
 @pytest.mark.asyncio
-async def test_path_traversal_vulnerability(tmp_path):
+async def test_path_traversal_vulnerability(tmp_path: Path) -> None:
     # Setup directories
     jail_root = tmp_path / "jail"
     jail_root.mkdir()
