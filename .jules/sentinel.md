@@ -39,3 +39,9 @@
 **Vulnerability:** The `CustomSaver.Adapter` class in `mlflow_adapter.py` was capturing the `LITELLM_API_KEY` environment variable in its `__init__` method, causing the secret to be pickled into the MLflow model artifact.
 **Learning:** Even unused code in `__init__` can be dangerous if it captures secrets into the object state, as pickling serializes the entire object state.
 **Prevention:** Removed the `self.model_config` assignment. Always verify that `PythonModel` subclasses do not store secrets in `self`.
+
+## 2026-02-18 - [Inconsistent Path Validation on File Deletion in MCP Tools]
+
+**Vulnerability:** Found that the `execute_code` MCP tool skipped the `safe_join` check when processing "delete" actions. While the tool correctly skipped deletion operations (acting as a no-op), failing to validate the path left a blind spot where malicious traversal paths would fail silently rather than being caught and reported as validation errors.
+**Learning:** Security validations (like path traversal checks) should occur *before* any branching logic based on untrusted input (like `action == "delete"`), ensuring all paths are consistently validated and logged, even if the branch appears to just `continue` or ignore the operation.
+**Prevention:** Ensured `safe_join` is called immediately on the provided file path, before checking the `action` type, making validation consistent across all actions.
