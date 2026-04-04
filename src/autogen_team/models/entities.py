@@ -140,7 +140,7 @@ class BaselineAutogenModel(Model):
     KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
     model_config_path: Optional[str] = Field(default=None)
     model_config_data: Optional[Dict[str, Any]] = Field(default=None)
-    _model_client: Optional[OpenAIChatClient] = PrivateAttr(default=None)
+    _model_client: Optional[Any] = PrivateAttr(default=None)
     max_tokens: Optional[int] = Field(default=320000)
     temperature: Optional[float] = Field(default=0.5)
 
@@ -300,11 +300,11 @@ class BaselineAutogenModel(Model):
         )
         return outputs
 
-    def get_internal_model(self) -> OpenAIChatClient:
+    def get_internal_model(self) -> T.Any:
         if not self._model_client and self.model_config_data:
             self.load_context(self.model_config_data)
 
-        if isinstance(self._model_client, OpenAIChatClient):
+        if self._model_client is not None:
             return self._model_client
         else:
             raise ValueError("Model client is not initialized or is of incorrect type.")
