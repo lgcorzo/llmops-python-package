@@ -140,7 +140,7 @@ class BaselineAutogenModel(Model):
     KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
     model_config_path: Optional[str] = Field(default=None)
     model_config_data: Optional[Dict[str, Any]] = Field(default=None)
-    _model_client: Optional[OpenAIChatClient] = PrivateAttr(default=None)
+    _model_client: Optional[Any] = PrivateAttr(default=None)
     max_tokens: Optional[int] = Field(default=320000)
     temperature: Optional[float] = Field(default=0.5)
 
@@ -210,12 +210,23 @@ class BaselineAutogenModel(Model):
         if not api_key or api_key.startswith("${"):
             raise ValueError("API Key not found or not resolved from environment.")
 
-        # Load the client
-        self._model_client = OpenAIChatClient(
-            model_id=model_id,
-            api_key=api_key,
-            base_url=api_base,
-        )
+        # Load the client using the correct class based on the provider config,
+        # and unpack kwargs to support the updated agent_framework client API
+        # which uses 'model' instead of 'model_id' and requires the correct
+        # completion client class based on configuration.
+        kwargs: dict[str, Any] = {"model": model_id}
+        if api_key is not None:
+            kwargs["api_key"] = api_key
+        if api_base is not None:
+            kwargs["base_url"] = api_base
+
+        provider = model_config.get("provider")
+        if provider == "openai_chat_completion_client":
+            from agent_framework.openai import OpenAIChatCompletionClient
+
+            self._model_client = OpenAIChatCompletionClient(**kwargs)
+        else:
+            self._model_client = OpenAIChatClient(**kwargs)
 
     def fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> "BaselineAutogenModel":
         # TBD LORA project Iñaki
@@ -289,11 +300,11 @@ class BaselineAutogenModel(Model):
         )
         return outputs
 
-    def get_internal_model(self) -> OpenAIChatClient:
+    def get_internal_model(self) -> T.Any:
         if not self._model_client and self.model_config_data:
             self.load_context(self.model_config_data)
 
-        if isinstance(self._model_client, OpenAIChatClient):
+        if self._model_client is not None:
             return self._model_client
         else:
             raise ValueError("Model client is not initialized or is of incorrect type.")
