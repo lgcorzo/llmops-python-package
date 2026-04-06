@@ -93,5 +93,5 @@ def test_hatchet_inference_job_failure(
         # Verify alerts was notified
         mock_notify.assert_called_with(
             title="Hatchet Inference Failed",
-            message="Error triggering workflow: Hatchet error",
+            message="An internal error occurred while triggering the workflow.",
         )

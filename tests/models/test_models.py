@@ -86,7 +86,7 @@ def test_get_internal_model(baseline_model: BaselineAutogenModel) -> None:
 def test_load_context(baseline_model: BaselineAutogenModel) -> None:
     # Setup
     model_config = {
-        "provider": "openai_chat_client",  # Use the standard client
+        "provider": "openai_chat_completion_client",  # Use LiteLLM-compatible client
         "config": {
             "model": "azure-gpt",  # LiteLLM model
             "api_base": "https://localhost:4000",  # LiteLLM Gateway URL
@@ -95,8 +95,8 @@ def test_load_context(baseline_model: BaselineAutogenModel) -> None:
             "max_tokens": 512,  # Optional
         },
     }  # Provide your model config as necessary
-    with patch("autogen_team.models.entities.OpenAIChatClient") as MockOpenAIChatClient:
+    with patch("agent_framework.openai.OpenAIChatCompletionClient") as MockOpenAIChatClient:
         # Execute
         baseline_model.load_context(model_config)
         # Verify
-        MockOpenAIChatClient.assert_called_once()  # Verify OpenAIChatClient was called
+        MockOpenAIChatClient.assert_called_once()  # Verify OpenAIChatCompletionClient was called

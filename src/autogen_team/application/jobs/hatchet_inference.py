@@ -68,11 +68,11 @@ class HatchetInferenceJob(base.Job):
                 title="Hatchet Inference Triggered",
                 message=f"Workflow 'InferenceWorkflow' started for model {self.alias_or_version}",
             )
-        except Exception as e:
-            logger.error("Failed to trigger Hatchet workflow: {}", str(e))
+        except Exception:
+            logger.exception("Failed to trigger Hatchet workflow")
             self.alerts_service.notify(
                 title="Hatchet Inference Failed",
-                message=f"Error triggering workflow: {str(e)}",
+                message="An internal error occurred while triggering the workflow.",
             )
             raise
 

@@ -210,23 +210,32 @@ class BaselineAutogenModel(Model):
         if not api_key or api_key.startswith("${"):
             raise ValueError("API Key not found or not resolved from environment.")
 
-        # Load the client using the correct class based on the provider config,
-        # and unpack kwargs to support the updated agent_framework client API
-        # which uses 'model' instead of 'model_id' and requires the correct
-        # completion client class based on configuration.
-        kwargs: dict[str, Any] = {"model": model_id}
-        if api_key is not None:
-            kwargs["api_key"] = api_key
-        if api_base is not None:
-            kwargs["base_url"] = api_base
-
-        provider = model_config.get("provider")
-        if provider == "openai_chat_completion_client":
+        # Load the client
+        # In newer agent_framework versions, OpenAIChatClient uses the responses API
+        # and has changed `model_id` to `model`.
+        # We need to hit standard chat/completions so we use OpenAIChatCompletionClient
+        # or fallback to OpenAIChatClient depending on availability.
+        try:
             from agent_framework.openai import OpenAIChatCompletionClient
 
-            self._model_client = OpenAIChatCompletionClient(**kwargs)
-        else:
-            self._model_client = OpenAIChatClient(**kwargs)
+            self._model_client = OpenAIChatCompletionClient(
+                model=model_id,
+                api_key=api_key,
+                base_url=api_base,
+            )
+        except ImportError:
+            try:
+                self._model_client = OpenAIChatClient(
+                    model=model_id,
+                    api_key=api_key,
+                    base_url=api_base,
+                )
+            except TypeError:
+                self._model_client = OpenAIChatClient(
+                    model_id=model_id,  # type: ignore
+                    api_key=api_key,
+                    base_url=api_base,
+                )
 
     def fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> "BaselineAutogenModel":
         # TBD LORA project Iñaki
@@ -300,14 +309,14 @@ class BaselineAutogenModel(Model):
         )
         return outputs
 
-    def get_internal_model(self) -> T.Any:
+    def get_internal_model(self) -> Any:
         if not self._model_client and self.model_config_data:
             self.load_context(self.model_config_data)
 
         if self._model_client is not None:
             return self._model_client
         else:
-            raise ValueError("Model client is not initialized or is of incorrect type.")
+            raise ValueError("Model client is not initialized.")
 
     def explain_model(self) -> schemas.FeatureImportances:
         """

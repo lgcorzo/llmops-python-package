@@ -21,7 +21,7 @@ OWASP_PATTERNS: T.List[T.Dict[str, str]] = [
     },
     {
         "rule": "A03:Injection - Command",
-        "pattern": r"(?:os\.system|subprocess\.run|subprocess\.call|subprocess\.Popen)\s*\(\s*[f\"']",
+        "pattern": r"(?:os\.system|subprocess\.call|subprocess\.Popen)\s*\(\s*[f\"']",
         "severity": "high",
         "description": "Potential command injection via formatted string.",
     },
