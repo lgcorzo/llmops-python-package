@@ -222,7 +222,7 @@ class BaselineAutogenModel(Model):
                 model=model_id,
                 api_key=api_key,
                 base_url=api_base,
-            )  # type: ignore[assignment]
+            )
         except ImportError:
             try:
                 self._model_client = OpenAIChatClient(
