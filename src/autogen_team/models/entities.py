@@ -217,6 +217,7 @@ class BaselineAutogenModel(Model):
         # or fallback to OpenAIChatClient depending on availability.
         try:
             from agent_framework.openai import OpenAIChatCompletionClient
+
             self._model_client = OpenAIChatCompletionClient(
                 model=model_id,
                 api_key=api_key,
