@@ -140,7 +140,7 @@ class BaselineAutogenModel(Model):
     KIND: T.Literal["BaselineAutogenModel"] = "BaselineAutogenModel"
     model_config_path: Optional[str] = Field(default=None)
     model_config_data: Optional[Dict[str, Any]] = Field(default=None)
-    _model_client: Optional[Any] = PrivateAttr(default=None)
+    _model_client: Optional[OpenAIChatClient] = PrivateAttr(default=None)
     max_tokens: Optional[int] = Field(default=320000)
     temperature: Optional[float] = Field(default=0.5)
 
@@ -211,11 +211,30 @@ class BaselineAutogenModel(Model):
             raise ValueError("API Key not found or not resolved from environment.")
 
         # Load the client
-        self._model_client = OpenAIChatClient(
-            model=model_id,
-            api_key=api_key,
-            base_url=api_base,
-        )
+        # In newer agent_framework versions, OpenAIChatClient uses the responses API
+        # and has changed `model_id` to `model`.
+        # We need to hit standard chat/completions so we use OpenAIChatCompletionClient
+        # or fallback to OpenAIChatClient depending on availability.
+        try:
+            from agent_framework.openai import OpenAIChatCompletionClient
+            self._model_client = OpenAIChatCompletionClient(
+                model=model_id,
+                api_key=api_key,
+                base_url=api_base,
+            )  # type: ignore[assignment]
+        except ImportError:
+            try:
+                self._model_client = OpenAIChatClient(
+                    model=model_id,
+                    api_key=api_key,
+                    base_url=api_base,
+                )
+            except TypeError:
+                self._model_client = OpenAIChatClient(
+                    model_id=model_id,  # type: ignore
+                    api_key=api_key,
+                    base_url=api_base,
+                )
 
     def fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> "BaselineAutogenModel":
         # TBD LORA project Iñaki
@@ -289,11 +308,11 @@ class BaselineAutogenModel(Model):
         )
         return outputs
 
-    def get_internal_model(self) -> T.Any:
+    def get_internal_model(self) -> OpenAIChatClient:
         if not self._model_client and self.model_config_data:
             self.load_context(self.model_config_data)
 
-        if self._model_client is not None:
+        if isinstance(self._model_client, OpenAIChatClient):
             return self._model_client
         else:
             raise ValueError("Model client is not initialized or is of incorrect type.")
