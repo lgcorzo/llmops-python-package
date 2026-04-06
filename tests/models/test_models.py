@@ -95,8 +95,8 @@ def test_load_context(baseline_model: BaselineAutogenModel) -> None:
             "max_tokens": 512,  # Optional
         },
     }  # Provide your model config as necessary
-    with patch("autogen_team.models.entities.OpenAIChatClient") as MockOpenAIChatClient:
+    with patch("agent_framework.openai.OpenAIChatCompletionClient") as MockOpenAIChatClient:
         # Execute
         baseline_model.load_context(model_config)
         # Verify
-        MockOpenAIChatClient.assert_called_once()  # Verify AssistantAgent was called
+        MockOpenAIChatClient.assert_called_once()  # Verify OpenAIChatCompletionClient was called
