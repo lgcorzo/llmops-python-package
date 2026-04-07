@@ -38,8 +38,8 @@ async def execute_code(
     if workspace_path:
         try:
             # Allow paths in /tmp (for tests) or current working directory
-            if os.path.isabs(workspace_path) and workspace_path.startswith("/tmp/"):
-                workspace_path = safe_join("/tmp", workspace_path)
+            if os.path.isabs(workspace_path) and workspace_path.startswith("/tmp/"):  # nosec B108
+                workspace_path = safe_join("/tmp", workspace_path)  # nosec B108
             else:
                 workspace_path = safe_join(os.getcwd(), workspace_path)
         except ValueError:
