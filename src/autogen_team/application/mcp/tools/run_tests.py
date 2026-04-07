@@ -179,6 +179,22 @@ async def run_tests(
     backend = sandbox or _default_sandbox
     files_changed = changes.get("files_changed", [])
 
+    # Security: Validate and normalize workspace_path
+    if workspace_path:
+        try:
+            # Allow paths in /tmp (for tests) or current working directory
+            if os.path.isabs(workspace_path) and workspace_path.startswith("/tmp/"):
+                workspace_path = safe_join("/tmp", workspace_path)
+            else:
+                workspace_path = safe_join(os.getcwd(), workspace_path)
+        except ValueError:
+            return {
+                "passed": False,
+                "summary": "Security Error: Invalid workspace path.",
+                "details": "Path traversal detected in workspace_path.",
+                "exit_code": -1,
+            }
+
     sandbox_dir = tempfile.mkdtemp(prefix="mcp_test_sandbox_")
 
     try:

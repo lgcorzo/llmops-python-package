@@ -9,6 +9,8 @@ import shutil
 import tempfile
 import typing as T
 
+from loguru import logger
+
 import litellm
 
 from autogen_team.core.security import safe_join
@@ -32,6 +34,21 @@ async def execute_code(
     task_description = task.get("description", task.get("name", ""))
     task_name = task.get("name", "unknown_task")
 
+    # Security: Validate and normalize workspace_path
+    if workspace_path:
+        try:
+            # Allow paths in /tmp (for tests) or current working directory
+            if os.path.isabs(workspace_path) and workspace_path.startswith("/tmp/"):
+                workspace_path = safe_join("/tmp", workspace_path)
+            else:
+                workspace_path = safe_join(os.getcwd(), workspace_path)
+        except ValueError:
+            return {
+                "files_changed": [],
+                "status": "error",
+                "validation_errors": ["Security Error: Invalid workspace path."],
+            }
+
     # Gather workspace context (list of Python files)
     py_files: T.List[str] = []
     for root, _dirs, files in os.walk(workspace_path):
@@ -45,22 +62,30 @@ async def execute_code(
     mcp_service = MCPService()
     system_prompt = mcp_service.get_prompt("execute_code", "system")
 
-    response = await litellm.acompletion(
-        model=mcp_service.litellm_model,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {
-                "role": "user",
-                "content": (
-                    f"Task: {task_name}\nDescription: {task_description}\n\nContext:\n{context}"
-                ),
-            },
-        ],
-        api_base=mcp_service.litellm_api_base,
-        api_key=mcp_service.litellm_api_key,
-        response_format={"type": "json_object"},
-        temperature=0.1,
-    )
+    try:
+        response = await litellm.acompletion(
+            model=mcp_service.litellm_model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {
+                    "role": "user",
+                    "content": (
+                        f"Task: {task_name}\nDescription: {task_description}\n\nContext:\n{context}"
+                    ),
+                },
+            ],
+            api_base=mcp_service.litellm_api_base,
+            api_key=mcp_service.litellm_api_key,
+            response_format={"type": "json_object"},
+            temperature=0.1,
+        )
+    except Exception as e:
+        logger.exception(f"LiteLLM error in execute_code: {e}")
+        return {
+            "files_changed": [],
+            "status": "error",
+            "error": "Internal error: Failed to generate code changes.",
+        }
 
     content = response.choices[0].message.content or "{}"
 
