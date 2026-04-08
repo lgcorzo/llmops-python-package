@@ -5059,14 +5059,14 @@ files = [
 
 [[package]]
 name = "mlflow"
-version = "3.9.0rc0"
+version = "3.11.0rc1"
 description = "MLflow is an open source platform for the complete machine learning lifecycle"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "mlflow-3.9.0rc0-py3-none-any.whl", hash = "sha256:2591f913dca2a745727c8ce8e232641ab187fa2305ade9236c497d4b3f80cdd2"},
-    {file = "mlflow-3.9.0rc0.tar.gz", hash = "sha256:17116e34d004c0670867701d3082aae685bb754332a9daa2c1a4352d96b81df5"},
+    {file = "mlflow-3.11.0rc1-py3-none-any.whl", hash = "sha256:c1dd935dbaf822e8bf89bd753cc1af66496db1522ed93e75dc5ab67bfe2c5903"},
+    {file = "mlflow-3.11.0rc1.tar.gz", hash = "sha256:91e084a862f4ce85f4bf16f43db527ce69bece7a80be1964d524c2dc9d0ce892"},
 ]
 
 [package.dependencies]
@@ -5076,14 +5076,14 @@ docker = ">=4.0.0,<8"
 Flask = "<4"
 Flask-CORS = "<7"
 graphene = "<4"
-gunicorn = {version = "<24", markers = "platform_system != \"Windows\""}
-huey = ">=2.5.0,<3"
+gunicorn = {version = "<26", markers = "platform_system != \"Windows\""}
+huey = ">=2.5.4,<3"
 matplotlib = "<4"
-mlflow-skinny = "3.9.0rc0"
-mlflow-tracing = "3.9.0rc0"
+mlflow-skinny = "3.11.0rc1"
+mlflow-tracing = "3.11.0rc1"
 numpy = "<3"
 pandas = "<3"
-pyarrow = ">=4.0.0,<23"
+pyarrow = ">=4.0.0,<24"
 scikit-learn = "<2"
 scipy = "<2"
 skops = "<1"
@@ -5093,30 +5093,33 @@ waitress = {version = "<4", markers = "platform_system == \"Windows\""}
 [package.extras]
 aliyun-oss = ["aliyunstoreplugin"]
 auth = ["Flask-WTF (<2)"]
+azure = ["azure-identity (>=1.6.1)", "azure-storage-blob (>=12)"]
 databricks = ["azure-storage-file-datalake (>12)", "boto3 (>1)", "botocore", "databricks-agents (>=1.2.0,<2.0)", "google-cloud-storage (>=1.30.0)"]
-extras = ["azureml-core (>=1.2.0)", "boto3", "botocore", "google-cloud-storage (>=1.30.0)", "kubernetes", "prometheus-flask-exporter", "pyarrow", "pysftp", "requests-auth-aws-sigv4", "virtualenv"]
+db = ["PyMySQL", "psycopg2-binary", "pymssql"]
+extras = ["azureml-core (>=1.2.0)", "boto3", "botocore", "google-cloud-storage (>=1.30.0)", "kubernetes", "prometheus-flask-exporter", "pyarrow", "pysftp", "requests-auth-aws-sigv4"]
 gateway = ["aiohttp (<4)", "boto3 (>=1.28.56,<2)", "fastapi (<1)", "slowapi (>=0.1.9,<1)", "tiktoken (<1)", "uvicorn[standard] (<1)", "watchfiles (<2)"]
-genai = ["aiohttp (<4)", "boto3 (>=1.28.56,<2)", "fastapi (<1)", "litellm (>=1.0.0,<2)", "slowapi (>=0.1.9,<1)", "tiktoken (<1)", "uvicorn[standard] (<1)", "watchfiles (<2)"]
+genai = ["aiohttp (<4)", "boto3 (>=1.28.56,<2)", "fastapi (<1)", "slowapi (>=0.1.9,<1)", "tiktoken (<1)", "uvicorn[standard] (<1)", "watchfiles (<2)"]
 jfrog = ["mlflow-jfrog-plugin"]
-langchain = ["langchain (>=0.3.15,<=1.2.3)"]
+kubernetes = ["kubernetes"]
+langchain = ["langchain (>=0.3.21,<=1.2.12)"]
 mcp = ["click (!=8.3.0)", "fastmcp (>=2.0.0,<3)"]
 mlserver = ["mlserver (>=1.2.0,!=1.3.1,<2.0.0)", "mlserver-mlflow (>=1.2.0,!=1.3.1,<2.0.0)"]
 sqlserver = ["mlflow-dbstore"]
 
 [[package]]
 name = "mlflow-skinny"
-version = "3.9.0rc0"
+version = "3.11.0rc1"
 description = "MLflow is an open source platform for the complete machine learning lifecycle"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "mlflow_skinny-3.9.0rc0-py3-none-any.whl", hash = "sha256:19fc2c529d318ff2fe53305d03ef022e8bc39bf4766035b96f3f1885287a8c9b"},
-    {file = "mlflow_skinny-3.9.0rc0.tar.gz", hash = "sha256:69cacf234bef0989e4fbd63b05ef8b641e5ca7a541825f70f61add9dac0fb003"},
+    {file = "mlflow_skinny-3.11.0rc1-py3-none-any.whl", hash = "sha256:98f3a73969b97c86cef011dc7fcc3607dcb49201e5075c4dfc15dacc251a5cd5"},
+    {file = "mlflow_skinny-3.11.0rc1.tar.gz", hash = "sha256:e3cf616ae649588ac622e31e8f033837cdd576f6b09071fe83613b0f174e3bde"},
 ]
 
 [package.dependencies]
-cachetools = ">=5.0.0,<7"
+cachetools = ">=5.0.0,<8"
 click = ">=7.0,<9"
 cloudpickle = "<4"
 databricks-sdk = ">=0.20.0,<1"
@@ -5126,8 +5129,8 @@ importlib_metadata = ">=3.7.0,<4.7.0 || >4.7.0,<9"
 opentelemetry-api = ">=1.9.0,<3"
 opentelemetry-proto = ">=1.9.0,<3"
 opentelemetry-sdk = ">=1.9.0,<3"
-packaging = "<26"
-protobuf = ">=3.12.0,<7"
+packaging = "<27"
+protobuf = ">=3.12.0,<8"
 pydantic = ">=2.0.0,<3"
 python-dotenv = ">=0.19.0,<2"
 pyyaml = ">=5.1,<7"
@@ -5139,36 +5142,39 @@ uvicorn = "<1"
 [package.extras]
 aliyun-oss = ["aliyunstoreplugin"]
 auth = ["Flask-WTF (<2)"]
+azure = ["azure-identity (>=1.6.1)", "azure-storage-blob (>=12)"]
 databricks = ["azure-storage-file-datalake (>12)", "boto3 (>1)", "botocore", "databricks-agents (>=1.2.0,<2.0)", "google-cloud-storage (>=1.30.0)"]
-extras = ["azureml-core (>=1.2.0)", "boto3", "botocore", "google-cloud-storage (>=1.30.0)", "kubernetes", "prometheus-flask-exporter", "pyarrow", "pysftp", "requests-auth-aws-sigv4", "virtualenv"]
+db = ["PyMySQL", "psycopg2-binary", "pymssql"]
+extras = ["azureml-core (>=1.2.0)", "boto3", "botocore", "google-cloud-storage (>=1.30.0)", "kubernetes", "prometheus-flask-exporter", "pyarrow", "pysftp", "requests-auth-aws-sigv4"]
 gateway = ["aiohttp (<4)", "boto3 (>=1.28.56,<2)", "fastapi (<1)", "slowapi (>=0.1.9,<1)", "tiktoken (<1)", "uvicorn[standard] (<1)", "watchfiles (<2)"]
-genai = ["aiohttp (<4)", "boto3 (>=1.28.56,<2)", "fastapi (<1)", "litellm (>=1.0.0,<2)", "slowapi (>=0.1.9,<1)", "tiktoken (<1)", "uvicorn[standard] (<1)", "watchfiles (<2)"]
+genai = ["aiohttp (<4)", "boto3 (>=1.28.56,<2)", "fastapi (<1)", "slowapi (>=0.1.9,<1)", "tiktoken (<1)", "uvicorn[standard] (<1)", "watchfiles (<2)"]
 jfrog = ["mlflow-jfrog-plugin"]
-langchain = ["langchain (>=0.3.15,<=1.2.3)"]
+kubernetes = ["kubernetes"]
+langchain = ["langchain (>=0.3.21,<=1.2.12)"]
 mcp = ["click (!=8.3.0)", "fastmcp (>=2.0.0,<3)"]
 mlserver = ["mlserver (>=1.2.0,!=1.3.1,<2.0.0)", "mlserver-mlflow (>=1.2.0,!=1.3.1,<2.0.0)"]
 sqlserver = ["mlflow-dbstore"]
 
 [[package]]
 name = "mlflow-tracing"
-version = "3.9.0rc0"
+version = "3.11.0rc1"
 description = "MLflow Tracing SDK is an open-source, lightweight Python package that only includes the minimum set of dependencies and functionality to instrument your code/models/agents with MLflow Tracing."
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "mlflow_tracing-3.9.0rc0-py3-none-any.whl", hash = "sha256:5a8314e80aaad5353eb6941d08c22fa304df419447e4b056fbe98370f7248443"},
-    {file = "mlflow_tracing-3.9.0rc0.tar.gz", hash = "sha256:0c47af012fca61b5f3d9beb5b267ecfbb011dd3666e10ab6bfc777d2cf2b8b15"},
+    {file = "mlflow_tracing-3.11.0rc1-py3-none-any.whl", hash = "sha256:5cb2770267a0c2795c3f0585adfb2c7a1c14bee1e6fbb20c6081e2a5e4521639"},
+    {file = "mlflow_tracing-3.11.0rc1.tar.gz", hash = "sha256:c818d9cb92cc28d872e8f7020d776cea1bbe8c8ee6065ba50b0898a7d6b9cf75"},
 ]
 
 [package.dependencies]
-cachetools = ">=5.0.0,<7"
+cachetools = ">=5.0.0,<8"
 databricks-sdk = ">=0.20.0,<1"
 opentelemetry-api = ">=1.9.0,<3"
 opentelemetry-proto = ">=1.9.0,<3"
 opentelemetry-sdk = ">=1.9.0,<3"
-packaging = "<26"
-protobuf = ">=3.12.0,<7"
+packaging = "<27"
+protobuf = ">=3.12.0,<8"
 pydantic = ">=2.0.0,<3"
 
 [[package]]
@@ -10232,4 +10238,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.13"
-content-hash = "67933964b1e931588bfb323e77aec8623694418750b35c672dc685c0a4be6727"
+content-hash = "6d6db698bbca17e36872b9d325c20d946c9b4d718ab63d35f05b6f6b7daa7fac"
