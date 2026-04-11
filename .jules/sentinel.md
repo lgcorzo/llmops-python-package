@@ -75,8 +75,8 @@
 **Learning:** Including raw exception strings in notifications or external service payloads violates the principle of failing securely. These strings can leak internal infrastructure details, connection strings, or underlying library implementation specifics to anyone subscribed to or reading the notifications.
 **Prevention:** Always use `logger.exception()` to securely log the full traceback and error details server-side. Send only sanitized, generic error messages (e.g., "An internal error occurred while triggering the workflow.") to external notification or alerting services to prevent information leakage.
 
-## 2026-04-07 - [Path Traversal in Workspace Path]
+## 2024-10-24 - [Insecure Default Bind Address in MCP Server]
 
-**Vulnerability:** The `workspace_path` argument in `execute_code` and `run_tests` MCP tools was used directly in `os.walk` and `shutil.copytree` without validation, allowing access to arbitrary directories outside the project root.
-**Learning:** Even if individual file changes are validated, the base directory for a set of operations (the "workspace") must also be validated. A common challenge is allowing absolute paths for legitimate system-provided temporary directories (like in tests) while rejecting other absolute or relative paths that escape the project root.
-**Prevention:** Always validate and normalize the workspace base path using `safe_join`. Determine the appropriate base (e.g., `os.getcwd()` or `/tmp/`) based on the input type and strictly enforce that the resolved path stays within that base.
+**Vulnerability:** The MCP server was defaulting to bind to `0.0.0.0`, exposing the service globally by default.
+**Learning:** Defaulting to `0.0.0.0` (all interfaces) can lead to unintended exposure of internal services, especially in containerized or cloud environments. Services should bind to `127.0.0.1` (localhost) by default.
+**Prevention:** Enforce `127.0.0.1` as the default bind address in configuration managers (like Pydantic `BaseSettings`) and CLI parsers. Use `# nosec B104` to explicitly allow the `0.0.0.0` string literal for cases where global exposure is intended and explicitly configured by the user.
