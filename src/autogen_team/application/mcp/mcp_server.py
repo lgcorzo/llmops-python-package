@@ -33,6 +33,7 @@ from autogen_team.application.mcp.tools import (
     security_review,
     generate_mission_docs,
 )
+from autogen_team.infrastructure.io.osvariables import Env
 
 # Create the MCP server instance
 _server = Server("autogen-mcp-server")
@@ -196,17 +197,18 @@ def create_sse_app() -> Starlette:
 
 
 def main() -> None:
+    env = Env()
     parser = argparse.ArgumentParser(description="MCP Server")
     parser.add_argument(
         "--transport", choices=["stdio", "sse"], default=os.getenv("MCP_TRANSPORT", "sse")
     )
-    # FIX: Default to 127.0.0.1 for security; added # nosec B104 to allow the 0.0.0.0 string literal
+    # Default to 127.0.0.1 for security via Env singleton; added # nosec B104 to allow the 0.0.0.0 string literal in help
     parser.add_argument(
         "--host",
-        default=os.getenv("DEFAULT_FASTAPI_HOST", "127.0.0.1"),
+        default=env.mcp_host,
         help="Host to bind to (default: 127.0.0.1). Use 0.0.0.0 to expose globally.",
     )  # nosec B104
-    parser.add_argument("--port", type=int, default=int(os.getenv("DEFAULT_FASTAPI_PORT", 8100)))
+    parser.add_argument("--port", type=int, default=env.mcp_port)
     args = parser.parse_args()
 
     if args.transport == "stdio":
