@@ -16,8 +16,8 @@ def safe_join(base: str, *paths: str) -> str:
     Raises:
         ValueError: If the resolved path is outside the base directory.
     """
-    base_dir = os.path.abspath(base)
-    final_path = os.path.abspath(os.path.join(base_dir, *paths))
+    base_dir = os.path.realpath(base)
+    final_path = os.path.realpath(os.path.join(base_dir, *paths))
 
     # Ensure the final path starts with the base path
     if os.path.commonpath([base_dir, final_path]) != base_dir:
