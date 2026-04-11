@@ -1,5 +1,6 @@
 from typing import Dict, Type
 
+from pydantic import ConfigDict
 from pydantic_settings import BaseSettings
 
 
@@ -40,12 +41,13 @@ class Env(Singleton, BaseSettings):
     r2r_base_url: str = "http://r2r.knowledge.svc.cluster.local:7272"
 
     # MCP Server
-    mcp_host: str = "0.0.0.0"  # nosec B104
+    mcp_host: str = "127.0.0.1"
     mcp_port: int = 8200
     mcp_prompts_path: str = "confs/mcp_prompts.yaml"
 
-    class Config:
-        case_sensitive = False  # Optional: make env var lookup case-insensitive
-        env_file = ".env"  # Enable reading from .env file
-        env_file_encoding = "utf-8"
-        extra = "allow"
+    model_config = ConfigDict(
+        case_sensitive=False,  # Optional: make env var lookup case-insensitive
+        env_file=".env",  # Enable reading from .env file
+        env_file_encoding="utf-8",
+        extra="allow",
+    )
