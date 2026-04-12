@@ -9,6 +9,7 @@ data:
   R2R_BASE_URL: "http://r2r.knowledge.svc.cluster.local:7272"
   DEFAULT_FASTAPI_HOST: "0.0.0.0"
   DEFAULT_FASTAPI_PORT: "8200"
+  MCP_HOST: "0.0.0.0"
   HATCHET_CLIENT_HOST_PORT: "hatchet.orchestrators.svc.cluster.local:7077"
   HATCHET_CLIENT_SERVER_URL: "http://hatchet.orchestrators.svc.cluster.local:8000"
   HATCHET_CLIENT_TLS_STRATEGY: "none"
