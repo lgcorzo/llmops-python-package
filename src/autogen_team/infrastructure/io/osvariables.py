@@ -35,7 +35,7 @@ class Env(Singleton, BaseSettings):
     # MCP / LiteLLM
     litellm_api_base: str = "http://litellm.llm-apps.svc.cluster.local:4000/v1"
     litellm_api_key: str = ""
-    litellm_model: str = "gemini/gemini-2.5-pro"
+    litellm_model: str = "minimax-m2.7:cloud"
 
     # R2R RAG
     r2r_base_url: str = "http://r2r.knowledge.svc.cluster.local:7272"
