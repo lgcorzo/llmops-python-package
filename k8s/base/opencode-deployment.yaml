@@ -62,7 +62,7 @@ spec:
                   key: LITELLM_MASTER_KEY
                   optional: true
             - name: OPENCODE_MODEL
-              value: "litellm/minimax-m2.7:cloud"
+              value: "ollama/qwen2.5:7b"
             - name: OPENCODE_CONFIG
               value: "/app/opencode.json"
           volumeMounts:

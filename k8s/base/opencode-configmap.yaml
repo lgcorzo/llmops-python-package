@@ -7,18 +7,33 @@ data:
   opencode.json: |
     {
       "$schema": "https://opencode.ai/config.json",
-      "model": "litellm/minimax-m2.7:cloud",
+      "model": "ollama/qwen2.5:7b",
       "provider": {
         "litellm": {
           "npm": "@ai-sdk/openai-compatible",
           "name": "LiteLLM Gateway (Dark Gravity)",
           "options": {
             "baseURL": "http://litellm.llm-apps.svc.cluster.local/v1",
-            "apiKey": "REPLACE_ME_LITELLM_API_KEY"
+            "apiKey": "REPLACE_ME_LITELLM_API_KEY",
+            "headers": {
+              "HTTP-Referer": "opencode",
+              "X-Title": "OpenCode"
+            }
           },
+          "litellmProxy": true,
+          "instructions": [
+            "Eres un experto en DevOps y automatización.",
+            "Responde siempre en español.",
+            "Utiliza las herramientas disponibles (bash, edit, read, etc.) de forma proactiva para resolver las tareas del usuario.",
+            "No expliques demasiado lo que vas a hacer, simplemente hazlo usando la herramienta adecuada.",
+            "Mantén tus respuestas directas y útiles."
+          ],
           "models": {
-            "minimax-m2.7:cloud": {
-              "name": "Minimax-M2.7 (via LiteLLM)"
+            "ollama/qwen2.5:7b": {
+              "name": "Qwen 2.5 7B (via LiteLLM)"
+            },
+            "ollama/deepseek-r1:8b": {
+              "name": "DeepSeek R1 8B (via LiteLLM)"
             }
           }
         }
@@ -34,8 +49,8 @@ data:
         "bash": "allow",
         "edit": "allow",
         "write": "allow",
-        "webfetch": "deny",
-        "websearch": "deny",
+        "webfetch": "allow",
+        "websearch": "allow",
         "read": "allow",
         "grep": "allow",
         "glob": "allow",
