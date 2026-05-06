@@ -7,7 +7,7 @@ data:
   opencode.json: |
     {
       "$schema": "https://opencode.ai/config.json",
-      "model": "ollama/qwen2.5:7b",
+      "model": "litellm/ollama/qwen2.5:7b",
       "provider": {
         "litellm": {
           "npm": "@ai-sdk/openai-compatible",
