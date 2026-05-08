@@ -14,7 +14,7 @@ data:
           "name": "LiteLLM Gateway (Dark Gravity)",
           "options": {
             "baseURL": "http://litellm.llm-apps.svc.cluster.local/v1",
-            "apiKey": "sk-1234",
+            "apiKey": "REPLACE_ME_LITELLM_API_KEY",
             "headers": {
               "HTTP-Referer": "opencode",
               "X-Title": "OpenCode"
