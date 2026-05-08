@@ -39,7 +39,7 @@ data:
         "factory": {
           "type": "remote",
           "url": "http://mcp-server.agents.svc.cluster.local:8200/sse",
-          "enabled": false
+          "enabled": true
         }
       },
       "permission": {
