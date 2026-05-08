@@ -14,7 +14,7 @@ data:
           "name": "LiteLLM Gateway (Dark Gravity)",
           "options": {
             "baseURL": "http://litellm.llm-apps.svc.cluster.local/v1",
-            "apiKey": "REPLACE_ME_LITELLM_API_KEY",
+            "apiKey": "sk-1234",
             "headers": {
               "HTTP-Referer": "opencode",
               "X-Title": "OpenCode"
@@ -22,18 +22,15 @@ data:
           },
           "litellmProxy": true,
           "instructions": [
-            "Eres un experto en DevOps y automatización.",
+            "Eres un experto en programación, DevOps y automatización.",
             "Responde siempre en español.",
-            "Utiliza las herramientas disponibles (bash, edit, read, etc.) de forma proactiva para resolver las tareas del usuario.",
-            "No expliques demasiado lo que vas a hacer, simplemente hazlo usando la herramienta adecuada.",
-            "Mantén tus respuestas directas y útiles."
+            "Para llamar a una herramienta (tool call), debes devolver obligatoriamente el objeto JSON correspondiente dentro de las etiquetas <tool_call> y </tool_call>. No uses bloques de código markdown ni añadas texto antes o después.",
+            "IMPORTANTE: Cada llamada a herramienta (tool call) DEBE incluir obligatoriamente el campo 'description' dentro de 'arguments' explicando brevemente la acción.",
+            "Ejemplo de formato obligatorio: <tool_call>{\\\"name\\\": \\\"bash\\\", \\\"arguments\\\": {\\\"command\\\": \\\"ls\\\", \\\"description\\\": \\\"Listar el contenido del directorio actual\\\"}}</tool_call>"
           ],
           "models": {
             "ollama/qwen2.5:7b": {
-              "name": "Qwen 2.5 7B (via LiteLLM)"
-            },
-            "ollama/deepseek-r1:8b": {
-              "name": "DeepSeek R1 8B (via LiteLLM)"
+              "name": "Qwen 2.5  7B"
             }
           }
         }
@@ -42,7 +39,7 @@ data:
         "factory": {
           "type": "remote",
           "url": "http://mcp-server.agents.svc.cluster.local:8200/sse",
-          "enabled": true
+          "enabled": false
         }
       },
       "permission": {
@@ -55,6 +52,8 @@ data:
         "grep": "allow",
         "glob": "allow",
         "list": "allow",
+        "plan_enter": "allow",
+        "plan_exit": "allow",
         "factory_*": "allow"
       }
     }
