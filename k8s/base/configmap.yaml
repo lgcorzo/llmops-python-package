@@ -18,7 +18,7 @@ data:
   GOOGLE_CSE_ID: "e1af527f0377843d3"
   LITELLM_API_BASE: "http://litellm.llm-apps.svc.cluster.local/v1"
   LITELLM_MODEL: "minimax-m2.7:cloud"
-  R2R_BASE_URL: "http://r2r.knowledge.svc.cluster.local:7272"
+  R2R_BASE_URL: "http://r2r.llm-apps.svc.cluster.local:7272"
   HATCHET_CLIENT_HOST_PORT: "hatchet.orchestrators.svc.cluster.local:7077"
   HATCHET_CLIENT_SERVER_URL: "http://hatchet.orchestrators.svc.cluster.local:8000"
   HATCHET_CLIENT_TLS_STRATEGY: "none"
