@@ -1,7 +1,6 @@
 from typing import Dict, Type
 
-from pydantic import ConfigDict
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Singleton(object):
@@ -45,7 +44,7 @@ class Env(Singleton, BaseSettings):
     mcp_port: int = 8200
     mcp_prompts_path: str = "confs/mcp_prompts.yaml"
 
-    model_config = ConfigDict(
+    model_config = SettingsConfigDict(
         case_sensitive=False,  # Optional: make env var lookup case-insensitive
         env_file=".env",  # Enable reading from .env file
         env_file_encoding="utf-8",
