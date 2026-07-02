@@ -57,6 +57,12 @@ OWASP_PATTERNS: T.List[T.Dict[str, str]] = [
     },
 ]
 
+# Pre-compiled regex patterns for performance optimization
+_COMPILED_OWASP_PATTERNS = [
+    {**pattern, "compiled": re.compile(pattern["pattern"], re.IGNORECASE)}
+    for pattern in OWASP_PATTERNS
+]
+
 
 def _scan_owasp_patterns(diff: str) -> T.List[T.Dict[str, str]]:
     """Scan diff against OWASP patterns.
@@ -77,8 +83,8 @@ def _scan_owasp_patterns(diff: str) -> T.List[T.Dict[str, str]]:
 
         clean_line = line.lstrip("+").lstrip()
 
-        for pattern_def in OWASP_PATTERNS:
-            if re.search(pattern_def["pattern"], clean_line, re.IGNORECASE):
+        for pattern_def in _COMPILED_OWASP_PATTERNS:
+            if pattern_def["compiled"].search(clean_line):
                 findings.append(
                     {
                         "rule": pattern_def["rule"],
