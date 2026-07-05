@@ -41,7 +41,7 @@ pydantic = "^2.7.4"
 pydantic-settings = "^2.3.4"
 pynvml = "^11.5.0"
 setuptools = "^78.1.1"
-scikit-learn = "1.4.2"
+scikit-learn = "1.5.0"
 shap = "^0.46.0"
 dvc = "^3.58.0"
 agent-framework-openai = { git = "https://github.com/microsoft/agent-framework.git", subdirectory = "python/packages/openai", rev = "main" }
