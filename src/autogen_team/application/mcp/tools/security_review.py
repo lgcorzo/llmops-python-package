@@ -6,6 +6,8 @@ import json
 import re
 import typing as T
 
+from loguru import logger
+
 import httpx
 import litellm
 
@@ -179,7 +181,8 @@ async def security_review(diff: str) -> T.Dict[str, T.Any]:
         additional = llm_result.get("additional_findings", [])
         all_findings = owasp_findings + additional
         verdict = llm_result.get("verdict", "approved")
-    except (json.JSONDecodeError, Exception):
+    except (json.JSONDecodeError, Exception) as e:
+        logger.exception(f"Error in security_review tool: {e}")
         all_findings = owasp_findings
         verdict = "rejected" if any(f["severity"] == "high" for f in owasp_findings) else "approved"
 
