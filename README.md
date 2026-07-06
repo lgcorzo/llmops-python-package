@@ -2,7 +2,7 @@
 
 [![check.yml](https://github.com/lgcorzo/llmops-python-package/actions/workflows/check.yml/badge.svg)](https://github.com/lgcorzo/llmops-python-package/actions/workflows/check.yml)
 [![publish.yml](https://github.com/lgcorzo/llmops-python-package/actions/workflows/publish.yml/badge.svg)](https://github.com/lgcorzo/llmops-python-package/actions/workflows/publish.yml)
-[![Documentation](https://img.shields.io/badge/documentation-available-brightgreen.svg)](https://lgcorzo.github.io/llmops-python-package/)
+[![Documentation](https://img.shields.io/badge/documentation-available-brightgreen.svg)](https://github.com/lgcorzo/llmops-python-package/wiki)
 [![License](https://img.shields.io/github/license/lgcorzo/llmops-python-package)](https://github.com/lgcorzo/llmops-python-package/blob/main/LICENCE.txt)
 [![Release](https://img.shields.io/github/v/release/lgcorzo/llmops-python-package)](https://github.com/lgcorzo/llmops-python-package/releases)
 
