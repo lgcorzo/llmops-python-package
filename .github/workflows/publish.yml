@@ -16,6 +16,9 @@ concurrency:
   cancel-in-progress: true
   group: publish-workflow
 
+permissions:
+  contents: read
+
 jobs:
   packages:
     runs-on: ubuntu-latest
