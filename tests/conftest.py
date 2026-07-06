@@ -3,6 +3,7 @@
 # %% IMPORTS
 
 import os
+os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
 import typing as T
 from typing import Any, cast
 
