@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 import os
+import shlex
 import typing as T
 import uuid
 
 import boto3
 from loguru import logger
+
+from autogen_team.core.security import safe_join
 
 try:
     from e2b_code_interpreter import CodeInterpreter
@@ -120,7 +123,8 @@ class SandboxService:
         """
         # In E2B, we might need to upload files first if they aren't there
         # but the run_tests tool usually handles the workspace structure.
-        return await self.execute(sandbox_id, f"cd {workspace_dir} && pytest")
+        safe_dir = shlex.quote(workspace_dir)
+        return await self.execute(sandbox_id, f"cd {safe_dir} && pytest")
 
     async def destroy(self, sandbox_id: str) -> None:
         """Tear down a sandbox instance.
@@ -153,6 +157,16 @@ class SandboxService:
         Returns:
             The S3 URL of the uploaded artifact.
         """
+        # Security: Validate file_path to prevent path traversal from host
+        try:
+            if os.path.isabs(file_path) and file_path.startswith("/tmp/"):  # nosec B108
+                file_path = safe_join("/tmp", file_path)  # nosec B108
+            else:
+                file_path = safe_join(os.getcwd(), file_path)
+        except ValueError as e:
+            logger.error(f"Security Error in upload_artifact: {e}")
+            raise ValueError(f"Security Error: Invalid file path {file_path}") from e
+
         s3_endpoint = os.getenv(
             "MLFLOW_S3_ENDPOINT_URL", "http://mlflow-minio-hl.storage.svc.cluster.local:9000"
         )
