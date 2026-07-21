@@ -1,4 +1,5 @@
 import pytest
+from pathlib import Path
 from typing import Generator
 from unittest.mock import MagicMock, patch, AsyncMock
 from autogen_team.infrastructure.services.sandbox_service import (
@@ -110,12 +111,16 @@ async def test_destroy_not_found(sandbox_service: SandboxService) -> None:
 
 
 @pytest.mark.asyncio
-async def test_upload_artifact(sandbox_service: SandboxService) -> None:
+async def test_upload_artifact(sandbox_service: SandboxService, tmp_path: Path) -> None:
     with patch("boto3.client") as mock_boto:
         mock_s3 = MagicMock()
         mock_boto.return_value = mock_s3
 
-        url = await sandbox_service.upload_artifact("test_id", "/path/to/file", "test-bucket")
+        # Create a real file in tmp_path to pass validation
+        file_to_upload = tmp_path / "test.txt"
+        file_to_upload.write_text("hello")
+
+        url = await sandbox_service.upload_artifact("test_id", str(file_to_upload), "test-bucket")
 
         assert "test-bucket" in url
         assert "test_id" in url
