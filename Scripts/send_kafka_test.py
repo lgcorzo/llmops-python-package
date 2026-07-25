@@ -1,6 +1,7 @@
 import json
 import os
 import time
+from typing import Any, Dict, cast
 import uuid
 
 from confluent_kafka import Consumer, Producer
@@ -11,9 +12,6 @@ KAFKA_SERVER = os.getenv(
 )
 INPUT_TOPIC = "llm_input_topic"
 OUTPUT_TOPIC = "llm_output_topic"
-
-
-from typing import Any, Dict, cast
 
 
 def delivery_report(err: Any, msg: Any) -> None:
