@@ -5,7 +5,7 @@ runs:
   steps:
     - run: pipx install invoke poetry
       shell: bash
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@v5.3.0
       with:
         python-version: 3.12
         cache: poetry
