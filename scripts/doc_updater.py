@@ -2,7 +2,17 @@ import argparse
 import ast
 import os
 import subprocess
-import json
+
+
+def get_all_python_files():
+    all_files = []
+    for root_dir in ["src", "code"]:
+        if os.path.exists(root_dir):
+            for dirpath, _, filenames in os.walk(root_dir):
+                for filename in filenames:
+                    if filename.endswith(".py"):
+                        all_files.append(os.path.join(dirpath, filename))
+    return all_files, []
 
 
 def get_modified_python_files(commit_range="HEAD~1"):
@@ -216,11 +226,16 @@ def main():
     parser = argparse.ArgumentParser(description="Update OKF Documentation")
     parser.add_argument("--commit", default="HEAD~1", help="Git commit range")
     parser.add_argument("--docs-dir", default=".knowledge", help="Output directory")
+    parser.add_argument("--full", action="store_true", help="Rebuild entire documentation from scratch")
     args = parser.parse_args()
 
     os.makedirs(args.docs_dir, exist_ok=True)
 
-    modified_files, deleted_files = get_modified_python_files(args.commit)
+    if args.full:
+        modified_files, deleted_files = get_all_python_files()
+    else:
+        modified_files, deleted_files = get_modified_python_files(args.commit)
+
     print(f"Modified files to process: {modified_files}")
     print(f"Deleted files to process: {deleted_files}")
 

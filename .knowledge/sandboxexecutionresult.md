@@ -4,7 +4,7 @@ title: "SandboxExecutionResult"
 source_path: "src/autogen_team/infrastructure/services/sandbox_service.py"
 description: "Result of a command execution inside the sandbox."
 tags: [class]
-last_verified_commit: "946e6b8"
+last_verified_commit: "dc137c3"
 ---
 
 # SandboxExecutionResult
