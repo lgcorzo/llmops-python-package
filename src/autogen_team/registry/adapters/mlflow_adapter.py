@@ -131,16 +131,19 @@ class CustomSaver(Saver):
                 model (models.Model): project model.
             """
             self.model = model
+            self._cached_config: T.Optional[Dict[str, Any]] = None
 
         def load_context(self, context: PythonModelContext) -> None:
             """
             Load the model from the specified artifacts directory.
             """
-            model_file_path = context.artifacts["config_file"]
-            # Define the configuration
-            model_config = json.load(open(model_file_path, "r", encoding="utf-8"))
+            if self._cached_config is None:
+                model_file_path = context.artifacts["config_file"]
+                # Define the configuration
+                with open(model_file_path, "r", encoding="utf-8") as f:
+                    self._cached_config = json.load(f)
             # Load the model
-            self.model.load_context(model_config)
+            self.model.load_context(self._cached_config)
 
         def predict(
             self, context: PythonModelContext, model_input: schemas.Inputs

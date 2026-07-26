@@ -2,7 +2,6 @@ import argparse
 import ast
 import os
 import subprocess
-import json
 
 
 def get_modified_python_files(commit_range="HEAD~1"):
