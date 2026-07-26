@@ -53,7 +53,7 @@ def test_predict(baseline_model: BaselineAutogenModel) -> None:
         mock_response.messages = [mock_msg]
         mock_response.text = "Result 1"
         mock_response.finish_reason = "stop"
-        MockModelrun.return_value = mock_response
+        MockModelrun.return_value = [mock_response]
 
         # Execute the predict function (await is needed since predict must be async)
         outputs_df: pd.DataFrame = baseline_model.predict(inputs)
