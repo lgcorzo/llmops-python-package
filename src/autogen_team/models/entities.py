@@ -274,15 +274,21 @@ class BaselineAutogenModel(Model):
     def predict(self, inputs: schemas.Inputs) -> schemas.Outputs:
         """
         Predicts the output using the assistant team based on the given inputs.
-        Processes each input element iteratively and appends results to the output DataFrame.
+        Processes each input element concurrently and appends results to the output DataFrame.
         """
         # Initialize a list to collect messages or results
         results = []
 
-        # Iterate over each input element
-        for row in inputs.itertuples(index=False):
-            response: ChatResponse = asyncio.run(self._rungroupchat(str(row.input)))
+        async def _run_all_predictions(inputs: schemas.Inputs) -> list[ChatResponse]:
+            tasks = []
+            for row in inputs.itertuples(index=False):
+                tasks.append(self._rungroupchat(str(row.input)))
+            return await asyncio.gather(*tasks)
 
+        # Run all requests concurrently
+        responses = asyncio.run(_run_all_predictions(inputs))
+
+        for response in responses:
             if response and response.messages:  # Check if response has messages
                 # content is likely in the last message or usage?
                 # agent_framework ChatResponse has 'messages' list and 'text' property.
