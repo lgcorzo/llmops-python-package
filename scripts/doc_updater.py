@@ -1,6 +1,7 @@
 import argparse
 import ast
 import os
+import re
 import subprocess
 
 
@@ -148,7 +149,9 @@ def _generate_flowchart(node, entity_name):
     return "\n    ".join(flow)
 
 
-def generate_markdown(filepath, entity_type, entity_name, description, git_sha, node):
+def generate_markdown(
+    filepath, entity_type, entity_name, description, git_sha, node, existing_content=None
+):
     filename = f"{entity_name}.md".lower().replace("_", "-")
     desc = (description or "Concise functional summary.").replace("\n", " ").strip()
     if not desc:
@@ -164,7 +167,69 @@ def generate_markdown(filepath, entity_type, entity_name, description, git_sha, 
             f"```mermaid\nflowchart TD\n    {_generate_flowchart(node, entity_name)}\n```"
         )
 
-    md_content = f"""---
+    if existing_content:
+        content = existing_content
+        match = re.search(r"^---\n(.*?)\n---", content, re.DOTALL)
+        if match:
+            fm = match.group(1)
+            lines = fm.split("\n")
+            new_lines = []
+            has_source = False
+            has_commit = False
+            for line in lines:
+                if line.startswith("source_path:"):
+                    new_lines.append(f'source_path: "{filepath}"')
+                    has_source = True
+                elif line.startswith("last_verified_commit:"):
+                    new_lines.append(f'last_verified_commit: "{git_sha}"')
+                    has_commit = True
+                else:
+                    new_lines.append(line)
+            if not has_source:
+                new_lines.append(f'source_path: "{filepath}"')
+            if not has_commit:
+                new_lines.append(f'last_verified_commit: "{git_sha}"')
+            content = (
+                content[: match.start()]
+                + "---\n"
+                + "\n".join(new_lines)
+                + "\n---"
+                + content[match.end() :]
+            )
+
+        source_file_pattern = re.compile(r"^Source File: `.*?`", re.MULTILINE)
+        if source_file_pattern.search(content):
+            content = source_file_pattern.sub(f"Source File: `{filepath}`", content)
+        else:
+            title_pattern = re.compile(r"^# " + re.escape(entity_name), re.MULTILINE)
+            title_match = title_pattern.search(content)
+            if title_match:
+                content = (
+                    content[: title_match.end()]
+                    + f"\n\nSource File: `{filepath}`"
+                    + content[title_match.end() :]
+                )
+            else:
+                content += f"\n\nSource File: `{filepath}`"
+
+        new_arch = f"## Architecture Visualization\n\n{mermaid_diagram}"
+        arch_pattern = re.compile(
+            r"## Architecture Visualization\s*\n```mermaid.*?```\n*", re.DOTALL
+        )
+        if arch_pattern.search(content):
+            content = arch_pattern.sub(new_arch + "\n\n", content)
+        else:
+            arch_pattern_fallback = re.compile(
+                r"## Architecture Visualization\s*\n.*?(?=\n# |\Z)", re.DOTALL
+            )
+            if arch_pattern_fallback.search(content):
+                content = arch_pattern_fallback.sub(new_arch + "\n\n", content)
+            else:
+                content += f"\n\n{new_arch}\n"
+
+        md_content = content
+    else:
+        md_content = f"""---
 type: {entity_type}
 title: "{entity_name}"
 source_path: "{filepath}"
@@ -226,7 +291,9 @@ def main():
     parser = argparse.ArgumentParser(description="Update OKF Documentation")
     parser.add_argument("--commit", default="HEAD~1", help="Git commit range")
     parser.add_argument("--docs-dir", default=".knowledge", help="Output directory")
-    parser.add_argument("--full", action="store_true", help="Rebuild entire documentation from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Rebuild entire documentation from scratch"
+    )
     args = parser.parse_args()
 
     os.makedirs(args.docs_dir, exist_ok=True)
@@ -247,10 +314,17 @@ def main():
     for filepath in modified_files:
         entities = extract_classes_and_functions(filepath)
         for entity_type, entity_name, description, node in entities:
-            filename, md_content = generate_markdown(
-                filepath, entity_type, entity_name, description, git_sha, node
-            )
+            filename = f"{entity_name}.md".lower().replace("_", "-")
             out_path = os.path.join(args.docs_dir, filename)
+
+            existing_content = None
+            if os.path.exists(out_path):
+                with open(out_path, "r") as f:
+                    existing_content = f.read()
+
+            filename, md_content = generate_markdown(
+                filepath, entity_type, entity_name, description, git_sha, node, existing_content
+            )
 
             with open(out_path, "w") as f:
                 f.write(md_content)
