@@ -212,20 +212,23 @@ def generate_markdown(
             else:
                 content += f"\n\nSource File: `{filepath}`"
 
-        new_arch = f"## Architecture Visualization\n\n{mermaid_diagram}"
-        arch_pattern = re.compile(
-            r"## Architecture Visualization\s*\n```mermaid.*?```\n*", re.DOTALL
-        )
-        if arch_pattern.search(content):
-            content = arch_pattern.sub(new_arch + "\n\n", content)
-        else:
-            arch_pattern_fallback = re.compile(
-                r"## Architecture Visualization\s*\n.*?(?=\n# |\Z)", re.DOTALL
-            )
-            if arch_pattern_fallback.search(content):
-                content = arch_pattern_fallback.sub(new_arch + "\n\n", content)
+        arch_section_start = content.find("## Architecture Visualization")
+        if arch_section_start != -1:
+            next_heading = re.search(r'\n# ', content[arch_section_start:])
+            arch_section_end = arch_section_start + next_heading.start() if next_heading else len(content)
+
+            arch_section = content[arch_section_start:arch_section_end]
+
+            mermaid_pattern = re.compile(r"```mermaid.*?```", re.DOTALL)
+            if mermaid_pattern.search(arch_section):
+                new_arch_section = mermaid_pattern.sub(mermaid_diagram, arch_section, count=1)
+                content = content[:arch_section_start] + new_arch_section + content[arch_section_end:]
             else:
-                content += f"\n\n{new_arch}\n"
+                new_arch_section = arch_section.rstrip() + f"\n\n{mermaid_diagram}\n"
+                content = content[:arch_section_start] + new_arch_section + content[arch_section_end:]
+        else:
+            new_arch = f"## Architecture Visualization\n\n{mermaid_diagram}"
+            content += f"\n\n{new_arch}\n"
 
         md_content = content
     else:
