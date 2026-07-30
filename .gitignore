@@ -35,3 +35,6 @@ __pycache__/
 .knowledge/
 .knowledge/
 tmp_out.txt
+
+#graphyfy
+graphify-out/

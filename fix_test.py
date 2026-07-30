@@ -4,6 +4,10 @@ from agent_framework_openai import OpenAIChatCompletionClient
 from mocogpt import gpt_server
 
 
+import pytest
+
+
+@pytest.mark.asyncio
 async def test_it():
     server = gpt_server(12306)
     server.chat.completions.request(prompt="Hola").response(content="Cómo puedo ayudarte?")
