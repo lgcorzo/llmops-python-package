@@ -1,25 +1,49 @@
 ---
-type: "audit-logs"
-title: "OpenWiki Incremental Changelog & Build Logs"
-description: "Audit trail of document updates, AST extractions, and synchronization events for OpenWiki."
-tags: ["openwiki", "changelog", "audit", "logs"]
-timestamp: "2026-07-30T00:00:00Z"
+iso_doc_type: "Report"
+iso_viewpoint: "QualityView"
+type: "audit_log"
+title: "ISO 15289 Audit Log & OpenWiki Revisions History"
+description: "Audit report logging commits, AST knowledge graph build stats, and Wiki generation runs."
+tags: ["iso15289", "report", "audit_log", "git_history"]
+timestamp: "2026-07-31T16:40:00Z"
 ---
 
-# OpenWiki Build & Update Logs
+# ISO 15289 Audit Log & OpenWiki Revisions History
 
-This file maintains an incremental record of documentation builds, AST extraction logs, and structural updates for the OpenWiki system.
+## 1. Documentation Build Audit Record
+
+| Field Name | Value |
+| :--- | :--- |
+| **Generation Mode** | Full Creation Mode (`full`) |
+| **Target Repository** | `llmops-python-package` |
+| **Commit SHA** | `main` (`HEAD`) |
+| **Timestamp** | `2026-07-31T16:40:00Z` |
+| **Primary Skill** | `uml2-okf-documenter` |
+| **ISO Standards** | ISO 42010, ISO 15289, ISO 25010, ISO 26514 |
+| **AST Nodes Extracted** | `1971` nodes |
+| **AST Edges Extracted** | `2560` edges |
+| **Leiden Communities** | `165` communities |
+| **Total Source Files Indexed** | `57` source files |
 
 ---
 
-## 📜 Log Entries
+## 2. Revisions & Modification History Log
 
-### [2026-07-30T17:46:00Z] - Initial OKF OpenWiki Architecture Generation
-* **Author:** OKF Professional Documenter Agent
-* **Scope:** Full repository `src/autogen_team` analysis.
-* **AST Analysis:** Pyreverse extracted 62 modules with 165 imports. Graphify scanned repository topology.
-* **Action:**
-  - Created `.agents/skills/okf-professional-documenter/SKILL.md` skill definition.
-  - Created root OpenWiki index `openwiki/index.md`, quickstart `openwiki/quickstart.md`, and changelog `openwiki/logs.md`.
-  - Generated mirrored technical documentation files for core, application (agents, jobs, mcp, workflows), data_access, models, registry, evaluation, and infrastructure packages under `openwiki/src/autogen_team/`.
-* **Validation:** Enforced 100% relative path references, OKF YAML frontmatter standards, and valid UML 2.0 Mermaid syntax.
+```
+[2026-07-31T16:40:00Z] SUCCESS: Initial ISO-compliant OpenWiki DeepWiki generated across all package modules:
+  - openwiki/index.md
+  - openwiki/architecture/iso_42010_overview.md
+  - openwiki/architecture/system_context.md
+  - openwiki/architecture/component_structure.md
+  - openwiki/architecture/runtime_sequences.md
+  - openwiki/architecture/deployment_view.md
+  - openwiki/architecture/security_view.md
+  - openwiki/architecture/adr/adr_001_ast_engine.md
+  - openwiki/specifications/srs_requirements.md
+  - openwiki/specifications/api_contracts.md
+  - openwiki/quality/iso_25010_quality.md
+  - openwiki/user_guides/developer_guide.md
+  - openwiki/modules/core.md
+  - openwiki/modules/application.md
+  - openwiki/logs.md
+```
