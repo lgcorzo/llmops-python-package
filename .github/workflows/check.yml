@@ -5,6 +5,12 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - 'Documents/**'
+      - 'docs/**'
+      - 'wiki/**'
+      - 'openwiki/**'
+      - '**/*.md'
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
