@@ -2,51 +2,98 @@
 iso_doc_type: "Description"
 iso_viewpoint: "ContextView"
 type: "architecture"
-title: "ISO 42010 Context View: System Boundaries & External Interfaces"
-description: "Context View defining system boundaries, external services, and integration frameworks."
-tags: ["iso42010", "context_view", "architecture", "system_boundaries"]
-timestamp: "2026-07-31T16:40:00Z"
+title: "System Context View"
+description: "ISO 42010 Context View defining system boundaries, external actors, and integration points for the autogen_team system."
+tags: ["iso42010", "context", "boundaries", "integrations"]
+generated: "agent:uml2-okf-documenter"
+verified: "true"
+last_verified_commit: "686fdc0"
+timestamp: "2026-08-01T13:16:00Z"
 ---
 
-# ISO 42010 Context View: System Boundaries & External Interfaces
+# System Context View: Autogen Team
 
-## 1. System Boundary Diagram
+## 1. System Boundary
+
+The `autogen_team` package operates as the **intelligence core** within the Dark Gravity CA/CD Autonomous Agent Factory cluster. It consumes and produces interactions with multiple external systems via well-defined integration points.
+
+## 2. Context Diagram
 
 ```mermaid
-graph TB
-    subgraph External_Integrations["External LLM & MLOps Infrastructure"]
-        MLFLOW["MLflow Tracking & Registry Server"]
-        OPENAI["OpenAI / Ollama API"]
-        HYDRA["Hydra Configuration Framework"]
-        FASTMCP["FastMCP Server Gateway"]
-        RAY["Ray Distributed Compute"]
-    end
+C4Context
+    title System Context Diagram — Autogen Team
 
-    subgraph Package_Boundary["llmops-python-package (src/autogen_team)"]
-        CLI["CLI Commands (autogen_team.scripts)"]
-        CORE["core (Pandera Schemas & Security)"]
-        APP["application (Agents, Jobs, Workflows, MCP)"]
-        INFRA["infrastructure (Client, IO, Messaging, Orchestration)"]
-        DATA["data_access / registry / models / evaluation"]
-    end
+    Person(developer, "Developer", "Triggers missions, manages configs")
+    Person(ml_engineer, "ML Engineer", "Trains models, evaluates metrics")
 
-    CLI --> APP
-    APP --> CORE
-    APP --> INFRA
-    APP --> DATA
-    INFRA <--> |REST / gRPC| MLFLOW
-    INFRA <--> |HTTP API| OPENAI
-    APP <--> |JSON-RPC| FASTMCP
-    INFRA <--> |Cluster SDK| RAY
+    System(autogen_team, "Autogen Team", "Autonomous Agentic Core: multi-agent orchestration, LLMOps pipelines, MCP server")
+
+    System_Ext(hatchet, "Hatchet", "Durable workflow orchestration (task DAGs, fan-out)")
+    System_Ext(kafka, "Kafka", "Event streaming for real-time inference & A2A messaging")
+    System_Ext(mlflow, "MLflow", "Experiment tracking, model registry, artifact storage")
+    System_Ext(litellm, "LiteLLM Proxy", "Unified LLM API gateway (Azure, OpenAI, Ollama)")
+    System_Ext(r2r, "R2R RAG", "Semantic code search & knowledge graph")
+    System_Ext(minio, "MinIO / S3", "Object storage for model artifacts & sandbox outputs")
+    System_Ext(e2b, "E2B / Firecracker", "Ephemeral MicroVM sandboxes for secure code execution")
+    System_Ext(openziti, "OpenZiti", "Zero-trust network overlay for A2A communication")
+
+    Rel(developer, autogen_team, "CLI / Invoke tasks / MCP Client")
+    Rel(ml_engineer, autogen_team, "Training configs / Evaluation jobs")
+    Rel(autogen_team, hatchet, "Workflow registration & execution", "gRPC/HTTP")
+    Rel(autogen_team, kafka, "Produce/consume predictions", "Confluent Kafka")
+    Rel(autogen_team, mlflow, "Log experiments, register models", "HTTP REST")
+    Rel(autogen_team, litellm, "LLM completions for agents/tools", "HTTP/OpenAI API")
+    Rel(autogen_team, r2r, "Semantic search & code indexing", "HTTP REST")
+    Rel(autogen_team, minio, "Upload sandbox artifacts", "S3 API (boto3)")
+    Rel(autogen_team, e2b, "Create/execute/destroy sandboxes", "E2B SDK")
+    Rel(autogen_team, openziti, "Encrypted A2A agent traffic", "OpenZiti SDK")
 ```
 
----
+## 3. External System Integration Details
 
-## 2. External Interface Specification
-
-| External System | Protocol / Format | Interface Purpose | Implementation Citation |
+| External System | Integration Module | Protocol | Configuration Source |
 | :--- | :--- | :--- | :--- |
-| **MLflow Tracking Server** | REST API / Python SDK | Logs model metrics, artifacts, and registers LLM versions | `src/autogen_team/registry/` |
-| **FastMCP Gateway** | JSON-RPC 2.0 over stdio/HTTP | Exposes autogen tools and workflows as MCP server capabilities | `src/autogen_team/application/mcp/` |
-| **Pandera Validation Engine** | Python DataFrame Typing | Enforces column schemas (`InputsSchema`, `OutputsSchema`, `TargetsSchema`) | `src/autogen_team/core/schemas.py:L18-L98` |
-| **Pydantic Settings** | Environment Variables / YAML | Validates application job configurations (`MainSettings`) | `src/autogen_team/settings.py:L13-L29` |
+| **Hatchet** | `infrastructure/services/hatchet_service.py:L15-L86` | gRPC/HTTP | `Env.hatchet_client_*` |
+| **Kafka** | `infrastructure/messaging/kafka_app.py:L86-L234` | Confluent Kafka | `DEFAULT_KAFKA_SERVER` env var |
+| **MLflow** | `infrastructure/services/mlflow_service.py`, `registry/adapters/mlflow_adapter.py:L1-L341` | HTTP REST | `Env.mlflow_*` |
+| **LiteLLM** | `infrastructure/services/mcp_service.py:L17-L84` | OpenAI-compatible API | `Env.litellm_*` |
+| **R2R RAG** | `infrastructure/services/mcp_service.py:L44-L47` | HTTP REST | `Env.r2r_base_url` |
+| **MinIO / S3** | `infrastructure/services/sandbox_service.py:L144-L189` | S3 API (boto3) | `MLFLOW_S3_ENDPOINT_URL`, `AWS_*` |
+| **E2B** | `infrastructure/services/sandbox_service.py:L39-L143` | E2B SDK | `E2B_AVAILABLE` feature flag |
+| **OpenZiti** | A2A Protocol schemas (`infrastructure/messaging/a2a_protocol.py:L1-L45`) | OpenZiti SDK | Cluster-level config |
+
+## 4. Data Flow Summary
+
+```mermaid
+flowchart LR
+    subgraph Inputs
+        CLI["CLI / Invoke"]
+        KafkaIn["Kafka Input Topic"]
+        MCPReq["MCP Client Request"]
+    end
+
+    subgraph autogen_team["Autogen Team"]
+        Jobs["Batch Jobs (Training/Eval/Inference)"]
+        Agents["Autonomous Agents"]
+        MCPTools["MCP Tools"]
+        Workflows["Hatchet Workflows"]
+    end
+
+    subgraph Outputs
+        MLflowReg["MLflow Registry"]
+        KafkaOut["Kafka Output Topic"]
+        Artifacts["MinIO Artifacts"]
+        PRs["Pull Requests"]
+    end
+
+    CLI --> Jobs
+    KafkaIn --> Jobs
+    MCPReq --> MCPTools
+    MCPTools --> Agents
+    Agents --> Workflows
+    Workflows --> Agents
+    Jobs --> MLflowReg
+    Jobs --> KafkaOut
+    Workflows --> Artifacts
+    Workflows --> PRs
+```
