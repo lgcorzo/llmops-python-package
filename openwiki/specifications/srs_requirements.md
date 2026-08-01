@@ -1,36 +1,101 @@
 ---
 iso_doc_type: "Specification"
-iso_viewpoint: "QualityView"
-type: "srs"
-title: "ISO 15289 Specification: Software Requirements Specification (SRS)"
-description: "Software Requirements Specification detailing functional and non-functional requirements with code traceability tags."
-tags: ["iso15289", "srs", "requirements", "traceability"]
-timestamp: "2026-07-31T16:40:00Z"
+iso_viewpoint: "ComponentView"
+type: "specification"
+title: "Software Requirements Specification (SRS)"
+description: "Functional and non-functional requirements across DDD layers and bounded contexts for the autogen_team system."
+tags: ["iso15289", "srs", "requirements", "specification"]
+generated: "agent:uml2-okf-documenter"
+verified: "true"
+last_verified_commit: "686fdc0"
+timestamp: "2026-08-01T13:16:00Z"
 ---
 
-# ISO 15289 Specification: Software Requirements Specification (SRS)
+# Software Requirements Specification (SRS): Autogen Team
 
-## 1. System Scope & Purpose
+## 1. Introduction
 
-The `llmops-python-package` (`autogen_team`) provides an enterprise framework for LLMOps workflow management, multi-agent execution, model evaluation, and FastMCP server integrations.
+### 1.1 Purpose
+This SRS defines the functional and non-functional requirements for the `autogen_team` package (v2.1.0), covering both the autonomous agentic CA/CD factory and legacy LLMOps/MLOps pipelines.
 
----
+### 1.2 Scope
+The system encompasses: autonomous mission orchestration, MCP tool server, multi-agent coordination, real-time Kafka inference, batch ML pipelines, and model lifecycle management.
 
-## 2. Functional Requirements (FR)
+### 1.3 Repository Context
+- **Package:** `autogen_team` (from `src/autogen_team/`)
+- **Entry Point:** `autogen_team.scripts:main` (`src/autogen_team/scripts.py:L1-L42`)
+- **Settings:** `src/autogen_team/settings.py:L13-L29`
 
-| Req ID | Requirement Statement | Implementation Target | Source Line Citation |
-| :--- | :--- | :--- | :--- |
-| **FR-01** | The system SHALL validate pandas DataFrames against explicit Pandera models (`InputsSchema`, `OutputsSchema`). | `autogen_team.core.schemas` | `src/autogen_team/core/schemas.py:L37-L46` |
-| **FR-02** | The system SHALL validate application job settings using Pydantic discriminators (`MainSettings`). | `autogen_team.settings` | `src/autogen_team/settings.py:L21-L29` |
-| **FR-03** | The system SHALL support model quality evaluation metrics and SHAP value explanations. | `autogen_team.evaluation` | `src/autogen_team/evaluation/` |
-| **FR-04** | The system SHALL register model artifacts and metrics via MLflow adapters. | `autogen_team.registry` | `src/autogen_team/registry/` |
+## 2. Functional Requirements
 
----
+### 2.1 Autonomous Mission Orchestration (FR-MISSION)
 
-## 3. Non-Functional Requirements (NFR)
+| ID | Requirement | Source Module |
+| :--- | :--- | :--- |
+| FR-MISSION-01 | System SHALL decompose a high-level goal into a task DAG via `plan_mission` MCP tool | `application/mcp/tools/plan_mission.py:L13-L58` |
+| FR-MISSION-02 | System SHALL execute coding tasks in parallel via Hatchet `aio_run_many` fan-out | `application/workflows/autonomous_mission.py:L105-L135` |
+| FR-MISSION-03 | System SHALL aggregate results and perform security review after coding tasks complete | `application/workflows/autonomous_mission.py:L138-L174` |
+| FR-MISSION-04 | System SHALL generate mission documentation with Mermaid diagrams | `application/workflows/autonomous_mission.py:L177-L214` |
+| FR-MISSION-05 | System SHALL support durable execution state via Hatchet workflow context | `application/workflows/autonomous_mission.py:L85-L89` |
 
-| NFR ID | Attribute Category | Target Metric / Constraint | Verification Evidence |
-| :--- | :--- | :--- | :--- |
-| **NFR-01** | Maintainability | All DataFrames MUST pass strict type checking and coercion rules. | `src/autogen_team/core/schemas.py:L33-L34` |
-| **NFR-02** | Portability | Package MUST be installable and runnable via Poetry across Linux and macOS. | `pyproject.toml:L1-L50` |
-| **NFR-03** | Quality | Codebase MUST pass `pytest`, `ruff`, and `mypy` strict type checking. | `pyproject.toml` |
+### 2.2 Agent Operations (FR-AGENT)
+
+| ID | Requirement | Source Module |
+| :--- | :--- | :--- |
+| FR-AGENT-01 | `PlannerAgent` SHALL create plans by calling the `plan_mission` MCP tool | `application/agents/planner_agent.py:L6-L27` |
+| FR-AGENT-02 | `CoderAgent` SHALL execute tasks by calling the `execute_code` MCP tool | `application/agents/coder_agent.py:L6-L24` |
+| FR-AGENT-03 | `ReviewerAgent` SHALL review changes by calling the `security_review` MCP tool | `application/agents/reviewer_agent.py:L7-L45` |
+| FR-AGENT-04 | `TesterAgent` SHALL run tests by calling the `run_tests` MCP tool | `application/agents/tester_agent.py` |
+| FR-AGENT-05 | `DocumentationAgent` SHALL generate docs by calling the `generate_mission_docs` MCP tool | `application/agents/documentation_agent.py` |
+
+### 2.3 MCP Server Tools (FR-MCP)
+
+| ID | Requirement | Source Module |
+| :--- | :--- | :--- |
+| FR-MCP-01 | `plan_mission` SHALL return a JSON task DAG with `parallel_tasks` array | `application/mcp/tools/plan_mission.py:L13-L58` |
+| FR-MCP-02 | `execute_code` SHALL generate and inject code changes within a sandbox | `application/mcp/tools/execute_code.py` |
+| FR-MCP-03 | `run_tests` SHALL execute pytest in an isolated sandbox environment | `application/mcp/tools/run_tests.py` |
+| FR-MCP-04 | `security_review` SHALL scan diffs against OWASP patterns and R2R security KB | `application/mcp/tools/security_review.py` |
+| FR-MCP-05 | `retrieve_context` SHALL query R2R RAG for relevant codebase patterns | `application/mcp/tools/retrieve_context.py` |
+| FR-MCP-06 | `index_code` SHALL index code files into R2R knowledge graph | `application/mcp/tools/index_code.py` |
+
+### 2.4 Model Lifecycle (FR-MODEL)
+
+| ID | Requirement | Source Module |
+| :--- | :--- | :--- |
+| FR-MODEL-01 | System SHALL support abstract model interface with `fit`, `predict`, `explain_model`, `explain_samples` | `models/entities.py:L33-L130` |
+| FR-MODEL-02 | `BaselineAutogenModel` SHALL execute predictions via OpenAI-compatible chat API | `models/entities.py:L132-L413` |
+| FR-MODEL-03 | System SHALL save models to MLflow registry via `CustomSaver` PyFunc adapter | `registry/adapters/mlflow_adapter.py:L110-L202` |
+| FR-MODEL-04 | System SHALL load models from MLflow registry via `CustomLoader` | `registry/adapters/mlflow_adapter.py:L248-L296` |
+
+### 2.5 Batch Job Pipelines (FR-JOB)
+
+| ID | Requirement | Source Module |
+| :--- | :--- | :--- |
+| FR-JOB-01 | All jobs SHALL use context-manager pattern with automatic service lifecycle | `application/jobs/base.py:L21-L86` |
+| FR-JOB-02 | `TrainingJob` SHALL train, evaluate, save, and register models | `application/jobs/training.py` |
+| FR-JOB-03 | `EvaluationsJob` SHALL evaluate models against configured metrics | `application/jobs/evaluations.py` |
+| FR-JOB-04 | `InferenceJob` SHALL generate predictions from loaded models | `application/jobs/inference.py` |
+| FR-JOB-05 | `TuningJob` SHALL perform hyperparameter search via `GridCVSearcher` | `application/jobs/tuning.py` |
+
+### 2.6 Real-Time Inference (FR-KAFKA)
+
+| ID | Requirement | Source Module |
+| :--- | :--- | :--- |
+| FR-KAFKA-01 | `FastAPIKafkaService` SHALL consume messages from Kafka input topic | `infrastructure/messaging/kafka_app.py:L151-L163` |
+| FR-KAFKA-02 | System SHALL produce prediction results to Kafka output topic | `infrastructure/messaging/kafka_app.py:L204-L219` |
+| FR-KAFKA-03 | System SHALL expose FastAPI `/health` endpoint | `infrastructure/messaging/kafka_app.py:L241-L244` |
+
+## 3. Non-Functional Requirements
+
+| ID | Category | Requirement |
+| :--- | :--- | :--- |
+| NFR-01 | **Security** | All file path operations SHALL use `safe_join()` to prevent path traversal |
+| NFR-02 | **Security** | Code execution SHALL occur in isolated E2B/Firecracker sandboxes |
+| NFR-03 | **Security** | API keys SHALL be loaded from environment variables, never hardcoded |
+| NFR-04 | **Observability** | All services SHALL emit OpenTelemetry traces and structured logs |
+| NFR-05 | **Scalability** | OpenCode workers SHALL scale via KEDA based on Kafka queue depth |
+| NFR-06 | **Testability** | All modules SHALL maintain ≥80% test coverage |
+| NFR-07 | **Type Safety** | Codebase SHALL pass `mypy --strict` with configured error suppression |
+| NFR-08 | **Code Quality** | Codebase SHALL pass Ruff linting with Google docstring convention |
+| NFR-09 | **Configuration** | All runtime config SHALL be decoupled via OmegaConf + Pydantic Settings |
