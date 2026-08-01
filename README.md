@@ -3,8 +3,8 @@
 [![check.yml](https://github.com/lgcorzo/llmops-python-package/actions/workflows/check.yml/badge.svg)](https://github.com/lgcorzo/llmops-python-package/actions/workflows/check.yml)
 [![publish.yml](https://github.com/lgcorzo/llmops-python-package/actions/workflows/publish.yml/badge.svg)](https://github.com/lgcorzo/llmops-python-package/actions/workflows/publish.yml)
 [![Documentation](https://img.shields.io/badge/documentation-available-brightgreen.svg)](https://github.com/lgcorzo/llmops-python-package/wiki)
-[![License](https://img.shields.io/github/license/lgcorzo/llmops-python-package)](https://github.com/lgcorzo/llmops-python-package/blob/main/LICENCE.txt)
-[![Release](https://img.shields.io/github/v/release/lgcorzo/llmops-python-package)](https://github.com/lgcorzo/llmops-python-package/releases)
+[![License](https://img.shields.io/github/license/lgcorzo/llmops-python-package?color=blue)](https://github.com/lgcorzo/llmops-python-package/blob/main/LICENSE.txt)
+[![Release](https://img.shields.io/github/v/release/lgcorzo/llmops-python-package?sort=semver)](https://github.com/lgcorzo/llmops-python-package/releases)
 
 **Autogen Team** has evolved from an MLOps library into a **Long-Term Agentic System** serving as the intelligence core for the **Dark Gravity CA/CD Autonomous Agent Factory**.
 
