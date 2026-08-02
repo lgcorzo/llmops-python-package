@@ -1,17 +1,16 @@
 ---
-iso_doc_type: "Specification"
+iso_doc_type: "Description"
 iso_viewpoint: "ComponentView"
 type: "module"
-title: "Module: Models Entities"
+title: "Entities"
 source_path: "src/autogen_team/models/entities.py"
-description: "Model bounded context: abstract Model, BaselineAutogenModel (OpenAI group chat), DummyModel."
-tags: ["models", "entities", "autogen", "ml", "bounded-context"]
-generated: "agent:uml2-okf-documenter"
+description: "Exhaustive functional summary for Entities."
+tags: ["core", "okf"]
+timestamp: "2026-08-02T05:30:56.472172Z"
+generated: "agent:okf-professional-documenter"
 verified: "true"
-last_verified_commit: "686fdc0"
-timestamp: "2026-08-01T13:16:00Z"
+last_verified_commit: "e2acd53"
 ---
-
 # Module Specification: Models Entities
 
 * **Source Reference:** `src/autogen_team/models/entities.py` (Lines: L1-L413)
@@ -20,48 +19,6 @@ timestamp: "2026-08-01T13:16:00Z"
 
 ## 1. UML 2.0 Class Diagram
 
-```mermaid
-classDiagram
-    direction BT
-
-    class Model {
-        <<abstract>>
-        +KIND: str
-        +get_params(deep: bool = True) Params
-        +set_params(**params) Self
-        +load_context(model_config: Dict)* void
-        +fit(inputs: Inputs, targets: Targets)* Self
-        +predict(inputs: Inputs)* Outputs
-        +explain_model() FeatureImportances
-        +explain_samples(inputs: Inputs) SHAPValues
-        +get_internal_model() Any
-    }
-    class BaselineAutogenModel {
-        +KIND: "BaselineAutogenModel"
-        +max_tokens: int = 1000
-        +temperature: float = 0.7
-        +agent_framework: str = "autogen"
-        +api_base_url: str
-        +api_model: str = "minimax-m2.7:cloud"
-        +api_key: str
-        -_model_client: OpenAIChatCompletionClient?
-        +load_context(model_config: Dict) void
-        +fit(inputs, targets) Self
-        +predict(inputs) Outputs
-        -_predict_single(prompt: str) str
-        -_predict_batch(prompts: List~str~) List~str~
-        +get_internal_model() OpenAIChatCompletionClient
-    }
-    class DummyModel {
-        +KIND: "DummyModel"
-        +load_context(model_config: Dict) void
-        +fit(inputs, targets) Self
-        +predict(inputs) Outputs
-    }
-
-    Model <|-- BaselineAutogenModel : Inheritance
-    Model <|-- DummyModel : Inheritance
-```
 
 ## 2. Abstract Model Interface (`L33-L130`)
 
@@ -97,3 +54,36 @@ The primary model implementation, using OpenAI-compatible chat API via `autogen_
 * **`predict(inputs)`** (L238-L310): Processes each input row through a 2-agent group chat (UserProxyAgent + AssistantAgent). Returns Outputs DataFrame with response + metadata.
 * **`_predict_single(prompt)`** (L312-L361): Async single prediction via `RoundRobinGroupChat`.
 * **`_predict_batch(prompts)`** (L363-L400): Parallel batch predictions using `asyncio.gather`.
+
+```mermaid
+classDiagram
+    class BaselineAutogenModel {
+        +T.Literal['BaselineAutogenModel'] KIND
+        +Optional[int] max_tokens
+        +Optional[Dict[str, Any]] model_config_data
+        +Optional[str] model_config_path
+        +Optional[float] temperature
+        +explain_model(): schemas.FeatureImportances
+        +explain_samples(inputs: schemas.Inputs): schemas.SHAPValues
+        +fit(inputs: schemas.Inputs, targets: schemas.Targets): 'BaselineAutogenModel'
+        +get_internal_model(): Any
+        +load_context(model_config: Dict[str, Any]): None
+        +load_context_path(model_config_path: Optional[str]): None
+        +predict(inputs: schemas.Inputs): schemas.Outputs
+    }
+    class Model {
+        +str KIND
+        +explain_model(): schemas.FeatureImportances
+        +explain_samples(inputs: schemas.Inputs): schemas.SHAPValues
+        +fit(inputs: schemas.Inputs, targets: schemas.Targets): T.Self
+        +get_internal_model(): T.Any
+        +get_params(deep: bool): Params
+        +load_context(model_config: Dict[str, Any]): None
+        +predict(inputs: schemas.Inputs): schemas.Outputs
+        +set_params(): T.Self
+    }
+    Model <|-- BaselineAutogenModel
+    TrainingJob --> BaselineAutogenModel
+    TuningJob --> BaselineAutogenModel
+    Model --> Adapter
+```

@@ -1,17 +1,16 @@
 ---
-iso_doc_type: "Specification"
+iso_doc_type: "Description"
 iso_viewpoint: "ComponentView"
 type: "module"
-title: "Module: Core Security"
+title: "Security"
 source_path: "src/autogen_team/core/security.py"
-description: "Path traversal prevention utility for the autogen_team system."
-tags: ["core", "security", "path-traversal", "safe-join"]
-generated: "agent:uml2-okf-documenter"
+description: "Exhaustive functional summary for Security."
+tags: ["core", "okf"]
+timestamp: "2026-08-02T05:30:56.472172Z"
+generated: "agent:okf-professional-documenter"
 verified: "true"
-last_verified_commit: "686fdc0"
-timestamp: "2026-08-01T13:16:00Z"
+last_verified_commit: "e2acd53"
 ---
-
 # Module Specification: Core Security
 
 * **Source Reference:** `src/autogen_team/core/security.py` (Lines: L1-L27)
@@ -42,4 +41,8 @@ flowchart TD
     C --> D{"os.path.commonpath == base_dir?"}
     D -->|Yes| E["Return final_path ✅"]
     D -->|No| F["Raise ValueError ❌ Path traversal detected"]
+```
+
+```mermaid
+classDiagram
 ```

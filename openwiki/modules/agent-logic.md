@@ -1,3 +1,17 @@
+---
+iso_doc_type: "Description"
+iso_viewpoint: "ComponentView"
+type: "module"
+title: "Agent-Logic"
+source_path: "src/autogen_team/"
+description: "Documentation for Agent-Logic."
+tags: ["core", "okf"]
+timestamp: "2024-05-22T12:00:00Z"
+generated: "agent:okf-professional-documenter"
+verified: "true"
+last_verified_commit: ""
+---
+
 # Agent Implementation Details
 The `src/autogen_team/application/agents/` directory contains the core logic for various specialized agents. Each agent is designed to perform a specific role within the multi-agent system.
 

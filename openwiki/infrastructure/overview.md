@@ -1,3 +1,17 @@
+---
+iso_doc_type: "Description"
+iso_viewpoint: "ComponentView"
+type: "module"
+title: "Overview"
+source_path: "src/autogen_team/"
+description: "Documentation for Overview."
+tags: ["core", "okf"]
+timestamp: "2024-05-22T12:00:00Z"
+generated: "agent:okf-professional-documenter"
+verified: "true"
+last_verified_commit: ""
+---
+
 # Infrastructure & Connectivity
 
 The infrastructure layer of Autogen Team manages the "outside world" connections, including messaging systems, network protocols, and external service clients. By isolating these in their own layer, the core logic remains agnostic to specific technology choices (e.g., replacing Kafka with another message bus).

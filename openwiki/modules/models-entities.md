@@ -1,3 +1,17 @@
+---
+iso_doc_type: "Description"
+iso_viewpoint: "ComponentView"
+type: "module"
+title: "Models-Entities"
+source_path: "src/autogen_team/"
+description: "Documentation for Models-Entities."
+tags: ["core", "okf"]
+timestamp: "2024-05-22T12:00:00Z"
+generated: "agent:okf-professional-documenter"
+verified: "true"
+last_verified_commit: ""
+---
+
 # Model Entities
 The `models/entities.py` file defines the core abstraction for machine learning models within the system. It uses a contract-based approach to ensure that different AI/ML frameworks (e.g., Scikit-learn, PyTorch, TensorFlow) can be swapped interchangeably as long as they implement the required interface.
 

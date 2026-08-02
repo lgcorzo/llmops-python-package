@@ -1,3 +1,17 @@
+---
+iso_doc_type: "Description"
+iso_viewpoint: "ComponentView"
+type: "module"
+title: "Infrastructure Layer Documentation"
+source_path: "src/autogen_team/"
+description: "Documentation for Infrastructure Layer Documentation."
+tags: ["core", "okf"]
+timestamp: "2024-05-22T12:00:00Z"
+generated: "agent:okf-professional-documenter"
+verified: "true"
+last_verified_commit: ""
+---
+
 # Infrastructure Layer Documentation
 
 The `infrastructure` layer manages the low-level integrations, external clients, and utility services that power the application logic. It abstracts away the complexities of different protocols, messaging systems, and service providers.
