@@ -1,17 +1,16 @@
 ---
-iso_doc_type: "Specification"
+iso_doc_type: "Description"
 iso_viewpoint: "ComponentView"
 type: "module"
-title: "Module: Core Schemas"
+title: "Schemas"
 source_path: "src/autogen_team/core/schemas.py"
-description: "Pandera DataFrameModel hierarchy for type-safe data validation across the autogen_team system."
-tags: ["core", "schemas", "pandera", "validation"]
-generated: "agent:uml2-okf-documenter"
+description: "Exhaustive functional summary for Schemas."
+tags: ["core", "okf"]
+timestamp: "2026-08-02T05:30:56.472172Z"
+generated: "agent:okf-professional-documenter"
 verified: "true"
-last_verified_commit: "686fdc0"
-timestamp: "2026-08-01T13:16:00Z"
+last_verified_commit: "e2acd53"
 ---
-
 # Module Specification: Core Schemas
 
 * **Source Reference:** `src/autogen_team/core/schemas.py` (Lines: L1-L114)
@@ -23,50 +22,6 @@ The schemas module defines the shared data contracts for the entire system using
 
 ## 2. UML 2.0 Class Diagram
 
-```mermaid
-classDiagram
-    direction BT
-    class Schema {
-        <<abstract>>
-        +check(data: DataFrame)$ DataFrame~TSchema~
-    }
-    class Config {
-        +coerce: bool = True
-        +strict: bool = True
-    }
-    class InputsSchema {
-        +input: Series~String~
-    }
-    class OutputsSchema {
-        +response: Series~String~
-        +metadata: Series~Object~
-    }
-    class TargetsSchema {
-        +input_target: Series~String~
-        +response: Series~String~
-    }
-    class MetadataSchema {
-        +timestamp: Series~String~
-        +model_version: Series~String~
-    }
-    class SHAPValuesSchema {
-        +sample: Series~String~
-        +explanation: Series~String~
-        +shap_value: Series~Float32~
-    }
-    class FeatureImportancesSchema {
-        +feature: Series~String~
-        +importance: Series~Float32~
-    }
-
-    Schema *-- Config
-    Schema <|-- InputsSchema : Inheritance
-    Schema <|-- OutputsSchema : Inheritance
-    Schema <|-- TargetsSchema : Inheritance
-    Schema <|-- MetadataSchema : Inheritance
-    Schema <|-- SHAPValuesSchema : Inheritance
-    Schema <|-- FeatureImportancesSchema : Inheritance
-```
 
 ## 3. Class & Method Specifications
 
@@ -90,3 +45,47 @@ Base class for all dataframe schemas. Extends Pandera's `DataFrameModel` with st
 | `Outputs` | `papd.DataFrame[OutputsSchema]` | L96 |
 | `SHAPValues` | `papd.DataFrame[SHAPValuesSchema]` | L97 |
 | `FeatureImportances` | `papd.DataFrame[FeatureImportancesSchema]` | L98 |
+
+```mermaid
+classDiagram
+    class Config {
+        +bool coerce
+        +bool strict
+    }
+    class Config {
+        +bool strict
+    }
+    class FeatureImportancesSchema {
+        +papd.Series[padt.String] feature
+        +papd.Series[padt.Float32] importance
+    }
+    class InputsSchema {
+        +papd.Series[padt.String] input
+    }
+    class MetadataSchema {
+        +papd.Series[padt.String] model_version
+        +papd.Series[padt.String] timestamp
+    }
+    class OutputsSchema {
+        +papd.Series[padt.Object] metadata
+        +papd.Series[padt.String] response
+    }
+    class SHAPValuesSchema {
+        +papd.Series[padt.String] explanation
+        +papd.Series[padt.String] sample
+        +papd.Series[padt.Float32] shap_value
+    }
+    class Schema {
+        +check(data: pd.DataFrame): papd.DataFrame[TSchema]
+    }
+    class TargetsSchema {
+        +papd.Series[padt.String] input_target
+        +papd.Series[padt.String] response
+    }
+    Schema <|-- FeatureImportancesSchema
+    Schema <|-- InputsSchema
+    Schema <|-- MetadataSchema
+    Schema <|-- OutputsSchema
+    Schema <|-- SHAPValuesSchema
+    Schema <|-- TargetsSchema
+```

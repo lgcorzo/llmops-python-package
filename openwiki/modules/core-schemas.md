@@ -1,3 +1,17 @@
+---
+iso_doc_type: "Description"
+iso_viewpoint: "ComponentView"
+type: "module"
+title: "Core-Schemas"
+source_path: "src/autogen_team/"
+description: "Documentation for Core-Schemas."
+tags: ["core", "okf"]
+timestamp: "2024-05-22T12:00:00Z"
+generated: "agent:okf-professional-documenter"
+verified: "true"
+last_verified_commit: ""
+---
+
 # Core Schemas
 The core schema module defines the fundamental data structures used throughout the application. It utilizes `pandera` to ensure strict typing and validation for DataFrames, which are central to the machine learning pipeline.
 
