@@ -1,76 +1,76 @@
----
-iso_doc_type: "Description"
-iso_viewpoint: "ArchitectureDescription"
-type: "hub"
-title: "OpenWiki Master Knowledge Hub: autogen_team"
-description: "Central navigation hub and ISO 15289 Description artifact for the llmops-python-package (autogen_team) project."
-tags: ["index", "iso15289", "openwiki", "okf", "autogen_team", "llmops"]
-generated: "agent:uml2-okf-documenter"
-verified: "true"
-last_verified_commit: "686fdc0"
-timestamp: "2026-08-01T13:16:00Z"
----
+# Project Documentation Index
 
-# 🌐 OpenWiki Master Knowledge Hub: `autogen_team`
+Welcome to the fully AST-generated project documentation.
 
-Welcome to the ISO-compliant **DeepWiki / CodeWiki Architecture Documentation** for the `autogen_team` package (`llmops-python-package`). This system is a **Long-Term Agentic System** serving as the intelligence core for the **Dark Gravity CA/CD Autonomous Agent Factory**, built upon strict **Domain-Driven Design (DDD)** and solid **LLMOps principles**.
-
-This documentation suite is generated strictly under international systems and software engineering standards (**ISO/IEC/IEEE 42010**, **ISO/IEC/IEEE 15289**, **ISO/IEC 25010**, and **ISO/IEC/IEEE 26514**) and formatted using the **Open Knowledge Format (OKF)** standard.
-
----
-
-## 🏛️ ISO/IEC/IEEE 42010 Architecture Description Framework
-
-The architecture description is organized into standardized architectural viewpoints:
-
-- 📋 [[Architecture/Overview|ISO 42010 Architecture Overview]] — Master Architecture Description (AD) framework, Entity of Interest (EoI), and Stakeholder Concerns matrix.
-- 🌐 [[Architecture/SystemContext|System Context View]] — System boundaries, external integrations (Kafka, MLflow, LiteLLM, R2R RAG, Hatchet, MinIO/S3, E2B/Firecracker, OpenZiti).
-- 📦 [[Architecture/ComponentStructure|Component & Structural View]] — DDD layer decomposition (`core`, `application`, `infrastructure`) and bounded contexts (`models`, `data_access`, `evaluation`, `registry`) with UML 2.0 diagrams.
-- 🔄 [[Architecture/RuntimeSequences|Runtime Sequence View]] — Autonomous Mission lifecycle (Plan → Fan-Out → Review → Document), Kafka prediction flow, MCP tool invocations.
-- 🐳 [[Architecture/DeploymentView|Deployment View]] — Docker, docker-compose, Kubernetes (KEDA-scaled OpenCode workers), Poetry packaging.
-- 🔐 [[Architecture/SecurityView|Security View]] — `safe_join` path traversal guards, sandbox isolation (E2B/Firecracker), OWASP scanning, environment-variable secret management.
-- 📝 [[Architecture/ADR/ADR_001_DDD_Layering|ADR 001: DDD Layering]] — Architecture Decision Record for strict DDD layering with bounded contexts.
-
----
-
-## 📑 ISO/IEC/IEEE 15289 Specifications & Reports
-
-- 📜 [[Specifications/SRSRequirements|Software Requirements Specification (SRS)]] — Functional and non-functional requirements across DDD layers and bounded contexts.
-- 🔌 [[Specifications/APIContracts|API & Interface Contracts]] — MCP tool schemas, Kafka message formats, FastAPI endpoints, Pydantic model contracts, abstract class interfaces.
-- 📊 [[Quality/ISO25010Quality|ISO 25010 Quality Model Matrix]] — Quality attribute evaluation (Functional Suitability, Security, Maintainability, Performance, Portability).
-- 🛠️ [[UserGuides/DeveloperGuide|Developer & System User Guide]] — ISO 26514 guide for installation, development workflow, MCP server, Kafka deployment.
-- 🪵 [[Logs|Audit Log & Git History]] — ISO 15289 audit log tracking commit SHAs, AST graph metrics, and documentation revisions.
-
----
-
-## 🧱 Granular OKF Module Specifications (1:1 Mirrored)
-
-Explore individual module specifications with exact line-level source code citations:
-
-### ⚙️ `core/` — Shared Kernel
-- [[Modules/Core/Schemas|core::schemas]] — Pandera `DataFrameModel` hierarchy: `Schema`, `InputsSchema`, `OutputsSchema`, `TargetsSchema`, `SHAPValuesSchema`, `FeatureImportancesSchema` (`src/autogen_team/core/schemas.py:L1-L114`).
-- [[Modules/Core/Security|core::security]] — `safe_join` path traversal guard utility (`src/autogen_team/core/security.py:L1-L27`).
-
-### 🤖 `application/` — Application Layer
-- [[Modules/Application/Agents|application::agents]] — Autonomous agents: `CoderAgent`, `PlannerAgent`, `ReviewerAgent`, `TesterAgent`, `DocumentationAgent` (`src/autogen_team/application/agents/`).
-- [[Modules/Application/Workflows|application::workflows]] — `AutonomousMissionWorkflow` Hatchet DSL with Plan → Fan-Out → Review → Document steps (`src/autogen_team/application/workflows/autonomous_mission.py:L1-L214`).
-- [[Modules/Application/MCPTools|application::mcp_tools]] — MCP Server tools: `plan_mission`, `execute_code`, `run_tests`, `security_review`, `retrieve_context`, `index_code`, `generate_mission_docs` (`src/autogen_team/application/mcp/tools/`).
-- [[Modules/Application/Jobs|application::jobs]] — Legacy batch jobs: `TrainingJob`, `EvaluationsJob`, `InferenceJob`, `TuningJob`, `PromotionJob`, `ExplanationsJob`, `HatchetInferenceJob` (`src/autogen_team/application/jobs/`).
-
-### 🔌 `infrastructure/` — Infrastructure Layer
-- [[Modules/Infrastructure/Services|infrastructure::services]] — `Service` (base), `LoggerService`, `MCPService`, `MlflowService`, `HatchetService`, `AlertsService`, `SandboxService` (`src/autogen_team/infrastructure/services/`).
-- [[Modules/Infrastructure/Messaging|infrastructure::messaging]] — `FastAPIKafkaService` real-time prediction pipeline, `A2A Protocol` Pydantic message schemas (`src/autogen_team/infrastructure/messaging/`).
-- [[Modules/Infrastructure/IO|infrastructure::io]] — OmegaConf config parsing (`configs.py`), `Env` Pydantic Settings singleton (`osvariables.py`) (`src/autogen_team/infrastructure/io/`).
-- [[Modules/Infrastructure/Utils|infrastructure::utils]] — `GridCVSearcher`, `InferSigner`, `TrainTestSplitter`, `TimeSeriesSplitter` (`src/autogen_team/infrastructure/utils/`).
-
-### 🧠 `models/` — Bounded Context
-- [[Modules/Models/Entities|models::entities]] — `Model` (abstract), `BaselineAutogenModel` (OpenAI group chat), `DummyModel` (`src/autogen_team/models/entities.py:L1-L413`).
-
-### 💾 `data_access/` — Bounded Context
-- [[Modules/DataAccess/Datasets|data_access::datasets]] — `Reader`/`Writer` abstract hierarchy, `ParquetReader`, `ParquetWriter`, `DatasetDescriptor`, `DatasetRepository` (`src/autogen_team/data_access/`).
-
-### 📊 `evaluation/` — Bounded Context
-- [[Modules/Evaluation/Metrics|evaluation::metrics]] — `Metric`/`AutogenMetric`/`AutogenConversationMetric`, `Threshold`, MLflow integration (`src/autogen_team/evaluation/metrics/metrics.py:L1-L216`).
-
-### 🗄️ `registry/` — Bounded Context
-- [[Modules/Registry/MlflowAdapter|registry::mlflow_adapter]] — `Saver`/`CustomSaver`, `Loader`/`CustomLoader`, `Register`/`MlflowRegister` with PyFunc adapter pattern (`src/autogen_team/registry/adapters/mlflow_adapter.py:L1-L341`).
+## Modules
+- [src/autogen_team/__init__.py](./src/autogen_team/__init__.md)
+- [src/autogen_team/__main__.py](./src/autogen_team/__main__.md)
+- [src/autogen_team/application/__init__.py](./src/autogen_team/application/__init__.md)
+- [src/autogen_team/application/agents/coder_agent.py](./src/autogen_team/application/agents/coder_agent.md)
+- [src/autogen_team/application/agents/documentation_agent.py](./src/autogen_team/application/agents/documentation_agent.md)
+- [src/autogen_team/application/agents/planner_agent.py](./src/autogen_team/application/agents/planner_agent.md)
+- [src/autogen_team/application/agents/reviewer_agent.py](./src/autogen_team/application/agents/reviewer_agent.md)
+- [src/autogen_team/application/agents/tester_agent.py](./src/autogen_team/application/agents/tester_agent.md)
+- [src/autogen_team/application/jobs/__init__.py](./src/autogen_team/application/jobs/__init__.md)
+- [src/autogen_team/application/jobs/base.py](./src/autogen_team/application/jobs/base.md)
+- [src/autogen_team/application/jobs/evaluations.py](./src/autogen_team/application/jobs/evaluations.md)
+- [src/autogen_team/application/jobs/explanations.py](./src/autogen_team/application/jobs/explanations.md)
+- [src/autogen_team/application/jobs/hatchet_inference.py](./src/autogen_team/application/jobs/hatchet_inference.md)
+- [src/autogen_team/application/jobs/inference.py](./src/autogen_team/application/jobs/inference.md)
+- [src/autogen_team/application/jobs/promotion.py](./src/autogen_team/application/jobs/promotion.md)
+- [src/autogen_team/application/jobs/training.py](./src/autogen_team/application/jobs/training.md)
+- [src/autogen_team/application/jobs/tuning.py](./src/autogen_team/application/jobs/tuning.md)
+- [src/autogen_team/application/mcp/__init__.py](./src/autogen_team/application/mcp/__init__.md)
+- [src/autogen_team/application/mcp/tools/__init__.py](./src/autogen_team/application/mcp/tools/__init__.md)
+- [src/autogen_team/application/mcp/tools/execute_code.py](./src/autogen_team/application/mcp/tools/execute_code.md)
+- [src/autogen_team/application/mcp/tools/generate_mission_docs.py](./src/autogen_team/application/mcp/tools/generate_mission_docs.md)
+- [src/autogen_team/application/mcp/tools/index_code.py](./src/autogen_team/application/mcp/tools/index_code.md)
+- [src/autogen_team/application/mcp/tools/plan_mission.py](./src/autogen_team/application/mcp/tools/plan_mission.md)
+- [src/autogen_team/application/mcp/tools/retrieve_context.py](./src/autogen_team/application/mcp/tools/retrieve_context.md)
+- [src/autogen_team/application/mcp/tools/run_tests.py](./src/autogen_team/application/mcp/tools/run_tests.md)
+- [src/autogen_team/application/mcp/tools/security_review.py](./src/autogen_team/application/mcp/tools/security_review.md)
+- [src/autogen_team/application/workflows/autonomous_mission.py](./src/autogen_team/application/workflows/autonomous_mission.md)
+- [src/autogen_team/core/__init__.py](./src/autogen_team/core/__init__.md)
+- [src/autogen_team/core/schemas.py](./src/autogen_team/core/schemas.md)
+- [src/autogen_team/core/security.py](./src/autogen_team/core/security.md)
+- [src/autogen_team/data_access/__init__.py](./src/autogen_team/data_access/__init__.md)
+- [src/autogen_team/data_access/adapters/__init__.py](./src/autogen_team/data_access/adapters/__init__.md)
+- [src/autogen_team/data_access/adapters/datasets.py](./src/autogen_team/data_access/adapters/datasets.md)
+- [src/autogen_team/data_access/entities.py](./src/autogen_team/data_access/entities.md)
+- [src/autogen_team/data_access/repositories.py](./src/autogen_team/data_access/repositories.md)
+- [src/autogen_team/evaluation/__init__.py](./src/autogen_team/evaluation/__init__.md)
+- [src/autogen_team/evaluation/entities.py](./src/autogen_team/evaluation/entities.md)
+- [src/autogen_team/evaluation/metrics/__init__.py](./src/autogen_team/evaluation/metrics/__init__.md)
+- [src/autogen_team/evaluation/metrics/metrics.py](./src/autogen_team/evaluation/metrics/metrics.md)
+- [src/autogen_team/evaluation/services/__init__.py](./src/autogen_team/evaluation/services/__init__.md)
+- [src/autogen_team/infrastructure/__init__.py](./src/autogen_team/infrastructure/__init__.md)
+- [src/autogen_team/infrastructure/client/mcp_client.py](./src/autogen_team/infrastructure/client/mcp_client.md)
+- [src/autogen_team/infrastructure/io/__init__.py](./src/autogen_team/infrastructure/io/__init__.md)
+- [src/autogen_team/infrastructure/io/configs.py](./src/autogen_team/infrastructure/io/configs.md)
+- [src/autogen_team/infrastructure/io/osvariables.py](./src/autogen_team/infrastructure/io/osvariables.md)
+- [src/autogen_team/infrastructure/messaging/__init__.py](./src/autogen_team/infrastructure/messaging/__init__.md)
+- [src/autogen_team/infrastructure/messaging/a2a_protocol.py](./src/autogen_team/infrastructure/messaging/a2a_protocol.md)
+- [src/autogen_team/infrastructure/messaging/kafka_app.py](./src/autogen_team/infrastructure/messaging/kafka_app.md)
+- [src/autogen_team/infrastructure/orchestration/hatchet_workflows.py](./src/autogen_team/infrastructure/orchestration/hatchet_workflows.md)
+- [src/autogen_team/infrastructure/services/__init__.py](./src/autogen_team/infrastructure/services/__init__.md)
+- [src/autogen_team/infrastructure/services/alert_service.py](./src/autogen_team/infrastructure/services/alert_service.md)
+- [src/autogen_team/infrastructure/services/hatchet_service.py](./src/autogen_team/infrastructure/services/hatchet_service.md)
+- [src/autogen_team/infrastructure/services/logger_service.py](./src/autogen_team/infrastructure/services/logger_service.md)
+- [src/autogen_team/infrastructure/services/mcp_service.py](./src/autogen_team/infrastructure/services/mcp_service.md)
+- [src/autogen_team/infrastructure/services/mlflow_service.py](./src/autogen_team/infrastructure/services/mlflow_service.md)
+- [src/autogen_team/infrastructure/services/sandbox_service.py](./src/autogen_team/infrastructure/services/sandbox_service.md)
+- [src/autogen_team/infrastructure/utils/__init__.py](./src/autogen_team/infrastructure/utils/__init__.md)
+- [src/autogen_team/infrastructure/utils/searchers.py](./src/autogen_team/infrastructure/utils/searchers.md)
+- [src/autogen_team/infrastructure/utils/signers.py](./src/autogen_team/infrastructure/utils/signers.md)
+- [src/autogen_team/infrastructure/utils/splitters.py](./src/autogen_team/infrastructure/utils/splitters.md)
+- [src/autogen_team/models/__init__.py](./src/autogen_team/models/__init__.md)
+- [src/autogen_team/models/entities.py](./src/autogen_team/models/entities.md)
+- [src/autogen_team/models/repositories.py](./src/autogen_team/models/repositories.md)
+- [src/autogen_team/registry/__init__.py](./src/autogen_team/registry/__init__.md)
+- [src/autogen_team/registry/adapters/__init__.py](./src/autogen_team/registry/adapters/__init__.md)
+- [src/autogen_team/registry/adapters/mlflow_adapter.py](./src/autogen_team/registry/adapters/mlflow_adapter.md)
+- [src/autogen_team/registry/entities.py](./src/autogen_team/registry/entities.md)
+- [src/autogen_team/registry/repositories.py](./src/autogen_team/registry/repositories.md)
+- [src/autogen_team/scripts.py](./src/autogen_team/scripts.md)
+- [src/autogen_team/settings.py](./src/autogen_team/settings.md)
+- [src/autogen_team/tools/weather.py](./src/autogen_team/tools/weather.md)
