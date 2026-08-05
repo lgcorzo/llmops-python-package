@@ -25,22 +25,22 @@ def test_parquet_reader(limit: int | None, inputs_path: str) -> None:
     # - lineage
     assert lineage.name == "inputs", "Lineage name should be inputs!"
     # Fix 1: Use correct attribute name for DatasetSource (check your implementation)
-    assert (
-        lineage.source.uri == inputs_path
-    ), "Lineage source path should be the inputs path!"  # Changed .uri to .path
+    assert lineage.source.uri == inputs_path, (
+        "Lineage source path should be the inputs path!"
+    )  # Changed .uri to .path
 
     # Fix 2: Handle optional schema
     assert lineage.schema is not None, "Lineage schema should be defined!"
-    assert set(lineage.schema.input_names()) == set(
-        data.columns
-    ), "Lineage schema names should be the data columns!"
+    assert set(lineage.schema.input_names()) == set(data.columns), (
+        "Lineage schema names should be the data columns!"
+    )
 
     # Fix 3: Handle profile type
     assert lineage.profile is not None, "Lineage profile should be defined!"
     assert isinstance(lineage.profile, dict), "Lineage profile should be a dictionary!"
-    assert lineage.profile["num_rows"] == len(
-        data
-    ), "Lineage profile should contain the data row count!"
+    assert lineage.profile["num_rows"] == len(data), (
+        "Lineage profile should contain the data row count!"
+    )
 
 
 # %% WRITERS

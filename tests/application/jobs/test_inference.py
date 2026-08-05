@@ -24,9 +24,9 @@ def test_inference_job(
 ) -> None:
     # given
     if isinstance(alias_or_version, int):
-        assert str(alias_or_version) == str(
-            model_alias.version
-        ), "Model version should be the same!"
+        assert str(alias_or_version) == str(model_alias.version), (
+            "Model version should be the same!"
+        )
     else:
         assert alias_or_version == model_alias.aliases[0], "Model alias should be the same!"
     # when
@@ -56,17 +56,17 @@ def test_inference_job(
     assert out["inputs"].ndim == out["inputs_"].ndim == 2, "Inputs should be a dataframe!"
     # - model uri
     assert str(alias_or_version) in out["model_uri"], "Model URI should contain the model alias!"
-    assert (
-        mlflow_service.registry_name in out["model_uri"]
-    ), "Model URI should contain the registry name!"
+    assert mlflow_service.registry_name in out["model_uri"], (
+        "Model URI should contain the registry name!"
+    )
     # - model
-    assert (
-        out["model"].model.metadata.run_id == model_alias.run_id
-    ), "Model run id should be the same!"
+    assert out["model"].model.metadata.run_id == model_alias.run_id, (
+        "Model run id should be the same!"
+    )
     assert out["model"].model.metadata.signature is not None, "Model should have a signature!"
-    assert out["model"].model.metadata.flavors.get(
-        "python_function"
-    ), "Model should have a pyfunc flavor!"
+    assert out["model"].model.metadata.flavors.get("python_function"), (
+        "Model should have a pyfunc flavor!"
+    )
     # - outputs
     assert out["outputs"].ndim == 2, "Outputs should be a Serie!"
     # - alerting service

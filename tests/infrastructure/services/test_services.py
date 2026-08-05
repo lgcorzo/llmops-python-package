@@ -43,9 +43,9 @@ def test_alerts_service(
             plyer.notification.notify.assert_not_called(),
             "Notification method should not be called!",
         )
-        assert (
-            capsys.readouterr().out == "[autogen_team] test: hello\n"
-        ), "Notification should be printed to stdout!"
+        assert capsys.readouterr().out == "[autogen_team] test: hello\n", (
+            "Notification should be printed to stdout!"
+        )
 
 
 def test_mlflow_service(mlflow_service: services.MlflowService) -> None:
@@ -75,12 +75,12 @@ def test_mlflow_service(mlflow_service: services.MlflowService) -> None:
     assert client.get_experiment_by_name(service.experiment_name), "Experiment should be setup!"
     # - context
     assert context.info.run_name == run_config.name, "Context name should be the same!"
-    assert (
-        run_config.description in context.data.tags.values()
-    ), "Context desc. should be in tags values!"
-    assert (
-        context.data.tags.items() > run_config.tags.items()
-    ), "Context tags should be a subset of the given tags!"
+    assert run_config.description in context.data.tags.values(), (
+        "Context desc. should be in tags values!"
+    )
+    assert context.data.tags.items() > run_config.tags.items(), (
+        "Context tags should be a subset of the given tags!"
+    )
     assert context.info.status == "RUNNING", "Context should be running!"
     # - finished
     assert finished.info.status == "FINISHED", "Finished should be finished!"
