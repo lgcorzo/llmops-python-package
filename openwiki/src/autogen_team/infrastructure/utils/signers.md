@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: signers"
-source_path: "src/autogen_team/infrastructure/utils/signers.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/infrastructure/utils/signers.py
+source: src/autogen_team/infrastructure/utils/signers.py
 ---
 
-# Module Specification: signers
+# Document: src/autogen_team/infrastructure/utils/signers.py
 
-* **Source Reference:** `src/autogen_team/infrastructure/utils/signers.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Generate signatures for AI/ML models.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `signers`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `signers`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `abc`
 - `typing`
 - `mlflow`
@@ -32,43 +26,19 @@ Generate signatures for AI/ML models.
 - `mlflow.models.signature`
 - `autogen_team.core.schemas`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `Signer`
 - `InferSigner`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `Signer`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    abc.ABC <|-- Signer
-    pdt.BaseModel <|-- Signer
-    class Signer {
-        +KIND: str
-        +sign(inputs: schemas.Inputs, outputs: schemas.Outputs) : Signature
-    }
-    Signer <|-- InferSigner
-    class InferSigner {
-        +KIND: T.Literal['InferSigner']
-        +sign(inputs: schemas.Inputs, outputs: schemas.Outputs) : Signature
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `Signer` ([`src/autogen_team/infrastructure/utils/signers.py`](/src/autogen_team/infrastructure/utils/signers.py))
-#### Overview
 Base class for generating model signatures.
 
 Allow to switch between model signing strategies.
@@ -76,15 +46,14 @@ e.g., automatic inference, manual model signature, ...
 
 https://mlflow.org/docs/latest/models.html#model-signature-and-input-example
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`str`): Maintains the state for KIND.
+- `KIND` (str): Public property.
 
-#### Methods
-##### `sign(self: Any, inputs: schemas.Inputs, outputs: schemas.Outputs) -> Signature` (Public)
-**Description:** Generate a model signature from its inputs/outputs.
+### Public Method `sign`
+
+#### Description
+Generate a model signature from its inputs/outputs.
 
 Args:
     inputs (schemas.Inputs): inputs data.
@@ -93,60 +62,76 @@ Args:
 Returns:
     Signature: signature of the model.
 
-**Inputs:**
-- `inputs` (`schemas.Inputs`): Input parameter dictating the behavior of sign.
-- `outputs` (`schemas.Outputs`): Input parameter dictating the behavior of sign.
+#### Inputs
+- `inputs` (schemas.Inputs): semantic meaning. Required.
+- `outputs` (schemas.Outputs): semantic meaning. Required.
 
-**Output:**
-- Return Type: `Signature`
-- Semantic Meaning: The resulting value after processing the sign action.
+#### Output
+- Return type: `Signature`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Signer()
-result = instance.sign(...)
+# Example usage of sign
+instance.sign()
 ```
 
-### `InferSigner` ([`src/autogen_team/infrastructure/utils/signers.py`](/src/autogen_team/infrastructure/utils/signers.py))
-#### Overview
+## Class `InferSigner`
+
+### Overview
+
 Generate model signatures from inputs/outputs data.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['InferSigner']`): Maintains the state for KIND.
+- `KIND` (T.Literal[InferSigner]): Public property.
 
-#### Methods
-##### `sign(self: Any, inputs: schemas.Inputs, outputs: schemas.Outputs) -> Signature` (Public)
-**Description:** Executes the sign operation, mutating state or calculating derived values as necessary.
+### Public Method `sign`
 
-**Inputs:**
-- `inputs` (`schemas.Inputs`): Input parameter dictating the behavior of sign.
-- `outputs` (`schemas.Outputs`): Input parameter dictating the behavior of sign.
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `Signature`
-- Semantic Meaning: The resulting value after processing the sign action.
+#### Inputs
+- `inputs` (schemas.Inputs): semantic meaning. Required.
+- `outputs` (schemas.Outputs): semantic meaning. Required.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `Signature`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = InferSigner()
-result = instance.sign(...)
+# Example usage of sign
+instance.sign()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class Signer {
+  + sign()
+}
+abc.ABC <|-- Signer
+pdt.BaseModel <|-- Signer
+class InferSigner {
+  + sign()
+}
+Signer <|-- InferSigner
+@enduml
+```
+

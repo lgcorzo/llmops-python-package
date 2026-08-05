@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: kafka_app"
-source_path: "src/autogen_team/infrastructure/messaging/kafka_app.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/infrastructure/messaging/kafka_app.py
+source: src/autogen_team/infrastructure/messaging/kafka_app.py
 ---
 
-# Module Specification: kafka_app
+# Document: src/autogen_team/infrastructure/messaging/kafka_app.py
 
-* **Source Reference:** `src/autogen_team/infrastructure/messaging/kafka_app.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 FastAPI and Kafka Service for Predictions with Logging.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `kafka_app`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `kafka_app`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `json`
 - `logging`
 - `os`
@@ -54,257 +48,303 @@ FastAPI and Kafka Service for Predictions with Logging.
 - `autogen_team.registry.adapters.mlflow_adapter.CustomSaver`
 - `autogen_team.models`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `PredictionRequest`
 - `PredictionResponse`
 - `FastAPIKafkaService`
 
-**Exported Functions:**
+### Exported Functions
+- `health_check`
 - `main`
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `PredictionRequest`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    BaseModel <|-- PredictionRequest
-    class PredictionRequest {
-        +input_data: Dict[str, Any]
-        +validate_model() : DataFrameBase[InputsSchema]
-    }
-    BaseModel <|-- PredictionResponse
-    class PredictionResponse {
-        +result: Dict[str, Any]
-    }
-    class FastAPIKafkaService {
-        +__init__(prediction_callback: Callable[[PredictionRequest], PredictionResponse], producer_config: Dict[str, Any], consumer_config: Dict[str, Any], input_topic: str, output_topic: str) : Any
-        +delivery_report(err: Optional[KafkaError], msg: Any) : None
-        +start() : None
-        -_initialize_kafka_producer() : None
-        -_initialize_kafka_consumer() : None
-        -_run_server() : None
-        -_consume_messages() : None
-        -_poll_message() : Any
-        -_handle_message_error(msg: Any) : bool
-        -_process_message(msg: Any) : None
-        -_close_consumer() : None
-        +stop() : None
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `PredictionRequest` ([`src/autogen_team/infrastructure/messaging/kafka_app.py`](/src/autogen_team/infrastructure/messaging/kafka_app.py))
-#### Overview
 Request model for prediction.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `input_data` (`Dict[str, Any]`): Maintains the state for input_data.
+- `input_data` (Dict[(str, Any)]): Public property.
 
-#### Methods
-##### `validate_model(self: Any) -> DataFrameBase[InputsSchema]` (Public)
-**Description:** Validates the input data against InputsSchema.
+### Public Method `validate_model`
 
-**Inputs:**
+#### Description
+Validates the input data against InputsSchema.
 
-**Output:**
-- Return Type: `DataFrameBase[InputsSchema]`
-- Semantic Meaning: The resulting value after processing the validate_model action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `DataFrameBase[InputsSchema]`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = PredictionRequest()
-result = instance.validate_model(...)
+# Example usage of validate_model
+instance.validate_model()
 ```
 
-### `PredictionResponse` ([`src/autogen_team/infrastructure/messaging/kafka_app.py`](/src/autogen_team/infrastructure/messaging/kafka_app.py))
-#### Overview
+## Class `PredictionResponse`
+
+### Overview
+
 Response model for prediction.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `result` (`Dict[str, Any]`): Maintains the state for result.
+- `result` (Dict[(str, Any)]): Public property.
 
-#### Methods
-### `FastAPIKafkaService` ([`src/autogen_team/infrastructure/messaging/kafka_app.py`](/src/autogen_team/infrastructure/messaging/kafka_app.py))
-#### Overview
+## Class `FastAPIKafkaService`
+
+### Overview
+
 Service for deploying a FastAPI application with a Kafka producer and consumer.
 
-#### Constructor
-**Initialization:** Initializes `FastAPIKafkaService` with required dependencies and sets up initial internal state.
+### Constructor
 
-#### Methods
-##### `__init__(self: Any, prediction_callback: Callable[[PredictionRequest], PredictionResponse], producer_config: Dict[str, Any], consumer_config: Dict[str, Any], input_topic: str, output_topic: str) -> Any` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+No description provided.
 
-**Inputs:**
-- `prediction_callback` (`Callable[[PredictionRequest], PredictionResponse]`): Input parameter dictating the behavior of __init__.
-- `producer_config` (`Dict[str, Any]`): Input parameter dictating the behavior of __init__.
-- `consumer_config` (`Dict[str, Any]`): Input parameter dictating the behavior of __init__.
-- `input_topic` (`str`): Input parameter dictating the behavior of __init__.
-- `output_topic` (`str`): Input parameter dictating the behavior of __init__.
+**Parameters:**
+- `prediction_callback` (Callable[([PredictionRequest], PredictionResponse)])
+- `producer_config` (Dict[(str, Any)])
+- `consumer_config` (Dict[(str, Any)])
+- `input_topic` (str)
+- `output_topic` (str)
 
-**Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+### Public Method `delivery_report`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Description
+Called once for each message produced to indicate delivery result.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Inputs
+- `err` (Optional[KafkaError]): semantic meaning. Required.
+- `msg` (Any): semantic meaning. Required.
 
-**Example:**
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = FastAPIKafkaService()
-result = instance.__init__(...)
+# Example usage of delivery_report
+instance.delivery_report()
 ```
 
-##### `delivery_report(self: Any, err: Optional[KafkaError], msg: Any) -> None` (Public)
-**Description:** Called once for each message produced to indicate delivery result.
+### Public Method `start`
 
-**Inputs:**
-- `err` (`Optional[KafkaError]`): Input parameter dictating the behavior of delivery_report.
-- `msg` (`Any`): Input parameter dictating the behavior of delivery_report.
+#### Description
+Start the FastAPI application and Kafka consumer.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the delivery_report action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = FastAPIKafkaService()
-result = instance.delivery_report(...)
+# Example usage of start
+instance.start()
 ```
 
-##### `start(self: Any) -> None` (Public)
-**Description:** Start the FastAPI application and Kafka consumer.
+### Private Method `_initialize_kafka_producer`
 
-**Inputs:**
+**Purpose:** Initialize Kafka producer.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+**Parameters:**
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+**Return value:**
+- `None`
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+### Private Method `_initialize_kafka_consumer`
 
-**Example:**
+**Purpose:** Initialize Kafka consumer.
+
+**Parameters:**
+
+**Return value:**
+- `None`
+
+### Private Method `_run_server`
+
+**Purpose:** Run the FastAPI server.
+
+**Parameters:**
+
+**Return value:**
+- `None`
+
+### Private Method `_consume_messages`
+
+**Purpose:** Consume messages from Kafka topic and produce predictions.
+
+**Parameters:**
+
+**Return value:**
+- `None`
+
+### Private Method `_poll_message`
+
+**Purpose:** Poll message from Kafka consumer.
+
+**Parameters:**
+
+**Return value:**
+- `Any`
+
+### Private Method `_handle_message_error`
+
+**Purpose:** Handle errors in polled messages.
+
+**Parameters:**
+- `msg`: Any
+
+**Return value:**
+- `bool`
+
+### Private Method `_process_message`
+
+**Purpose:** Process a valid Kafka message.
+
+**Parameters:**
+- `msg`: Any
+
+**Return value:**
+- `None`
+
+### Private Method `_close_consumer`
+
+**Purpose:** Close the Kafka consumer.
+
+**Parameters:**
+
+**Return value:**
+- `None`
+
+### Public Method `stop`
+
+#### Description
+Stop the FastAPI application and Kafka consumer.
+
+#### Inputs
+None
+
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = FastAPIKafkaService()
-result = instance.start(...)
+# Example usage of stop
+instance.stop()
 ```
 
-##### `_initialize_kafka_producer(self: Any) -> None` (Private)
-- **Purpose**: Initialize Kafka producer.
-- **Parameters**:
-- **Return value**: `None`
+## Public Function `health_check`
 
-##### `_initialize_kafka_consumer(self: Any) -> None` (Private)
-- **Purpose**: Initialize Kafka consumer.
-- **Parameters**:
-- **Return value**: `None`
+### Description
+Simple health check endpoint to verify that the service is running.
 
-##### `_run_server(self: Any) -> None` (Private)
-- **Purpose**: Run the FastAPI server.
-- **Parameters**:
-- **Return value**: `None`
+### Inputs
+None
 
-##### `_consume_messages(self: Any) -> None` (Private)
-- **Purpose**: Consume messages from Kafka topic and produce predictions.
-- **Parameters**:
-- **Return value**: `None`
+### Output
+- Return type: `Dict[(str, str)]`
+- Semantic meaning: Result of the operation.
 
-##### `_poll_message(self: Any) -> Any` (Private)
-- **Purpose**: Poll message from Kafka consumer.
-- **Parameters**:
-- **Return value**: `Any`
+### Side Effects
+May update state or affect global resources.
 
-##### `_handle_message_error(self: Any, msg: Any) -> bool` (Private)
-- **Purpose**: Handle errors in polled messages.
-- **Parameters**:
-  - `msg`: Contextual argument for execution.
-- **Return value**: `bool`
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-##### `_process_message(self: Any, msg: Any) -> None` (Private)
-- **Purpose**: Process a valid Kafka message.
-- **Parameters**:
-  - `msg`: Contextual argument for execution.
-- **Return value**: `None`
-
-##### `_close_consumer(self: Any) -> None` (Private)
-- **Purpose**: Close the Kafka consumer.
-- **Parameters**:
-- **Return value**: `None`
-
-##### `stop(self: Any) -> None` (Public)
-**Description:** Stop the FastAPI application and Kafka consumer.
-
-**Inputs:**
-
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the stop action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
+### Example
 ```python
-instance = FastAPIKafkaService()
-result = instance.stop(...)
+# Example usage of health_check
+health_check()
 ```
 
-## 6. Module Functions
-### `main() -> None`
-**Description:** Standalone module function that executes the main workflow.
+## Public Function `main`
 
-**Inputs:**
+### Description
+No description provided.
 
-**Output:**
-- Return Type: `None`
+### Inputs
+None
 
-**Side Effects:**
-- Operations execute statelessly or affect module-level configuration.
+### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Example:**
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
 ```python
-result = main(...)
+# Example usage of main
+main()
+```
+
+## UML Diagram
+
+```plantuml
+@startuml
+class PredictionRequest {
+  + validate_model()
+}
+BaseModel <|-- PredictionRequest
+class PredictionResponse {
+}
+BaseModel <|-- PredictionResponse
+class FastAPIKafkaService {
+  + __init__()
+  + delivery_report()
+  + start()
+  - _initialize_kafka_producer()
+  - _initialize_kafka_consumer()
+  - _run_server()
+  - _consume_messages()
+  - _poll_message()
+  - _handle_message_error()
+  - _process_message()
+  - _close_consumer()
+  + stop()
+}
+@enduml
 ```

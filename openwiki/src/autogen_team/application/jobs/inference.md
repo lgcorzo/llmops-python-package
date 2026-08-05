@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: inference"
-source_path: "src/autogen_team/application/jobs/inference.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/jobs/inference.py
+source: src/autogen_team/application/jobs/inference.py
 ---
 
-# Module Specification: inference
+# Document: src/autogen_team/application/jobs/inference.py
 
-* **Source Reference:** `src/autogen_team/application/jobs/inference.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Define a job for generating batch predictions from a registered model.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `inference`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `inference`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `typing`
 - `pandas`
 - `pydantic`
@@ -33,40 +27,18 @@ Define a job for generating batch predictions from a registered model.
 - `autogen_team.data_access.adapters.datasets`
 - `autogen_team.registry.adapters.mlflow_adapter`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `InferenceJob`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `InferenceJob`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    base.Job <|-- InferenceJob
-    class InferenceJob {
-        +KIND: T.Literal['InferenceJob']
-        +inputs: datasets.ReaderKind
-        +outputs: datasets.WriterKind
-        +alias_or_version: str | int
-        +loader: registries.LoaderKind
-        +run() : base.Locals
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `InferenceJob` ([`src/autogen_team/application/jobs/inference.py`](/src/autogen_team/application/jobs/inference.py))
-#### Overview
 Generate batch predictions from a registered model.
 
 Parameters:
@@ -75,37 +47,47 @@ Parameters:
     alias_or_version (str | int): alias or version for the  model.
     loader (registries.LoaderKind): registry loader for the model.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['InferenceJob']`): Maintains the state for KIND.
-- `inputs` (`datasets.ReaderKind`): Maintains the state for inputs.
-- `outputs` (`datasets.WriterKind`): Maintains the state for outputs.
-- `alias_or_version` (`str | int`): Maintains the state for alias_or_version.
-- `loader` (`registries.LoaderKind`): Maintains the state for loader.
+- `KIND` (T.Literal[InferenceJob]): Public property.
+- `inputs` (datasets.ReaderKind): Public property.
+- `outputs` (datasets.WriterKind): Public property.
+- `alias_or_version` (str | int): Public property.
+- `loader` (registries.LoaderKind): Public property.
 
-#### Methods
-##### `run(self: Any) -> base.Locals` (Public)
-**Description:** Executes the run operation, mutating state or calculating derived values as necessary.
+### Public Method `run`
 
-**Inputs:**
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `base.Locals`
-- Semantic Meaning: The resulting value after processing the run action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `base.Locals`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = InferenceJob()
-result = instance.run(...)
+# Example usage of run
+instance.run()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class InferenceJob {
+  + run()
+}
+base.Job <|-- InferenceJob
+@enduml
+```
+

@@ -1,55 +1,38 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: security"
-source_path: "src/autogen_team/core/security.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/core/security.py
+source: src/autogen_team/core/security.py
 ---
 
-# Module Specification: security
+# Document: src/autogen_team/core/security.py
 
-* **Source Reference:** `src/autogen_team/core/security.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Security utilities for the application.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `security`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `security`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `os`
 
-**Exported Classes:**
+## Public API
 
-**Exported Functions:**
+### Exported Classes
+None
+
+### Exported Functions
 - `safe_join`
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Public Function `safe_join`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
-
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-No classes defined in this module.
-
-## 5. Class & Method Specifications
-## 6. Module Functions
-### `safe_join(base: str) -> str`
-**Description:** Safely join paths, ensuring the result is within the base directory.
+### Description
+Safely join paths, ensuring the result is within the base directory.
 
 Args:
     base (str): The base directory.
@@ -61,16 +44,30 @@ Returns:
 Raises:
     ValueError: If the resolved path is outside the base directory.
 
-**Inputs:**
-- `base` (`str`): Standard input parameter for safe_join.
+### Inputs
+- `base` (str): semantic meaning. Required.
 
-**Output:**
-- Return Type: `str`
+### Output
+- Return type: `str`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Operations execute statelessly or affect module-level configuration.
+### Side Effects
+May update state or affect global resources.
 
-**Example:**
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
 ```python
-result = safe_join(...)
+# Example usage of safe_join
+safe_join()
+```
+
+## UML Diagram
+
+```plantuml
+@startuml
+note "No classes in module" as N1
+@enduml
 ```

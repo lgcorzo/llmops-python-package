@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: mlflow_adapter"
-source_path: "src/autogen_team/registry/adapters/mlflow_adapter.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/registry/adapters/mlflow_adapter.py
+source: src/autogen_team/registry/adapters/mlflow_adapter.py
 ---
 
-# Module Specification: mlflow_adapter
+# Document: src/autogen_team/registry/adapters/mlflow_adapter.py
 
-* **Source Reference:** `src/autogen_team/registry/adapters/mlflow_adapter.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Savers, loaders, and registers for model registries.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `mlflow_adapter`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `mlflow_adapter`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `abc`
 - `json`
 - `os`
@@ -43,7 +37,9 @@ Savers, loaders, and registers for model registries.
 - `autogen_team.infrastructure.utils.signers`
 - `autogen_team.models.entities`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `Saver`
 - `CustomSaver`
 - `Loader`
@@ -51,67 +47,15 @@ Savers, loaders, and registers for model registries.
 - `Register`
 - `MlflowRegister`
 
-**Exported Functions:**
+### Exported Functions
 - `uri_for_model_alias`
 - `uri_for_model_version`
 - `uri_for_model_alias_or_version`
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `Saver`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    abc.ABC <|-- Saver
-    pdt.BaseModel <|-- Saver
-    class Saver {
-        +KIND: str
-        +path: str
-        +config_file: str
-        +save(model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) : Info
-    }
-    Saver <|-- CustomSaver
-    class CustomSaver {
-        +KIND: T.Literal['CustomSaver']
-        +save(model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) : Info
-    }
-    abc.ABC <|-- Loader
-    pdt.BaseModel <|-- Loader
-    class Loader {
-        +KIND: str
-        +load(uri: str) : 'Loader.Adapter'
-    }
-    Loader <|-- CustomLoader
-    class CustomLoader {
-        +KIND: T.Literal['CustomLoader']
-        +load(uri: str) : 'CustomLoader.Adapter'
-    }
-    abc.ABC <|-- Register
-    pdt.BaseModel <|-- Register
-    class Register {
-        +KIND: str
-        +tags: dict[str, T.Any]
-        +register(name: str, model_uri: str) : Version
-    }
-    Register <|-- MlflowRegister
-    class MlflowRegister {
-        +KIND: T.Literal['MlflowRegister']
-        +register(name: str, model_uri: str) : Version
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `Saver` ([`src/autogen_team/registry/adapters/mlflow_adapter.py`](/src/autogen_team/registry/adapters/mlflow_adapter.py))
-#### Overview
 Base class for saving models in registry.
 
 Separate model definition from serialization.
@@ -120,17 +64,16 @@ e.g., to switch between serialization flavors.
 Parameters:
     path (str): model path inside the Mlflow store.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`str`): Maintains the state for KIND.
-- `path` (`str`): Maintains the state for path.
-- `config_file` (`str`): Maintains the state for config_file.
+- `KIND` (str): Public property.
+- `path` (str): Public property.
+- `config_file` (str): Public property.
 
-#### Methods
-##### `save(self: Any, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info` (Public)
-**Description:** Save a model in the model registry.
+### Public Method `save`
+
+#### Description
+Save a model in the model registry.
 
 Args:
     model (models.Model): project model to save.
@@ -140,84 +83,86 @@ Args:
 Returns:
     Info: model saving information.
 
-**Inputs:**
-- `model` (`models.Model`): Input parameter dictating the behavior of save.
-- `signature` (`signers.Signature`): Input parameter dictating the behavior of save.
-- `input_example` (`schemas.Inputs`): Input parameter dictating the behavior of save.
+#### Inputs
+- `model` (models.Model): semantic meaning. Required.
+- `signature` (signers.Signature): semantic meaning. Required.
+- `input_example` (schemas.Inputs): semantic meaning. Required.
 
-**Output:**
-- Return Type: `Info`
-- Semantic Meaning: The resulting value after processing the save action.
+#### Output
+- Return type: `Info`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Saver()
-result = instance.save(...)
+# Example usage of save
+instance.save()
 ```
 
-### `CustomSaver` ([`src/autogen_team/registry/adapters/mlflow_adapter.py`](/src/autogen_team/registry/adapters/mlflow_adapter.py))
-#### Overview
+## Class `CustomSaver`
+
+### Overview
+
 Saver for project models using the Mlflow PyFunc module.
 
 https://mlflow.org/docs/latest/python_api/mlflow.pyfunc.html
 https://mlflow.org/blog/autogen-image-agent
 https://mlflow.org/blog/custom-pyfunc
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['CustomSaver']`): Maintains the state for KIND.
+- `KIND` (T.Literal[CustomSaver]): Public property.
 
-#### Methods
-##### `save(self: Any, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info` (Public)
-**Description:** Executes the save operation, mutating state or calculating derived values as necessary.
+### Public Method `save`
 
-**Inputs:**
-- `model` (`models.Model`): Input parameter dictating the behavior of save.
-- `signature` (`signers.Signature`): Input parameter dictating the behavior of save.
-- `input_example` (`schemas.Inputs`): Input parameter dictating the behavior of save.
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `Info`
-- Semantic Meaning: The resulting value after processing the save action.
+#### Inputs
+- `model` (models.Model): semantic meaning. Required.
+- `signature` (signers.Signature): semantic meaning. Required.
+- `input_example` (schemas.Inputs): semantic meaning. Required.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `Info`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = CustomSaver()
-result = instance.save(...)
+# Example usage of save
+instance.save()
 ```
 
-### `Loader` ([`src/autogen_team/registry/adapters/mlflow_adapter.py`](/src/autogen_team/registry/adapters/mlflow_adapter.py))
-#### Overview
+## Class `Loader`
+
+### Overview
+
 Base class for loading models from registry.
 
 Separate model definition from deserialization.
 e.g., to switch between deserialization flavors.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`str`): Maintains the state for KIND.
+- `KIND` (str): Public property.
 
-#### Methods
-##### `load(self: Any, uri: str) -> 'Loader.Adapter'` (Public)
-**Description:** Load a model from the model registry.
+### Public Method `load`
+
+#### Description
+Load a model from the model registry.
 
 Args:
     uri (str): URI of a model to load.
@@ -225,64 +170,67 @@ Args:
 Returns:
     Loader.Adapter: model loaded.
 
-**Inputs:**
-- `uri` (`str`): Input parameter dictating the behavior of load.
+#### Inputs
+- `uri` (str): semantic meaning. Required.
 
-**Output:**
-- Return Type: `'Loader.Adapter'`
-- Semantic Meaning: The resulting value after processing the load action.
+#### Output
+- Return type: `Loader.Adapter`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Loader()
-result = instance.load(...)
+# Example usage of load
+instance.load()
 ```
 
-### `CustomLoader` ([`src/autogen_team/registry/adapters/mlflow_adapter.py`](/src/autogen_team/registry/adapters/mlflow_adapter.py))
-#### Overview
+## Class `CustomLoader`
+
+### Overview
+
 Loader for custom models using the Mlflow PyFunc module.
 
 https://mlflow.org/docs/latest/python_api/mlflow.pyfunc.html
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['CustomLoader']`): Maintains the state for KIND.
+- `KIND` (T.Literal[CustomLoader]): Public property.
 
-#### Methods
-##### `load(self: Any, uri: str) -> 'CustomLoader.Adapter'` (Public)
-**Description:** Executes the load operation, mutating state or calculating derived values as necessary.
+### Public Method `load`
 
-**Inputs:**
-- `uri` (`str`): Input parameter dictating the behavior of load.
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `'CustomLoader.Adapter'`
-- Semantic Meaning: The resulting value after processing the load action.
+#### Inputs
+- `uri` (str): semantic meaning. Required.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `CustomLoader.Adapter`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = CustomLoader()
-result = instance.load(...)
+# Example usage of load
+instance.load()
 ```
 
-### `Register` ([`src/autogen_team/registry/adapters/mlflow_adapter.py`](/src/autogen_team/registry/adapters/mlflow_adapter.py))
-#### Overview
+## Class `Register`
+
+### Overview
+
 Base class for registring models to a location.
 
 Separate model definition from its registration.
@@ -291,16 +239,15 @@ e.g., to change the model registry backend.
 Parameters:
     tags (dict[str, T.Any]): tags for the model.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`str`): Maintains the state for KIND.
-- `tags` (`dict[str, T.Any]`): Maintains the state for tags.
+- `KIND` (str): Public property.
+- `tags` (dict[(str, T.Any)]): Public property.
 
-#### Methods
-##### `register(self: Any, name: str, model_uri: str) -> Version` (Public)
-**Description:** Register a model given its name and URI.
+### Public Method `register`
+
+#### Description
+Register a model given its name and URI.
 
 Args:
     name (str): name of the model to register.
@@ -309,67 +256,69 @@ Args:
 Returns:
     Version: information about the registered model.
 
-**Inputs:**
-- `name` (`str`): Input parameter dictating the behavior of register.
-- `model_uri` (`str`): Input parameter dictating the behavior of register.
+#### Inputs
+- `name` (str): semantic meaning. Required.
+- `model_uri` (str): semantic meaning. Required.
 
-**Output:**
-- Return Type: `Version`
-- Semantic Meaning: The resulting value after processing the register action.
+#### Output
+- Return type: `Version`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Register()
-result = instance.register(...)
+# Example usage of register
+instance.register()
 ```
 
-### `MlflowRegister` ([`src/autogen_team/registry/adapters/mlflow_adapter.py`](/src/autogen_team/registry/adapters/mlflow_adapter.py))
-#### Overview
+## Class `MlflowRegister`
+
+### Overview
+
 Register for models in the Mlflow Model Registry.
 
 https://mlflow.org/docs/latest/model-registry.html
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['MlflowRegister']`): Maintains the state for KIND.
+- `KIND` (T.Literal[MlflowRegister]): Public property.
 
-#### Methods
-##### `register(self: Any, name: str, model_uri: str) -> Version` (Public)
-**Description:** Executes the register operation, mutating state or calculating derived values as necessary.
+### Public Method `register`
 
-**Inputs:**
-- `name` (`str`): Input parameter dictating the behavior of register.
-- `model_uri` (`str`): Input parameter dictating the behavior of register.
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `Version`
-- Semantic Meaning: The resulting value after processing the register action.
+#### Inputs
+- `name` (str): semantic meaning. Required.
+- `model_uri` (str): semantic meaning. Required.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `Version`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = MlflowRegister()
-result = instance.register(...)
+# Example usage of register
+instance.register()
 ```
 
-## 6. Module Functions
-### `uri_for_model_alias(name: str, alias: str) -> str`
-**Description:** Create a model URI from a model name and an alias.
+## Public Function `uri_for_model_alias`
+
+### Description
+Create a model URI from a model name and an alias.
 
 Args:
     name (str): name of the mlflow registered model.
@@ -378,23 +327,31 @@ Args:
 Returns:
     str: model URI as "models:/name@alias".
 
-**Inputs:**
-- `name` (`str`): Standard input parameter for uri_for_model_alias.
-- `alias` (`str`): Standard input parameter for uri_for_model_alias.
+### Inputs
+- `name` (str): semantic meaning. Required.
+- `alias` (str): semantic meaning. Required.
 
-**Output:**
-- Return Type: `str`
+### Output
+- Return type: `str`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Operations execute statelessly or affect module-level configuration.
+### Side Effects
+May update state or affect global resources.
 
-**Example:**
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
 ```python
-result = uri_for_model_alias(...)
+# Example usage of uri_for_model_alias
+uri_for_model_alias()
 ```
 
-### `uri_for_model_version(name: str, version: str) -> str`
-**Description:** Create a model URI from a model name and a version.
+## Public Function `uri_for_model_version`
+
+### Description
+Create a model URI from a model name and a version.
 
 Args:
     name (str): name of the mlflow registered model.
@@ -403,23 +360,31 @@ Args:
 Returns:
     str: model URI as "models:/name/version."
 
-**Inputs:**
-- `name` (`str`): Standard input parameter for uri_for_model_version.
-- `version` (`str`): Standard input parameter for uri_for_model_version.
+### Inputs
+- `name` (str): semantic meaning. Required.
+- `version` (str): semantic meaning. Required.
 
-**Output:**
-- Return Type: `str`
+### Output
+- Return type: `str`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Operations execute statelessly or affect module-level configuration.
+### Side Effects
+May update state or affect global resources.
 
-**Example:**
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
 ```python
-result = uri_for_model_version(...)
+# Example usage of uri_for_model_version
+uri_for_model_version()
 ```
 
-### `uri_for_model_alias_or_version(name: str, alias_or_version: str | int) -> str`
-**Description:** Create a model URi from a model name and an alias or version.
+## Public Function `uri_for_model_alias_or_version`
+
+### Description
+Create a model URi from a model name and an alias or version.
 
 Args:
     name (str): name of the mlflow registered model.
@@ -428,17 +393,57 @@ Args:
 Returns:
     str: model URI as "models:/name@alias" or "models:/name/version" based on input.
 
-**Inputs:**
-- `name` (`str`): Standard input parameter for uri_for_model_alias_or_version.
-- `alias_or_version` (`str | int`): Standard input parameter for uri_for_model_alias_or_version.
+### Inputs
+- `name` (str): semantic meaning. Required.
+- `alias_or_version` (str | int): semantic meaning. Required.
 
-**Output:**
-- Return Type: `str`
+### Output
+- Return type: `str`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Operations execute statelessly or affect module-level configuration.
+### Side Effects
+May update state or affect global resources.
 
-**Example:**
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
 ```python
-result = uri_for_model_alias_or_version(...)
+# Example usage of uri_for_model_alias_or_version
+uri_for_model_alias_or_version()
+```
+
+## UML Diagram
+
+```plantuml
+@startuml
+class Saver {
+  + save()
+}
+abc.ABC <|-- Saver
+pdt.BaseModel <|-- Saver
+class CustomSaver {
+  + save()
+}
+Saver <|-- CustomSaver
+class Loader {
+  + load()
+}
+abc.ABC <|-- Loader
+pdt.BaseModel <|-- Loader
+class CustomLoader {
+  + load()
+}
+Loader <|-- CustomLoader
+class Register {
+  + register()
+}
+abc.ABC <|-- Register
+pdt.BaseModel <|-- Register
+class MlflowRegister {
+  + register()
+}
+Register <|-- MlflowRegister
+@enduml
 ```

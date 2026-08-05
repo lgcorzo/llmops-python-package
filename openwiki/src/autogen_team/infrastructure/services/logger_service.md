@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: logger_service"
-source_path: "src/autogen_team/infrastructure/services/logger_service.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/infrastructure/services/logger_service.py
+source: src/autogen_team/infrastructure/services/logger_service.py
 ---
 
-# Module Specification: logger_service
+# Document: src/autogen_team/infrastructure/services/logger_service.py
 
-* **Source Reference:** `src/autogen_team/infrastructure/services/logger_service.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Logger Service - Logging with OpenTelemetry.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `logger_service`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `logger_service`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `__future__.annotations`
 - `abc`
 - `logging`
@@ -42,199 +36,191 @@ Logger Service - Logging with OpenTelemetry.
 - `opentelemetry.sdk.trace.TracerProvider`
 - `opentelemetry.sdk.trace.export.BatchSpanProcessor`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `PropagateHandler`
 - `Service`
 - `LoggerService`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `PropagateHandler`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+Represents `PropagateHandler` and provides business capabilities.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    logging.Handler <|-- PropagateHandler
-    class PropagateHandler {
-        +emit(record: logging.LogRecord) : None
-    }
-    abc.ABC <|-- Service
-    pdt.BaseModel <|-- Service
-    class Service {
-        +start() : None
-        +stop() : None
-    }
-    Service <|-- LoggerService
-    class LoggerService {
-        +sink: str
-        +level: str
-        +format: str
-        +colorize: bool
-        +serialize: bool
-        +backtrace: bool
-        +diagnose: bool
-        +catch: bool
-        +start() : None
-        +logger() : loguru.Logger
-    }
-@enduml
-```
+### Public Method `emit`
 
-## 5. Class & Method Specifications
-### `PropagateHandler` ([`src/autogen_team/infrastructure/services/logger_service.py`](/src/autogen_team/infrastructure/services/logger_service.py))
-#### Overview
-The `PropagateHandler` class provides specialized capabilities within the `logger_service` module, coordinating state and behaviors specific to its domain.
+#### Description
+No description provided.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+#### Inputs
+- `record` (logging.LogRecord): semantic meaning. Required.
 
-#### Methods
-##### `emit(self: Any, record: logging.LogRecord) -> None` (Public)
-**Description:** Executes the emit operation, mutating state or calculating derived values as necessary.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Inputs:**
-- `record` (`logging.LogRecord`): Input parameter dictating the behavior of emit.
+#### Side Effects
+May update internal state or external services.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the emit action.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
+#### Example
 ```python
-instance = PropagateHandler()
-result = instance.emit(...)
+# Example usage of emit
+instance.emit()
 ```
 
-### `Service` ([`src/autogen_team/infrastructure/services/logger_service.py`](/src/autogen_team/infrastructure/services/logger_service.py))
-#### Overview
+## Class `Service`
+
+### Overview
+
 Base class for a global service.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Public Method `start`
 
-#### Methods
-##### `start(self: Any) -> None` (Public)
-**Description:** Start the service.
+#### Description
+Start the service.
 
-**Inputs:**
+#### Inputs
+None
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Service()
-result = instance.start(...)
+# Example usage of start
+instance.start()
 ```
 
-##### `stop(self: Any) -> None` (Public)
-**Description:** Stop the service.
+### Public Method `stop`
 
-**Inputs:**
+#### Description
+Stop the service.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the stop action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = Service()
-result = instance.stop(...)
+# Example usage of stop
+instance.stop()
 ```
 
-### `LoggerService` ([`src/autogen_team/infrastructure/services/logger_service.py`](/src/autogen_team/infrastructure/services/logger_service.py))
-#### Overview
+## Class `LoggerService`
+
+### Overview
+
 Service for logging messages.
 
 https://loguru.readthedocs.io/en/stable/api/logger.html
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `sink` (`str`): Maintains the state for sink.
-- `level` (`str`): Maintains the state for level.
-- `format` (`str`): Maintains the state for format.
-- `colorize` (`bool`): Maintains the state for colorize.
-- `serialize` (`bool`): Maintains the state for serialize.
-- `backtrace` (`bool`): Maintains the state for backtrace.
-- `diagnose` (`bool`): Maintains the state for diagnose.
-- `catch` (`bool`): Maintains the state for catch.
+- `sink` (str): Public property.
+- `level` (str): Public property.
+- `format` (str): Public property.
+- `colorize` (bool): Public property.
+- `serialize` (bool): Public property.
+- `backtrace` (bool): Public property.
+- `diagnose` (bool): Public property.
+- `catch` (bool): Public property.
 
-#### Methods
-##### `start(self: Any) -> None` (Public)
-**Description:** Executes the start operation, mutating state or calculating derived values as necessary.
+### Public Method `start`
 
-**Inputs:**
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = LoggerService()
-result = instance.start(...)
+# Example usage of start
+instance.start()
 ```
 
-##### `logger(self: Any) -> loguru.Logger` (Public)
-**Description:** Return the main logger.
+### Public Method `logger`
 
-**Inputs:**
+#### Description
+Return the main logger.
 
-**Output:**
-- Return Type: `loguru.Logger`
-- Semantic Meaning: The resulting value after processing the logger action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `loguru.Logger`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = LoggerService()
-result = instance.logger(...)
+# Example usage of logger
+instance.logger()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class PropagateHandler {
+  + emit()
+}
+logging.Handler <|-- PropagateHandler
+class Service {
+  + start()
+  + stop()
+}
+abc.ABC <|-- Service
+pdt.BaseModel <|-- Service
+class LoggerService {
+  + start()
+  + logger()
+}
+Service <|-- LoggerService
+@enduml
+```
+

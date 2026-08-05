@@ -1,91 +1,68 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: entities"
-source_path: "src/autogen_team/registry/entities.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/registry/entities.py
+source: src/autogen_team/registry/entities.py
 ---
 
-# Module Specification: entities
+# Document: src/autogen_team/registry/entities.py
 
-* **Source Reference:** `src/autogen_team/registry/entities.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Registry Domain Entities.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `entities`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `entities`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `dataclasses.dataclass`
 - `typing.Optional`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `ModelVersion`
 - `ModelInfo`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `ModelVersion`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+Represents a registered model version.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
+### Attributes
+
+- `name` (str): Public property.
+- `version` (str): Public property.
+- `model_uri` (str): Public property.
+- `stage` (str): Public property.
+
+## Class `ModelInfo`
+
+### Overview
+
+Represents model metadata.
+
+### Attributes
+
+- `model_uri` (str): Public property.
+- `run_id` (Optional[str]): Public property.
+
+## UML Diagram
+
 ```plantuml
 @startuml
-    class ModelVersion {
-        +name: str
-        +version: str
-        +model_uri: str
-        +stage: str
-    }
-    class ModelInfo {
-        +model_uri: str
-        +run_id: Optional[str]
-    }
+class ModelVersion {
+}
+class ModelInfo {
+}
 @enduml
 ```
 
-## 5. Class & Method Specifications
-### `ModelVersion` ([`src/autogen_team/registry/entities.py`](/src/autogen_team/registry/entities.py))
-#### Overview
-Represents a registered model version.
-
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
-
-#### Attributes
-- `name` (`str`): Maintains the state for name.
-- `version` (`str`): Maintains the state for version.
-- `model_uri` (`str`): Maintains the state for model_uri.
-- `stage` (`str`): Maintains the state for stage.
-
-#### Methods
-### `ModelInfo` ([`src/autogen_team/registry/entities.py`](/src/autogen_team/registry/entities.py))
-#### Overview
-Represents model metadata.
-
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
-
-#### Attributes
-- `model_uri` (`str`): Maintains the state for model_uri.
-- `run_id` (`Optional[str]`): Maintains the state for run_id.
-
-#### Methods
-## 6. Module Functions

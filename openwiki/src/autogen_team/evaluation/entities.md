@@ -1,71 +1,52 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: entities"
-source_path: "src/autogen_team/evaluation/entities.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/evaluation/entities.py
+source: src/autogen_team/evaluation/entities.py
 ---
 
-# Module Specification: entities
+# Document: src/autogen_team/evaluation/entities.py
 
-* **Source Reference:** `src/autogen_team/evaluation/entities.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Evaluation Domain Entities.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `entities`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `entities`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `dataclasses.dataclass`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `MetricResult`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `MetricResult`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+Represents a metric evaluation result.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
+### Attributes
+
+- `name` (str): Public property.
+- `value` (float): Public property.
+- `greater_is_better` (bool): Public property.
+
+## UML Diagram
+
 ```plantuml
 @startuml
-    class MetricResult {
-        +name: str
-        +value: float
-        +greater_is_better: bool
-    }
+class MetricResult {
+}
 @enduml
 ```
 
-## 5. Class & Method Specifications
-### `MetricResult` ([`src/autogen_team/evaluation/entities.py`](/src/autogen_team/evaluation/entities.py))
-#### Overview
-Represents a metric evaluation result.
-
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
-
-#### Attributes
-- `name` (`str`): Maintains the state for name.
-- `value` (`float`): Maintains the state for value.
-- `greater_is_better` (`bool`): Maintains the state for greater_is_better.
-
-#### Methods
-## 6. Module Functions

@@ -1,89 +1,81 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: reviewer_agent"
-source_path: "src/autogen_team/application/agents/reviewer_agent.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/agents/reviewer_agent.py
+source: src/autogen_team/application/agents/reviewer_agent.py
 ---
 
-# Module Specification: reviewer_agent
+# Document: src/autogen_team/application/agents/reviewer_agent.py
 
-* **Source Reference:** `src/autogen_team/application/agents/reviewer_agent.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
-[No description available. LLM synthesis required.]
+### Purpose
+Provides functionality for `reviewer_agent`.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Responsibilities
+Handles operations and definitions related to `reviewer_agent`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
 
-## 2. Dependencies
-**Imports:**
+### Dependencies
 - `typing.List`
 - `autogen_team.infrastructure.client.mcp_client.MCPClient`
 - `autogen_team.infrastructure.messaging.a2a_protocol.ReviewResult`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `ReviewerAgent`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `ReviewerAgent`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    class ReviewerAgent {
-        +__init__() : None
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `ReviewerAgent` ([`src/autogen_team/application/agents/reviewer_agent.py`](/src/autogen_team/application/agents/reviewer_agent.py))
-#### Overview
 Agent responsible for reviewing code changes.
 Uses the MCP 'security_review' tool.
 
-#### Constructor
-**Initialization:** Initializes `ReviewerAgent` with required dependencies and sets up initial internal state.
+### Constructor
 
-#### Methods
-##### `__init__(self: Any) -> None` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+No description provided.
 
-**Inputs:**
+**Parameters:**
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+### Public Method `review_changes`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Description
+Calls the `security_review` tool via MCP.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Inputs
+- `mission_id` (str): semantic meaning. Required.
+- `file_changes` (List[str]): semantic meaning. Required.
 
-**Example:**
+#### Output
+- Return type: `ReviewResult`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = ReviewerAgent()
-result = instance.__init__(...)
+# Example usage of review_changes
+instance.review_changes()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class ReviewerAgent {
+  + __init__()
+  + review_changes()
+}
+@enduml
+```
+

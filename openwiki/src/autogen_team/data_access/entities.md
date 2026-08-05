@@ -1,74 +1,54 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: entities"
-source_path: "src/autogen_team/data_access/entities.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/data_access/entities.py
+source: src/autogen_team/data_access/entities.py
 ---
 
-# Module Specification: entities
+# Document: src/autogen_team/data_access/entities.py
 
-* **Source Reference:** `src/autogen_team/data_access/entities.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Data Access Domain Entities.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `entities`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `entities`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `dataclasses.dataclass`
 - `typing.Optional`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `DatasetDescriptor`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `DatasetDescriptor`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+Describes a dataset source.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
+### Attributes
+
+- `name` (str): Public property.
+- `path` (str): Public property.
+- `format` (str): Public property.
+- `columns` (Optional[list[str]]): Public property.
+
+## UML Diagram
+
 ```plantuml
 @startuml
-    class DatasetDescriptor {
-        +name: str
-        +path: str
-        +format: str
-        +columns: Optional[list[str]]
-    }
+class DatasetDescriptor {
+}
 @enduml
 ```
 
-## 5. Class & Method Specifications
-### `DatasetDescriptor` ([`src/autogen_team/data_access/entities.py`](/src/autogen_team/data_access/entities.py))
-#### Overview
-Describes a dataset source.
-
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
-
-#### Attributes
-- `name` (`str`): Maintains the state for name.
-- `path` (`str`): Maintains the state for path.
-- `format` (`str`): Maintains the state for format.
-- `columns` (`Optional[list[str]]`): Maintains the state for columns.
-
-#### Methods
-## 6. Module Functions

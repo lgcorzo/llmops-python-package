@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: security_review"
-source_path: "src/autogen_team/application/mcp/tools/security_review.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/mcp/tools/security_review.py
+source: src/autogen_team/application/mcp/tools/security_review.py
 ---
 
-# Module Specification: security_review
+# Document: src/autogen_team/application/mcp/tools/security_review.py
 
-* **Source Reference:** `src/autogen_team/application/mcp/tools/security_review.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Security Review tool — analyzes code diffs against OWASP patterns and R2R RAG.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `security_review`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `security_review`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `__future__.annotations`
 - `json`
 - `re`
@@ -34,29 +28,17 @@ Security Review tool — analyzes code diffs against OWASP patterns and R2R RAG.
 - `litellm`
 - `autogen_team.infrastructure.services.mcp_service.MCPService`
 
-**Exported Classes:**
+## Public API
 
-**Exported Functions:**
-- `_scan_owasp_patterns`
+### Exported Classes
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+### Exported Functions
+- `security_review`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+## Private Function `_scan_owasp_patterns`
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-No classes defined in this module.
-
-## 5. Class & Method Specifications
-## 6. Module Functions
-### `_scan_owasp_patterns(diff: str) -> T.List[T.Dict[str, str]]`
-**Description:** Scan diff against OWASP patterns.
+**Purpose:** Scan diff against OWASP patterns.
 
 Args:
     diff: The code diff string to analyze.
@@ -64,16 +46,65 @@ Args:
 Returns:
     List of findings dicts with rule, severity, location, description.
 
-**Inputs:**
-- `diff` (`str`): Standard input parameter for _scan_owasp_patterns.
+**Parameters:**
+- `diff`: str
 
-**Output:**
-- Return Type: `T.List[T.Dict[str, str]]`
+**Return value:**
+- `T.List[T.Dict[(str, str)]]`
 
-**Side Effects:**
-- Operations execute statelessly or affect module-level configuration.
+## Private Function `_query_r2r_security`
 
-**Example:**
+**Purpose:** Query R2R RAG for security best practices relevant to the diff.
+
+Args:
+    diff: Code diff to find context for.
+    r2r_base_url: R2R API base URL.
+
+Returns:
+    List of relevant security documents.
+
+**Parameters:**
+- `diff`: str
+- `r2r_base_url`: str
+
+**Return value:**
+- `T.List[T.Dict[(str, T.Any)]]`
+
+## Public Function `security_review`
+
+### Description
+Analyze code diffs against OWASP patterns and R2R RAG security knowledge.
+
+Args:
+    diff: The code diff string to review.
+
+Returns:
+    Dict with status (approved/rejected) and findings list.
+
+### Inputs
+- `diff` (str): semantic meaning. Required.
+
+### Output
+- Return type: `T.Dict[(str, T.Any)]`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
 ```python
-result = _scan_owasp_patterns(...)
+# Example usage of security_review
+security_review()
+```
+
+## UML Diagram
+
+```plantuml
+@startuml
+note "No classes in module" as N1
+@enduml
 ```

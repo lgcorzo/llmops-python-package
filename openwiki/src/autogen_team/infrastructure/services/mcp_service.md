@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: mcp_service"
-source_path: "src/autogen_team/infrastructure/services/mcp_service.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/infrastructure/services/mcp_service.py
+source: src/autogen_team/infrastructure/services/mcp_service.py
 ---
 
-# Module Specification: mcp_service
+# Document: src/autogen_team/infrastructure/services/mcp_service.py
 
-* **Source Reference:** `src/autogen_team/infrastructure/services/mcp_service.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 MCP Service - Model Context Protocol Server Lifecycle.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `mcp_service`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `mcp_service`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `__future__.annotations`
 - `typing`
 - `typing.ClassVar`
@@ -34,47 +28,18 @@ MCP Service - Model Context Protocol Server Lifecycle.
 - `autogen_team.infrastructure.io.osvariables.Env`
 - `logger_service.Service`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `MCPService`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `MCPService`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    Service <|-- MCPService
-    class MCPService {
-        +env: ClassVar[Env]
-        +litellm_api_base: str
-        +litellm_api_key: str
-        +litellm_model: str
-        +r2r_base_url: str
-        +prompts_path: str
-        +_r2r_client: httpx.AsyncClient | None
-        +_prompts: dict[str, T.Any] | None
-        +start() : None
-        -_load_prompts() : None
-        +get_prompt(tool_name: str, key: str) : str
-        +stop() : None
-        +r2r_client() : httpx.AsyncClient
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `MCPService` ([`src/autogen_team/infrastructure/services/mcp_service.py`](/src/autogen_team/infrastructure/services/mcp_service.py))
-#### Overview
 Service for MCP server lifecycle and backend clients.
 
 Manages LiteLLM and R2R HTTP client initialization, providing
@@ -86,113 +51,137 @@ Parameters:
     litellm_model (str): Default LiteLLM model identifier.
     r2r_base_url (str): R2R RAG API base URL.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `env` (`ClassVar[Env]`): Maintains the state for env.
-- `litellm_api_base` (`str`): Maintains the state for litellm_api_base.
-- `litellm_api_key` (`str`): Maintains the state for litellm_api_key.
-- `litellm_model` (`str`): Maintains the state for litellm_model.
-- `r2r_base_url` (`str`): Maintains the state for r2r_base_url.
-- `prompts_path` (`str`): Maintains the state for prompts_path.
-- `_r2r_client` (`httpx.AsyncClient | None`): Maintains the state for _r2r_client.
-- `_prompts` (`dict[str, T.Any] | None`): Maintains the state for _prompts.
+- `env` (ClassVar[Env]): Public property.
+- `litellm_api_base` (str): Public property.
+- `litellm_api_key` (str): Public property.
+- `litellm_model` (str): Public property.
+- `r2r_base_url` (str): Public property.
+- `prompts_path` (str): Public property.
 
-#### Methods
-##### `start(self: Any) -> None` (Public)
-**Description:** Initialize LiteLLM configuration and R2R HTTP client.
+### Public Method `start`
 
-**Inputs:**
+#### Description
+Initialize LiteLLM configuration and R2R HTTP client.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = MCPService()
-result = instance.start(...)
+# Example usage of start
+instance.start()
 ```
 
-##### `_load_prompts(self: Any) -> None` (Private)
-- **Purpose**: Load prompts from YAML file.
-- **Parameters**:
-- **Return value**: `None`
+### Private Method `_load_prompts`
 
-##### `get_prompt(self: Any, tool_name: str, key: str) -> str` (Public)
-**Description:** Get a specific prompt for a tool and key.
+**Purpose:** Load prompts from YAML file.
 
-**Inputs:**
-- `tool_name` (`str`): Input parameter dictating the behavior of get_prompt.
-- `key` (`str`): Input parameter dictating the behavior of get_prompt.
+**Parameters:**
 
-**Output:**
-- Return Type: `str`
-- Semantic Meaning: The resulting value after processing the get_prompt action.
+**Return value:**
+- `None`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+### Public Method `get_prompt`
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Description
+Get a specific prompt for a tool and key.
 
-**Example:**
+#### Inputs
+- `tool_name` (str): semantic meaning. Required.
+- `key` (str): semantic meaning. Optional (default: `'system'`).
+
+#### Output
+- Return type: `str`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = MCPService()
-result = instance.get_prompt(...)
+# Example usage of get_prompt
+instance.get_prompt()
 ```
 
-##### `stop(self: Any) -> None` (Public)
-**Description:** Stop the MCP service and close HTTP clients.
+### Public Method `stop`
 
-**Inputs:**
+#### Description
+Stop the MCP service and close HTTP clients.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the stop action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = MCPService()
-result = instance.stop(...)
+# Example usage of stop
+instance.stop()
 ```
 
-##### `r2r_client(self: Any) -> httpx.AsyncClient` (Public)
-**Description:** Return the R2R async HTTP client.
+### Public Method `r2r_client`
 
-**Inputs:**
+#### Description
+Return the R2R async HTTP client.
 
-**Output:**
-- Return Type: `httpx.AsyncClient`
-- Semantic Meaning: The resulting value after processing the r2r_client action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `httpx.AsyncClient`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = MCPService()
-result = instance.r2r_client(...)
+# Example usage of r2r_client
+instance.r2r_client()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class MCPService {
+  + start()
+  - _load_prompts()
+  + get_prompt()
+  + stop()
+  + r2r_client()
+}
+Service <|-- MCPService
+@enduml
+```
+

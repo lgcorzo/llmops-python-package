@@ -1,53 +1,76 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: generate_mission_docs"
-source_path: "src/autogen_team/application/mcp/tools/generate_mission_docs.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/mcp/tools/generate_mission_docs.py
+source: src/autogen_team/application/mcp/tools/generate_mission_docs.py
 ---
 
-# Module Specification: generate_mission_docs
+# Document: src/autogen_team/application/mcp/tools/generate_mission_docs.py
 
-* **Source Reference:** `src/autogen_team/application/mcp/tools/generate_mission_docs.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Generate Mission Documentation tool — creates Mermaid diagrams from mission results.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `generate_mission_docs`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `generate_mission_docs`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `__future__.annotations`
 - `json`
 - `typing`
 - `litellm`
 - `autogen_team.infrastructure.services.mcp_service.MCPService`
 
-**Exported Classes:**
+## Public API
 
-**Exported Functions:**
+### Exported Classes
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+### Exported Functions
+- `generate_mission_docs`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+## Public Function `generate_mission_docs`
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+### Description
+Generate Mermaid diagrams and documentation for a mission.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
-No classes defined in this module.
+Args:
+    mission_id: Unique identifier for the mission.
+    mission_context: Context including goal, tasks, results, and file changes.
 
-## 5. Class & Method Specifications
-## 6. Module Functions
+Returns:
+    A dict containing generated Mermaid diagrams and documentation.
+
+### Inputs
+- `mission_id` (str): semantic meaning. Required.
+- `mission_context` (T.Dict[(str, T.Any)]): semantic meaning. Required.
+
+### Output
+- Return type: `T.Dict[(str, T.Any)]`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
+```python
+# Example usage of generate_mission_docs
+generate_mission_docs()
+```
+
+## UML Diagram
+
+```plantuml
+@startuml
+note "No classes in module" as N1
+@enduml
+```
+

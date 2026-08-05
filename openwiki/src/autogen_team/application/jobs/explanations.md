@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: explanations"
-source_path: "src/autogen_team/application/jobs/explanations.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/jobs/explanations.py
+source: src/autogen_team/application/jobs/explanations.py
 ---
 
-# Module Specification: explanations
+# Document: src/autogen_team/application/jobs/explanations.py
 
-* **Source Reference:** `src/autogen_team/application/jobs/explanations.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Define a job for explaining the model structure and decisions.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `explanations`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `explanations`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `typing`
 - `pydantic`
 - `autogen_team.application.jobs.base`
@@ -32,41 +26,18 @@ Define a job for explaining the model structure and decisions.
 - `autogen_team.data_access.adapters.datasets`
 - `autogen_team.registry.adapters.mlflow_adapter`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `ExplanationsJob`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `ExplanationsJob`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    base.Job <|-- ExplanationsJob
-    class ExplanationsJob {
-        +KIND: T.Literal['ExplanationsJob']
-        +inputs_samples: datasets.ReaderKind
-        +models_explanations: datasets.WriterKind
-        +samples_explanations: datasets.WriterKind
-        +alias_or_version: str | int
-        +loader: registries.LoaderKind
-        +run() : base.Locals
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `ExplanationsJob` ([`src/autogen_team/application/jobs/explanations.py`](/src/autogen_team/application/jobs/explanations.py))
-#### Overview
 Generate explanations from the model and a data sample.
 
 Parameters:
@@ -76,38 +47,48 @@ Parameters:
     alias_or_version (str | int): alias or version for the  model.
     loader (registries.LoaderKind): registry loader for the model.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['ExplanationsJob']`): Maintains the state for KIND.
-- `inputs_samples` (`datasets.ReaderKind`): Maintains the state for inputs_samples.
-- `models_explanations` (`datasets.WriterKind`): Maintains the state for models_explanations.
-- `samples_explanations` (`datasets.WriterKind`): Maintains the state for samples_explanations.
-- `alias_or_version` (`str | int`): Maintains the state for alias_or_version.
-- `loader` (`registries.LoaderKind`): Maintains the state for loader.
+- `KIND` (T.Literal[ExplanationsJob]): Public property.
+- `inputs_samples` (datasets.ReaderKind): Public property.
+- `models_explanations` (datasets.WriterKind): Public property.
+- `samples_explanations` (datasets.WriterKind): Public property.
+- `alias_or_version` (str | int): Public property.
+- `loader` (registries.LoaderKind): Public property.
 
-#### Methods
-##### `run(self: Any) -> base.Locals` (Public)
-**Description:** Executes the run operation, mutating state or calculating derived values as necessary.
+### Public Method `run`
 
-**Inputs:**
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `base.Locals`
-- Semantic Meaning: The resulting value after processing the run action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `base.Locals`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = ExplanationsJob()
-result = instance.run(...)
+# Example usage of run
+instance.run()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class ExplanationsJob {
+  + run()
+}
+base.Job <|-- ExplanationsJob
+@enduml
+```
+

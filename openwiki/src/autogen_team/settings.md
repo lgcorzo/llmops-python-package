@@ -1,88 +1,69 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: settings"
-source_path: "src/autogen_team/settings.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/settings.py
+source: src/autogen_team/settings.py
 ---
 
-# Module Specification: settings
+# Document: src/autogen_team/settings.py
 
-* **Source Reference:** `src/autogen_team/settings.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Define settings for the application.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `settings`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `settings`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `pydantic`
 - `pydantic_settings`
 - `autogen_team.application.jobs`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `Settings`
 - `MainSettings`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `Settings`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    pdts.BaseSettings <|-- Settings
-    class Settings {
-    }
-    Settings <|-- MainSettings
-    class MainSettings {
-        +job: jobs.JobKind
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `Settings` ([`src/autogen_team/settings.py`](/src/autogen_team/settings.py))
-#### Overview
 Base class for application settings.
 
 Use settings to provide high-level preferences.
 i.e., to separate settings from provider (e.g., CLI).
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+## Class `MainSettings`
 
-#### Methods
-### `MainSettings` ([`src/autogen_team/settings.py`](/src/autogen_team/settings.py))
-#### Overview
+### Overview
+
 Main settings of the application.
 
 Parameters:
     job (jobs.JobKind): job to run.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `job` (`jobs.JobKind`): Maintains the state for job.
+- `job` (jobs.JobKind): Public property.
 
-#### Methods
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class Settings {
+}
+pdts.BaseSettings <|-- Settings
+class MainSettings {
+}
+Settings <|-- MainSettings
+@enduml
+```
+

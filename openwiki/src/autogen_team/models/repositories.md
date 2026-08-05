@@ -1,115 +1,102 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: repositories"
-source_path: "src/autogen_team/models/repositories.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/models/repositories.py
+source: src/autogen_team/models/repositories.py
 ---
 
-# Module Specification: repositories
+# Document: src/autogen_team/models/repositories.py
 
-* **Source Reference:** `src/autogen_team/models/repositories.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Model Repository Interface.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `repositories`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `repositories`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `typing`
 - `abc.ABC`
 - `abc.abstractmethod`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `ModelRepository`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `ModelRepository`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+Abstract repository for model persistence.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
+### Public Method `save`
+
+#### Description
+Save model to storage.
+
+#### Inputs
+- `model` (T.Any): semantic meaning. Required.
+- `path` (str): semantic meaning. Required.
+
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
+```python
+# Example usage of save
+instance.save()
+```
+
+### Public Method `load`
+
+#### Description
+Load model from storage.
+
+#### Inputs
+- `path` (str): semantic meaning. Required.
+
+#### Output
+- Return type: `T.Any`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
+```python
+# Example usage of load
+instance.load()
+```
+
+## UML Diagram
+
 ```plantuml
 @startuml
-    ABC <|-- ModelRepository
-    class ModelRepository {
-        +save(model: T.Any, path: str) : None
-        +load(path: str) : T.Any
-    }
+class ModelRepository {
+  + save()
+  + load()
+}
+ABC <|-- ModelRepository
 @enduml
 ```
 
-## 5. Class & Method Specifications
-### `ModelRepository` ([`src/autogen_team/models/repositories.py`](/src/autogen_team/models/repositories.py))
-#### Overview
-Abstract repository for model persistence.
-
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
-
-#### Methods
-##### `save(self: Any, model: T.Any, path: str) -> None` (Public)
-**Description:** Save model to storage.
-
-**Inputs:**
-- `model` (`T.Any`): Input parameter dictating the behavior of save.
-- `path` (`str`): Input parameter dictating the behavior of save.
-
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the save action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = ModelRepository()
-result = instance.save(...)
-```
-
-##### `load(self: Any, path: str) -> T.Any` (Public)
-**Description:** Load model from storage.
-
-**Inputs:**
-- `path` (`str`): Input parameter dictating the behavior of load.
-
-**Output:**
-- Return Type: `T.Any`
-- Semantic Meaning: The resulting value after processing the load action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = ModelRepository()
-result = instance.load(...)
-```
-
-## 6. Module Functions

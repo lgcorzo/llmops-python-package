@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: evaluations"
-source_path: "src/autogen_team/application/jobs/evaluations.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/jobs/evaluations.py
+source: src/autogen_team/application/jobs/evaluations.py
 ---
 
-# Module Specification: evaluations
+# Document: src/autogen_team/application/jobs/evaluations.py
 
-* **Source Reference:** `src/autogen_team/application/jobs/evaluations.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Define a job for evaluating registered models with data.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `evaluations`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `evaluations`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `typing`
 - `typing.Dict`
 - `typing.List`
@@ -38,44 +32,18 @@ Define a job for evaluating registered models with data.
 - `autogen_team.infrastructure.services`
 - `autogen_team.registry.adapters.mlflow_adapter`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `EvaluationsJob`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `EvaluationsJob`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    base.Job <|-- EvaluationsJob
-    class EvaluationsJob {
-        +KIND: T.Literal['EvaluationsJob']
-        +run_config: services.MlflowService.RunConfig
-        +inputs: datasets.ReaderKind
-        +targets: datasets.ReaderKind
-        +model_type: str
-        +alias_or_version: T.Union[str, int]
-        +metrics: List[metrics_.AutogenMetric]
-        +evaluators: List[str]
-        +thresholds: Dict[str, metrics_.Threshold]
-        +run() : base.Locals
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `EvaluationsJob` ([`src/autogen_team/application/jobs/evaluations.py`](/src/autogen_team/application/jobs/evaluations.py))
-#### Overview
 Generate evaluations from a registered model and a dataset.
 
 Parameters:
@@ -88,41 +56,51 @@ Parameters:
     evaluators (list[str]): list of evaluators to use.
     thresholds (dict[str, metrics_.Threshold] | None): metric thresholds.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['EvaluationsJob']`): Maintains the state for KIND.
-- `run_config` (`services.MlflowService.RunConfig`): Maintains the state for run_config.
-- `inputs` (`datasets.ReaderKind`): Maintains the state for inputs.
-- `targets` (`datasets.ReaderKind`): Maintains the state for targets.
-- `model_type` (`str`): Maintains the state for model_type.
-- `alias_or_version` (`T.Union[str, int]`): Maintains the state for alias_or_version.
-- `metrics` (`List[metrics_.AutogenMetric]`): Maintains the state for metrics.
-- `evaluators` (`List[str]`): Maintains the state for evaluators.
-- `thresholds` (`Dict[str, metrics_.Threshold]`): Maintains the state for thresholds.
+- `KIND` (T.Literal[EvaluationsJob]): Public property.
+- `run_config` (services.MlflowService.RunConfig): Public property.
+- `inputs` (datasets.ReaderKind): Public property.
+- `targets` (datasets.ReaderKind): Public property.
+- `model_type` (str): Public property.
+- `alias_or_version` (T.Union[(str, int)]): Public property.
+- `metrics` (List[metrics_.AutogenMetric]): Public property.
+- `evaluators` (List[str]): Public property.
+- `thresholds` (Dict[(str, metrics_.Threshold)]): Public property.
 
-#### Methods
-##### `run(self: Any) -> base.Locals` (Public)
-**Description:** Executes the run operation, mutating state or calculating derived values as necessary.
+### Public Method `run`
 
-**Inputs:**
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `base.Locals`
-- Semantic Meaning: The resulting value after processing the run action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `base.Locals`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = EvaluationsJob()
-result = instance.run(...)
+# Example usage of run
+instance.run()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class EvaluationsJob {
+  + run()
+}
+base.Job <|-- EvaluationsJob
+@enduml
+```
+

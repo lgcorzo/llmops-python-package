@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: sandbox_service"
-source_path: "src/autogen_team/infrastructure/services/sandbox_service.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/infrastructure/services/sandbox_service.py
+source: src/autogen_team/infrastructure/services/sandbox_service.py
 ---
 
-# Module Specification: sandbox_service
+# Document: src/autogen_team/infrastructure/services/sandbox_service.py
 
-* **Source Reference:** `src/autogen_team/infrastructure/services/sandbox_service.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Sandbox Service — manages the lifecycle of hardware-isolated MicroVMs.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `sandbox_service`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `sandbox_service`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `__future__.annotations`
 - `os`
 - `shlex`
@@ -34,99 +28,219 @@ Sandbox Service — manages the lifecycle of hardware-isolated MicroVMs.
 - `loguru.logger`
 - `autogen_team.core.security.safe_join`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `SandboxExecutionResult`
 - `SandboxService`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `SandboxExecutionResult`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+Result of a command execution inside the sandbox.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
+### Constructor
+
+No description provided.
+
+**Parameters:**
+- `exit_code` (int)
+- `stdout` (str)
+- `stderr` (str)
+- `artifacts` (T.List[str] | None) = `None`
+
+## Class `SandboxService`
+
+### Overview
+
+Manages ephemeral MicroVM sandboxes for secure code execution.
+
+### Constructor
+
+No description provided.
+
+**Parameters:**
+- `use_e2b_fallback` (bool) = `True`
+
+### Public Method `create_sandbox`
+
+#### Description
+Create a new sandbox instance.
+
+Args:
+    metadata: Optional metadata for the sandbox.
+
+Returns:
+    sandbox_id: Unique identifier for the sandbox.
+
+#### Inputs
+- `metadata` (T.Dict[(str, T.Any)] | None): semantic meaning. Optional (default: `None`).
+
+#### Output
+- Return type: `str`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
+```python
+# Example usage of create_sandbox
+instance.create_sandbox()
+```
+
+### Public Method `execute`
+
+#### Description
+Execute a command inside the specified sandbox.
+
+Args:
+    sandbox_id: The ID of the sandbox.
+    command: The command to execute.
+
+Returns:
+    SandboxExecutionResult object.
+
+#### Inputs
+- `sandbox_id` (str): semantic meaning. Required.
+- `command` (str): semantic meaning. Required.
+
+#### Output
+- Return type: `SandboxExecutionResult`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
+```python
+# Example usage of execute
+instance.execute()
+```
+
+### Public Method `run_python_tests`
+
+#### Description
+Specific helper to run pytest inside the sandbox.
+
+Args:
+    sandbox_id: The ID of the sandbox.
+    workspace_dir: The directory inside the sandbox where code is located.
+
+Returns:
+    SandboxExecutionResult object.
+
+#### Inputs
+- `sandbox_id` (str): semantic meaning. Required.
+- `workspace_dir` (str): semantic meaning. Required.
+
+#### Output
+- Return type: `SandboxExecutionResult`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
+```python
+# Example usage of run_python_tests
+instance.run_python_tests()
+```
+
+### Public Method `destroy`
+
+#### Description
+Tear down a sandbox instance.
+
+Args:
+    sandbox_id: The ID of the sandbox to destroy.
+
+#### Inputs
+- `sandbox_id` (str): semantic meaning. Required.
+
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
+```python
+# Example usage of destroy
+instance.destroy()
+```
+
+### Public Method `upload_artifact`
+
+#### Description
+Upload a file from the local environment (captured from sandbox) to MinIO.
+
+Args:
+    sandbox_id: The ID of the sandbox.
+    file_path: Local path to the file.
+    bucket_name: Target bucket name.
+
+Returns:
+    The S3 URL of the uploaded artifact.
+
+#### Inputs
+- `sandbox_id` (str): semantic meaning. Required.
+- `file_path` (str): semantic meaning. Required.
+- `bucket_name` (str): semantic meaning. Optional (default: `'agent-workspace'`).
+
+#### Output
+- Return type: `str`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
+```python
+# Example usage of upload_artifact
+instance.upload_artifact()
+```
+
+## UML Diagram
+
 ```plantuml
 @startuml
-    class SandboxExecutionResult {
-        +__init__(exit_code: int, stdout: str, stderr: str, artifacts: T.List[str] | None) : Any
-    }
-    class SandboxService {
-        +__init__(use_e2b_fallback: bool) : Any
-    }
+class SandboxExecutionResult {
+  + __init__()
+}
+class SandboxService {
+  + __init__()
+  + create_sandbox()
+  + execute()
+  + run_python_tests()
+  + destroy()
+  + upload_artifact()
+}
 @enduml
 ```
 
-## 5. Class & Method Specifications
-### `SandboxExecutionResult` ([`src/autogen_team/infrastructure/services/sandbox_service.py`](/src/autogen_team/infrastructure/services/sandbox_service.py))
-#### Overview
-Result of a command execution inside the sandbox.
-
-#### Constructor
-**Initialization:** Initializes `SandboxExecutionResult` with required dependencies and sets up initial internal state.
-
-#### Methods
-##### `__init__(self: Any, exit_code: int, stdout: str, stderr: str, artifacts: T.List[str] | None) -> Any` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
-
-**Inputs:**
-- `exit_code` (`int`): Input parameter dictating the behavior of __init__.
-- `stdout` (`str`): Input parameter dictating the behavior of __init__.
-- `stderr` (`str`): Input parameter dictating the behavior of __init__.
-- `artifacts` (`T.List[str] | None`): Input parameter dictating the behavior of __init__.
-
-**Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the __init__ action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = SandboxExecutionResult()
-result = instance.__init__(...)
-```
-
-### `SandboxService` ([`src/autogen_team/infrastructure/services/sandbox_service.py`](/src/autogen_team/infrastructure/services/sandbox_service.py))
-#### Overview
-Manages ephemeral MicroVM sandboxes for secure code execution.
-
-#### Constructor
-**Initialization:** Initializes `SandboxService` with required dependencies and sets up initial internal state.
-
-#### Methods
-##### `__init__(self: Any, use_e2b_fallback: bool) -> Any` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
-
-**Inputs:**
-- `use_e2b_fallback` (`bool`): Input parameter dictating the behavior of __init__.
-
-**Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the __init__ action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = SandboxService()
-result = instance.__init__(...)
-```
-
-## 6. Module Functions

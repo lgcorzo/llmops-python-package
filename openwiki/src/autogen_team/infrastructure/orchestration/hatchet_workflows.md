@@ -1,52 +1,66 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: hatchet_workflows"
-source_path: "src/autogen_team/infrastructure/orchestration/hatchet_workflows.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/infrastructure/orchestration/hatchet_workflows.py
+source: src/autogen_team/infrastructure/orchestration/hatchet_workflows.py
 ---
 
-# Module Specification: hatchet_workflows
+# Document: src/autogen_team/infrastructure/orchestration/hatchet_workflows.py
 
-* **Source Reference:** `src/autogen_team/infrastructure/orchestration/hatchet_workflows.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
-[No description available. LLM synthesis required.]
+### Purpose
+Provides functionality for `hatchet_workflows`.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Responsibilities
+Handles operations and definitions related to `hatchet_workflows`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
 
-## 2. Dependencies
-**Imports:**
+### Dependencies
 - `typing.Any`
 - `autogen_team.application.jobs.inference`
 - `autogen_team.infrastructure.services.HatchetService`
 - `hatchet_sdk.Context`
 
-**Exported Classes:**
+## Public API
 
-**Exported Functions:**
+### Exported Classes
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+### Exported Functions
+- `run_inference`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+## Public Function `run_inference`
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+### Description
+Run the inference job.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
-No classes defined in this module.
+### Inputs
+- `input` (Any): semantic meaning. Required.
+- `context` (Context): semantic meaning. Required.
 
-## 5. Class & Method Specifications
-## 6. Module Functions
+### Output
+- Return type: `dict[(str, Any)]`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
+```python
+# Example usage of run_inference
+run_inference()
+```
+
+## UML Diagram
+
+```plantuml
+@startuml
+note "No classes in module" as N1
+@enduml
+```
+

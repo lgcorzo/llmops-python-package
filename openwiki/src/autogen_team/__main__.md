@@ -1,49 +1,39 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: __main__"
-source_path: "src/autogen_team/__main__.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/__main__.py
+source: src/autogen_team/__main__.py
 ---
 
-# Module Specification: __main__
+# Document: src/autogen_team/__main__.py
 
-* **Source Reference:** `src/autogen_team/__main__.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Entry point of the package.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `__main__`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `__main__`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `autogen_team.scripts`
 
-**Exported Classes:**
+## Public API
 
-**Exported Functions:**
+### Exported Classes
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+### Exported Functions
+None
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+## UML Diagram
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+```plantuml
+@startuml
+note "No classes in module" as N1
+@enduml
+```
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
-No classes defined in this module.
-
-## 5. Class & Method Specifications
-## 6. Module Functions

@@ -1,20 +1,12 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: autonomous_mission"
-source_path: "src/autogen_team/application/workflows/autonomous_mission.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/workflows/autonomous_mission.py
+source: src/autogen_team/application/workflows/autonomous_mission.py
 ---
 
-# Module Specification: autonomous_mission
+# Document: src/autogen_team/application/workflows/autonomous_mission.py
 
-* **Source Reference:** `src/autogen_team/application/workflows/autonomous_mission.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Hatchet Workflow DSL for Autonomous Missions.
 
 Orchestrates the autonomous mission lifecycle:
@@ -23,14 +15,16 @@ Orchestrates the autonomous mission lifecycle:
 Uses the Hatchet V1 SDK with ``aio_run_many`` for true parallel
 child-workflow fan-out instead of sequential task execution.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `autonomous_mission`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `autonomous_mission`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `typing.Any`
 - `typing.Dict`
 - `typing.List`
@@ -43,86 +37,202 @@ child-workflow fan-out instead of sequential task execution.
 - `hatchet_sdk.Context`
 - `pydantic.BaseModel`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `MissionInput`
 - `TaskInput`
 - `MissionOutput`
 
-**Exported Functions:**
+### Exported Functions
+- `execute_coding_task`
+- `plan`
+- `fan_out_tasks`
+- `aggregate_and_review`
+- `document_mission`
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `MissionInput`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+Input for the top-level autonomous-mission workflow.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
+### Attributes
+
+- `goal` (str): Public property.
+- `repository_path` (str): Public property.
+
+## Class `TaskInput`
+
+### Overview
+
+Input for a single child coding-task workflow.
+
+### Attributes
+
+- `task_id` (str): Public property.
+- `description` (str): Public property.
+- `relevant_files` (List[str]): Public property.
+- `constraints` (str | None): Public property.
+
+## Class `MissionOutput`
+
+### Overview
+
+Final output of the autonomous-mission workflow.
+
+### Attributes
+
+- `status` (str): Public property.
+- `pull_request_url` (str): Public property.
+- `summary` (str): Public property.
+
+## Public Function `execute_coding_task`
+
+### Description
+Run the Coder Agent on a single task inside a child workflow.
+
+### Inputs
+- `task_input` (TaskInput): semantic meaning. Required.
+- `context` (Context): semantic meaning. Required.
+
+### Output
+- Return type: `Dict[(str, Any)]`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
+```python
+# Example usage of execute_coding_task
+execute_coding_task()
+```
+
+## Public Function `plan`
+
+### Description
+Step 1: Planner Agent analyses the goal and creates a task DAG.
+
+### Inputs
+- `mission_input` (MissionInput): semantic meaning. Required.
+- `context` (Context): semantic meaning. Required.
+
+### Output
+- Return type: `Dict[(str, Any)]`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
+```python
+# Example usage of plan
+plan()
+```
+
+## Public Function `fan_out_tasks`
+
+### Description
+Step 2: Spawn parallel child workflows for each coding task.
+
+Uses ``develop_task_workflow.aio_run_many`` for true parallel
+fan-out execution across the Hatchet worker pool.
+
+### Inputs
+- `mission_input` (MissionInput): semantic meaning. Required.
+- `context` (Context): semantic meaning. Required.
+
+### Output
+- Return type: `Dict[(str, Any)]`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
+```python
+# Example usage of fan_out_tasks
+fan_out_tasks()
+```
+
+## Public Function `aggregate_and_review`
+
+### Description
+Step 3: Aggregate child results, run tests, and perform security review.
+
+### Inputs
+- `mission_input` (MissionInput): semantic meaning. Required.
+- `context` (Context): semantic meaning. Required.
+
+### Output
+- Return type: `MissionOutput`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
+```python
+# Example usage of aggregate_and_review
+aggregate_and_review()
+```
+
+## Public Function `document_mission`
+
+### Description
+Step 4: Generate documentation and diagrams for the mission.
+
+### Inputs
+- `mission_input` (MissionInput): semantic meaning. Required.
+- `context` (Context): semantic meaning. Required.
+
+### Output
+- Return type: `MissionOutput`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
+```python
+# Example usage of document_mission
+document_mission()
+```
+
+## UML Diagram
+
 ```plantuml
 @startuml
-    BaseModel <|-- MissionInput
-    class MissionInput {
-        +goal: str
-        +repository_path: str
-    }
-    BaseModel <|-- TaskInput
-    class TaskInput {
-        +task_id: str
-        +description: str
-        +relevant_files: List[str]
-        +constraints: str | None
-    }
-    BaseModel <|-- MissionOutput
-    class MissionOutput {
-        +status: str
-        +pull_request_url: str
-        +summary: str
-    }
+class MissionInput {
+}
+BaseModel <|-- MissionInput
+class TaskInput {
+}
+BaseModel <|-- TaskInput
+class MissionOutput {
+}
+BaseModel <|-- MissionOutput
 @enduml
 ```
 
-## 5. Class & Method Specifications
-### `MissionInput` ([`src/autogen_team/application/workflows/autonomous_mission.py`](/src/autogen_team/application/workflows/autonomous_mission.py))
-#### Overview
-Input for the top-level autonomous-mission workflow.
-
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
-
-#### Attributes
-- `goal` (`str`): Maintains the state for goal.
-- `repository_path` (`str`): Maintains the state for repository_path.
-
-#### Methods
-### `TaskInput` ([`src/autogen_team/application/workflows/autonomous_mission.py`](/src/autogen_team/application/workflows/autonomous_mission.py))
-#### Overview
-Input for a single child coding-task workflow.
-
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
-
-#### Attributes
-- `task_id` (`str`): Maintains the state for task_id.
-- `description` (`str`): Maintains the state for description.
-- `relevant_files` (`List[str]`): Maintains the state for relevant_files.
-- `constraints` (`str | None`): Maintains the state for constraints.
-
-#### Methods
-### `MissionOutput` ([`src/autogen_team/application/workflows/autonomous_mission.py`](/src/autogen_team/application/workflows/autonomous_mission.py))
-#### Overview
-Final output of the autonomous-mission workflow.
-
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
-
-#### Attributes
-- `status` (`str`): Maintains the state for status.
-- `pull_request_url` (`str`): Maintains the state for pull_request_url.
-- `summary` (`str`): Maintains the state for summary.
-
-#### Methods
-## 6. Module Functions

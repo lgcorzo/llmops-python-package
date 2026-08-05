@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: tuning"
-source_path: "src/autogen_team/application/jobs/tuning.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/jobs/tuning.py
+source: src/autogen_team/application/jobs/tuning.py
 ---
 
-# Module Specification: tuning
+# Document: src/autogen_team/application/jobs/tuning.py
 
-* **Source Reference:** `src/autogen_team/application/jobs/tuning.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Define a job for finding the best hyperparameters for a model.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `tuning`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `tuning`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `typing`
 - `mlflow`
 - `pydantic`
@@ -37,43 +31,18 @@ Define a job for finding the best hyperparameters for a model.
 - `autogen_team.infrastructure.utils.splitters`
 - `autogen_team.models.entities`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `TuningJob`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `TuningJob`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    base.Job <|-- TuningJob
-    class TuningJob {
-        +KIND: T.Literal['TuningJob']
-        +run_config: services.MlflowService.RunConfig
-        +inputs: datasets.ReaderKind
-        +targets: datasets.ReaderKind
-        +model: models.ModelKind
-        +metric: metrics.MetricKind
-        +splitter: splitters.SplitterKind
-        +searcher: searchers.SearcherKind
-        +run() : base.Locals
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `TuningJob` ([`src/autogen_team/application/jobs/tuning.py`](/src/autogen_team/application/jobs/tuning.py))
-#### Overview
 Find the best hyperparameters for a model.
 https://microsoft.github.io/FLAML/docs/Examples/AutoGen-OpenAI/
 https://github.com/microsoft/FLAML/blob/main/notebook/autogen_openai_completion.ipynb
@@ -87,40 +56,50 @@ Parameters:
     splitter (splitters.SplitterKind): data sets splitter.
     searcher: (searchers.SearcherKind): hparams searcher.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['TuningJob']`): Maintains the state for KIND.
-- `run_config` (`services.MlflowService.RunConfig`): Maintains the state for run_config.
-- `inputs` (`datasets.ReaderKind`): Maintains the state for inputs.
-- `targets` (`datasets.ReaderKind`): Maintains the state for targets.
-- `model` (`models.ModelKind`): Maintains the state for model.
-- `metric` (`metrics.MetricKind`): Maintains the state for metric.
-- `splitter` (`splitters.SplitterKind`): Maintains the state for splitter.
-- `searcher` (`searchers.SearcherKind`): Maintains the state for searcher.
+- `KIND` (T.Literal[TuningJob]): Public property.
+- `run_config` (services.MlflowService.RunConfig): Public property.
+- `inputs` (datasets.ReaderKind): Public property.
+- `targets` (datasets.ReaderKind): Public property.
+- `model` (models.ModelKind): Public property.
+- `metric` (metrics.MetricKind): Public property.
+- `splitter` (splitters.SplitterKind): Public property.
+- `searcher` (searchers.SearcherKind): Public property.
 
-#### Methods
-##### `run(self: Any) -> base.Locals` (Public)
-**Description:** Run the tuning job in context.
+### Public Method `run`
 
-**Inputs:**
+#### Description
+Run the tuning job in context.
 
-**Output:**
-- Return Type: `base.Locals`
-- Semantic Meaning: The resulting value after processing the run action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `base.Locals`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = TuningJob()
-result = instance.run(...)
+# Example usage of run
+instance.run()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class TuningJob {
+  + run()
+}
+base.Job <|-- TuningJob
+@enduml
+```
+

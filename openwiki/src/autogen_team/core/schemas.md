@@ -1,37 +1,31 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: schemas"
-source_path: "src/autogen_team/core/schemas.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/core/schemas.py
+source: src/autogen_team/core/schemas.py
 ---
 
-# Module Specification: schemas
+# Document: src/autogen_team/core/schemas.py
 
-* **Source Reference:** `src/autogen_team/core/schemas.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
-[No description available. LLM synthesis required.]
+### Purpose
+Provides functionality for `schemas`.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Responsibilities
+Handles operations and definitions related to `schemas`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
 
-## 2. Dependencies
-**Imports:**
+### Dependencies
 - `typing`
 - `pandas`
 - `pandera`
 - `pandera.typing`
 - `pandera.typing.common`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `Schema`
 - `MetadataSchema`
 - `InputsSchema`
@@ -40,73 +34,22 @@ timestamp: "2026-08-03T10:50:49Z"
 - `SHAPValuesSchema`
 - `FeatureImportancesSchema`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `Schema`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    pa.DataFrameModel <|-- Schema
-    class Schema {
-        +check(cls: T.Type[TSchema], data: pd.DataFrame) : papd.DataFrame[TSchema]
-    }
-    Schema <|-- MetadataSchema
-    class MetadataSchema {
-        +timestamp: papd.Series[padt.String]
-        +model_version: papd.Series[padt.String]
-    }
-    Schema <|-- InputsSchema
-    class InputsSchema {
-        +input: papd.Series[padt.String]
-    }
-    Schema <|-- OutputsSchema
-    class OutputsSchema {
-        +response: papd.Series[padt.String]
-        +metadata: papd.Series[padt.Object]
-    }
-    Schema <|-- TargetsSchema
-    class TargetsSchema {
-        +input_target: papd.Series[padt.String]
-        +response: papd.Series[padt.String]
-    }
-    Schema <|-- SHAPValuesSchema
-    class SHAPValuesSchema {
-        +sample: papd.Series[padt.String]
-        +explanation: papd.Series[padt.String]
-        +shap_value: papd.Series[padt.Float32]
-    }
-    Schema <|-- FeatureImportancesSchema
-    class FeatureImportancesSchema {
-        +feature: papd.Series[padt.String]
-        +importance: papd.Series[padt.Float32]
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `Schema` ([`src/autogen_team/core/schemas.py`](/src/autogen_team/core/schemas.py))
-#### Overview
 Base class for a dataframe schema.
 
 Use a schema to type your dataframe object.
 e.g., to communicate and validate its fields.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Public Method `check`
 
-#### Methods
-##### `check(cls: T.Type[TSchema], data: pd.DataFrame) -> papd.DataFrame[TSchema]` (Public)
-**Description:** Check the dataframe with this schema.
+#### Description
+Check the dataframe with this schema.
 
 Args:
     data (pd.DataFrame): dataframe to check.
@@ -114,97 +57,118 @@ Args:
 Returns:
     papd.DataFrame[TSchema]: validated dataframe.
 
-**Inputs:**
-- `cls` (`T.Type[TSchema]`): Input parameter dictating the behavior of check.
-- `data` (`pd.DataFrame`): Input parameter dictating the behavior of check.
+#### Inputs
+- `data` (pd.DataFrame): semantic meaning. Required.
 
-**Output:**
-- Return Type: `papd.DataFrame[TSchema]`
-- Semantic Meaning: The resulting value after processing the check action.
+#### Output
+- Return type: `papd.DataFrame[TSchema]`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Schema()
-result = instance.check(...)
+# Example usage of check
+instance.check()
 ```
 
-### `MetadataSchema` ([`src/autogen_team/core/schemas.py`](/src/autogen_team/core/schemas.py))
-#### Overview
+## Class `MetadataSchema`
+
+### Overview
+
 Schema for metadata in outputs.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `timestamp` (`papd.Series[padt.String]`): Maintains the state for timestamp.
-- `model_version` (`papd.Series[padt.String]`): Maintains the state for model_version.
+- `timestamp` (papd.Series[padt.String]): Public property.
+- `model_version` (papd.Series[padt.String]): Public property.
 
-#### Methods
-### `InputsSchema` ([`src/autogen_team/core/schemas.py`](/src/autogen_team/core/schemas.py))
-#### Overview
+## Class `InputsSchema`
+
+### Overview
+
 Schema for validating large string inputs.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `input` (`papd.Series[padt.String]`): Maintains the state for input.
+- `input` (papd.Series[padt.String]): Public property.
 
-#### Methods
-### `OutputsSchema` ([`src/autogen_team/core/schemas.py`](/src/autogen_team/core/schemas.py))
-#### Overview
+## Class `OutputsSchema`
+
+### Overview
+
 Schema for structured JSON outputs.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `response` (`papd.Series[padt.String]`): Maintains the state for response.
-- `metadata` (`papd.Series[padt.Object]`): Maintains the state for metadata.
+- `response` (papd.Series[padt.String]): Public property.
+- `metadata` (papd.Series[padt.Object]): Public property.
 
-#### Methods
-### `TargetsSchema` ([`src/autogen_team/core/schemas.py`](/src/autogen_team/core/schemas.py))
-#### Overview
+## Class `TargetsSchema`
+
+### Overview
+
 Schema for the project target.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `input_target` (`papd.Series[padt.String]`): Maintains the state for input_target.
-- `response` (`papd.Series[padt.String]`): Maintains the state for response.
+- `input_target` (papd.Series[padt.String]): Public property.
+- `response` (papd.Series[padt.String]): Public property.
 
-#### Methods
-### `SHAPValuesSchema` ([`src/autogen_team/core/schemas.py`](/src/autogen_team/core/schemas.py))
-#### Overview
+## Class `SHAPValuesSchema`
+
+### Overview
+
 Schema for SHAP values.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `sample` (`papd.Series[padt.String]`): Maintains the state for sample.
-- `explanation` (`papd.Series[padt.String]`): Maintains the state for explanation.
-- `shap_value` (`papd.Series[padt.Float32]`): Maintains the state for shap_value.
+- `sample` (papd.Series[padt.String]): Public property.
+- `explanation` (papd.Series[padt.String]): Public property.
+- `shap_value` (papd.Series[padt.Float32]): Public property.
 
-#### Methods
-### `FeatureImportancesSchema` ([`src/autogen_team/core/schemas.py`](/src/autogen_team/core/schemas.py))
-#### Overview
+## Class `FeatureImportancesSchema`
+
+### Overview
+
 Schema for feature importances.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `feature` (`papd.Series[padt.String]`): Maintains the state for feature.
-- `importance` (`papd.Series[padt.Float32]`): Maintains the state for importance.
+- `feature` (papd.Series[padt.String]): Public property.
+- `importance` (papd.Series[padt.Float32]): Public property.
 
-#### Methods
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class Schema {
+  + check()
+}
+pa.DataFrameModel <|-- Schema
+class MetadataSchema {
+}
+Schema <|-- MetadataSchema
+class InputsSchema {
+}
+Schema <|-- InputsSchema
+class OutputsSchema {
+}
+Schema <|-- OutputsSchema
+class TargetsSchema {
+}
+Schema <|-- TargetsSchema
+class SHAPValuesSchema {
+}
+Schema <|-- SHAPValuesSchema
+class FeatureImportancesSchema {
+}
+Schema <|-- FeatureImportancesSchema
+@enduml
+```
+

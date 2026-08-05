@@ -1,90 +1,81 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: coder_agent"
-source_path: "src/autogen_team/application/agents/coder_agent.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/agents/coder_agent.py
+source: src/autogen_team/application/agents/coder_agent.py
 ---
 
-# Module Specification: coder_agent
+# Document: src/autogen_team/application/agents/coder_agent.py
 
-* **Source Reference:** `src/autogen_team/application/agents/coder_agent.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
-[No description available. LLM synthesis required.]
+### Purpose
+Provides functionality for `coder_agent`.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Responsibilities
+Handles operations and definitions related to `coder_agent`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
 
-## 2. Dependencies
-**Imports:**
+### Dependencies
 - `typing.Any`
 - `typing.Dict`
 - `typing.cast`
 - `autogen_team.infrastructure.client.mcp_client.MCPClient`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `CoderAgent`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `CoderAgent`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    class CoderAgent {
-        +__init__() : None
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `CoderAgent` ([`src/autogen_team/application/agents/coder_agent.py`](/src/autogen_team/application/agents/coder_agent.py))
-#### Overview
 Agent responsible for executing coding tasks.
 Uses the MCP 'execute_code' tool.
 
-#### Constructor
-**Initialization:** Initializes `CoderAgent` with required dependencies and sets up initial internal state.
+### Constructor
 
-#### Methods
-##### `__init__(self: Any) -> None` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+No description provided.
 
-**Inputs:**
+**Parameters:**
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+### Public Method `execute_task`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Description
+No description provided.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Inputs
+- `task` (Dict[(str, Any)]): semantic meaning. Required.
 
-**Example:**
+#### Output
+- Return type: `Dict[(str, Any)]`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = CoderAgent()
-result = instance.__init__(...)
+# Example usage of execute_task
+instance.execute_task()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class CoderAgent {
+  + __init__()
+  + execute_task()
+}
+@enduml
+```
+

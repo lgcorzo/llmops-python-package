@@ -1,65 +1,39 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: promotion"
-source_path: "src/autogen_team/application/jobs/promotion.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/jobs/promotion.py
+source: src/autogen_team/application/jobs/promotion.py
 ---
 
-# Module Specification: promotion
+# Document: src/autogen_team/application/jobs/promotion.py
 
-* **Source Reference:** `src/autogen_team/application/jobs/promotion.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Define a job for promoting a registered model version with an alias.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `promotion`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `promotion`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `typing`
 - `autogen_team.application.jobs.base`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `PromotionJob`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `PromotionJob`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    base.Job <|-- PromotionJob
-    class PromotionJob {
-        +KIND: T.Literal['PromotionJob']
-        +alias: str
-        +version: str | None
-        +run() : base.Locals
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `PromotionJob` ([`src/autogen_team/application/jobs/promotion.py`](/src/autogen_team/application/jobs/promotion.py))
-#### Overview
 Define a job for promoting a registered model version with an alias.
 
 https://mlflow.org/docs/latest/model-registry.html#concepts
@@ -68,35 +42,45 @@ Parameters:
     alias (str): the mlflow alias to transition the registered model version.
     version (int | None): the model version to transition (use None for latest).
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['PromotionJob']`): Maintains the state for KIND.
-- `alias` (`str`): Maintains the state for alias.
-- `version` (`str | None`): Maintains the state for version.
+- `KIND` (T.Literal[PromotionJob]): Public property.
+- `alias` (str): Public property.
+- `version` (str | None): Public property.
 
-#### Methods
-##### `run(self: Any) -> base.Locals` (Public)
-**Description:** Executes the run operation, mutating state or calculating derived values as necessary.
+### Public Method `run`
 
-**Inputs:**
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `base.Locals`
-- Semantic Meaning: The resulting value after processing the run action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `base.Locals`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = PromotionJob()
-result = instance.run(...)
+# Example usage of run
+instance.run()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class PromotionJob {
+  + run()
+}
+base.Job <|-- PromotionJob
+@enduml
+```
+

@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: run_tests"
-source_path: "src/autogen_team/application/mcp/tools/run_tests.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/mcp/tools/run_tests.py
+source: src/autogen_team/application/mcp/tools/run_tests.py
 ---
 
-# Module Specification: run_tests
+# Document: src/autogen_team/application/mcp/tools/run_tests.py
 
-* **Source Reference:** `src/autogen_team/application/mcp/tools/run_tests.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Run Tests tool — runs pytest in an isolated sandbox.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `run_tests`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `run_tests`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `__future__.annotations`
 - `abc`
 - `os`
@@ -36,56 +30,28 @@ Run Tests tool — runs pytest in an isolated sandbox.
 - `loguru.logger`
 - `autogen_team.core.security.safe_join`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `SandboxBackend`
 - `SubprocessSandbox`
 - `FirecrackerSandbox`
 
-**Exported Functions:**
+### Exported Functions
+- `run_tests`
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `SandboxBackend`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    abc.ABC <|-- SandboxBackend
-    class SandboxBackend {
-        +run_tests(workspace_dir: str, timeout: int) : T.Dict[str, T.Any]
-    }
-    SandboxBackend <|-- SubprocessSandbox
-    class SubprocessSandbox {
-        +run_tests(workspace_dir: str, timeout: int) : T.Dict[str, T.Any]
-    }
-    SandboxBackend <|-- FirecrackerSandbox
-    class FirecrackerSandbox {
-        +__init__(sandbox_service: T.Any | None) : Any
-        +run_tests(workspace_dir: str, timeout: int) : T.Dict[str, T.Any]
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `SandboxBackend` ([`src/autogen_team/application/mcp/tools/run_tests.py`](/src/autogen_team/application/mcp/tools/run_tests.py))
-#### Overview
 Abstract sandbox backend for running tests.
 
 Provides an interface for future Firecracker MicroVM integration.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Public Method `run_tests`
 
-#### Methods
-##### `run_tests(self: Any, workspace_dir: str, timeout: int) -> T.Dict[str, T.Any]` (Public)
-**Description:** Run tests in the sandbox.
+#### Description
+Run tests in the sandbox.
 
 Args:
     workspace_dir: Path to the workspace with changes applied.
@@ -94,37 +60,37 @@ Args:
 Returns:
     Dict with passed, summary, and details fields.
 
-**Inputs:**
-- `workspace_dir` (`str`): Input parameter dictating the behavior of run_tests.
-- `timeout` (`int`): Input parameter dictating the behavior of run_tests.
+#### Inputs
+- `workspace_dir` (str): semantic meaning. Required.
+- `timeout` (int): semantic meaning. Optional (default: `300`).
 
-**Output:**
-- Return Type: `T.Dict[str, T.Any]`
-- Semantic Meaning: The resulting value after processing the run_tests action.
+#### Output
+- Return type: `T.Dict[(str, T.Any)]`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = SandboxBackend()
-result = instance.run_tests(...)
+# Example usage of run_tests
+instance.run_tests()
 ```
 
-### `SubprocessSandbox` ([`src/autogen_team/application/mcp/tools/run_tests.py`](/src/autogen_team/application/mcp/tools/run_tests.py))
-#### Overview
+## Class `SubprocessSandbox`
+
+### Overview
+
 Subprocess-based sandbox for running pytest.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Public Method `run_tests`
 
-#### Methods
-##### `run_tests(self: Any, workspace_dir: str, timeout: int) -> T.Dict[str, T.Any]` (Public)
-**Description:** Run pytest via subprocess in the given workspace.
+#### Description
+Run pytest via subprocess in the given workspace.
 
 Args:
     workspace_dir: Path to the workspace with changes applied.
@@ -133,81 +99,121 @@ Args:
 Returns:
     Dict with passed, summary, and details fields.
 
-**Inputs:**
-- `workspace_dir` (`str`): Input parameter dictating the behavior of run_tests.
-- `timeout` (`int`): Input parameter dictating the behavior of run_tests.
+#### Inputs
+- `workspace_dir` (str): semantic meaning. Required.
+- `timeout` (int): semantic meaning. Optional (default: `300`).
 
-**Output:**
-- Return Type: `T.Dict[str, T.Any]`
-- Semantic Meaning: The resulting value after processing the run_tests action.
+#### Output
+- Return type: `T.Dict[(str, T.Any)]`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = SubprocessSandbox()
-result = instance.run_tests(...)
+# Example usage of run_tests
+instance.run_tests()
 ```
 
-### `FirecrackerSandbox` ([`src/autogen_team/application/mcp/tools/run_tests.py`](/src/autogen_team/application/mcp/tools/run_tests.py))
-#### Overview
+## Class `FirecrackerSandbox`
+
+### Overview
+
 Firecracker-based sandbox using SandboxService.
 
-#### Constructor
-**Initialization:** Initializes `FirecrackerSandbox` with required dependencies and sets up initial internal state.
+### Constructor
 
-#### Methods
-##### `__init__(self: Any, sandbox_service: T.Any | None) -> Any` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+No description provided.
 
-**Inputs:**
-- `sandbox_service` (`T.Any | None`): Input parameter dictating the behavior of __init__.
+**Parameters:**
+- `sandbox_service` (T.Any | None) = `None`
 
-**Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+### Public Method `run_tests`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = FirecrackerSandbox()
-result = instance.__init__(...)
-```
-
-##### `run_tests(self: Any, workspace_dir: str, timeout: int) -> T.Dict[str, T.Any]` (Public)
-**Description:** Note: This is a synchronous wrapper for the async service.
+#### Description
+Note: This is a synchronous wrapper for the async service.
 In a real scenario, the tool should be async.
 
-**Inputs:**
-- `workspace_dir` (`str`): Input parameter dictating the behavior of run_tests.
-- `timeout` (`int`): Input parameter dictating the behavior of run_tests.
+#### Inputs
+- `workspace_dir` (str): semantic meaning. Required.
+- `timeout` (int): semantic meaning. Optional (default: `300`).
 
-**Output:**
-- Return Type: `T.Dict[str, T.Any]`
-- Semantic Meaning: The resulting value after processing the run_tests action.
+#### Output
+- Return type: `T.Dict[(str, T.Any)]`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = FirecrackerSandbox()
-result = instance.run_tests(...)
+# Example usage of run_tests
+instance.run_tests()
 ```
 
-## 6. Module Functions
+## Public Function `run_tests`
+
+### Description
+Run pytest against code changes in an isolated sandbox.
+
+Args:
+    changes: Dict with files_changed list (path, action, content).
+    workspace_path: Original workspace path to copy from.
+    timeout: Max execution time in seconds.
+    sandbox: Optional sandbox backend (defaults to SubprocessSandbox).
+
+Returns:
+    Dict with passed bool, summary string, and details.
+
+### Inputs
+- `changes` (T.Dict[(str, T.Any)]): semantic meaning. Required.
+- `workspace_path` (str): semantic meaning. Optional (default: `''`).
+- `timeout` (int): semantic meaning. Optional (default: `300`).
+- `sandbox` (SandboxBackend | None): semantic meaning. Optional (default: `None`).
+
+### Output
+- Return type: `T.Dict[(str, T.Any)]`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
+```python
+# Example usage of run_tests
+run_tests()
+```
+
+## UML Diagram
+
+```plantuml
+@startuml
+class SandboxBackend {
+  + run_tests()
+}
+abc.ABC <|-- SandboxBackend
+class SubprocessSandbox {
+  + run_tests()
+}
+SandboxBackend <|-- SubprocessSandbox
+class FirecrackerSandbox {
+  + __init__()
+  + run_tests()
+}
+SandboxBackend <|-- FirecrackerSandbox
+@enduml
+```
+

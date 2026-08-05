@@ -1,90 +1,81 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: tester_agent"
-source_path: "src/autogen_team/application/agents/tester_agent.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/agents/tester_agent.py
+source: src/autogen_team/application/agents/tester_agent.py
 ---
 
-# Module Specification: tester_agent
+# Document: src/autogen_team/application/agents/tester_agent.py
 
-* **Source Reference:** `src/autogen_team/application/agents/tester_agent.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
-[No description available. LLM synthesis required.]
+### Purpose
+Provides functionality for `tester_agent`.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Responsibilities
+Handles operations and definitions related to `tester_agent`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
 
-## 2. Dependencies
-**Imports:**
+### Dependencies
 - `typing.Any`
 - `typing.Dict`
 - `typing.cast`
 - `autogen_team.infrastructure.client.mcp_client.MCPClient`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `TesterAgent`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `TesterAgent`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    class TesterAgent {
-        +__init__() : None
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `TesterAgent` ([`src/autogen_team/application/agents/tester_agent.py`](/src/autogen_team/application/agents/tester_agent.py))
-#### Overview
 Agent responsible for running tests.
 Uses the MCP 'run_tests' tool.
 
-#### Constructor
-**Initialization:** Initializes `TesterAgent` with required dependencies and sets up initial internal state.
+### Constructor
 
-#### Methods
-##### `__init__(self: Any) -> None` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+No description provided.
 
-**Inputs:**
+**Parameters:**
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+### Public Method `run_tests`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Description
+No description provided.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Inputs
+None
 
-**Example:**
+#### Output
+- Return type: `Dict[(str, Any)]`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = TesterAgent()
-result = instance.__init__(...)
+# Example usage of run_tests
+instance.run_tests()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class TesterAgent {
+  + __init__()
+  + run_tests()
+}
+@enduml
+```
+

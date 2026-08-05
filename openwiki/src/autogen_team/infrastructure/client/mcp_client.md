@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: mcp_client"
-source_path: "src/autogen_team/infrastructure/client/mcp_client.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/infrastructure/client/mcp_client.py
+source: src/autogen_team/infrastructure/client/mcp_client.py
 ---
 
-# Module Specification: mcp_client
+# Document: src/autogen_team/infrastructure/client/mcp_client.py
 
-* **Source Reference:** `src/autogen_team/infrastructure/client/mcp_client.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 MCP Client for connecting to the MCP Server.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `mcp_client`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `mcp_client`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `json`
 - `os`
 - `typing.Any`
@@ -35,60 +29,119 @@ MCP Client for connecting to the MCP Server.
 - `mcp.StdioServerParameters`
 - `mcp.client.stdio.stdio_client`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `MCPClient`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `MCPClient`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+Client for interacting with the MCP Server.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
+### Constructor
+
+Initialize the MCP Client.
+
+**Parameters:**
+
+### Public Method `connect`
+
+#### Description
+Connect to the MCP Server via stdio.
+
+#### Inputs
+None
+
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
+```python
+# Example usage of connect
+instance.connect()
+```
+
+### Public Method `disconnect`
+
+#### Description
+Disconnect from the MCP Server.
+
+#### Inputs
+None
+
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
+```python
+# Example usage of disconnect
+instance.disconnect()
+```
+
+### Public Method `call_tool`
+
+#### Description
+Call a tool on the MCP Server.
+
+Args:
+    name: The name of the tool to call.
+    arguments: The arguments to pass to the tool.
+
+Returns:
+    The result of the tool execution.
+
+#### Inputs
+- `name` (str): semantic meaning. Required.
+- `arguments` (Dict[(str, Any)]): semantic meaning. Required.
+
+#### Output
+- Return type: `Any`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
+```python
+# Example usage of call_tool
+instance.call_tool()
+```
+
+## UML Diagram
+
 ```plantuml
 @startuml
-    class MCPClient {
-        +__init__() : None
-    }
+class MCPClient {
+  + __init__()
+  + connect()
+  + disconnect()
+  + call_tool()
+}
 @enduml
 ```
 
-## 5. Class & Method Specifications
-### `MCPClient` ([`src/autogen_team/infrastructure/client/mcp_client.py`](/src/autogen_team/infrastructure/client/mcp_client.py))
-#### Overview
-Client for interacting with the MCP Server.
-
-#### Constructor
-**Initialization:** Initialize the MCP Client.
-
-#### Methods
-##### `__init__(self: Any) -> None` (Public)
-**Description:** Initialize the MCP Client.
-
-**Inputs:**
-
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = MCPClient()
-result = instance.__init__(...)
-```
-
-## 6. Module Functions

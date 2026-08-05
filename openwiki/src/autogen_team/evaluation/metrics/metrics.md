@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: metrics"
-source_path: "src/autogen_team/evaluation/metrics/metrics.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/evaluation/metrics/metrics.py
+source: src/autogen_team/evaluation/metrics/metrics.py
 ---
 
-# Module Specification: metrics
+# Document: src/autogen_team/evaluation/metrics/metrics.py
 
-* **Source Reference:** `src/autogen_team/evaluation/metrics/metrics.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Evaluate model performances with metrics.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `metrics`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `metrics`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `__future__.annotations`
 - `abc`
 - `typing`
@@ -38,68 +32,21 @@ Evaluate model performances with metrics.
 - `autogen_team.core.schemas`
 - `autogen_team.models.entities`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `Metric`
 - `AutogenMetric`
 - `AutogenConversationMetric`
 - `Threshold`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `Metric`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    abc.ABC <|-- Metric
-    pdt.BaseModel <|-- Metric
-    class Metric {
-        +KIND: str
-        +name: str
-        +greater_is_better: bool
-        +score(targets: pd.DataFrame, outputs: pd.DataFrame) : float
-        +scorer(model: models.Model, inputs: schemas.Inputs, targets: pd.DataFrame) : float
-        +to_mlflow() : MlflowMetric
-    }
-    Metric <|-- AutogenMetric
-    class AutogenMetric {
-        +KIND: T.Literal['AutogenMetric']
-        +metric_type: T.Literal['exact_match', 'similarity', 'length_ratio']
-        +similarity_threshold: Optional[float]
-        +score(targets: pd.DataFrame, outputs: pd.DataFrame) : float
-        -_exact_match_score(y_true: pd.Series[str], y_pred: pd.Series[str]) : float
-        -_similarity_score(y_true: pd.Series[str], y_pred: pd.Series[str]) : float
-        -_length_ratio(y_true: pd.Series[str], y_pred: pd.Series[str]) : float
-    }
-    Metric <|-- AutogenConversationMetric
-    class AutogenConversationMetric {
-        +KIND: T.Literal['AutogenConversationMetric']
-        +check_termination: bool
-        +check_error_messages: bool
-        +score(targets: pd.DataFrame, outputs: pd.DataFrame) : float
-    }
-    abc.ABC <|-- Threshold
-    pdt.BaseModel <|-- Threshold
-    class Threshold {
-        +threshold: int | float
-        +greater_is_better: bool
-        +to_mlflow() : MlflowThreshold
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `Metric` ([`src/autogen_team/evaluation/metrics/metrics.py`](/src/autogen_team/evaluation/metrics/metrics.py))
-#### Overview
 Base class for a project metric.
 
 Use metrics to evaluate model performance.
@@ -109,17 +56,16 @@ Parameters:
     name (str): name of the metric for the reporting.
     greater_is_better (bool): maximize or minimize result.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`str`): Maintains the state for KIND.
-- `name` (`str`): Maintains the state for name.
-- `greater_is_better` (`bool`): Maintains the state for greater_is_better.
+- `KIND` (str): Public property.
+- `name` (str): Public property.
+- `greater_is_better` (bool): Public property.
 
-#### Methods
-##### `score(self: Any, targets: pd.DataFrame, outputs: pd.DataFrame) -> float` (Public)
-**Description:** Score the outputs against the targets.
+### Public Method `score`
+
+#### Description
+Score the outputs against the targets.
 
 Args:
     targets (pd.DataFrame): expected values.
@@ -128,29 +74,31 @@ Args:
 Returns:
     float: single result from the metric computation.
 
-**Inputs:**
-- `targets` (`pd.DataFrame`): Input parameter dictating the behavior of score.
-- `outputs` (`pd.DataFrame`): Input parameter dictating the behavior of score.
+#### Inputs
+- `targets` (pd.DataFrame): semantic meaning. Required.
+- `outputs` (pd.DataFrame): semantic meaning. Required.
 
-**Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the score action.
+#### Output
+- Return type: `float`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Metric()
-result = instance.score(...)
+# Example usage of score
+instance.score()
 ```
 
-##### `scorer(self: Any, model: models.Model, inputs: schemas.Inputs, targets: pd.DataFrame) -> float` (Public)
-**Description:** Score model outputs against targets.
+### Public Method `scorer`
+
+#### Description
+Score model outputs against targets.
 
 Args:
     model (models.Model): model to evaluate.
@@ -160,158 +108,177 @@ Args:
 Returns:
     float: single result from the metric computation.
 
-**Inputs:**
-- `model` (`models.Model`): Input parameter dictating the behavior of scorer.
-- `inputs` (`schemas.Inputs`): Input parameter dictating the behavior of scorer.
-- `targets` (`pd.DataFrame`): Input parameter dictating the behavior of scorer.
+#### Inputs
+- `model` (models.Model): semantic meaning. Required.
+- `inputs` (schemas.Inputs): semantic meaning. Required.
+- `targets` (pd.DataFrame): semantic meaning. Required.
 
-**Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the scorer action.
+#### Output
+- Return type: `float`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Metric()
-result = instance.scorer(...)
+# Example usage of scorer
+instance.scorer()
 ```
 
-##### `to_mlflow(self: Any) -> MlflowMetric` (Public)
-**Description:** Convert the metric to an Mlflow metric.
+### Public Method `to_mlflow`
+
+#### Description
+Convert the metric to an Mlflow metric.
 
 Returns:
     MlflowMetric: the Mlflow metric.
 
-**Inputs:**
+#### Inputs
+None
 
-**Output:**
-- Return Type: `MlflowMetric`
-- Semantic Meaning: The resulting value after processing the to_mlflow action.
+#### Output
+- Return type: `MlflowMetric`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Metric()
-result = instance.to_mlflow(...)
+# Example usage of to_mlflow
+instance.to_mlflow()
 ```
 
-### `AutogenMetric` ([`src/autogen_team/evaluation/metrics/metrics.py`](/src/autogen_team/evaluation/metrics/metrics.py))
-#### Overview
+## Class `AutogenMetric`
+
+### Overview
+
 Evaluate text-based Autogen responses using conversation metrics.
 
 Parameters:
     metric_type (str): Type of text metric (exact_match, similarity, length_ratio)
     similarity_threshold (float): Minimum similarity score for partial matches
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['AutogenMetric']`): Maintains the state for KIND.
-- `metric_type` (`T.Literal['exact_match', 'similarity', 'length_ratio']`): Maintains the state for metric_type.
-- `similarity_threshold` (`Optional[float]`): Maintains the state for similarity_threshold.
+- `KIND` (T.Literal[AutogenMetric]): Public property.
+- `metric_type` (T.Literal[(exact_match, similarity, length_ratio)]): Public property.
+- `similarity_threshold` (Optional[float]): Public property.
 
-#### Methods
-##### `score(self: Any, targets: pd.DataFrame, outputs: pd.DataFrame) -> float` (Public)
-**Description:** Executes the score operation, mutating state or calculating derived values as necessary.
+### Public Method `score`
 
-**Inputs:**
-- `targets` (`pd.DataFrame`): Input parameter dictating the behavior of score.
-- `outputs` (`pd.DataFrame`): Input parameter dictating the behavior of score.
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the score action.
+#### Inputs
+- `targets` (pd.DataFrame): semantic meaning. Required.
+- `outputs` (pd.DataFrame): semantic meaning. Required.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `float`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = AutogenMetric()
-result = instance.score(...)
+# Example usage of score
+instance.score()
 ```
 
-##### `_exact_match_score(self: Any, y_true: pd.Series[str], y_pred: pd.Series[str]) -> float` (Private)
-- **Purpose**: Internal helper method handling logic for _exact_match_score.
-- **Parameters**:
-  - `y_true`: Contextual argument for execution.
-  - `y_pred`: Contextual argument for execution.
-- **Return value**: `float`
+### Private Method `_exact_match_score`
 
-##### `_similarity_score(self: Any, y_true: pd.Series[str], y_pred: pd.Series[str]) -> float` (Private)
-- **Purpose**: Internal helper method handling logic for _similarity_score.
-- **Parameters**:
-  - `y_true`: Contextual argument for execution.
-  - `y_pred`: Contextual argument for execution.
-- **Return value**: `float`
+**Purpose:** No description provided.
 
-##### `_length_ratio(self: Any, y_true: pd.Series[str], y_pred: pd.Series[str]) -> float` (Private)
-- **Purpose**: Internal helper method handling logic for _length_ratio.
-- **Parameters**:
-  - `y_true`: Contextual argument for execution.
-  - `y_pred`: Contextual argument for execution.
-- **Return value**: `float`
+**Parameters:**
+- `y_true`: pd.Series[str]
+- `y_pred`: pd.Series[str]
 
-### `AutogenConversationMetric` ([`src/autogen_team/evaluation/metrics/metrics.py`](/src/autogen_team/evaluation/metrics/metrics.py))
-#### Overview
+**Return value:**
+- `float`
+
+### Private Method `_similarity_score`
+
+**Purpose:** No description provided.
+
+**Parameters:**
+- `y_true`: pd.Series[str]
+- `y_pred`: pd.Series[str]
+
+**Return value:**
+- `float`
+
+### Private Method `_length_ratio`
+
+**Purpose:** No description provided.
+
+**Parameters:**
+- `y_true`: pd.Series[str]
+- `y_pred`: pd.Series[str]
+
+**Return value:**
+- `float`
+
+## Class `AutogenConversationMetric`
+
+### Overview
+
 Evaluate conversation quality metrics for Autogen interactions.
 
 Parameters:
     check_termination (bool): Verify if conversation reached termination
     check_error_messages (bool): Check for error messages in output
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['AutogenConversationMetric']`): Maintains the state for KIND.
-- `check_termination` (`bool`): Maintains the state for check_termination.
-- `check_error_messages` (`bool`): Maintains the state for check_error_messages.
+- `KIND` (T.Literal[AutogenConversationMetric]): Public property.
+- `check_termination` (bool): Public property.
+- `check_error_messages` (bool): Public property.
 
-#### Methods
-##### `score(self: Any, targets: pd.DataFrame, outputs: pd.DataFrame) -> float` (Public)
-**Description:** Executes the score operation, mutating state or calculating derived values as necessary.
+### Public Method `score`
 
-**Inputs:**
-- `targets` (`pd.DataFrame`): Input parameter dictating the behavior of score.
-- `outputs` (`pd.DataFrame`): Input parameter dictating the behavior of score.
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the score action.
+#### Inputs
+- `targets` (pd.DataFrame): semantic meaning. Required.
+- `outputs` (pd.DataFrame): semantic meaning. Required.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `float`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = AutogenConversationMetric()
-result = instance.score(...)
+# Example usage of score
+instance.score()
 ```
 
-### `Threshold` ([`src/autogen_team/evaluation/metrics/metrics.py`](/src/autogen_team/evaluation/metrics/metrics.py))
-#### Overview
+## Class `Threshold`
+
+### Overview
+
 A project threshold for a metric.
 
 Use thresholds to monitor model performances.
@@ -321,37 +288,66 @@ Parameters:
     threshold (int | float): absolute threshold value.
     greater_is_better (bool): maximize or minimize result.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `threshold` (`int | float`): Maintains the state for threshold.
-- `greater_is_better` (`bool`): Maintains the state for greater_is_better.
+- `threshold` (int | float): Public property.
+- `greater_is_better` (bool): Public property.
 
-#### Methods
-##### `to_mlflow(self: Any) -> MlflowThreshold` (Public)
-**Description:** Convert the threshold to an mlflow threshold.
+### Public Method `to_mlflow`
+
+#### Description
+Convert the threshold to an mlflow threshold.
 
 Returns:
     MlflowThreshold: the mlflow threshold.
 
-**Inputs:**
+#### Inputs
+None
 
-**Output:**
-- Return Type: `MlflowThreshold`
-- Semantic Meaning: The resulting value after processing the to_mlflow action.
+#### Output
+- Return type: `MlflowThreshold`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Threshold()
-result = instance.to_mlflow(...)
+# Example usage of to_mlflow
+instance.to_mlflow()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class Metric {
+  + score()
+  + scorer()
+  + to_mlflow()
+}
+abc.ABC <|-- Metric
+pdt.BaseModel <|-- Metric
+class AutogenMetric {
+  + score()
+  - _exact_match_score()
+  - _similarity_score()
+  - _length_ratio()
+}
+Metric <|-- AutogenMetric
+class AutogenConversationMetric {
+  + score()
+}
+Metric <|-- AutogenConversationMetric
+class Threshold {
+  + to_mlflow()
+}
+abc.ABC <|-- Threshold
+pdt.BaseModel <|-- Threshold
+@enduml
+```
+

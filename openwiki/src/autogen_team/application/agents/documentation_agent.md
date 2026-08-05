@@ -1,89 +1,81 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: documentation_agent"
-source_path: "src/autogen_team/application/agents/documentation_agent.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/agents/documentation_agent.py
+source: src/autogen_team/application/agents/documentation_agent.py
 ---
 
-# Module Specification: documentation_agent
+# Document: src/autogen_team/application/agents/documentation_agent.py
 
-* **Source Reference:** `src/autogen_team/application/agents/documentation_agent.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
-[No description available. LLM synthesis required.]
+### Purpose
+Provides functionality for `documentation_agent`.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Responsibilities
+Handles operations and definitions related to `documentation_agent`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
 
-## 2. Dependencies
-**Imports:**
+### Dependencies
 - `typing.Any`
 - `typing.Dict`
 - `autogen_team.infrastructure.client.mcp_client.MCPClient`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `DocumentationAgent`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `DocumentationAgent`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    class DocumentationAgent {
-        +__init__() : None
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `DocumentationAgent` ([`src/autogen_team/application/agents/documentation_agent.py`](/src/autogen_team/application/agents/documentation_agent.py))
-#### Overview
 Agent responsible for generating mission documentation and diagrams.
 Uses the MCP 'generate_mission_docs' tool.
 
-#### Constructor
-**Initialization:** Initializes `DocumentationAgent` with required dependencies and sets up initial internal state.
+### Constructor
 
-#### Methods
-##### `__init__(self: Any) -> None` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+No description provided.
 
-**Inputs:**
+**Parameters:**
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+### Public Method `generate_docs`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Description
+Calls the `generate_mission_docs` tool via MCP.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Inputs
+- `mission_id` (str): semantic meaning. Required.
+- `mission_context` (Dict[(str, Any)]): semantic meaning. Required.
 
-**Example:**
+#### Output
+- Return type: `Dict[(str, Any)]`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = DocumentationAgent()
-result = instance.__init__(...)
+# Example usage of generate_docs
+instance.generate_docs()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class DocumentationAgent {
+  + __init__()
+  + generate_docs()
+}
+@enduml
+```
+

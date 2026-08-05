@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: execute_code"
-source_path: "src/autogen_team/application/mcp/tools/execute_code.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/mcp/tools/execute_code.py
+source: src/autogen_team/application/mcp/tools/execute_code.py
 ---
 
-# Module Specification: execute_code
+# Document: src/autogen_team/application/mcp/tools/execute_code.py
 
-* **Source Reference:** `src/autogen_team/application/mcp/tools/execute_code.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Execute Code tool — generates code changes and validates in sandbox.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `execute_code`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `execute_code`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `__future__.annotations`
 - `json`
 - `os`
@@ -37,23 +31,52 @@ Execute Code tool — generates code changes and validates in sandbox.
 - `autogen_team.core.security.safe_join`
 - `autogen_team.infrastructure.services.mcp_service.MCPService`
 
-**Exported Classes:**
+## Public API
 
-**Exported Functions:**
+### Exported Classes
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+### Exported Functions
+- `execute_code`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+## Public Function `execute_code`
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+### Description
+Generate code changes for a task and validate in sandbox.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
-No classes defined in this module.
+Args:
+    task: A task dict (from DAG) with id, name, description.
+    workspace_path: Path to the workspace root.
 
-## 5. Class & Method Specifications
-## 6. Module Functions
+Returns:
+    A dict with files_changed list and status.
+
+### Inputs
+- `task` (T.Dict[(str, T.Any)]): semantic meaning. Required.
+- `workspace_path` (str): semantic meaning. Required.
+
+### Output
+- Return type: `T.Dict[(str, T.Any)]`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
+```python
+# Example usage of execute_code
+execute_code()
+```
+
+## UML Diagram
+
+```plantuml
+@startuml
+note "No classes in module" as N1
+@enduml
+```
+

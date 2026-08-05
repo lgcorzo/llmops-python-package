@@ -1,30 +1,24 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: entities"
-source_path: "src/autogen_team/models/entities.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/models/entities.py
+source: src/autogen_team/models/entities.py
 ---
 
-# Module Specification: entities
+# Document: src/autogen_team/models/entities.py
 
-* **Source Reference:** `src/autogen_team/models/entities.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Define trainable machine learning models.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `entities`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `entities`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `abc`
 - `asyncio`
 - `json`
@@ -44,78 +38,32 @@ Define trainable machine learning models.
 - `pydantic.PrivateAttr`
 - `autogen_team.core.schemas`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `Model`
 - `BaselineAutogenModel`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `Model`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    abc.ABC <|-- Model
-    pdt.BaseModel <|-- Model
-    class Model {
-        +KIND: str
-        +get_params(deep: bool) : Params
-        +set_params() : T.Self
-        +load_context(model_config: Dict[str, Any]) : None
-        +fit(inputs: schemas.Inputs, targets: schemas.Targets) : T.Self
-        +predict(inputs: schemas.Inputs) : schemas.Outputs
-        +explain_model() : schemas.FeatureImportances
-        +explain_samples(inputs: schemas.Inputs) : schemas.SHAPValues
-        +get_internal_model() : T.Any
-    }
-    Model <|-- BaselineAutogenModel
-    class BaselineAutogenModel {
-        +KIND: T.Literal['BaselineAutogenModel']
-        +model_config_path: Optional[str]
-        +model_config_data: Optional[Dict[str, Any]]
-        +_model_client: Optional[Any]
-        +max_tokens: Optional[int]
-        +temperature: Optional[float]
-        +__init__(model_config_path: Optional[str], model_config_data: Optional[Dict[str, Any]], max_tokens: Optional[int], temperature: Optional[float]) : None
-        +load_context_path(model_config_path: Optional[str]) : None
-        +load_context(model_config: Dict[str, Any]) : None
-        +fit(inputs: schemas.Inputs, targets: schemas.Targets) : 'BaselineAutogenModel'
-        +predict(inputs: schemas.Inputs) : schemas.Outputs
-        +get_internal_model() : Any
-        +explain_model() : schemas.FeatureImportances
-        +explain_samples(inputs: schemas.Inputs) : schemas.SHAPValues
-        -__getstate__() : Dict[str, Any]
-        -__setstate__(state: Dict[str, Any]) : None
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `Model` ([`src/autogen_team/models/entities.py`](/src/autogen_team/models/entities.py))
-#### Overview
 Base class for a project model.
 
 Use a model to adapt AI/ML frameworks.
 e.g., to swap easily one model with another.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`str`): Maintains the state for KIND.
+- `KIND` (str): Public property.
 
-#### Methods
-##### `get_params(self: Any, deep: bool) -> Params` (Public)
-**Description:** Get the model params.
+### Public Method `get_params`
+
+#### Description
+Get the model params.
 
 Args:
     deep (bool, optional): ignored.
@@ -123,76 +71,83 @@ Args:
 Returns:
     Params: internal model parameters.
 
-**Inputs:**
-- `deep` (`bool`): Input parameter dictating the behavior of get_params.
+#### Inputs
+- `deep` (bool): semantic meaning. Optional (default: `True`).
 
-**Output:**
-- Return Type: `Params`
-- Semantic Meaning: The resulting value after processing the get_params action.
+#### Output
+- Return type: `Params`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Model()
-result = instance.get_params(...)
+# Example usage of get_params
+instance.get_params()
 ```
 
-##### `set_params(self: Any) -> T.Self` (Public)
-**Description:** Set the model params in place.
+### Public Method `set_params`
+
+#### Description
+Set the model params in place.
 
 Returns:
     T.Self: instance of the model.
 
-**Inputs:**
+#### Inputs
+None
 
-**Output:**
-- Return Type: `T.Self`
-- Semantic Meaning: The resulting value after processing the set_params action.
+#### Output
+- Return type: `T.Self`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Model()
-result = instance.set_params(...)
+# Example usage of set_params
+instance.set_params()
 ```
 
-##### `load_context(self: Any, model_config: Dict[str, Any]) -> None` (Public)
-**Description:** Load the model from the specified artifacts directory.
+### Public Method `load_context`
 
-**Inputs:**
-- `model_config` (`Dict[str, Any]`): Input parameter dictating the behavior of load_context.
+#### Description
+Load the model from the specified artifacts directory.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the load_context action.
+#### Inputs
+- `model_config` (Dict[(str, Any)]): semantic meaning. Required.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = Model()
-result = instance.load_context(...)
+# Example usage of load_context
+instance.load_context()
 ```
 
-##### `fit(self: Any, inputs: schemas.Inputs, targets: schemas.Targets) -> T.Self` (Public)
-**Description:** Fit the model on the given inputs and targets.
+### Public Method `fit`
+
+#### Description
+Fit the model on the given inputs and targets.
 
 Args:
     inputs (schemas.Inputs): model training inputs.
@@ -201,29 +156,31 @@ Args:
 Returns:
     T.Self: instance of the model.
 
-**Inputs:**
-- `inputs` (`schemas.Inputs`): Input parameter dictating the behavior of fit.
-- `targets` (`schemas.Targets`): Input parameter dictating the behavior of fit.
+#### Inputs
+- `inputs` (schemas.Inputs): semantic meaning. Required.
+- `targets` (schemas.Targets): semantic meaning. Required.
 
-**Output:**
-- Return Type: `T.Self`
-- Semantic Meaning: The resulting value after processing the fit action.
+#### Output
+- Return type: `T.Self`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Model()
-result = instance.fit(...)
+# Example usage of fit
+instance.fit()
 ```
 
-##### `predict(self: Any, inputs: schemas.Inputs) -> schemas.Outputs` (Public)
-**Description:** Generate outputs with the model for the given inputs.
+### Public Method `predict`
+
+#### Description
+Generate outputs with the model for the given inputs.
 
 Args:
     inputs (schemas.Inputs): model prediction inputs.
@@ -231,28 +188,30 @@ Args:
 Returns:
     schemas.Outputs: model prediction outputs.
 
-**Inputs:**
-- `inputs` (`schemas.Inputs`): Input parameter dictating the behavior of predict.
+#### Inputs
+- `inputs` (schemas.Inputs): semantic meaning. Required.
 
-**Output:**
-- Return Type: `schemas.Outputs`
-- Semantic Meaning: The resulting value after processing the predict action.
+#### Output
+- Return type: `schemas.Outputs`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Model()
-result = instance.predict(...)
+# Example usage of predict
+instance.predict()
 ```
 
-##### `explain_model(self: Any) -> schemas.FeatureImportances` (Public)
-**Description:** Explain the internal model structure.
+### Public Method `explain_model`
+
+#### Description
+Explain the internal model structure.
 
 Raises:
     NotImplementedError: method not implemented.
@@ -260,27 +219,30 @@ Raises:
 Returns:
     schemas.FeatureImportances: feature importances.
 
-**Inputs:**
+#### Inputs
+None
 
-**Output:**
-- Return Type: `schemas.FeatureImportances`
-- Semantic Meaning: The resulting value after processing the explain_model action.
+#### Output
+- Return type: `schemas.FeatureImportances`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Model()
-result = instance.explain_model(...)
+# Example usage of explain_model
+instance.explain_model()
 ```
 
-##### `explain_samples(self: Any, inputs: schemas.Inputs) -> schemas.SHAPValues` (Public)
-**Description:** Explain model outputs on input samples.
+### Public Method `explain_samples`
+
+#### Description
+Explain model outputs on input samples.
 
 Raises:
     NotImplementedError: method not implemented.
@@ -288,28 +250,30 @@ Raises:
 Returns:
     schemas.SHAPValues: SHAP values.
 
-**Inputs:**
-- `inputs` (`schemas.Inputs`): Input parameter dictating the behavior of explain_samples.
+#### Inputs
+- `inputs` (schemas.Inputs): semantic meaning. Required.
 
-**Output:**
-- Return Type: `schemas.SHAPValues`
-- Semantic Meaning: The resulting value after processing the explain_samples action.
+#### Output
+- Return type: `schemas.SHAPValues`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Model()
-result = instance.explain_samples(...)
+# Example usage of explain_samples
+instance.explain_samples()
 ```
 
-##### `get_internal_model(self: Any) -> T.Any` (Public)
-**Description:** Return the internal model in the object.
+### Public Method `get_internal_model`
+
+#### Description
+Return the internal model in the object.
 
 Raises:
     NotImplementedError: method not implemented.
@@ -317,246 +281,295 @@ Raises:
 Returns:
     T.Any: any internal model (either empty or fitted).
 
-**Inputs:**
+#### Inputs
+None
 
-**Output:**
-- Return Type: `T.Any`
-- Semantic Meaning: The resulting value after processing the get_internal_model action.
+#### Output
+- Return type: `T.Any`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Model()
-result = instance.get_internal_model(...)
+# Example usage of get_internal_model
+instance.get_internal_model()
 ```
 
-### `BaselineAutogenModel` ([`src/autogen_team/models/entities.py`](/src/autogen_team/models/entities.py))
-#### Overview
+## Class `BaselineAutogenModel`
+
+### Overview
+
 Simple baseline model based on autogen.
 https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/design-patterns/group-chat.html
 Parameters:
     max_tokens (int): maximum token of the prompt
     temperature (float): temperature for the sampling
 
-#### Constructor
-**Initialization:** Initializes `BaselineAutogenModel` with required dependencies and sets up initial internal state.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['BaselineAutogenModel']`): Maintains the state for KIND.
-- `model_config_path` (`Optional[str]`): Maintains the state for model_config_path.
-- `model_config_data` (`Optional[Dict[str, Any]]`): Maintains the state for model_config_data.
-- `_model_client` (`Optional[Any]`): Maintains the state for _model_client.
-- `max_tokens` (`Optional[int]`): Maintains the state for max_tokens.
-- `temperature` (`Optional[float]`): Maintains the state for temperature.
+- `KIND` (T.Literal[BaselineAutogenModel]): Public property.
+- `model_config_path` (Optional[str]): Public property.
+- `model_config_data` (Optional[Dict[(str, Any)]]): Public property.
+- `max_tokens` (Optional[int]): Public property.
+- `temperature` (Optional[float]): Public property.
 
-#### Methods
-##### `__init__(self: Any, model_config_path: Optional[str], model_config_data: Optional[Dict[str, Any]], max_tokens: Optional[int], temperature: Optional[float]) -> None` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+### Constructor
 
-**Inputs:**
-- `model_config_path` (`Optional[str]`): Input parameter dictating the behavior of __init__.
-- `model_config_data` (`Optional[Dict[str, Any]]`): Input parameter dictating the behavior of __init__.
-- `max_tokens` (`Optional[int]`): Input parameter dictating the behavior of __init__.
-- `temperature` (`Optional[float]`): Input parameter dictating the behavior of __init__.
+No description provided.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+**Parameters:**
+- `model_config_path` (Optional[str]) = `None`
+- `model_config_data` (Optional[Dict[(str, Any)]]) = `None`
+- `max_tokens` (Optional[int]) = `320000`
+- `temperature` (Optional[float]) = `0.5`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+### Public Method `load_context_path`
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Description
+Load the model from the specified artifacts directory.
 
-**Example:**
+#### Inputs
+- `model_config_path` (Optional[str]): semantic meaning. Optional (default: `None`).
+
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
+
+#### Side Effects
+May update internal state or external services.
+
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = BaselineAutogenModel()
-result = instance.__init__(...)
+# Example usage of load_context_path
+instance.load_context_path()
 ```
 
-##### `load_context_path(self: Any, model_config_path: Optional[str]) -> None` (Public)
-**Description:** Load the model from the specified artifacts directory.
+### Public Method `load_context`
 
-**Inputs:**
-- `model_config_path` (`Optional[str]`): Input parameter dictating the behavior of load_context_path.
-
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the load_context_path action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = BaselineAutogenModel()
-result = instance.load_context_path(...)
-```
-
-##### `load_context(self: Any, model_config: Dict[str, Any]) -> None` (Public)
-**Description:** Load the model from the specified artifacts directory.
+#### Description
+Load the model from the specified artifacts directory.
 https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/migration-guide.html#assistant-agent
 https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/cookbook/local-llms-ollama-litellm.html
 
-**Inputs:**
-- `model_config` (`Dict[str, Any]`): Input parameter dictating the behavior of load_context.
+#### Inputs
+- `model_config` (Dict[(str, Any)]): semantic meaning. Required.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the load_context action.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = BaselineAutogenModel()
-result = instance.load_context(...)
+# Example usage of load_context
+instance.load_context()
 ```
 
-##### `fit(self: Any, inputs: schemas.Inputs, targets: schemas.Targets) -> 'BaselineAutogenModel'` (Public)
-**Description:** Executes the fit operation, mutating state or calculating derived values as necessary.
+### Public Method `fit`
 
-**Inputs:**
-- `inputs` (`schemas.Inputs`): Input parameter dictating the behavior of fit.
-- `targets` (`schemas.Targets`): Input parameter dictating the behavior of fit.
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `'BaselineAutogenModel'`
-- Semantic Meaning: The resulting value after processing the fit action.
+#### Inputs
+- `inputs` (schemas.Inputs): semantic meaning. Required.
+- `targets` (schemas.Targets): semantic meaning. Required.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `BaselineAutogenModel`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = BaselineAutogenModel()
-result = instance.fit(...)
+# Example usage of fit
+instance.fit()
 ```
 
-##### `predict(self: Any, inputs: schemas.Inputs) -> schemas.Outputs` (Public)
-**Description:** Predicts the output using the assistant team based on the given inputs.
+### Private Method `_rungroupchat`
+
+**Purpose:** Executes a group chat request using the model client.
+
+**Parameters:**
+- `content`: str
+
+**Return value:**
+- `ChatResponse`
+
+### Public Method `predict`
+
+#### Description
+Predicts the output using the assistant team based on the given inputs.
 Processes each input element concurrently and appends results to the output DataFrame.
 
-**Inputs:**
-- `inputs` (`schemas.Inputs`): Input parameter dictating the behavior of predict.
+#### Inputs
+- `inputs` (schemas.Inputs): semantic meaning. Required.
 
-**Output:**
-- Return Type: `schemas.Outputs`
-- Semantic Meaning: The resulting value after processing the predict action.
+#### Output
+- Return type: `schemas.Outputs`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = BaselineAutogenModel()
-result = instance.predict(...)
+# Example usage of predict
+instance.predict()
 ```
 
-##### `get_internal_model(self: Any) -> Any` (Public)
-**Description:** Executes the get_internal_model operation, mutating state or calculating derived values as necessary.
+### Public Method `get_internal_model`
 
-**Inputs:**
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the get_internal_model action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `Any`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = BaselineAutogenModel()
-result = instance.get_internal_model(...)
+# Example usage of get_internal_model
+instance.get_internal_model()
 ```
 
-##### `explain_model(self: Any) -> schemas.FeatureImportances` (Public)
-**Description:** Provides a text-based explanation of the model's internal structure.
+### Public Method `explain_model`
+
+#### Description
+Provides a text-based explanation of the model's internal structure.
 Since this model leverages the OpenAI Chat API for generating responses,
 it does not produce traditional numerical feature importances.
 
-**Inputs:**
+#### Inputs
+None
 
-**Output:**
-- Return Type: `schemas.FeatureImportances`
-- Semantic Meaning: The resulting value after processing the explain_model action.
+#### Output
+- Return type: `schemas.FeatureImportances`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = BaselineAutogenModel()
-result = instance.explain_model(...)
+# Example usage of explain_model
+instance.explain_model()
 ```
 
-##### `explain_samples(self: Any, inputs: schemas.Inputs) -> schemas.SHAPValues` (Public)
-**Description:** Explains model outputs for the given input samples by leveraging the predict function.
+### Public Method `explain_samples`
+
+#### Description
+Explains model outputs for the given input samples by leveraging the predict function.
 For each input, a textual explanation is provided along with a dummy SHAP value.
 
-**Inputs:**
-- `inputs` (`schemas.Inputs`): Input parameter dictating the behavior of explain_samples.
+#### Inputs
+- `inputs` (schemas.Inputs): semantic meaning. Required.
 
-**Output:**
-- Return Type: `schemas.SHAPValues`
-- Semantic Meaning: The resulting value after processing the explain_samples action.
+#### Output
+- Return type: `schemas.SHAPValues`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = BaselineAutogenModel()
-result = instance.explain_samples(...)
+# Example usage of explain_samples
+instance.explain_samples()
 ```
 
-##### `__getstate__(self: Any) -> Dict[str, Any]` (Private)
-- **Purpose**: Custom getstate to exclude unpicklable model client while preserving Pydantic state.
-- **Parameters**:
-- **Return value**: `Dict[str, Any]`
+### Private Method `__getstate__`
 
-##### `__setstate__(self: Any, state: Dict[str, Any]) -> None` (Private)
-- **Purpose**: Custom setstate to restore the model state including Pydantic internal state.
-- **Parameters**:
-  - `state`: Contextual argument for execution.
-- **Return value**: `None`
+**Purpose:** Custom getstate to exclude unpicklable model client while preserving Pydantic state.
 
-## 6. Module Functions
+**Parameters:**
+
+**Return value:**
+- `Dict[(str, Any)]`
+
+### Private Method `__setstate__`
+
+**Purpose:** Custom setstate to restore the model state including Pydantic internal state.
+
+**Parameters:**
+- `state`: Dict[(str, Any)]
+
+**Return value:**
+- `None`
+
+## UML Diagram
+
+```plantuml
+@startuml
+class Model {
+  + get_params()
+  + set_params()
+  + load_context()
+  + fit()
+  + predict()
+  + explain_model()
+  + explain_samples()
+  + get_internal_model()
+}
+abc.ABC <|-- Model
+pdt.BaseModel <|-- Model
+class BaselineAutogenModel {
+  + __init__()
+  + load_context_path()
+  + load_context()
+  + fit()
+  - _rungroupchat()
+  + predict()
+  + get_internal_model()
+  + explain_model()
+  + explain_samples()
+  - __getstate__()
+  - __setstate__()
+}
+Model <|-- BaselineAutogenModel
+@enduml
+```
+

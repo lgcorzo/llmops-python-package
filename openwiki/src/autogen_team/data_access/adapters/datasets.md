@@ -1,91 +1,45 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: datasets"
-source_path: "src/autogen_team/data_access/adapters/datasets.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/data_access/adapters/datasets.py
+source: src/autogen_team/data_access/adapters/datasets.py
 ---
 
-# Module Specification: datasets
+# Document: src/autogen_team/data_access/adapters/datasets.py
 
-* **Source Reference:** `src/autogen_team/data_access/adapters/datasets.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Read/Write datasets from/to external sources/destinations.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `datasets`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `datasets`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `abc`
 - `typing`
 - `mlflow.data.pandas_dataset`
 - `pandas`
 - `pydantic`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `Reader`
 - `ParquetReader`
 - `Writer`
 - `ParquetWriter`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `Reader`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
-
-## 4. UML 2.0 Diagrams
-### Class Diagram
-```plantuml
-@startuml
-    abc.ABC <|-- Reader
-    pdt.BaseModel <|-- Reader
-    class Reader {
-        +KIND: str
-        +limit: int | None
-        +read() : pd.DataFrame
-        +lineage(name: str, data: pd.DataFrame, targets: str | None, predictions: str | None) : Lineage
-    }
-    Reader <|-- ParquetReader
-    class ParquetReader {
-        +KIND: T.Literal['ParquetReader']
-        +path: str
-        +read() : pd.DataFrame
-        +lineage(name: str, data: pd.DataFrame, targets: str | None, predictions: str | None) : Lineage
-    }
-    abc.ABC <|-- Writer
-    pdt.BaseModel <|-- Writer
-    class Writer {
-        +KIND: str
-        +write(data: pd.DataFrame) : None
-    }
-    Writer <|-- ParquetWriter
-    class ParquetWriter {
-        +KIND: T.Literal['ParquetWriter']
-        +path: str
-        +write(data: pd.DataFrame) : None
-    }
-@enduml
-```
-
-## 5. Class & Method Specifications
-### `Reader` ([`src/autogen_team/data_access/adapters/datasets.py`](/src/autogen_team/data_access/adapters/datasets.py))
-#### Overview
 Base class for a dataset reader.
 
 Use a reader to load a dataset in memory.
@@ -94,41 +48,43 @@ e.g., to read file, database, cloud storage, ...
 Parameters:
     limit (int, optional): maximum number of rows to read. Defaults to None.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`str`): Maintains the state for KIND.
-- `limit` (`int | None`): Maintains the state for limit.
+- `KIND` (str): Public property.
+- `limit` (int | None): Public property.
 
-#### Methods
-##### `read(self: Any) -> pd.DataFrame` (Public)
-**Description:** Read a dataframe from a dataset.
+### Public Method `read`
+
+#### Description
+Read a dataframe from a dataset.
 
 Returns:
     pd.DataFrame: dataframe representation.
 
-**Inputs:**
+#### Inputs
+None
 
-**Output:**
-- Return Type: `pd.DataFrame`
-- Semantic Meaning: The resulting value after processing the read action.
+#### Output
+- Return type: `pd.DataFrame`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Reader()
-result = instance.read(...)
+# Example usage of read
+instance.read()
 ```
 
-##### `lineage(self: Any, name: str, data: pd.DataFrame, targets: str | None, predictions: str | None) -> Lineage` (Public)
-**Description:** Generate lineage information.
+### Public Method `lineage`
+
+#### Description
+Generate lineage information.
 
 Args:
     name (str): dataset name.
@@ -139,168 +95,200 @@ Args:
 Returns:
     Lineage: lineage information.
 
-**Inputs:**
-- `name` (`str`): Input parameter dictating the behavior of lineage.
-- `data` (`pd.DataFrame`): Input parameter dictating the behavior of lineage.
-- `targets` (`str | None`): Input parameter dictating the behavior of lineage.
-- `predictions` (`str | None`): Input parameter dictating the behavior of lineage.
+#### Inputs
+- `name` (str): semantic meaning. Required.
+- `data` (pd.DataFrame): semantic meaning. Required.
+- `targets` (str | None): semantic meaning. Optional (default: `None`).
+- `predictions` (str | None): semantic meaning. Optional (default: `None`).
 
-**Output:**
-- Return Type: `Lineage`
-- Semantic Meaning: The resulting value after processing the lineage action.
+#### Output
+- Return type: `Lineage`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Reader()
-result = instance.lineage(...)
+# Example usage of lineage
+instance.lineage()
 ```
 
-### `ParquetReader` ([`src/autogen_team/data_access/adapters/datasets.py`](/src/autogen_team/data_access/adapters/datasets.py))
-#### Overview
+## Class `ParquetReader`
+
+### Overview
+
 Read a dataframe from a parquet file.
 
 Parameters:
     path (str): local path to the dataset.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['ParquetReader']`): Maintains the state for KIND.
-- `path` (`str`): Maintains the state for path.
+- `KIND` (T.Literal[ParquetReader]): Public property.
+- `path` (str): Public property.
 
-#### Methods
-##### `read(self: Any) -> pd.DataFrame` (Public)
-**Description:** Executes the read operation, mutating state or calculating derived values as necessary.
+### Public Method `read`
 
-**Inputs:**
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `pd.DataFrame`
-- Semantic Meaning: The resulting value after processing the read action.
+#### Inputs
+None
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `pd.DataFrame`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = ParquetReader()
-result = instance.read(...)
+# Example usage of read
+instance.read()
 ```
 
-##### `lineage(self: Any, name: str, data: pd.DataFrame, targets: str | None, predictions: str | None) -> Lineage` (Public)
-**Description:** Executes the lineage operation, mutating state or calculating derived values as necessary.
+### Public Method `lineage`
 
-**Inputs:**
-- `name` (`str`): Input parameter dictating the behavior of lineage.
-- `data` (`pd.DataFrame`): Input parameter dictating the behavior of lineage.
-- `targets` (`str | None`): Input parameter dictating the behavior of lineage.
-- `predictions` (`str | None`): Input parameter dictating the behavior of lineage.
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `Lineage`
-- Semantic Meaning: The resulting value after processing the lineage action.
+#### Inputs
+- `name` (str): semantic meaning. Required.
+- `data` (pd.DataFrame): semantic meaning. Required.
+- `targets` (str | None): semantic meaning. Optional (default: `None`).
+- `predictions` (str | None): semantic meaning. Optional (default: `None`).
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `Lineage`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = ParquetReader()
-result = instance.lineage(...)
+# Example usage of lineage
+instance.lineage()
 ```
 
-### `Writer` ([`src/autogen_team/data_access/adapters/datasets.py`](/src/autogen_team/data_access/adapters/datasets.py))
-#### Overview
+## Class `Writer`
+
+### Overview
+
 Base class for a dataset writer.
 
 Use a writer to save a dataset from memory.
 e.g., to write file, database, cloud storage, ...
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`str`): Maintains the state for KIND.
+- `KIND` (str): Public property.
 
-#### Methods
-##### `write(self: Any, data: pd.DataFrame) -> None` (Public)
-**Description:** Write a dataframe to a dataset.
+### Public Method `write`
+
+#### Description
+Write a dataframe to a dataset.
 
 Args:
     data (pd.DataFrame): dataframe representation.
 
-**Inputs:**
-- `data` (`pd.DataFrame`): Input parameter dictating the behavior of write.
+#### Inputs
+- `data` (pd.DataFrame): semantic meaning. Required.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the write action.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Side Effects
+May update internal state or external services.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
 
-**Example:**
+#### Example
 ```python
-instance = Writer()
-result = instance.write(...)
+# Example usage of write
+instance.write()
 ```
 
-### `ParquetWriter` ([`src/autogen_team/data_access/adapters/datasets.py`](/src/autogen_team/data_access/adapters/datasets.py))
-#### Overview
+## Class `ParquetWriter`
+
+### Overview
+
 Writer a dataframe to a parquet file.
 
 Parameters:
     path (str): local or S3 path to the dataset.
 
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
+### Attributes
 
-#### Attributes
-- `KIND` (`T.Literal['ParquetWriter']`): Maintains the state for KIND.
-- `path` (`str`): Maintains the state for path.
+- `KIND` (T.Literal[ParquetWriter]): Public property.
+- `path` (str): Public property.
 
-#### Methods
-##### `write(self: Any, data: pd.DataFrame) -> None` (Public)
-**Description:** Executes the write operation, mutating state or calculating derived values as necessary.
+### Public Method `write`
 
-**Inputs:**
-- `data` (`pd.DataFrame`): Input parameter dictating the behavior of write.
+#### Description
+No description provided.
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the write action.
+#### Inputs
+- `data` (pd.DataFrame): semantic meaning. Required.
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+#### Output
+- Return type: `None`
+- Semantic meaning: Result of the operation.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+#### Side Effects
+May update internal state or external services.
 
-**Example:**
+#### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+#### Example
 ```python
-instance = ParquetWriter()
-result = instance.write(...)
+# Example usage of write
+instance.write()
 ```
 
-## 6. Module Functions
+## UML Diagram
+
+```plantuml
+@startuml
+class Reader {
+  + read()
+  + lineage()
+}
+abc.ABC <|-- Reader
+pdt.BaseModel <|-- Reader
+class ParquetReader {
+  + read()
+  + lineage()
+}
+Reader <|-- ParquetReader
+class Writer {
+  + write()
+}
+abc.ABC <|-- Writer
+pdt.BaseModel <|-- Writer
+class ParquetWriter {
+  + write()
+}
+Writer <|-- ParquetWriter
+@enduml
+```
+

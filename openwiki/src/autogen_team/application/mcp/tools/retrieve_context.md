@@ -1,53 +1,76 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: retrieve_context"
-source_path: "src/autogen_team/application/mcp/tools/retrieve_context.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/application/mcp/tools/retrieve_context.py
+source: src/autogen_team/application/mcp/tools/retrieve_context.py
 ---
 
-# Module Specification: retrieve_context
+# Document: src/autogen_team/application/mcp/tools/retrieve_context.py
 
-* **Source Reference:** `src/autogen_team/application/mcp/tools/retrieve_context.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
 Retrieve Context tool — queries R2R RAG for relevant codebase patterns.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Purpose
+Provides functionality for `retrieve_context`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Responsibilities
+Handles operations and definitions related to `retrieve_context`.
 
-## 2. Dependencies
-**Imports:**
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
+
+### Dependencies
 - `__future__.annotations`
 - `typing`
 - `loguru.logger`
 - `httpx`
 - `autogen_team.infrastructure.io.osvariables.Env`
 
-**Exported Classes:**
+## Public API
 
-**Exported Functions:**
+### Exported Classes
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+### Exported Functions
+- `retrieve_context`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+## Public Function `retrieve_context`
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+### Description
+Query R2R RAG system for relevant codebase patterns via semantic search.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
-No classes defined in this module.
+Args:
+    query: Search query string.
+    collection_name: Name of the R2R collection to search.
 
-## 5. Class & Method Specifications
-## 6. Module Functions
+Returns:
+    Dict with matching documents and graph context.
+
+### Inputs
+- `query` (str): semantic meaning. Required.
+- `collection_name` (str): semantic meaning. Optional (default: `'default'`).
+
+### Output
+- Return type: `T.Dict[(str, T.Any)]`
+- Semantic meaning: Result of the operation.
+
+### Side Effects
+May update state or affect global resources.
+
+### Complexity
+- Time Complexity: O(1) mostly.
+- Space Complexity: O(1) mostly.
+
+### Example
+```python
+# Example usage of retrieve_context
+retrieve_context()
+```
+
+## UML Diagram
+
+```plantuml
+@startuml
+note "No classes in module" as N1
+@enduml
+```
+

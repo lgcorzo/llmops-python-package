@@ -1,133 +1,95 @@
 ---
-iso_doc_type: "Specification"
-iso_viewpoint: "ComponentView"
-type: "module"
-title: "Module: osvariables"
-source_path: "src/autogen_team/infrastructure/io/osvariables.py"
-description: "AST-generated documentation for the module."
-tags: ["generated", "ast"]
-timestamp: "2026-08-03T10:50:49Z"
+title: src/autogen_team/infrastructure/io/osvariables.py
+source: src/autogen_team/infrastructure/io/osvariables.py
 ---
 
-# Module Specification: osvariables
+# Document: src/autogen_team/infrastructure/io/osvariables.py
 
-* **Source Reference:** `src/autogen_team/infrastructure/io/osvariables.py`
+## Module Overview
 
-## 1. Architectural Role & Responsibilities
-**Purpose:**
-[No description available. LLM synthesis required.]
+### Purpose
+Provides functionality for `osvariables`.
 
-**Responsibilities:**
-- [LLM Synthesis Required: Define responsibilities]
+### Responsibilities
+Handles operations and definitions related to `osvariables`.
 
-**Main Workflow:**
-- [LLM Synthesis Required: Define main workflow]
+### Main Workflow
+Execution flow defined by the functions and classes in the module.
 
-## 2. Dependencies
-**Imports:**
+### Dependencies
 - `typing.Dict`
 - `typing.Type`
 - `pydantic_settings.BaseSettings`
 - `pydantic_settings.SettingsConfigDict`
 
-**Exported Classes:**
+## Public API
+
+### Exported Classes
 - `Singleton`
 - `Env`
 
-**Exported Functions:**
+### Exported Functions
+None
 
-## 3. Architecture & Execution
-### Internal Architecture
-[LLM Synthesis Required: Describe layers, models, etc.]
+## Class `Singleton`
 
-### Execution Flow
-[LLM Synthesis Required: Describe execution flow]
+### Overview
 
-### Sequence Explanation
-[LLM Synthesis Required: Describe sequence]
+Represents `Singleton` and provides business capabilities.
 
-## 4. UML 2.0 Diagrams
-### Class Diagram
+### Attributes
+
+
+### Private Method `__new__`
+
+**Purpose:** No description provided.
+
+**Parameters:**
+
+**Return value:**
+- `Singleton`
+
+## Class `Env`
+
+### Overview
+
+Represents `Env` and provides business capabilities.
+
+### Attributes
+
+- `mlflow_tracking_uri` (str): Public property.
+- `mlflow_registry_uri` (str): Public property.
+- `mlflow_experiment_name` (str): Public property.
+- `mlflow_registered_model_name` (str): Public property.
+- `aws_access_key_id` (str): Public property.
+- `aws_secret_access_key` (str): Public property.
+- `mlflow_s3_endpoint_url` (str): Public property.
+- `mlflow_s3_ignore_tls` (bool): Public property.
+- `hatchet_client_token` (str): Public property.
+- `hatchet_namespace` (str): Public property.
+- `hatchet_client_host_port` (str): Public property.
+- `hatchet_client_server_url` (str): Public property.
+- `hatchet_client_tls_strategy` (str): Public property.
+- `litellm_api_base` (str): Public property.
+- `litellm_api_key` (str): Public property.
+- `litellm_model` (str): Public property.
+- `r2r_base_url` (str): Public property.
+- `mcp_host` (str): Public property.
+- `mcp_port` (int): Public property.
+- `mcp_prompts_path` (str): Public property.
+
+## UML Diagram
+
 ```plantuml
 @startuml
-    object <|-- Singleton
-    class Singleton {
-        +_instances: Dict[Type['Singleton'], 'Singleton']
-        -__new__(cls: Type['Singleton']) : 'Singleton'
-    }
-    Singleton <|-- Env
-    BaseSettings <|-- Env
-    class Env {
-        +mlflow_tracking_uri: str
-        +mlflow_registry_uri: str
-        +mlflow_experiment_name: str
-        +mlflow_registered_model_name: str
-        +aws_access_key_id: str
-        +aws_secret_access_key: str
-        +mlflow_s3_endpoint_url: str
-        +mlflow_s3_ignore_tls: bool
-        +hatchet_client_token: str
-        +hatchet_namespace: str
-        +hatchet_client_host_port: str
-        +hatchet_client_server_url: str
-        +hatchet_client_tls_strategy: str
-        +litellm_api_base: str
-        +litellm_api_key: str
-        +litellm_model: str
-        +r2r_base_url: str
-        +mcp_host: str
-        +mcp_port: int
-        +mcp_prompts_path: str
-    }
+class Singleton {
+  - __new__()
+}
+object <|-- Singleton
+class Env {
+}
+Singleton <|-- Env
+BaseSettings <|-- Env
 @enduml
 ```
 
-## 5. Class & Method Specifications
-### `Singleton` ([`src/autogen_team/infrastructure/io/osvariables.py`](/src/autogen_team/infrastructure/io/osvariables.py))
-#### Overview
-The `Singleton` class provides specialized capabilities within the `osvariables` module, coordinating state and behaviors specific to its domain.
-
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
-
-#### Attributes
-- `_instances` (`Dict[Type['Singleton'], 'Singleton']`): Maintains the state for _instances.
-
-#### Methods
-##### `__new__(cls: Type['Singleton']) -> 'Singleton'` (Private)
-- **Purpose**: Internal helper method handling logic for __new__.
-- **Parameters**:
-  - `cls`: Contextual argument for execution.
-- **Return value**: `'Singleton'`
-
-### `Env` ([`src/autogen_team/infrastructure/io/osvariables.py`](/src/autogen_team/infrastructure/io/osvariables.py))
-#### Overview
-The `Env` class provides specialized capabilities within the `osvariables` module, coordinating state and behaviors specific to its domain.
-
-#### Constructor
-**Initialization:** Default constructor. Initializes an empty instance.
-
-#### Attributes
-- `mlflow_tracking_uri` (`str`): Maintains the state for mlflow_tracking_uri.
-- `mlflow_registry_uri` (`str`): Maintains the state for mlflow_registry_uri.
-- `mlflow_experiment_name` (`str`): Maintains the state for mlflow_experiment_name.
-- `mlflow_registered_model_name` (`str`): Maintains the state for mlflow_registered_model_name.
-- `aws_access_key_id` (`str`): Maintains the state for aws_access_key_id.
-- `aws_secret_access_key` (`str`): Maintains the state for aws_secret_access_key.
-- `mlflow_s3_endpoint_url` (`str`): Maintains the state for mlflow_s3_endpoint_url.
-- `mlflow_s3_ignore_tls` (`bool`): Maintains the state for mlflow_s3_ignore_tls.
-- `hatchet_client_token` (`str`): Maintains the state for hatchet_client_token.
-- `hatchet_namespace` (`str`): Maintains the state for hatchet_namespace.
-- `hatchet_client_host_port` (`str`): Maintains the state for hatchet_client_host_port.
-- `hatchet_client_server_url` (`str`): Maintains the state for hatchet_client_server_url.
-- `hatchet_client_tls_strategy` (`str`): Maintains the state for hatchet_client_tls_strategy.
-- `litellm_api_base` (`str`): Maintains the state for litellm_api_base.
-- `litellm_api_key` (`str`): Maintains the state for litellm_api_key.
-- `litellm_model` (`str`): Maintains the state for litellm_model.
-- `r2r_base_url` (`str`): Maintains the state for r2r_base_url.
-- `mcp_host` (`str`): Maintains the state for mcp_host.
-- `mcp_port` (`int`): Maintains the state for mcp_port.
-- `mcp_prompts_path` (`str`): Maintains the state for mcp_prompts_path.
-
-#### Methods
-## 6. Module Functions
