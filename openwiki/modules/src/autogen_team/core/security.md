@@ -1,0 +1,83 @@
+---
+iso_doc_type: "Specification"
+iso_viewpoint: "ComponentView"
+type: "module"
+title: "Module: security"
+source_path: "src/autogen_team/core/security.py"
+description: "AST-generated documentation for the module."
+tags: ["generated", "ast"]
+timestamp: "2026-08-06T06:46:32.952294+00:00"
+---
+
+# Module Specification: security
+
+* **Source Reference:** `src/autogen_team/core/security.py`
+
+## 1. Architectural Role & Responsibilities
+**Purpose:**
+Provides functionality related to security.
+
+**Architecture Layer:**
+- Infrastructure/Other
+
+**Responsibilities:**
+- Manage and execute operations for security.
+
+**Main Workflow:**
+- Initialize components and process requests for security.
+
+## 2. Dependencies
+**Imports:**
+- `os`
+
+**Exported Classes:**
+- None
+
+**Exported Functions:**
+- `safe_join`
+
+## 3. Architecture & Execution
+### Internal Architecture
+Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+
+### Execution Flow
+Sequential execution of defined functions and class methods.
+
+### Sequence Explanation
+Clients instantiate classes or call functions, which execute business logic and return results.
+
+## 4. UML 2.0 Diagrams
+### Class Diagram
+```plantuml
+@startuml
+    ' No classes found in module
+@enduml
+```
+
+### Dependency Graph
+```plantuml
+@startuml
+    [Module] --> [os] : imports
+@enduml
+```
+
+## 5. Class & Method Specifications
+## 6. Module Functions
+### `safe_join(base: str)`
+Safely join paths, ensuring the result is within the base directory.
+
+Args:
+    base (str): The base directory.
+    *paths (str): Paths to join.
+
+Returns:
+    str: The joined path.
+
+Raises:
+    ValueError: If the resolved path is outside the base directory.
+
+**Inputs:**
+- `base`: str
+
+**Output:**
+- Return Type: `str`
