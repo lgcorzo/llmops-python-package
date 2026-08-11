@@ -6,7 +6,7 @@ title: "Module: training"
 source_path: "src/autogen_team/application/jobs/training.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.000965+00:00"
+timestamp: "2026-08-11T06:05:51.152300+00:00"
 ---
 
 # Module Specification: training
@@ -21,10 +21,10 @@ Provides functionality related to training.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for training.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for training.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -49,20 +49,20 @@ Provides functionality related to training.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     class TrainingJob {
-        +run() : Any
+        +run() : base.Locals
     }
 @enduml
 ```
@@ -105,22 +105,22 @@ Parameters:
 - None found.
 
 #### Methods
-##### `run(self) -> Any` (Public)
-**Description:** Executes the run operation, mutating state or calculating derived values as necessary.
+##### `run(self) -> base.Locals` (Public)
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the run action.
+- Return Type: `base.Locals`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python

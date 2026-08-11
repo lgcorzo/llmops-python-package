@@ -6,7 +6,7 @@ title: "Module: test_run_tests"
 source_path: "tests/application/mcp/tools/test_run_tests.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.105422+00:00"
+timestamp: "2026-08-11T06:05:51.335378+00:00"
 ---
 
 # Module Specification: test_run_tests
@@ -21,10 +21,10 @@ Provides functionality related to test run tests.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_run_tests.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_run_tests.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -56,13 +56,13 @@ Provides functionality related to test run tests.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -90,31 +90,31 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_run_tests_passing(sample_changes: Any, tmp_path: Path)`
+### `test_run_tests_passing(sample_changes: T.Dict[str, T.Any], tmp_path: Path)`
 Test run_tests with passing tests.
 
 **Inputs:**
-- `sample_changes`: Any
+- `sample_changes`: T.Dict[str, T.Any]
 - `tmp_path`: Path
 
 **Output:**
 - Return Type: `None`
 
-### `test_run_tests_failing(sample_changes: Any, tmp_path: Path)`
+### `test_run_tests_failing(sample_changes: T.Dict[str, T.Any], tmp_path: Path)`
 Test run_tests with failing tests.
 
 **Inputs:**
-- `sample_changes`: Any
+- `sample_changes`: T.Dict[str, T.Any]
 - `tmp_path`: Path
 
 **Output:**
 - Return Type: `None`
 
-### `test_run_tests_timeout(sample_changes: Any, tmp_path: Path)`
+### `test_run_tests_timeout(sample_changes: T.Dict[str, T.Any], tmp_path: Path)`
 Test run_tests handles subprocess timeout.
 
 **Inputs:**
-- `sample_changes`: Any
+- `sample_changes`: T.Dict[str, T.Any]
 - `tmp_path`: Path
 
 **Output:**
@@ -129,11 +129,11 @@ Test SubprocessSandbox.run_tests returns expected structure.
 **Output:**
 - Return Type: `None`
 
-### `test_run_tests_path_traversal(sample_changes: Any, tmp_path: Path)`
+### `test_run_tests_path_traversal(sample_changes: T.Dict[str, T.Any], tmp_path: Path)`
 Test run_tests prevents path traversal.
 
 **Inputs:**
-- `sample_changes`: Any
+- `sample_changes`: T.Dict[str, T.Any]
 - `tmp_path`: Path
 
 **Output:**

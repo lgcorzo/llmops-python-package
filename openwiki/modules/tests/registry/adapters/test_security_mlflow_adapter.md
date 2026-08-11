@@ -6,7 +6,7 @@ title: "Module: test_security_mlflow_adapter"
 source_path: "tests/registry/adapters/test_security_mlflow_adapter.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.081473+00:00"
+timestamp: "2026-08-11T06:05:51.302059+00:00"
 ---
 
 # Module Specification: test_security_mlflow_adapter
@@ -21,10 +21,10 @@ Provides functionality related to test security mlflow adapter.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_security_mlflow_adapter.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_security_mlflow_adapter.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -51,13 +51,13 @@ Provides functionality related to test security mlflow adapter.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -65,10 +65,10 @@ Clients instantiate classes or call functions, which execute business logic and 
 @startuml
     class DummyModel {
         +load_context() : None
-        +fit() : Any
-        +predict() : Any
-        +explain_model() : Any
-        +explain_samples() : Any
+        +fit() : T.Self
+        +predict() : schemas.Outputs
+        +explain_model() : schemas.FeatureImportances
+        +explain_samples() : schemas.SHAPValues
         +get_internal_model() : Any
     }
     class TestSecurityLeak {
@@ -107,111 +107,111 @@ A dummy model for testing.
 - None found.
 
 #### Methods
-##### `load_context(self, model_config: Dict[...]) -> None` (Public)
+##### `load_context(self, model_config: Dict[str, Any]) -> None` (Public)
 **Description:** Load the model context.
 
 **Inputs:**
-- `model_config`: Dict[...]
+- `model_config`: Dict[str, Any]
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the load_context action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = DummyModel.load_context(...)
 ```
 
-##### `fit(self, inputs: Any, targets: Any) -> Any` (Public)
+##### `fit(self, inputs: schemas.Inputs, targets: schemas.Targets) -> T.Self` (Public)
 **Description:** Fit the model.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the fit action.
+- Return Type: `T.Self`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = DummyModel.fit(..., ...)
 ```
 
-##### `predict(self, inputs: Any) -> Any` (Public)
+##### `predict(self, inputs: schemas.Inputs) -> schemas.Outputs` (Public)
 **Description:** Predict using the model.
 
 **Inputs:**
-- `inputs`: Any
+- `inputs`: schemas.Inputs
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the predict action.
+- Return Type: `schemas.Outputs`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = DummyModel.predict(...)
 ```
 
-##### `explain_model(self) -> Any` (Public)
+##### `explain_model(self) -> schemas.FeatureImportances` (Public)
 **Description:** Explain the model.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the explain_model action.
+- Return Type: `schemas.FeatureImportances`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = DummyModel.explain_model()
 ```
 
-##### `explain_samples(self, inputs: Any) -> Any` (Public)
+##### `explain_samples(self, inputs: schemas.Inputs) -> schemas.SHAPValues` (Public)
 **Description:** Explain samples.
 
 **Inputs:**
-- `inputs`: Any
+- `inputs`: schemas.Inputs
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the explain_samples action.
+- Return Type: `schemas.SHAPValues`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -226,14 +226,14 @@ result = DummyModel.explain_samples(...)
 
 **Output:**
 - Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the get_internal_model action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -249,21 +249,21 @@ Provides state and behavior management for TestSecurityLeak.
 
 #### Methods
 ##### `test_adapter_captures_secret(self) -> None` (Public)
-**Description:** Executes the test_adapter_captures_secret operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the test_adapter_captures_secret action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -287,14 +287,14 @@ Provides state and behavior management for TestSecurityMlflowAdapter.
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the test_no_secret_leakage_in_adapter_init action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python

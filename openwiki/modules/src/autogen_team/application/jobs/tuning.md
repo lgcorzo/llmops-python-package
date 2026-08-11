@@ -6,7 +6,7 @@ title: "Module: tuning"
 source_path: "src/autogen_team/application/jobs/tuning.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.991332+00:00"
+timestamp: "2026-08-11T06:05:51.137341+00:00"
 ---
 
 # Module Specification: tuning
@@ -21,10 +21,10 @@ Provides functionality related to tuning.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for tuning.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for tuning.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -48,20 +48,20 @@ Provides functionality related to tuning.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     class TuningJob {
-        +run() : Any
+        +run() : base.Locals
     }
 @enduml
 ```
@@ -103,22 +103,22 @@ Parameters:
 - None found.
 
 #### Methods
-##### `run(self) -> Any` (Public)
+##### `run(self) -> base.Locals` (Public)
 **Description:** Run the tuning job in context.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the run action.
+- Return Type: `base.Locals`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python

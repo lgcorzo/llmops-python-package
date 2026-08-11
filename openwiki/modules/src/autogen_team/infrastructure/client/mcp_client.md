@@ -6,7 +6,7 @@ title: "Module: mcp_client"
 source_path: "src/autogen_team/infrastructure/client/mcp_client.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.931099+00:00"
+timestamp: "2026-08-11T06:05:51.042629+00:00"
 ---
 
 # Module Specification: mcp_client
@@ -21,10 +21,10 @@ Provides functionality related to mcp client.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for mcp_client.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for mcp_client.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -46,13 +46,13 @@ Provides functionality related to mcp client.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -104,14 +104,14 @@ Client for interacting with the MCP Server.
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -127,14 +127,14 @@ result = instance.__init__()
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the connect action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -150,14 +150,14 @@ result = instance.connect()
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the disconnect action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -165,7 +165,7 @@ instance = MCPClient()
 result = instance.disconnect()
 ```
 
-##### `call_tool(self, name: str, arguments: Dict[...]) -> Any` (Public)
+##### `call_tool(self, name: str, arguments: Dict[str, Any]) -> Any` (Public)
 **Description:** Call a tool on the MCP Server.
 
 Args:
@@ -177,18 +177,18 @@ Returns:
 
 **Inputs:**
 - `name`: str
-- `arguments`: Dict[...]
+- `arguments`: Dict[str, Any]
 
 **Output:**
 - Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the call_tool action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python

@@ -6,7 +6,7 @@ title: "Module: test_sandbox_service"
 source_path: "tests/infrastructure/services/test_sandbox_service.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.054461+00:00"
+timestamp: "2026-08-11T06:05:51.248994+00:00"
 ---
 
 # Module Specification: test_sandbox_service
@@ -21,10 +21,10 @@ Provides functionality related to test sandbox service.
 - Services
 
 **Responsibilities:**
-- Manage and execute operations for test_sandbox_service.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_sandbox_service.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -54,13 +54,13 @@ Provides functionality related to test sandbox service.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -86,16 +86,16 @@ Clients instantiate classes or call functions, which execute business logic and 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
 ### `sandbox_service()`
-Executes the sandbox_service operation.
+No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `Generator[SandboxService, None, None]`
 
 ### `test_create_sandbox_e2b_success(sandbox_service: SandboxService)`
-Executes the test_create_sandbox_e2b_success operation.
+No description provided.
 
 **Inputs:**
 - `sandbox_service`: SandboxService
@@ -104,7 +104,7 @@ Executes the test_create_sandbox_e2b_success operation.
 - Return Type: `None`
 
 ### `test_create_sandbox_e2b_failure(sandbox_service: SandboxService)`
-Executes the test_create_sandbox_e2b_failure operation.
+No description provided.
 
 **Inputs:**
 - `sandbox_service`: SandboxService
@@ -113,7 +113,7 @@ Executes the test_create_sandbox_e2b_failure operation.
 - Return Type: `None`
 
 ### `test_create_sandbox_no_fallback(sandbox_service: SandboxService)`
-Executes the test_create_sandbox_no_fallback operation.
+No description provided.
 
 **Inputs:**
 - `sandbox_service`: SandboxService
@@ -122,7 +122,7 @@ Executes the test_create_sandbox_no_fallback operation.
 - Return Type: `None`
 
 ### `test_execute_success(sandbox_service: SandboxService)`
-Executes the test_execute_success operation.
+No description provided.
 
 **Inputs:**
 - `sandbox_service`: SandboxService
@@ -131,7 +131,7 @@ Executes the test_execute_success operation.
 - Return Type: `None`
 
 ### `test_execute_error(sandbox_service: SandboxService)`
-Executes the test_execute_error operation.
+No description provided.
 
 **Inputs:**
 - `sandbox_service`: SandboxService
@@ -140,7 +140,7 @@ Executes the test_execute_error operation.
 - Return Type: `None`
 
 ### `test_execute_not_found(sandbox_service: SandboxService)`
-Executes the test_execute_not_found operation.
+No description provided.
 
 **Inputs:**
 - `sandbox_service`: SandboxService
@@ -149,7 +149,7 @@ Executes the test_execute_not_found operation.
 - Return Type: `None`
 
 ### `test_destroy_success(sandbox_service: SandboxService)`
-Executes the test_destroy_success operation.
+No description provided.
 
 **Inputs:**
 - `sandbox_service`: SandboxService
@@ -158,7 +158,7 @@ Executes the test_destroy_success operation.
 - Return Type: `None`
 
 ### `test_destroy_not_found(sandbox_service: SandboxService)`
-Executes the test_destroy_not_found operation.
+No description provided.
 
 **Inputs:**
 - `sandbox_service`: SandboxService
@@ -167,7 +167,7 @@ Executes the test_destroy_not_found operation.
 - Return Type: `None`
 
 ### `test_upload_artifact(sandbox_service: SandboxService, tmp_path: Path)`
-Executes the test_upload_artifact operation.
+No description provided.
 
 **Inputs:**
 - `sandbox_service`: SandboxService
@@ -177,7 +177,7 @@ Executes the test_upload_artifact operation.
 - Return Type: `None`
 
 ### `test_run_python_tests(sandbox_service: SandboxService)`
-Executes the test_run_python_tests operation.
+No description provided.
 
 **Inputs:**
 - `sandbox_service`: SandboxService

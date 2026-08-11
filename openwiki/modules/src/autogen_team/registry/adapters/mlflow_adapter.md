@@ -6,7 +6,7 @@ title: "Module: mlflow_adapter"
 source_path: "src/autogen_team/registry/adapters/mlflow_adapter.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.948179+00:00"
+timestamp: "2026-08-11T06:05:51.067815+00:00"
 ---
 
 # Module Specification: mlflow_adapter
@@ -21,10 +21,10 @@ Provides functionality related to mlflow adapter.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for mlflow_adapter.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for mlflow_adapter.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -61,13 +61,13 @@ Provides functionality related to mlflow adapter.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -80,10 +80,10 @@ Clients instantiate classes or call functions, which execute business logic and 
         +save() : Info
     }
     class Loader {
-        +load() : Any
+        +load() : 'Loader.Adapter'
     }
     class CustomLoader {
-        +load() : Any
+        +load() : 'CustomLoader.Adapter'
     }
     class Register {
         +register() : Version
@@ -132,7 +132,7 @@ Parameters:
 - None found.
 
 #### Methods
-##### `save(self, model: Any, signature: Any, input_example: Any) -> Info` (Public)
+##### `save(self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info` (Public)
 **Description:** Save a model in the model registry.
 
 Args:
@@ -144,20 +144,20 @@ Returns:
     Info: model saving information.
 
 **Inputs:**
-- `model`: Any
-- `signature`: Any
-- `input_example`: Any
+- `model`: models.Model
+- `signature`: signers.Signature
+- `input_example`: schemas.Inputs
 
 **Output:**
 - Return Type: `Info`
-- Semantic Meaning: The resulting value after processing the save action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -176,24 +176,24 @@ https://mlflow.org/blog/custom-pyfunc
 - None found.
 
 #### Methods
-##### `save(self, model: Any, signature: Any, input_example: Any) -> Info` (Public)
-**Description:** Executes the save operation, mutating state or calculating derived values as necessary.
+##### `save(self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `model`: Any
-- `signature`: Any
-- `input_example`: Any
+- `model`: models.Model
+- `signature`: signers.Signature
+- `input_example`: schemas.Inputs
 
 **Output:**
 - Return Type: `Info`
-- Semantic Meaning: The resulting value after processing the save action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -211,7 +211,7 @@ e.g., to switch between deserialization flavors.
 - None found.
 
 #### Methods
-##### `load(self, uri: str) -> Any` (Public)
+##### `load(self, uri: str) -> 'Loader.Adapter'` (Public)
 **Description:** Load a model from the model registry.
 
 Args:
@@ -224,15 +224,15 @@ Returns:
 - `uri`: str
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the load action.
+- Return Type: `'Loader.Adapter'`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -249,22 +249,22 @@ https://mlflow.org/docs/latest/python_api/mlflow.pyfunc.html
 - None found.
 
 #### Methods
-##### `load(self, uri: str) -> Any` (Public)
-**Description:** Executes the load operation, mutating state or calculating derived values as necessary.
+##### `load(self, uri: str) -> 'CustomLoader.Adapter'` (Public)
+**Description:** No description provided.
 
 **Inputs:**
 - `uri`: str
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the load action.
+- Return Type: `'CustomLoader.Adapter'`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -301,14 +301,14 @@ Returns:
 
 **Output:**
 - Return Type: `Version`
-- Semantic Meaning: The resulting value after processing the register action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -326,7 +326,7 @@ https://mlflow.org/docs/latest/model-registry.html
 
 #### Methods
 ##### `register(self, name: str, model_uri: str) -> Version` (Public)
-**Description:** Executes the register operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
 - `name`: str
@@ -334,14 +334,14 @@ https://mlflow.org/docs/latest/model-registry.html
 
 **Output:**
 - Return Type: `Version`
-- Semantic Meaning: The resulting value after processing the register action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -383,7 +383,7 @@ Returns:
 **Output:**
 - Return Type: `str`
 
-### `uri_for_model_alias_or_version(name: str, alias_or_version: Any)`
+### `uri_for_model_alias_or_version(name: str, alias_or_version: str | int)`
 Create a model URi from a model name and an alias or version.
 
 Args:
@@ -395,7 +395,7 @@ Returns:
 
 **Inputs:**
 - `name`: str
-- `alias_or_version`: Any
+- `alias_or_version`: str | int
 
 **Output:**
 - Return Type: `str`

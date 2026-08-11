@@ -6,7 +6,7 @@ title: "Module: configs"
 source_path: "src/autogen_team/infrastructure/io/configs.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.925068+00:00"
+timestamp: "2026-08-11T06:05:51.036234+00:00"
 ---
 
 # Module Specification: configs
@@ -21,10 +21,10 @@ Provides functionality related to configs.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for configs.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for configs.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -42,13 +42,13 @@ Provides functionality related to configs.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -98,7 +98,7 @@ Returns:
 **Output:**
 - Return Type: `Config`
 
-### `merge_configs(configs: Any)`
+### `merge_configs(configs: T.Sequence[Config])`
 Merge a list of config into a single config.
 
 Args:
@@ -108,7 +108,7 @@ Returns:
     Config: representation of the merged config objects.
 
 **Inputs:**
-- `configs`: Any
+- `configs`: T.Sequence[Config]
 
 **Output:**
 - Return Type: `Config`

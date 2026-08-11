@@ -6,7 +6,7 @@ title: "Module: test_mcp_path_traversal"
 source_path: "tests/security/test_mcp_path_traversal.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.086797+00:00"
+timestamp: "2026-08-11T06:05:51.309198+00:00"
 ---
 
 # Module Specification: test_mcp_path_traversal
@@ -21,10 +21,10 @@ Provides functionality related to test mcp path traversal.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_mcp_path_traversal.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_mcp_path_traversal.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -49,13 +49,13 @@ Provides functionality related to test mcp path traversal.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -83,7 +83,7 @@ Clients instantiate classes or call functions, which execute business logic and 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
 ### `test_execute_code_path_traversal()`
-Executes the test_execute_code_path_traversal operation.
+No description provided.
 
 **Inputs:**
 - None
@@ -92,7 +92,7 @@ Executes the test_execute_code_path_traversal operation.
 - Return Type: `None`
 
 ### `test_run_tests_path_traversal()`
-Executes the test_run_tests_path_traversal operation.
+No description provided.
 
 **Inputs:**
 - None
@@ -101,7 +101,7 @@ Executes the test_run_tests_path_traversal operation.
 - Return Type: `None`
 
 ### `test_execute_code_workspace_path_traversal()`
-Executes the test_execute_code_workspace_path_traversal operation.
+No description provided.
 
 **Inputs:**
 - None
@@ -110,7 +110,7 @@ Executes the test_execute_code_workspace_path_traversal operation.
 - Return Type: `None`
 
 ### `test_run_tests_workspace_path_traversal()`
-Executes the test_run_tests_workspace_path_traversal operation.
+No description provided.
 
 **Inputs:**
 - None

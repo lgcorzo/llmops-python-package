@@ -6,7 +6,7 @@ title: "Module: run_tests"
 source_path: "src/autogen_team/application/mcp/tools/run_tests.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.976356+00:00"
+timestamp: "2026-08-11T06:05:51.111069+00:00"
 ---
 
 # Module Specification: run_tests
@@ -21,10 +21,10 @@ Provides functionality related to run tests.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for run_tests.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for run_tests.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -49,27 +49,27 @@ Provides functionality related to run tests.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     class SandboxBackend {
-        +run_tests() : Any
+        +run_tests() : T.Dict[str, T.Any]
     }
     class SubprocessSandbox {
-        +run_tests() : Any
+        +run_tests() : T.Dict[str, T.Any]
     }
     class FirecrackerSandbox {
         +__init__() : Any
-        +run_tests() : Any
+        +run_tests() : T.Dict[str, T.Any]
     }
 @enduml
 ```
@@ -101,7 +101,7 @@ Provides an interface for future Firecracker MicroVM integration.
 - None found.
 
 #### Methods
-##### `run_tests(self, workspace_dir: str, timeout: int) -> Any` (Public)
+##### `run_tests(self, workspace_dir: str, timeout: int) -> T.Dict[str, T.Any]` (Public)
 **Description:** Run tests in the sandbox.
 
 Args:
@@ -116,15 +116,15 @@ Returns:
 - `timeout`: int
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the run_tests action.
+- Return Type: `T.Dict[str, T.Any]`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -139,7 +139,7 @@ Subprocess-based sandbox for running pytest.
 - None found.
 
 #### Methods
-##### `run_tests(self, workspace_dir: str, timeout: int) -> Any` (Public)
+##### `run_tests(self, workspace_dir: str, timeout: int) -> T.Dict[str, T.Any]` (Public)
 **Description:** Run pytest via subprocess in the given workspace.
 
 Args:
@@ -154,15 +154,15 @@ Returns:
 - `timeout`: int
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the run_tests action.
+- Return Type: `T.Dict[str, T.Any]`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -180,22 +180,22 @@ Firecracker-based sandbox using SandboxService.
 - `service`
 
 #### Methods
-##### `__init__(self, sandbox_service: Any) -> Any` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+##### `__init__(self, sandbox_service: T.Any | None) -> Any` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `sandbox_service`: Any
+- `sandbox_service`: T.Any | None
 
 **Output:**
 - Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -203,7 +203,7 @@ instance = FirecrackerSandbox()
 result = instance.__init__(...)
 ```
 
-##### `run_tests(self, workspace_dir: str, timeout: int) -> Any` (Public)
+##### `run_tests(self, workspace_dir: str, timeout: int) -> T.Dict[str, T.Any]` (Public)
 **Description:** Note: This is a synchronous wrapper for the async service.
 In a real scenario, the tool should be async.
 
@@ -212,15 +212,15 @@ In a real scenario, the tool should be async.
 - `timeout`: int
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the run_tests action.
+- Return Type: `T.Dict[str, T.Any]`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -229,7 +229,7 @@ result = instance.run_tests(..., ...)
 ```
 
 ## 6. Module Functions
-### `run_tests(changes: Any, workspace_path: str, timeout: int, sandbox: Any)`
+### `run_tests(changes: T.Dict[str, T.Any], workspace_path: str, timeout: int, sandbox: SandboxBackend | None)`
 Run pytest against code changes in an isolated sandbox.
 
 Args:
@@ -242,10 +242,10 @@ Returns:
     Dict with passed bool, summary string, and details.
 
 **Inputs:**
-- `changes`: Any
+- `changes`: T.Dict[str, T.Any]
 - `workspace_path`: str
 - `timeout`: int
-- `sandbox`: Any
+- `sandbox`: SandboxBackend | None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Dict[str, T.Any]`

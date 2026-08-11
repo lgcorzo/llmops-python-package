@@ -6,7 +6,7 @@ title: "Module: test_signers"
 source_path: "tests/infrastructure/utils/test_signers.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.064024+00:00"
+timestamp: "2026-08-11T06:05:51.263199+00:00"
 ---
 
 # Module Specification: test_signers
@@ -21,10 +21,10 @@ Provides functionality related to test signers.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_signers.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_signers.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -39,13 +39,13 @@ Provides functionality related to test signers.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -65,12 +65,12 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_infer_signer(inputs: Any, outputs: Any)`
-Executes the test_infer_signer operation.
+### `test_infer_signer(inputs: schemas.Inputs, outputs: schemas.Outputs)`
+No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `outputs`: Any
+- `inputs`: schemas.Inputs
+- `outputs`: schemas.Outputs
 
 **Output:**
 - Return Type: `None`

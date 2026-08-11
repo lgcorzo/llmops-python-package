@@ -6,7 +6,7 @@ title: "Module: logger_service"
 source_path: "src/autogen_team/infrastructure/services/logger_service.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.920852+00:00"
+timestamp: "2026-08-11T06:05:51.029124+00:00"
 ---
 
 # Module Specification: logger_service
@@ -21,10 +21,10 @@ Provides functionality related to logger service.
 - Services
 
 **Responsibilities:**
-- Manage and execute operations for logger_service.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for logger_service.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -55,13 +55,13 @@ Provides functionality related to logger service.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -76,7 +76,7 @@ Clients instantiate classes or call functions, which execute business logic and 
     }
     class LoggerService {
         +start() : None
-        +logger() : Any
+        +logger() : loguru.Logger
     }
 @enduml
 ```
@@ -112,22 +112,22 @@ Provides state and behavior management for PropagateHandler.
 - None found.
 
 #### Methods
-##### `emit(self, record: Any) -> None` (Public)
-**Description:** Executes the emit operation, mutating state or calculating derived values as necessary.
+##### `emit(self, record: logging.LogRecord) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `record`: Any
+- `record`: logging.LogRecord
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the emit action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -150,14 +150,14 @@ Base class for a global service.
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -172,14 +172,14 @@ result = Service.start()
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the stop action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -197,43 +197,43 @@ https://loguru.readthedocs.io/en/stable/api/logger.html
 
 #### Methods
 ##### `start(self) -> None` (Public)
-**Description:** Executes the start operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = LoggerService.start()
 ```
 
-##### `logger(self) -> Any` (Public)
+##### `logger(self) -> loguru.Logger` (Public)
 **Description:** Return the main logger.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the logger action.
+- Return Type: `loguru.Logger`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python

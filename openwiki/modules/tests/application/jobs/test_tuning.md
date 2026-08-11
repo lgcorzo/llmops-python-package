@@ -6,7 +6,7 @@ title: "Module: test_tuning"
 source_path: "tests/application/jobs/test_tuning.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.126302+00:00"
+timestamp: "2026-08-11T06:05:51.364656+00:00"
 ---
 
 # Module Specification: test_tuning
@@ -21,10 +21,10 @@ Provides functionality related to test tuning.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_tuning.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_tuning.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -47,13 +47,13 @@ Provides functionality related to test tuning.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -81,20 +81,20 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_tuning_job(mlflow_service: Any, alerts_service: Any, logger_service: Any, inputs_reader: Any, targets_reader: Any, model: Any, metric: Any, time_series_splitter: Any, searcher: Any, capsys: Any)`
-Executes the test_tuning_job operation.
+### `test_tuning_job(mlflow_service: services.MlflowService, alerts_service: services.AlertsService, logger_service: services.LoggerService, inputs_reader: datasets.ParquetReader, targets_reader: datasets.ParquetReader, model: models.BaselineAutogenModel, metric: metrics.AutogenMetric, time_series_splitter: splitters.TrainTestSplitter, searcher: searchers.GridCVSearcher, capsys: pc.CaptureFixture[str])`
+No description provided.
 
 **Inputs:**
-- `mlflow_service`: Any
-- `alerts_service`: Any
-- `logger_service`: Any
-- `inputs_reader`: Any
-- `targets_reader`: Any
-- `model`: Any
-- `metric`: Any
-- `time_series_splitter`: Any
-- `searcher`: Any
-- `capsys`: Any
+- `mlflow_service`: services.MlflowService
+- `alerts_service`: services.AlertsService
+- `logger_service`: services.LoggerService
+- `inputs_reader`: datasets.ParquetReader
+- `targets_reader`: datasets.ParquetReader
+- `model`: models.BaselineAutogenModel
+- `metric`: metrics.AutogenMetric
+- `time_series_splitter`: splitters.TrainTestSplitter
+- `searcher`: searchers.GridCVSearcher
+- `capsys`: pc.CaptureFixture[str]
 
 **Output:**
 - Return Type: `None`

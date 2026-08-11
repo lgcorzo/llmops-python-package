@@ -6,7 +6,7 @@ title: "Module: conftest"
 source_path: "tests/application/mcp/conftest.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.099994+00:00"
+timestamp: "2026-08-11T06:05:51.327725+00:00"
 ---
 
 # Module Specification: conftest
@@ -21,10 +21,10 @@ Provides functionality related to conftest.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for conftest.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for conftest.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -43,13 +43,13 @@ Provides functionality related to conftest.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -85,7 +85,7 @@ Return a sample task dict for execute_code tests.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Dict[str, T.Any]`
 
 ### `sample_diff()`
 Return a sample code diff for security_review tests.
@@ -103,7 +103,7 @@ Return sample file changes for run_tests tests.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Dict[str, T.Any]`
 
 ### `insecure_diff()`
 Return a diff with security issues for testing.

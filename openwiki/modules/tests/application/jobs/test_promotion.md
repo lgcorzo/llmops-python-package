@@ -6,7 +6,7 @@ title: "Module: test_promotion"
 source_path: "tests/application/jobs/test_promotion.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.117240+00:00"
+timestamp: "2026-08-11T06:05:51.349430+00:00"
 ---
 
 # Module Specification: test_promotion
@@ -21,10 +21,10 @@ Provides functionality related to test promotion.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_promotion.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_promotion.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -43,13 +43,13 @@ Provides functionality related to test promotion.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -73,16 +73,16 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_promotion_job(version: Any, mlflow_service: Any, alerts_service: Any, logger_service: Any, model_version: Any, capsys: Any)`
-Executes the test_promotion_job operation.
+### `test_promotion_job(version: int | None, mlflow_service: services.MlflowService, alerts_service: services.AlertsService, logger_service: services.LoggerService, model_version: registries.Version, capsys: pc.CaptureFixture[str])`
+No description provided.
 
 **Inputs:**
-- `version`: Any
-- `mlflow_service`: Any
-- `alerts_service`: Any
-- `logger_service`: Any
-- `model_version`: Any
-- `capsys`: Any
+- `version`: int | None
+- `mlflow_service`: services.MlflowService
+- `alerts_service`: services.AlertsService
+- `logger_service`: services.LoggerService
+- `model_version`: registries.Version
+- `capsys`: pc.CaptureFixture[str]
 
 **Output:**
 - Return Type: `None`

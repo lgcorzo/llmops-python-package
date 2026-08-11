@@ -6,7 +6,7 @@ title: "Module: plan_mission"
 source_path: "src/autogen_team/application/mcp/tools/plan_mission.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.973176+00:00"
+timestamp: "2026-08-11T06:05:51.105718+00:00"
 ---
 
 # Module Specification: plan_mission
@@ -21,10 +21,10 @@ Provides functionality related to plan mission.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for plan_mission.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for plan_mission.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -42,13 +42,13 @@ Provides functionality related to plan mission.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -84,4 +84,4 @@ Returns:
 - `goal`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Dict[str, T.Any]`

@@ -6,7 +6,7 @@ title: "Module: test_metrics"
 source_path: "tests/evaluation/metrics/test_metrics.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.089404+00:00"
+timestamp: "2026-08-11T06:05:51.315003+00:00"
 ---
 
 # Module Specification: test_metrics
@@ -21,10 +21,10 @@ Provides functionality related to test metrics.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_metrics.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_metrics.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -53,13 +53,13 @@ Provides functionality related to test metrics.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -109,21 +109,21 @@ Provides state and behavior management for TestMetricIntegration.
 
 #### Methods
 ##### `test_scorer_flow(self) -> None` (Public)
-**Description:** Executes the test_scorer_flow operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the test_scorer_flow action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -138,26 +138,26 @@ Provides state and behavior management for TestAutogenTextMetric.
 - None found.
 
 #### Methods
-##### `test_score(self, metric_type: Literal[...], y_true: List[...], y_pred: List[...], expected: float, threshold: Optional[...]) -> None` (Public)
-**Description:** Executes the test_score operation, mutating state or calculating derived values as necessary.
+##### `test_score(self, metric_type: Literal['exact_match', 'similarity', 'length_ratio'], y_true: List[str], y_pred: List[str], expected: float, threshold: Optional[float]) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `metric_type`: Literal[...]
-- `y_true`: List[...]
-- `y_pred`: List[...]
+- `metric_type`: Literal['exact_match', 'similarity', 'length_ratio']
+- `y_true`: List[str]
+- `y_pred`: List[str]
 - `expected`: float
-- `threshold`: Optional[...]
+- `threshold`: Optional[float]
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the test_score action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -172,25 +172,25 @@ Provides state and behavior management for TestAutogenConversationMetric.
 - None found.
 
 #### Methods
-##### `test_score(self, metadata: List[...], check_term: bool, check_err: bool, expected: float) -> None` (Public)
-**Description:** Executes the test_score operation, mutating state or calculating derived values as necessary.
+##### `test_score(self, metadata: List[Dict[str, Any]], check_term: bool, check_err: bool, expected: float) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `metadata`: List[...]
+- `metadata`: List[Dict[str, Any]]
 - `check_term`: bool
 - `check_err`: bool
 - `expected`: float
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the test_score action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -206,7 +206,7 @@ Provides state and behavior management for TestThreshold.
 
 #### Methods
 ##### `test_to_mlflow(self, threshold: float, greater_is_better: bool) -> None` (Public)
-**Description:** Executes the test_to_mlflow operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
 - `threshold`: float
@@ -214,14 +214,14 @@ Provides state and behavior management for TestThreshold.
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the test_to_mlflow action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -230,10 +230,10 @@ result = TestThreshold.test_to_mlflow(..., ...)
 
 ## 6. Module Functions
 ### `mock_schemas()`
-Executes the mock_schemas operation.
+No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `Iterator[MagicMock]`

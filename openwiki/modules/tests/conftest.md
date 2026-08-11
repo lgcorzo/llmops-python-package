@@ -6,7 +6,7 @@ title: "Module: conftest"
 source_path: "tests/conftest.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.046902+00:00"
+timestamp: "2026-08-11T06:05:51.229543+00:00"
 ---
 
 # Module Specification: conftest
@@ -21,10 +21,10 @@ Provides functionality related to conftest.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for conftest.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for conftest.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -99,13 +99,13 @@ Provides functionality related to conftest.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -145,14 +145,14 @@ Clients instantiate classes or call functions, which execute business logic and 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
 ### `_patched_prepare(self: OpenAIChatClient, message: Message)`
-Executes the _patched_prepare operation.
+No description provided.
 
 **Inputs:**
 - `self`: OpenAIChatClient
 - `message`: Message
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.List[T.Dict[str, T.Any]]`
 
 ### `tests_path()`
 Return the path of the tests folder.
@@ -251,7 +251,7 @@ Return a reader for the inputs dataset.
 - `inputs_path`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `datasets.ParquetReader`
 
 ### `inputs_samples_reader(inputs_path: str)`
 Return a reader for the inputs samples dataset.
@@ -260,7 +260,7 @@ Return a reader for the inputs samples dataset.
 - `inputs_path`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `datasets.ParquetReader`
 
 ### `targets_reader(targets_path: str)`
 Return a reader for the targets dataset.
@@ -269,18 +269,18 @@ Return a reader for the targets dataset.
 - `targets_path`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `datasets.ParquetReader`
 
-### `outputs_reader(outputs_path: str, inputs_reader: Any, targets_reader: Any)`
+### `outputs_reader(outputs_path: str, inputs_reader: datasets.ParquetReader, targets_reader: datasets.ParquetReader)`
 Return a reader for the outputs dataset.
 
 **Inputs:**
 - `outputs_path`: str
-- `inputs_reader`: Any
-- `targets_reader`: Any
+- `inputs_reader`: datasets.ParquetReader
+- `targets_reader`: datasets.ParquetReader
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `datasets.ParquetReader`
 
 ### `tmp_outputs_writer(tmp_outputs_path: str)`
 Return a writer for the tmp outputs dataset.
@@ -289,7 +289,7 @@ Return a writer for the tmp outputs dataset.
 - `tmp_outputs_path`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `datasets.ParquetWriter`
 
 ### `tmp_models_explanations_writer(tmp_models_explanations_path: str)`
 Return a writer for the tmp model explanations dataset.
@@ -298,7 +298,7 @@ Return a writer for the tmp model explanations dataset.
 - `tmp_models_explanations_path`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `datasets.ParquetWriter`
 
 ### `tmp_samples_explanations_writer(tmp_samples_explanations_path: str)`
 Return a writer for the tmp samples explanations dataset.
@@ -307,43 +307,43 @@ Return a writer for the tmp samples explanations dataset.
 - `tmp_samples_explanations_path`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `datasets.ParquetWriter`
 
-### `inputs(inputs_reader: Any)`
+### `inputs(inputs_reader: datasets.ParquetReader)`
 Return the inputs data.
 
 **Inputs:**
-- `inputs_reader`: Any
+- `inputs_reader`: datasets.ParquetReader
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `schemas.Inputs`
 
-### `inputs_samples(inputs_samples_reader: Any)`
+### `inputs_samples(inputs_samples_reader: datasets.ParquetReader)`
 Return the inputs samples data.
 
 **Inputs:**
-- `inputs_samples_reader`: Any
+- `inputs_samples_reader`: datasets.ParquetReader
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `schemas.Inputs`
 
-### `targets(targets_reader: Any)`
+### `targets(targets_reader: datasets.ParquetReader)`
 Return the targets data.
 
 **Inputs:**
-- `targets_reader`: Any
+- `targets_reader`: datasets.ParquetReader
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `schemas.Targets`
 
-### `outputs(outputs_reader: Any)`
+### `outputs(outputs_reader: datasets.ParquetReader)`
 Return the outputs data.
 
 **Inputs:**
-- `outputs_reader`: Any
+- `outputs_reader`: datasets.ParquetReader
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `schemas.Outputs`
 
 ### `train_test_splitter()`
 Return the default train test splitter.
@@ -352,7 +352,7 @@ Return the default train test splitter.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `splitters.TrainTestSplitter`
 
 ### `time_series_splitter()`
 Return the default time series splitter.
@@ -361,7 +361,7 @@ Return the default time series splitter.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `splitters.TimeSeriesSplitter`
 
 ### `searcher()`
 Return the default searcher object.
@@ -370,27 +370,27 @@ Return the default searcher object.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `searchers.Searcher`
 
-### `train_test_sets(train_test_splitter: Any, inputs: Any, targets: Any)`
+### `train_test_sets(train_test_splitter: splitters.Splitter, inputs: schemas.Inputs, targets: schemas.Targets)`
 Return the inputs and targets train and test sets from the splitter.
 
 **Inputs:**
-- `train_test_splitter`: Any
-- `inputs`: Any
-- `targets`: Any
+- `train_test_splitter`: splitters.Splitter
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `tuple[schemas.Inputs, schemas.Targets, schemas.Inputs, schemas.Targets]`
 
-### `model(train_test_sets: tuple[...])`
+### `model(train_test_sets: tuple[schemas.Inputs, schemas.Targets, schemas.Inputs, schemas.Targets])`
 Return a train model for testing.
 
 **Inputs:**
-- `train_test_sets`: tuple[...]
+- `train_test_sets`: tuple[schemas.Inputs, schemas.Targets, schemas.Inputs, schemas.Targets]
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `models.BaselineAutogenModel`
 
 ### `metric()`
 Return the default metric.
@@ -399,7 +399,7 @@ Return the default metric.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `metrics.AutogenMetric`
 
 ### `signer()`
 Return a model signer.
@@ -408,7 +408,7 @@ Return a model signer.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `signers.Signer`
 
 ### `logger_service()`
 Return and start the logger service.
@@ -417,17 +417,17 @@ Return and start the logger service.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Generator[services.LoggerService, None, None]`
 
-### `logger_caplog(caplog: Any, logger_service: Any)`
+### `logger_caplog(caplog: pl.LogCaptureFixture, logger_service: services.LoggerService)`
 Extend pytest caplog fixture with the logger service (loguru).
 
 **Inputs:**
-- `caplog`: Any
-- `logger_service`: Any
+- `caplog`: pl.LogCaptureFixture
+- `logger_service`: services.LoggerService
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Generator[pl.LogCaptureFixture, None, None]`
 
 ### `alerts_service()`
 Return and start the alerter service.
@@ -436,7 +436,7 @@ Return and start the alerter service.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Generator[services.AlertsService, None, None]`
 
 ### `mlflow_service(tmp_path: str)`
 Return and start the mlflow service.
@@ -445,14 +445,14 @@ Return and start the mlflow service.
 - `tmp_path`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Generator[services.MlflowService, None, None]`
 
-### `chtgpt_service(targets: Any, inputs_samples: Any)`
+### `chtgpt_service(targets: schemas.Targets, inputs_samples: schemas.Inputs)`
 Return and start the logger service.
 
 **Inputs:**
-- `targets`: Any
-- `inputs_samples`: Any
+- `targets`: schemas.Targets
+- `inputs_samples`: schemas.Inputs
 
 **Output:**
 - Return Type: `GptServer`
@@ -475,16 +475,16 @@ Register the tmp path resolver with OmegaConf.
 **Output:**
 - Return Type: `str`
 
-### `signature(signer: Any, inputs: Any, outputs: Any)`
+### `signature(signer: signers.Signer, inputs: schemas.Inputs, outputs: schemas.Outputs)`
 Return the signature for the testing model.
 
 **Inputs:**
-- `signer`: Any
-- `inputs`: Any
-- `outputs`: Any
+- `signer`: signers.Signer
+- `inputs`: schemas.Inputs
+- `outputs`: schemas.Outputs
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `signers.Signature`
 
 ### `saver()`
 Return the default model saver.
@@ -493,7 +493,7 @@ Return the default model saver.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `registries.CustomSaver`
 
 ### `loader()`
 Return the default model loader.
@@ -502,7 +502,7 @@ Return the default model loader.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `registries.CustomLoader`
 
 ### `register()`
 Return the default model register.
@@ -511,28 +511,28 @@ Return the default model register.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `registries.MlflowRegister`
 
-### `model_version(model: Any, inputs: Any, signature: Any, saver: Any, register: Any, mlflow_service: Any)`
+### `model_version(model: models.Model, inputs: schemas.Inputs, signature: signers.Signature, saver: registries.Saver, register: registries.Register, mlflow_service: services.MlflowService)`
 Save and register the default model version.
 
 **Inputs:**
-- `model`: Any
-- `inputs`: Any
-- `signature`: Any
-- `saver`: Any
-- `register`: Any
-- `mlflow_service`: Any
+- `model`: models.Model
+- `inputs`: schemas.Inputs
+- `signature`: signers.Signature
+- `saver`: registries.Saver
+- `register`: registries.Register
+- `mlflow_service`: services.MlflowService
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `registries.Version`
 
-### `model_alias(model_version: Any, mlflow_service: Any)`
+### `model_alias(model_version: registries.Version, mlflow_service: services.MlflowService)`
 Promote the default model version with an alias.
 
 **Inputs:**
-- `model_version`: Any
-- `mlflow_service`: Any
+- `model_version`: registries.Version
+- `mlflow_service`: services.MlflowService
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `registries.Alias`

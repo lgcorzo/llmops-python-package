@@ -6,7 +6,7 @@ title: "Module: execute_code"
 source_path: "src/autogen_team/application/mcp/tools/execute_code.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.986346+00:00"
+timestamp: "2026-08-11T06:05:51.130063+00:00"
 ---
 
 # Module Specification: execute_code
@@ -21,10 +21,10 @@ Provides functionality related to execute code.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for execute_code.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for execute_code.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -48,13 +48,13 @@ Provides functionality related to execute code.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -83,7 +83,7 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `execute_code(task: Any, workspace_path: str)`
+### `execute_code(task: T.Dict[str, T.Any], workspace_path: str)`
 Generate code changes for a task and validate in sandbox.
 
 Args:
@@ -94,8 +94,8 @@ Returns:
     A dict with files_changed list and status.
 
 **Inputs:**
-- `task`: Any
+- `task`: T.Dict[str, T.Any]
 - `workspace_path`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Dict[str, T.Any]`

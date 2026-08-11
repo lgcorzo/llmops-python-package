@@ -6,7 +6,7 @@ title: "Module: generate_mission_docs"
 source_path: "src/autogen_team/application/mcp/tools/generate_mission_docs.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.982836+00:00"
+timestamp: "2026-08-11T06:05:51.123895+00:00"
 ---
 
 # Module Specification: generate_mission_docs
@@ -21,10 +21,10 @@ Provides functionality related to generate mission docs.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for generate_mission_docs.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for generate_mission_docs.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -42,13 +42,13 @@ Provides functionality related to generate mission docs.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -71,7 +71,7 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `generate_mission_docs(mission_id: str, mission_context: Any)`
+### `generate_mission_docs(mission_id: str, mission_context: T.Dict[str, T.Any])`
 Generate Mermaid diagrams and documentation for a mission.
 
 Args:
@@ -83,7 +83,7 @@ Returns:
 
 **Inputs:**
 - `mission_id`: str
-- `mission_context`: Any
+- `mission_context`: T.Dict[str, T.Any]
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Dict[str, T.Any]`

@@ -6,7 +6,7 @@ title: "Module: test_security"
 source_path: "tests/core/test_security.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.084520+00:00"
+timestamp: "2026-08-11T06:05:51.306763+00:00"
 ---
 
 # Module Specification: test_security
@@ -21,10 +21,10 @@ Provides functionality related to test security.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_security.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_security.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -46,13 +46,13 @@ Provides functionality related to test security.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -74,56 +74,56 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_safe_join_valid(tmp_path: Any)`
+### `test_safe_join_valid(tmp_path: pathlib.Path)`
 Test safe_join with valid relative paths.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`: pathlib.Path
 
 **Output:**
 - Return Type: `None`
 
-### `test_safe_join_nested_valid(tmp_path: Any)`
+### `test_safe_join_nested_valid(tmp_path: pathlib.Path)`
 Test safe_join with nested valid paths.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`: pathlib.Path
 
 **Output:**
 - Return Type: `None`
 
-### `test_safe_join_traversal(tmp_path: Any)`
+### `test_safe_join_traversal(tmp_path: pathlib.Path)`
 Test safe_join prevents directory traversal.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`: pathlib.Path
 
 **Output:**
 - Return Type: `None`
 
-### `test_safe_join_traversal_complex(tmp_path: Any)`
+### `test_safe_join_traversal_complex(tmp_path: pathlib.Path)`
 Test safe_join prevents complex traversal.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`: pathlib.Path
 
 **Output:**
 - Return Type: `None`
 
-### `test_safe_join_absolute_escape(tmp_path: Any)`
+### `test_safe_join_absolute_escape(tmp_path: pathlib.Path)`
 Test safe_join prevents absolute paths escaping base.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`: pathlib.Path
 
 **Output:**
 - Return Type: `None`
 
-### `test_safe_join_directory_prefix_edge_case(tmp_path: Any)`
+### `test_safe_join_directory_prefix_edge_case(tmp_path: pathlib.Path)`
 Test that safe_join handles directory prefix edge cases correctly.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`: pathlib.Path
 
 **Output:**
 - Return Type: `None`

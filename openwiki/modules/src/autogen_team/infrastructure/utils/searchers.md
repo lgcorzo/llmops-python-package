@@ -6,7 +6,7 @@ title: "Module: searchers"
 source_path: "src/autogen_team/infrastructure/utils/searchers.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.926258+00:00"
+timestamp: "2026-08-11T06:05:51.037378+00:00"
 ---
 
 # Module Specification: searchers
@@ -21,10 +21,10 @@ Provides functionality related to searchers.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for searchers.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for searchers.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -47,13 +47,13 @@ Provides functionality related to searchers.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -98,7 +98,7 @@ Parameters:
 - None found.
 
 #### Methods
-##### `search(self, model: Any, metric: Any, inputs: Any, targets: Any, cv: CrossValidation) -> Results` (Public)
+##### `search(self, model: models.Model, metric: metrics.Metric, inputs: schemas.Inputs, targets: schemas.Targets, cv: CrossValidation) -> Results` (Public)
 **Description:** Search the best model for the given inputs and targets.
 
 Args:
@@ -112,22 +112,22 @@ Returns:
     Results: all the results of the searcher execution process.
 
 **Inputs:**
-- `model`: Any
-- `metric`: Any
-- `inputs`: Any
-- `targets`: Any
+- `model`: models.Model
+- `metric`: metrics.Metric
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
 - `cv`: CrossValidation
 
 **Output:**
 - Return Type: `Results`
-- Semantic Meaning: The resulting value after processing the search action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -151,26 +151,26 @@ Parameters:
 - None found.
 
 #### Methods
-##### `search(self, model: Any, metric: Any, inputs: Any, targets: Any, cv: CrossValidation) -> Results` (Public)
-**Description:** Executes the search operation, mutating state or calculating derived values as necessary.
+##### `search(self, model: models.Model, metric: metrics.Metric, inputs: schemas.Inputs, targets: schemas.Targets, cv: CrossValidation) -> Results` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `model`: Any
-- `metric`: Any
-- `inputs`: Any
-- `targets`: Any
+- `model`: models.Model
+- `metric`: metrics.Metric
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
 - `cv`: CrossValidation
 
 **Output:**
 - Return Type: `Results`
-- Semantic Meaning: The resulting value after processing the search action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python

@@ -6,7 +6,7 @@ title: "Module: test_mcp_client"
 source_path: "tests/infrastructure/client/test_mcp_client.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.066312+00:00"
+timestamp: "2026-08-11T06:05:51.266333+00:00"
 ---
 
 # Module Specification: test_mcp_client
@@ -21,10 +21,10 @@ Provides functionality related to test mcp client.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_mcp_client.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_mcp_client.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -49,13 +49,13 @@ Provides functionality related to test mcp client.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -86,10 +86,10 @@ Fixture to provide an MCPClient instance.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `Generator[MCPClient, None, None]`
 
 ### `test_mcp_client_connect_success(mcp_client: MCPClient)`
-Executes the test_mcp_client_connect_success operation.
+No description provided.
 
 **Inputs:**
 - `mcp_client`: MCPClient
@@ -98,7 +98,7 @@ Executes the test_mcp_client_connect_success operation.
 - Return Type: `None`
 
 ### `test_mcp_client_disconnect(mcp_client: MCPClient)`
-Executes the test_mcp_client_disconnect operation.
+No description provided.
 
 **Inputs:**
 - `mcp_client`: MCPClient
@@ -107,7 +107,7 @@ Executes the test_mcp_client_disconnect operation.
 - Return Type: `None`
 
 ### `test_mcp_client_call_tool_success(mcp_client: MCPClient)`
-Executes the test_mcp_client_call_tool_success operation.
+No description provided.
 
 **Inputs:**
 - `mcp_client`: MCPClient
@@ -116,7 +116,7 @@ Executes the test_mcp_client_call_tool_success operation.
 - Return Type: `None`
 
 ### `test_mcp_client_call_tool_not_json(mcp_client: MCPClient)`
-Executes the test_mcp_client_call_tool_not_json operation.
+No description provided.
 
 **Inputs:**
 - `mcp_client`: MCPClient
@@ -125,7 +125,7 @@ Executes the test_mcp_client_call_tool_not_json operation.
 - Return Type: `None`
 
 ### `test_mcp_client_call_tool_no_session(mcp_client: MCPClient)`
-Executes the test_mcp_client_call_tool_no_session operation.
+No description provided.
 
 **Inputs:**
 - `mcp_client`: MCPClient
@@ -134,7 +134,7 @@ Executes the test_mcp_client_call_tool_no_session operation.
 - Return Type: `None`
 
 ### `test_mcp_client_call_tool_runtime_error(mcp_client: MCPClient)`
-Executes the test_mcp_client_call_tool_runtime_error operation.
+No description provided.
 
 **Inputs:**
 - `mcp_client`: MCPClient

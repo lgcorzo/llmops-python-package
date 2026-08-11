@@ -6,7 +6,7 @@ title: "Module: test_kafka_app"
 source_path: "tests/infrastructure/messaging/test_kafka_app.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.076329+00:00"
+timestamp: "2026-08-11T06:05:51.285077+00:00"
 ---
 
 # Module Specification: test_kafka_app
@@ -21,10 +21,10 @@ Provides functionality related to test kafka app.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_kafka_app.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_kafka_app.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -74,13 +74,13 @@ Provides functionality related to test kafka app.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -120,161 +120,161 @@ Fixture to create a mocked FastAPIKafkaService.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `Generator[tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock], None, None]`
 
-### `test_initialization(mock_kafka_service: tuple[...])`
+### `test_initialization(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock, Dict[str, Any]])`
 Test FastAPIKafkaService initialization.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock, Dict[str, Any]]
 
 **Output:**
 - Return Type: `None`
 
-### `test_delivery_report(mock_kafka_service: tuple[...])`
+### `test_delivery_report(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test delivery report logging.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_start_producer_failure(mock_kafka_service: tuple[...])`
+### `test_start_producer_failure(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test start method when producer initialization fails.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_start_consumer_failure(mock_kafka_service: tuple[...])`
+### `test_start_consumer_failure(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test start method when consumer initialization fails.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_run_server(mock_kafka_service: tuple[...])`
+### `test_run_server(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test the _run_server method.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_run_server_failure(mock_kafka_service: tuple[...])`
+### `test_run_server_failure(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test the _run_server method when uvicorn fails.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_consume_messages(mock_kafka_service: tuple[...])`
+### `test_consume_messages(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test the _consume_messages method.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_consume_messages_with_error(mock_kafka_service: tuple[...])`
+### `test_consume_messages_with_error(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test _consume_messages handles message errors.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_poll_message(mock_kafka_service: tuple[...])`
+### `test_poll_message(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test the _poll_message method.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_poll_message_no_consumer(mock_kafka_service: tuple[...])`
+### `test_poll_message_no_consumer(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test _poll_message handles missing consumer.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_handle_message_error_partition_eof(mock_kafka_service: tuple[...])`
+### `test_handle_message_error_partition_eof(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test _handle_message_error handles partition EOF.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_handle_message_error_other_error(mock_kafka_service: tuple[...])`
+### `test_handle_message_error_other_error(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test _handle_message_error handles other Kafka errors.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_process_message(mock_json_loads: MagicMock, mock_kafka_service: tuple[...])`
+### `test_process_message(mock_json_loads: MagicMock, mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test the _process_message method.
 
 **Inputs:**
 - `mock_json_loads`: MagicMock
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_process_message_json_decode_error(mock_json_loads: MagicMock, mock_kafka_service: tuple[...])`
+### `test_process_message_json_decode_error(mock_json_loads: MagicMock, mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test _process_message handles JSON decoding errors.
 
 **Inputs:**
 - `mock_json_loads`: MagicMock
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_process_message_prediction_error(mock_json_loads: MagicMock, mock_kafka_service: tuple[...])`
+### `test_process_message_prediction_error(mock_json_loads: MagicMock, mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test _process_message handles prediction callback errors.
 
 **Inputs:**
 - `mock_json_loads`: MagicMock
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_close_consumer(mock_kafka_service: tuple[...])`
+### `test_close_consumer(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test the _close_consumer method.
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_stop(mock_os_kill: MagicMock, mock_kafka_service: tuple[...])`
+### `test_stop(mock_os_kill: MagicMock, mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test the stop method.
 
 **Inputs:**
 - `mock_os_kill`: MagicMock
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
@@ -288,20 +288,20 @@ Test the main function.
 **Output:**
 - Return Type: `None`
 
-### `test_process_message_producer_none(mock_kafka_service: tuple[...])`
+### `test_process_message_producer_none(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test _process_message when producer is None (line 215).
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`
 
-### `test_process_message_exception_on_produce(mock_kafka_service: tuple[...])`
+### `test_process_message_exception_on_produce(mock_kafka_service: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock])`
 Test _process_message when produce raises exception (line 219).
 
 **Inputs:**
-- `mock_kafka_service`: tuple[...]
+- `mock_kafka_service`: tuple[FastAPIKafkaService, MagicMock, MagicMock, MagicMock, MagicMock]
 
 **Output:**
 - Return Type: `None`

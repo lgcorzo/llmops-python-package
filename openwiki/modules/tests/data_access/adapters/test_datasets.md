@@ -6,7 +6,7 @@ title: "Module: test_datasets"
 source_path: "tests/data_access/adapters/test_datasets.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.130539+00:00"
+timestamp: "2026-08-11T06:05:51.374573+00:00"
 ---
 
 # Module Specification: test_datasets
@@ -21,10 +21,10 @@ Provides functionality related to test datasets.
 - Repositories
 
 **Responsibilities:**
-- Manage and execute operations for test_datasets.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_datasets.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -42,13 +42,13 @@ Provides functionality related to test datasets.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -70,21 +70,21 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_parquet_reader(limit: Any, inputs_path: str)`
-Executes the test_parquet_reader operation.
+### `test_parquet_reader(limit: int | None, inputs_path: str)`
+No description provided.
 
 **Inputs:**
-- `limit`: Any
+- `limit`: int | None
 - `inputs_path`: str
 
 **Output:**
 - Return Type: `None`
 
-### `test_parquet_writer(targets: Any, tmp_outputs_path: str)`
-Executes the test_parquet_writer operation.
+### `test_parquet_writer(targets: schemas.Targets, tmp_outputs_path: str)`
+No description provided.
 
 **Inputs:**
-- `targets`: Any
+- `targets`: schemas.Targets
 - `tmp_outputs_path`: str
 
 **Output:**

@@ -6,7 +6,7 @@ title: "Module: convert_links"
 source_path: "skills/validate/scripts/convert_links.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.033698+00:00"
+timestamp: "2026-08-11T06:05:51.204674+00:00"
 ---
 
 # Module Specification: convert_links
@@ -21,10 +21,10 @@ Provides functionality related to convert links.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for convert_links.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for convert_links.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -43,13 +43,13 @@ Provides functionality related to convert links.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -71,7 +71,7 @@ Clients instantiate classes or call functions, which execute business logic and 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
 ### `camel_to_snake(name: Any)`
-Executes the camel_to_snake operation.
+No description provided.
 
 **Inputs:**
 - `name`: Any
@@ -80,7 +80,7 @@ Executes the camel_to_snake operation.
 - Return Type: `Any`
 
 ### `resolve_wiki_link(link_content: Any, current_file_dir: Any, wiki_root: Any)`
-Executes the resolve_wiki_link operation.
+No description provided.
 
 **Inputs:**
 - `link_content`: Any
@@ -91,7 +91,7 @@ Executes the resolve_wiki_link operation.
 - Return Type: `Any`
 
 ### `convert_file(file_path: Any, wiki_root: Any)`
-Executes the convert_file operation.
+No description provided.
 
 **Inputs:**
 - `file_path`: Any
@@ -101,7 +101,7 @@ Executes the convert_file operation.
 - Return Type: `Any`
 
 ### `main()`
-Executes the main operation.
+No description provided.
 
 **Inputs:**
 - None

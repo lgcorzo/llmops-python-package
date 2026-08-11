@@ -6,7 +6,7 @@ title: "Module: index_code"
 source_path: "src/autogen_team/application/mcp/tools/index_code.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.984230+00:00"
+timestamp: "2026-08-11T06:05:51.125461+00:00"
 ---
 
 # Module Specification: index_code
@@ -21,10 +21,10 @@ Provides functionality related to index code.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for index_code.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for index_code.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -42,13 +42,13 @@ Provides functionality related to index code.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -71,7 +71,7 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `index_code(file_path: str, content: str, metadata: Any)`
+### `index_code(file_path: str, content: str, metadata: T.Dict[str, T.Any] | None)`
 Index a code file into R2R knowledge graph for future retrieval.
 
 Args:
@@ -85,7 +85,7 @@ Returns:
 **Inputs:**
 - `file_path`: str
 - `content`: str
-- `metadata`: Any
+- `metadata`: T.Dict[str, T.Any] | None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Dict[str, T.Any]`

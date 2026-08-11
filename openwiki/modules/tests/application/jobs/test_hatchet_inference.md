@@ -6,7 +6,7 @@ title: "Module: test_hatchet_inference"
 source_path: "tests/application/jobs/test_hatchet_inference.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.127313+00:00"
+timestamp: "2026-08-11T06:05:51.366349+00:00"
 ---
 
 # Module Specification: test_hatchet_inference
@@ -21,10 +21,10 @@ Provides functionality related to test hatchet inference.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_hatchet_inference.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_hatchet_inference.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -45,13 +45,13 @@ Provides functionality related to test hatchet inference.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -76,32 +76,32 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_hatchet_inference_job_trigger(mocker: Any, mlflow_service: Any, alerts_service: Any, logger_service: Any, inputs_reader: Any, tmp_outputs_writer: Any, loader: Any)`
-Executes the test_hatchet_inference_job_trigger operation.
+### `test_hatchet_inference_job_trigger(mocker: pm.MockerFixture, mlflow_service: services.MlflowService, alerts_service: services.AlertsService, logger_service: services.LoggerService, inputs_reader: datasets.ParquetReader, tmp_outputs_writer: datasets.ParquetWriter, loader: registries.CustomLoader)`
+No description provided.
 
 **Inputs:**
-- `mocker`: Any
-- `mlflow_service`: Any
-- `alerts_service`: Any
-- `logger_service`: Any
-- `inputs_reader`: Any
-- `tmp_outputs_writer`: Any
-- `loader`: Any
+- `mocker`: pm.MockerFixture
+- `mlflow_service`: services.MlflowService
+- `alerts_service`: services.AlertsService
+- `logger_service`: services.LoggerService
+- `inputs_reader`: datasets.ParquetReader
+- `tmp_outputs_writer`: datasets.ParquetWriter
+- `loader`: registries.CustomLoader
 
 **Output:**
 - Return Type: `None`
 
-### `test_hatchet_inference_job_failure(mocker: Any, mlflow_service: Any, alerts_service: Any, logger_service: Any, inputs_reader: Any, tmp_outputs_writer: Any, loader: Any)`
-Executes the test_hatchet_inference_job_failure operation.
+### `test_hatchet_inference_job_failure(mocker: pm.MockerFixture, mlflow_service: services.MlflowService, alerts_service: services.AlertsService, logger_service: services.LoggerService, inputs_reader: datasets.ParquetReader, tmp_outputs_writer: datasets.ParquetWriter, loader: registries.CustomLoader)`
+No description provided.
 
 **Inputs:**
-- `mocker`: Any
-- `mlflow_service`: Any
-- `alerts_service`: Any
-- `logger_service`: Any
-- `inputs_reader`: Any
-- `tmp_outputs_writer`: Any
-- `loader`: Any
+- `mocker`: pm.MockerFixture
+- `mlflow_service`: services.MlflowService
+- `alerts_service`: services.AlertsService
+- `logger_service`: services.LoggerService
+- `inputs_reader`: datasets.ParquetReader
+- `tmp_outputs_writer`: datasets.ParquetWriter
+- `loader`: registries.CustomLoader
 
 **Output:**
 - Return Type: `None`

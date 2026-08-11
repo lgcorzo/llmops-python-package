@@ -6,7 +6,7 @@ title: "Module: mcp_service"
 source_path: "src/autogen_team/infrastructure/services/mcp_service.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.916736+00:00"
+timestamp: "2026-08-11T06:05:51.022951+00:00"
 ---
 
 # Module Specification: mcp_service
@@ -21,10 +21,10 @@ Provides functionality related to mcp service.
 - Services
 
 **Responsibilities:**
-- Manage and execute operations for mcp_service.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for mcp_service.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -45,13 +45,13 @@ Provides functionality related to mcp service.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -62,7 +62,7 @@ Clients instantiate classes or call functions, which execute business logic and 
         +_load_prompts() : None
         +get_prompt() : str
         +stop() : None
-        +r2r_client() : Any
+        +r2r_client() : httpx.AsyncClient
     }
 @enduml
 ```
@@ -107,41 +107,28 @@ Parameters:
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = MCPService.start()
 ```
 
-##### `_load_prompts(self) -> None` (Public)
-**Description:** Load prompts from YAML file.
+##### `_load_prompts(self) -> None` (Private)
+**Purpose:** Load prompts from YAML file.
 
-**Inputs:**
+**Parameters:**
 - None
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the _load_prompts action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-result = MCPService._load_prompts()
-```
+**Return value:**
+- `None`
 
 ##### `get_prompt(self, tool_name: str, key: str) -> str` (Public)
 **Description:** Get a specific prompt for a tool and key.
@@ -152,14 +139,14 @@ result = MCPService._load_prompts()
 
 **Output:**
 - Return Type: `str`
-- Semantic Meaning: The resulting value after processing the get_prompt action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -174,36 +161,36 @@ result = MCPService.get_prompt(..., ...)
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the stop action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = MCPService.stop()
 ```
 
-##### `r2r_client(self) -> Any` (Public)
+##### `r2r_client(self) -> httpx.AsyncClient` (Public)
 **Description:** Return the R2R async HTTP client.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the r2r_client action.
+- Return Type: `httpx.AsyncClient`
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python

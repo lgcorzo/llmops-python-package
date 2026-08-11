@@ -6,7 +6,7 @@ title: "Module: test_agents"
 source_path: "tests/application/agents/test_agents.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.097412+00:00"
+timestamp: "2026-08-11T06:05:51.325284+00:00"
 ---
 
 # Module Specification: test_agents
@@ -21,10 +21,10 @@ Provides functionality related to test agents.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_agents.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_agents.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -49,13 +49,13 @@ Provides functionality related to test agents.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -82,7 +82,7 @@ Clients instantiate classes or call functions, which execute business logic and 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
 ### `mock_mcp_client(mocker: Any)`
-Executes the mock_mcp_client operation.
+No description provided.
 
 **Inputs:**
 - `mocker`: Any
@@ -91,7 +91,7 @@ Executes the mock_mcp_client operation.
 - Return Type: `MagicMock`
 
 ### `test_coder_agent_execute_task(mock_mcp_client: MagicMock)`
-Executes the test_coder_agent_execute_task operation.
+No description provided.
 
 **Inputs:**
 - `mock_mcp_client`: MagicMock
@@ -100,7 +100,7 @@ Executes the test_coder_agent_execute_task operation.
 - Return Type: `None`
 
 ### `test_planner_agent_create_plan(mock_mcp_client: MagicMock)`
-Executes the test_planner_agent_create_plan operation.
+No description provided.
 
 **Inputs:**
 - `mock_mcp_client`: MagicMock
@@ -109,7 +109,7 @@ Executes the test_planner_agent_create_plan operation.
 - Return Type: `None`
 
 ### `test_reviewer_agent_review_changes(mock_mcp_client: MagicMock)`
-Executes the test_reviewer_agent_review_changes operation.
+No description provided.
 
 **Inputs:**
 - `mock_mcp_client`: MagicMock
@@ -118,7 +118,7 @@ Executes the test_reviewer_agent_review_changes operation.
 - Return Type: `None`
 
 ### `test_tester_agent_run_tests(mock_mcp_client: MagicMock)`
-Executes the test_tester_agent_run_tests operation.
+No description provided.
 
 **Inputs:**
 - `mock_mcp_client`: MagicMock

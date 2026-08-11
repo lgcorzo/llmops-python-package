@@ -6,7 +6,7 @@ title: "Module: security_review"
 source_path: "src/autogen_team/application/mcp/tools/security_review.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.978961+00:00"
+timestamp: "2026-08-11T06:05:51.114944+00:00"
 ---
 
 # Module Specification: security_review
@@ -21,10 +21,10 @@ Provides functionality related to security review.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for security_review.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for security_review.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -47,13 +47,13 @@ Provides functionality related to security review.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -92,7 +92,7 @@ Returns:
 - `diff`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.List[T.Dict[str, str]]`
 
 ### `_query_r2r_security(diff: str, r2r_base_url: str)`
 Query R2R RAG for security best practices relevant to the diff.
@@ -109,7 +109,7 @@ Returns:
 - `r2r_base_url`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.List[T.Dict[str, T.Any]]`
 
 ### `security_review(diff: str)`
 Analyze code diffs against OWASP patterns and R2R RAG security knowledge.
@@ -124,4 +124,4 @@ Returns:
 - `diff`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `T.Dict[str, T.Any]`

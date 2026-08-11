@@ -6,7 +6,7 @@ title: "Module: test_registries"
 source_path: "tests/registry/adapters/test_registries.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.083239+00:00"
+timestamp: "2026-08-11T06:05:51.304827+00:00"
 ---
 
 # Module Specification: test_registries
@@ -21,10 +21,10 @@ Provides functionality related to test registries.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_registries.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_registries.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -45,13 +45,13 @@ Provides functionality related to test registries.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -75,7 +75,7 @@ Clients instantiate classes or call functions, which execute business logic and 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
 ### `test_uri_for_model_alias()`
-Executes the test_uri_for_model_alias operation.
+No description provided.
 
 **Inputs:**
 - None
@@ -84,7 +84,7 @@ Executes the test_uri_for_model_alias operation.
 - Return Type: `None`
 
 ### `test_uri_for_model_version()`
-Executes the test_uri_for_model_version operation.
+No description provided.
 
 **Inputs:**
 - None
@@ -93,7 +93,7 @@ Executes the test_uri_for_model_version operation.
 - Return Type: `None`
 
 ### `test_uri_for_model_alias_or_version()`
-Executes the test_uri_for_model_alias_or_version operation.
+No description provided.
 
 **Inputs:**
 - None
@@ -101,14 +101,14 @@ Executes the test_uri_for_model_alias_or_version operation.
 **Output:**
 - Return Type: `None`
 
-### `test_custom_pipeline(model: Any, inputs: Any, signature: Any, mlflow_service: Any)`
-Executes the test_custom_pipeline operation.
+### `test_custom_pipeline(model: models.Model, inputs: schemas.Inputs, signature: signers.Signature, mlflow_service: services.MlflowService)`
+No description provided.
 
 **Inputs:**
-- `model`: Any
-- `inputs`: Any
-- `signature`: Any
-- `mlflow_service`: Any
+- `model`: models.Model
+- `inputs`: schemas.Inputs
+- `signature`: signers.Signature
+- `mlflow_service`: services.MlflowService
 
 **Output:**
 - Return Type: `None`

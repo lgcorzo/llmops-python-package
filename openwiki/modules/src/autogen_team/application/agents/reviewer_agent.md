@@ -6,7 +6,7 @@ title: "Module: reviewer_agent"
 source_path: "src/autogen_team/application/agents/reviewer_agent.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.967690+00:00"
+timestamp: "2026-08-11T06:05:51.098668+00:00"
 ---
 
 # Module Specification: reviewer_agent
@@ -21,10 +21,10 @@ Provides functionality related to reviewer agent.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for reviewer_agent.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for reviewer_agent.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -40,13 +40,13 @@ Provides functionality related to reviewer agent.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -82,21 +82,21 @@ Uses the MCP 'security_review' tool.
 
 #### Methods
 ##### `__init__(self) -> None` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
 - Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -104,23 +104,23 @@ instance = ReviewerAgent()
 result = instance.__init__()
 ```
 
-##### `review_changes(self, mission_id: str, file_changes: List[...]) -> ReviewResult` (Public)
+##### `review_changes(self, mission_id: str, file_changes: List[str]) -> ReviewResult` (Public)
 **Description:** Calls the `security_review` tool via MCP.
 
 **Inputs:**
 - `mission_id`: str
-- `file_changes`: List[...]
+- `file_changes`: List[str]
 
 **Output:**
 - Return Type: `ReviewResult`
-- Semantic Meaning: The resulting value after processing the review_changes action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python

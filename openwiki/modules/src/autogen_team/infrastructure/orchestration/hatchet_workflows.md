@@ -6,7 +6,7 @@ title: "Module: hatchet_workflows"
 source_path: "src/autogen_team/infrastructure/orchestration/hatchet_workflows.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.932527+00:00"
+timestamp: "2026-08-11T06:05:51.043825+00:00"
 ---
 
 # Module Specification: hatchet_workflows
@@ -21,10 +21,10 @@ Provides functionality related to hatchet workflows.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for hatchet_workflows.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for hatchet_workflows.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -41,13 +41,13 @@ Provides functionality related to hatchet workflows.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -77,4 +77,4 @@ Run the inference job.
 - `context`: Context
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `dict[str, Any]`

@@ -6,7 +6,7 @@ title: "Module: test_splitters"
 source_path: "tests/infrastructure/utils/test_splitters.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.062935+00:00"
+timestamp: "2026-08-11T06:05:51.261996+00:00"
 ---
 
 # Module Specification: test_splitters
@@ -21,10 +21,10 @@ Provides functionality related to test splitters.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_splitters.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_splitters.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -40,13 +40,13 @@ Provides functionality related to test splitters.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -66,22 +66,22 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_train_test_splitter(inputs: Any, targets: Any)`
-Executes the test_train_test_splitter operation.
+### `test_train_test_splitter(inputs: schemas.Inputs, targets: schemas.Targets)`
+No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
 
 **Output:**
 - Return Type: `None`
 
-### `test_time_series_splitter(inputs: Any, targets: Any)`
-Executes the test_time_series_splitter operation.
+### `test_time_series_splitter(inputs: schemas.Inputs, targets: schemas.Targets)`
+No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
 
 **Output:**
 - Return Type: `None`

@@ -6,7 +6,7 @@ title: "Module: test_hatchet_orchestration"
 source_path: "tests/infrastructure/orchestration/test_hatchet_orchestration.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.067764+00:00"
+timestamp: "2026-08-11T06:05:51.268301+00:00"
 ---
 
 # Module Specification: test_hatchet_orchestration
@@ -21,10 +21,10 @@ Provides functionality related to test hatchet orchestration.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_hatchet_orchestration.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_hatchet_orchestration.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -39,13 +39,13 @@ Provides functionality related to test hatchet orchestration.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -65,11 +65,11 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_inference_workflow_step(mocker: Any)`
-Executes the test_inference_workflow_step operation.
+### `test_inference_workflow_step(mocker: pm.MockerFixture)`
+No description provided.
 
 **Inputs:**
-- `mocker`: Any
+- `mocker`: pm.MockerFixture
 
 **Output:**
 - Return Type: `None`

@@ -6,7 +6,7 @@ title: "Module: splitters"
 source_path: "src/autogen_team/infrastructure/utils/splitters.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.928018+00:00"
+timestamp: "2026-08-11T06:05:51.039618+00:00"
 ---
 
 # Module Specification: splitters
@@ -21,10 +21,10 @@ Provides functionality related to splitters.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for splitters.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for splitters.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -46,13 +46,13 @@ Provides functionality related to splitters.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -100,7 +100,7 @@ e.g., split between a train/test subsets.
 - None found.
 
 #### Methods
-##### `split(self, inputs: Any, targets: Any, groups: Any) -> TrainTestSplits` (Public)
+##### `split(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> TrainTestSplits` (Public)
 **Description:** Split a dataframe into subsets.
 
 Args:
@@ -112,27 +112,27 @@ Returns:
     TrainTestSplits: iterator over the dataframe train/test splits.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
+- `groups`: Index | None
 
 **Output:**
 - Return Type: `TrainTestSplits`
-- Semantic Meaning: The resulting value after processing the split action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = Splitter.split(..., ..., ...)
 ```
 
-##### `get_n_splits(self, inputs: Any, targets: Any, groups: Any) -> int` (Public)
+##### `get_n_splits(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> int` (Public)
 **Description:** Get the number of splits generated.
 
 Args:
@@ -144,20 +144,20 @@ Returns:
     int: number of splits generated.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
+- `groups`: Index | None
 
 **Output:**
 - Return Type: `int`
-- Semantic Meaning: The resulting value after processing the get_n_splits action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -177,48 +177,48 @@ Parameters:
 - None found.
 
 #### Methods
-##### `split(self, inputs: Any, targets: Any, groups: Any) -> TrainTestSplits` (Public)
-**Description:** Executes the split operation, mutating state or calculating derived values as necessary.
+##### `split(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> TrainTestSplits` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
+- `groups`: Index | None
 
 **Output:**
 - Return Type: `TrainTestSplits`
-- Semantic Meaning: The resulting value after processing the split action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = TrainTestSplitter.split(..., ..., ...)
 ```
 
-##### `get_n_splits(self, inputs: Any, targets: Any, groups: Any) -> int` (Public)
-**Description:** Executes the get_n_splits operation, mutating state or calculating derived values as necessary.
+##### `get_n_splits(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> int` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
+- `groups`: Index | None
 
 **Output:**
 - Return Type: `int`
-- Semantic Meaning: The resulting value after processing the get_n_splits action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -238,48 +238,48 @@ Parameters:
 - None found.
 
 #### Methods
-##### `split(self, inputs: Any, targets: Any, groups: Any) -> TrainTestSplits` (Public)
-**Description:** Executes the split operation, mutating state or calculating derived values as necessary.
+##### `split(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> TrainTestSplits` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
+- `groups`: Index | None
 
 **Output:**
 - Return Type: `TrainTestSplits`
-- Semantic Meaning: The resulting value after processing the split action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = TimeSeriesSplitter.split(..., ..., ...)
 ```
 
-##### `get_n_splits(self, inputs: Any, targets: Any, groups: Any) -> int` (Public)
-**Description:** Executes the get_n_splits operation, mutating state or calculating derived values as necessary.
+##### `get_n_splits(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> int` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`: schemas.Inputs
+- `targets`: schemas.Targets
+- `groups`: Index | None
 
 **Output:**
 - Return Type: `int`
-- Semantic Meaning: The resulting value after processing the get_n_splits action.
+- Semantic Meaning: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python

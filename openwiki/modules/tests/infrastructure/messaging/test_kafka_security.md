@@ -6,7 +6,7 @@ title: "Module: test_kafka_security"
 source_path: "tests/infrastructure/messaging/test_kafka_security.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.069908+00:00"
+timestamp: "2026-08-11T06:05:51.273484+00:00"
 ---
 
 # Module Specification: test_kafka_security
@@ -21,10 +21,10 @@ Provides functionality related to test kafka security.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_kafka_security.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_kafka_security.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -46,13 +46,13 @@ Provides functionality related to test kafka security.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -84,7 +84,7 @@ Fixture to create a mocked FastAPIKafkaService.
 - None
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `Generator[FastAPIKafkaService, None, None]`
 
 ### `test_process_message_generic_error_on_exception(mock_kafka_service: FastAPIKafkaService)`
 Test that _process_message returns a generic error message on exception.

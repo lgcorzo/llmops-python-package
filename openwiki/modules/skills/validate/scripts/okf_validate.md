@@ -6,7 +6,7 @@ title: "Module: okf_validate"
 source_path: "skills/validate/scripts/okf_validate.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.038361+00:00"
+timestamp: "2026-08-11T06:05:51.215202+00:00"
 ---
 
 # Module Specification: okf_validate
@@ -21,10 +21,10 @@ Provides functionality related to okf validate.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for okf_validate.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for okf_validate.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -48,13 +48,13 @@ Provides functionality related to okf validate.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -85,18 +85,18 @@ Split YAML frontmatter from Markdown body.
 - `content`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `tuple[dict[str, Any], str]`
 
-### `check_frontmatter_fields(fm: dict[...], filepath: str, strict: bool)`
+### `check_frontmatter_fields(fm: dict[str, Any], filepath: str, strict: bool)`
 Validate required and optional frontmatter fields.
 
 **Inputs:**
-- `fm`: dict[...]
+- `fm`: dict[str, Any]
 - `filepath`: str
 - `strict`: bool
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `list[str]`
 
 ### `check_absolute_paths(body: str, filepath: str)`
 Detect absolute file paths in the document body.
@@ -106,7 +106,7 @@ Detect absolute file paths in the document body.
 - `filepath`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `list[str]`
 
 ### `check_mermaid_syntax(body: str, filepath: str)`
 Basic structural validation of Mermaid code blocks.
@@ -116,7 +116,7 @@ Basic structural validation of Mermaid code blocks.
 - `filepath`: str
 
 **Output:**
-- Return Type: `Any`
+- Return Type: `list[str]`
 
 ### `validate_wiki(wiki_path: str, strict: bool)`
 Validate all .md files under wiki_path. Returns error count.
@@ -129,7 +129,7 @@ Validate all .md files under wiki_path. Returns error count.
 - Return Type: `int`
 
 ### `main()`
-Executes the main operation.
+No description provided.
 
 **Inputs:**
 - None

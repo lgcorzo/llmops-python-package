@@ -6,7 +6,7 @@ title: "Module: projects"
 source_path: "tasks/projects.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.029058+00:00"
+timestamp: "2026-08-11T06:05:51.190770+00:00"
 ---
 
 # Module Specification: projects
@@ -21,10 +21,10 @@ Provides functionality related to projects.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for projects.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for projects.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -46,13 +46,13 @@ Provides functionality related to projects.
 
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -102,7 +102,7 @@ Run an mlflow project from the MLproject file.
 **Output:**
 - Return Type: `None`
 
-### `mcp(ctx: Context, prompts: Any)`
+### `mcp(ctx: Context, prompts: str | None)`
 Run the MCP server.
 
 Args:
@@ -110,7 +110,7 @@ Args:
 
 **Inputs:**
 - `ctx`: Context
-- `prompts`: Any
+- `prompts`: str | None
 
 **Output:**
 - Return Type: `None`
