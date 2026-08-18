@@ -39,7 +39,7 @@ def get_python_files(root_dir):
 def get_changed_files():
     try:
         output = subprocess.check_output(
-            ["git", "diff", "--name-only", "main"], universal_newlines=True
+            ["git", "diff", "--name-only", "main...HEAD"], universal_newlines=True
         )
         return [f for f in output.splitlines() if f.endswith(".py") and os.path.exists(f)]
     except subprocess.CalledProcessError:
@@ -131,6 +131,65 @@ def generate_dependency_diagram(imports):
             uml.append(f"    [Module] --> [{imp}] : imports")
     else:
         uml.append("    ' No imports found in module")
+    uml.extend(["@enduml", "```"])
+    return uml
+
+
+def generate_heuristic_description(name, is_class=False):
+    words = []
+    if name.startswith("_"):
+        name = name[1:]
+
+    current_word = []
+    for i, char in enumerate(name):
+        if char.isupper() and i > 0 and name[i - 1].islower():
+            words.append("".join(current_word))
+            current_word = [char]
+        elif char == "_":
+            if current_word:
+                words.append("".join(current_word))
+                current_word = []
+        else:
+            current_word.append(char)
+    if current_word:
+        words.append("".join(current_word))
+
+    natural_name = " ".join(words).lower()
+
+    if is_class:
+        return f"Represents a {natural_name} and manages its associated state and behavior."
+    else:
+        if natural_name.startswith("get ") or natural_name.startswith("fetch "):
+            return f"Retrieves the {natural_name.split(' ', 1)[1]}."
+        elif natural_name.startswith("set ") or natural_name.startswith("update "):
+            return f"Updates the {natural_name.split(' ', 1)[1]} with the provided value."
+        elif natural_name.startswith("is ") or natural_name.startswith("has "):
+            return f"Checks if the object {natural_name}."
+        else:
+            return f"Executes the {natural_name} operation."
+
+
+def generate_call_graph(tree):
+    uml = ["```plantuml", "@startuml"]
+    calls = set()
+
+    for node in ast.walk(tree):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            caller = node.name
+            for child in ast.walk(node):
+                if isinstance(child, ast.Call) and isinstance(child.func, ast.Name):
+                    callee = child.func.id
+                    calls.add((caller, callee))
+                elif isinstance(child, ast.Call) and isinstance(child.func, ast.Attribute):
+                    callee = child.func.attr
+                    calls.add((caller, callee))
+
+    if calls:
+        for caller, callee in sorted(calls):
+            uml.append(f"    [{caller}] --> [{callee}] : calls")
+    else:
+        uml.append("    ' No function calls found")
+
     uml.extend(["@enduml", "```"])
     return uml
 
@@ -233,6 +292,9 @@ def generate_doc_for_file(filepath, tree):
     lines.append("### Dependency Graph")
     lines.extend(generate_dependency_diagram(imports))
     lines.append("")
+    lines.append("### Call Graph")
+    lines.extend(generate_call_graph(tree))
+    lines.append("")
 
     lines.append("## 5. Class & Method Specifications")
     for cls in classes:
@@ -242,9 +304,7 @@ def generate_doc_for_file(filepath, tree):
         if cls_doc:
             lines.append(cls_doc)
         else:
-            lines.append(
-                f"Provides state and behavior management for {cls.name.replace('Agent', ' Agent')}."
-            )
+            lines.append(generate_heuristic_description(cls.name, is_class=True))
         lines.append("")
 
         has_init = any(
@@ -314,7 +374,9 @@ def generate_doc_for_file(filepath, tree):
                     if func_doc:
                         lines.append(f"**Purpose:** {func_doc}")
                     else:
-                        lines.append("**Purpose:** No description provided.")
+                        lines.append(
+                            f"**Purpose:** {generate_heuristic_description(node.name, is_class=False)}"
+                        )
                     lines.append("")
                     lines.append("**Parameters:**")
                     has_params = False
@@ -334,7 +396,9 @@ def generate_doc_for_file(filepath, tree):
                     if func_doc:
                         lines.append(f"**Description:** {func_doc}")
                     else:
-                        lines.append("**Description:** No description provided.")
+                        lines.append(
+                            f"**Description:** {generate_heuristic_description(node.name, is_class=False)}"
+                        )
                     lines.append("")
                     lines.append("**Inputs:**")
                     has_params = False
@@ -416,7 +480,7 @@ def generate_doc_for_file(filepath, tree):
         if func_doc:
             lines.append(func_doc)
         else:
-            lines.append("No description provided.")
+            lines.append(generate_heuristic_description(func.name, is_class=False))
         lines.append("")
         lines.append("**Inputs:**")
 
@@ -460,6 +524,18 @@ def generate_doc_for_file(filepath, tree):
         lines.append("- Cache: Not explicitly defined.")
         lines.append("- State changes: Not explicitly defined.")
         lines.append("")
+
+    lines.append("## 7. Cross References")
+    lines.append("- Parent module: Not explicitly defined.")
+    lines.append("- Child modules: Not explicitly defined.")
+    lines.append("- Dependencies: Not explicitly defined.")
+    lines.append("- Used by: Not explicitly defined.")
+    lines.append("- Calls: Not explicitly defined.")
+    lines.append("- Called from: Not explicitly defined.")
+    lines.append("- Related classes: Not explicitly defined.")
+    lines.append("- Related interfaces: Not explicitly defined.")
+    lines.append("- Related diagrams: Not explicitly defined.")
+    lines.append("")
 
     return "\n".join(lines)
 
