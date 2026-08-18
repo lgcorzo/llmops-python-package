@@ -39,7 +39,7 @@ def get_python_files(root_dir):
 def get_changed_files():
     try:
         output = subprocess.check_output(
-            ["git", "diff", "--name-only", "main"], universal_newlines=True
+            ["git", "diff", "--name-only", "main...HEAD"], universal_newlines=True
         )
         return [f for f in output.splitlines() if f.endswith(".py") and os.path.exists(f)]
     except subprocess.CalledProcessError:
@@ -90,6 +90,87 @@ def get_return_type(node):
         except Exception:
             pass
     return "Any"
+
+
+GLOBAL_SYMBOLS = {"classes": {}, "functions": {}, "imports": {}, "calls": {}, "layer": {}}
+
+
+def populate_globals(py_files):
+    for f in py_files:
+        tree, _ = parse_file(f)
+        if not tree:
+            continue
+
+        GLOBAL_SYMBOLS["layer"][f] = analyze_architecture(f)
+        GLOBAL_SYMBOLS["imports"][f] = []
+        GLOBAL_SYMBOLS["calls"][f] = []
+
+        for n in tree.body:
+            if isinstance(n, ast.ClassDef):
+                GLOBAL_SYMBOLS["classes"][n.name] = f
+            elif isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                GLOBAL_SYMBOLS["functions"][n.name] = f
+            elif isinstance(n, ast.Import):
+                for alias in n.names:
+                    GLOBAL_SYMBOLS["imports"][f].append(alias.name)
+            elif isinstance(n, ast.ImportFrom):
+                mod = n.module or ""
+                for alias in n.names:
+                    GLOBAL_SYMBOLS["imports"][f].append(f"{mod}.{alias.name}")
+
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Call):
+                if isinstance(node.func, ast.Name):
+                    GLOBAL_SYMBOLS["calls"][f].append(node.func.id)
+                elif isinstance(node.func, ast.Attribute):
+                    GLOBAL_SYMBOLS["calls"][f].append(node.func.attr)
+
+
+def md_link(target_filepath, source_filepath=None):
+    target_md = os.path.join("openwiki", "modules", os.path.relpath(target_filepath, ".")).replace(
+        ".py", ".md"
+    )
+    if source_filepath:
+        source_md_dir = os.path.dirname(
+            os.path.join("openwiki", "modules", os.path.relpath(source_filepath, ".")).replace(
+                ".py", ".md"
+            )
+        )
+        return os.path.relpath(target_md, source_md_dir)
+    else:
+        # if no source, assume linking from a root index file (e.g., classes/index.md)
+        return os.path.relpath(target_md, os.path.join("openwiki", "classes"))
+
+
+def generate_uml_sequence(filepath, tree):
+    uml = ["```plantuml", "@startuml"]
+    funcs = extract_functions(tree)
+    if not funcs:
+        uml.append("    ' No functions for sequence")
+    for f in funcs:
+        calls = []
+        for node in ast.walk(f):
+            if isinstance(node, ast.Call):
+                if isinstance(node.func, ast.Name):
+                    calls.append(node.func.id)
+                elif isinstance(node.func, ast.Attribute):
+                    calls.append(node.func.attr)
+        for c in set(calls):
+            uml.append(f"    {f.name} -> {c} : call")
+    uml.extend(["@enduml", "```"])
+    return uml
+
+
+def generate_uml_component(filepath):
+    uml = ["```plantuml", "@startuml"]
+    layer = GLOBAL_SYMBOLS["layer"].get(filepath, "Unknown")
+    uml.append(f'    package "{layer}" {{')
+    uml.append(f"        [{os.path.basename(filepath)}]")
+    uml.append("    }")
+    for imp in GLOBAL_SYMBOLS["imports"].get(filepath, []):
+        uml.append(f"    [{os.path.basename(filepath)}] --> [{imp}]")
+    uml.extend(["@enduml", "```"])
+    return uml
 
 
 def analyze_architecture(filepath):
@@ -229,6 +310,12 @@ def generate_doc_for_file(filepath, tree):
     lines.append("## 4. UML 2.0 Diagrams")
     lines.append("### Class Diagram")
     lines.extend(generate_uml_diagram(classes))
+    lines.append("")
+    lines.append("### Sequence Diagram")
+    lines.extend(generate_uml_sequence(filepath, tree))
+    lines.append("")
+    lines.append("### Component Diagram")
+    lines.extend(generate_uml_component(filepath))
     lines.append("")
     lines.append("### Dependency Graph")
     lines.extend(generate_dependency_diagram(imports))
@@ -461,6 +548,47 @@ def generate_doc_for_file(filepath, tree):
         lines.append("- State changes: Not explicitly defined.")
         lines.append("")
 
+    called_from = []
+    used_by = []
+    calls = set(GLOBAL_SYMBOLS["calls"].get(filepath, []))
+    for other_file, other_calls in GLOBAL_SYMBOLS["calls"].items():
+        if other_file == filepath:
+            continue
+        for c in classes:
+            if c.name in other_calls:
+                used_by.append(md_link(other_file, filepath))
+        for f in functions:
+            if f.name in other_calls:
+                called_from.append(md_link(other_file, filepath))
+
+    lines.append("## 7. Call Graph")
+    if calls:
+        lines.append("```plantuml")
+        lines.append("@startuml")
+        title = os.path.basename(filepath).replace(".py", "")
+        for c in calls:
+            lines.append(f"[{title}] --> [{c}] : calls")
+        lines.append("@enduml")
+        lines.append("```")
+    else:
+        lines.append("- No public API calls detected.")
+    lines.append("")
+
+    # Calculate depth to openwiki root
+    rel_source_dir = os.path.dirname(
+        os.path.join("openwiki", "modules", os.path.relpath(filepath, ".")).replace(".py", ".md")
+    )
+    depth = rel_source_dir.count(os.sep)
+    up_path = "../" * depth if depth > 0 else "./"
+
+    lines.append("## 8. Cross References")
+    lines.append(f"- **Dependencies:** [Dependencies]({up_path}dependencies/index.md)")
+    lines.append(f"- **Used by:** {', '.join(set(used_by)) if used_by else 'None'}")
+    lines.append(f"- **Calls:** {', '.join(calls) if calls else 'None'}")
+    lines.append(f"- **Called from:** {', '.join(set(called_from)) if called_from else 'None'}")
+    lines.append(f"- **Related classes:** [Classes]({up_path}classes/index.md)")
+    lines.append(f"- **Related diagrams:** [Diagrams]({up_path}diagrams/index.md)\n")
+
     return "\n".join(lines)
 
 
@@ -545,6 +673,45 @@ def update_indexes(py_files):
     with open("openwiki/index.md", "w") as f:
         f.write("\n".join(index_lines))
 
+    folders_to_init = [
+        "architecture",
+        "api",
+        "classes",
+        "diagrams",
+        "dependencies",
+        "glossary",
+        "decisions",
+        "generated",
+    ]
+    for folder in folders_to_init:
+        idx_path = os.path.join("openwiki", folder, "index.md")
+        lines = [f"# {folder.capitalize()} Index\n"]
+        if folder == "classes":
+            for cls_name, fp in sorted(GLOBAL_SYMBOLS["classes"].items()):
+                target_md = os.path.join("openwiki", "modules", os.path.relpath(fp, ".")).replace(
+                    ".py", ".md"
+                )
+                lines.append(
+                    f"- [{cls_name}]({os.path.relpath(target_md, os.path.join('openwiki', folder))})"
+                )
+        elif folder == "api":
+            for fn_name, fp in sorted(GLOBAL_SYMBOLS["functions"].items()):
+                target_md = os.path.join("openwiki", "modules", os.path.relpath(fp, ".")).replace(
+                    ".py", ".md"
+                )
+                lines.append(
+                    f"- [{fn_name}]({os.path.relpath(target_md, os.path.join('openwiki', folder))})"
+                )
+        elif folder == "dependencies":
+            for fp, imps in sorted(GLOBAL_SYMBOLS["imports"].items()):
+                if imps:
+                    lines.append(f"- `{os.path.basename(fp)}` depends on: {', '.join(imps[:5])}...")
+        else:
+            lines.append(f"Index for {folder}.")
+
+        with open(idx_path, "w") as f:
+            f.write("\n".join(lines))
+
 
 def build_okf_folders():
     folders = [
@@ -566,6 +733,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=["full", "diff"], required=True)
     args = parser.parse_args()
+
+    all_py = get_python_files(".")
+    populate_globals(all_py)
 
     if args.mode == "full":
         if os.path.exists("openwiki"):
