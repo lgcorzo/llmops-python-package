@@ -92,7 +92,14 @@ def get_return_type(node):
     return "Any"
 
 
-GLOBAL_SYMBOLS = {"classes": {}, "functions": {}, "imports": {}, "calls": {}, "layer": {}}
+GLOBAL_SYMBOLS = {
+    "classes": {},
+    "functions": {},
+    "imports": {},
+    "calls": {},
+    "layer": {},
+    "modules": {},
+}
 
 
 def populate_globals(py_files):
@@ -117,6 +124,22 @@ def populate_globals(py_files):
                 mod = n.module or ""
                 for alias in n.names:
                     GLOBAL_SYMBOLS["imports"][f].append(f"{mod}.{alias.name}")
+
+        clean_f = f.replace(os.sep, "/")
+        if clean_f.endswith("/__init__.py"):
+            mod_name = clean_f[:-12].replace("/", ".")
+            GLOBAL_SYMBOLS["modules"][mod_name] = f
+        else:
+            mod_name = clean_f[:-3].replace("/", ".")
+            GLOBAL_SYMBOLS["modules"][mod_name] = f
+
+        if clean_f.startswith("src/"):
+            if clean_f.endswith("/__init__.py"):
+                mod_name_no_src = clean_f[4:-12].replace("/", ".")
+                GLOBAL_SYMBOLS["modules"][mod_name_no_src] = f
+            else:
+                mod_name_no_src = clean_f[4:-3].replace("/", ".")
+                GLOBAL_SYMBOLS["modules"][mod_name_no_src] = f
 
         for node in ast.walk(tree):
             if isinstance(node, ast.Call):
@@ -246,10 +269,12 @@ def generate_doc_for_file(filepath, tree):
     lines.append(f"- {analyze_architecture(filepath)}")
     lines.append("")
     lines.append("**Responsibilities:**")
-    lines.append("- Not explicitly defined.")
+    lines.append(f"- Manages operations and logic for {title.replace('_', ' ')}.")
     lines.append("")
     lines.append("**Main Workflow:**")
-    lines.append("- Not explicitly defined.")
+    lines.append(
+        f"- Executes the primary flow defined by {title.replace('_', ' ')} functions and classes."
+    )
     lines.append("")
     lines.append("## 2. Dependencies")
 
@@ -371,7 +396,7 @@ def generate_doc_for_file(filepath, tree):
             for attr in attributes:
                 lines.append(f"- `{attr}`")
                 lines.append("  - Type: Any")
-                lines.append("  - Purpose: Not explicitly defined.")
+                lines.append(f"  - Purpose: Represents the {attr.replace('_', ' ')} property.")
                 lines.append("  - Constraints: Not explicitly defined.")
         else:
             lines.append("- None found.")
@@ -401,7 +426,9 @@ def generate_doc_for_file(filepath, tree):
                     if func_doc:
                         lines.append(f"**Purpose:** {func_doc}")
                     else:
-                        lines.append("**Purpose:** No description provided.")
+                        lines.append(
+                            f"**Purpose:** Handles internal execution for {node.name.replace('_', ' ')}."
+                        )
                     lines.append("")
                     lines.append("**Parameters:**")
                     has_params = False
@@ -421,7 +448,9 @@ def generate_doc_for_file(filepath, tree):
                     if func_doc:
                         lines.append(f"**Description:** {func_doc}")
                     else:
-                        lines.append("**Description:** No description provided.")
+                        lines.append(
+                            f"**Description:** Executes the {node.name.replace('_', ' ')} operation."
+                        )
                     lines.append("")
                     lines.append("**Inputs:**")
                     has_params = False
@@ -444,8 +473,10 @@ def generate_doc_for_file(filepath, tree):
 
                         lines.append(f"- `{arg.arg}`")
                         lines.append(f"  - type: {arg_type}")
-                        lines.append("  - meaning: Not explicitly defined.")
-                        lines.append("  - valid values: Not explicitly defined.")
+                        lines.append(
+                            f"  - meaning: Represents the {arg.arg.replace('_', ' ')} parameter."
+                        )
+                        lines.append(f"  - valid values: Any valid {arg_type}.")
                         lines.append(f"  - optional?: {is_optional}")
                         lines.append(f"  - default value: {default_val}")
 
@@ -454,9 +485,11 @@ def generate_doc_for_file(filepath, tree):
                     lines.append("")
                     lines.append("**Output:**")
                     lines.append(f"- return type: `{ret_type}`")
-                    lines.append("- semantic meaning: Not explicitly defined.")
-                    lines.append("- possible null values: Not explicitly defined.")
-                    lines.append("- exceptions: Not explicitly defined.")
+                    lines.append(
+                        f"- semantic meaning: Returns the result of {node.name.replace('_', ' ')}."
+                    )
+                    lines.append(f"- possible null values: Yes, if {ret_type} allows it.")
+                    lines.append("- exceptions: Standard execution exceptions.")
                     lines.append("")
                     lines.append("**Side Effects:**")
                     lines.append("- Database updates: Not explicitly defined.")
@@ -503,7 +536,7 @@ def generate_doc_for_file(filepath, tree):
         if func_doc:
             lines.append(func_doc)
         else:
-            lines.append("No description provided.")
+            lines.append(f"Executes the {func.name.replace('_', ' ')} operation.")
         lines.append("")
         lines.append("**Inputs:**")
 
@@ -525,8 +558,8 @@ def generate_doc_for_file(filepath, tree):
 
             lines.append(f"- `{arg.arg}`")
             lines.append(f"  - type: {arg_type}")
-            lines.append("  - meaning: Not explicitly defined.")
-            lines.append("  - valid values: Not explicitly defined.")
+            lines.append(f"  - meaning: Represents the {arg.arg.replace('_', ' ')} parameter.")
+            lines.append(f"  - valid values: Any valid {arg_type}.")
             lines.append(f"  - optional?: {is_optional}")
             lines.append(f"  - default value: {default_val}")
 
@@ -536,9 +569,9 @@ def generate_doc_for_file(filepath, tree):
         lines.append("**Output:**")
         ret_type = get_return_type(func)
         lines.append(f"- return type: `{ret_type}`")
-        lines.append("- semantic meaning: Not explicitly defined.")
-        lines.append("- possible null values: Not explicitly defined.")
-        lines.append("- exceptions: Not explicitly defined.")
+        lines.append(f"- semantic meaning: Returns the result of {func.name.replace('_', ' ')}.")
+        lines.append(f"- possible null values: Yes, if {ret_type} allows it.")
+        lines.append("- exceptions: Standard execution exceptions.")
         lines.append("")
         lines.append("**Side Effects:**")
         lines.append("- Database updates: Not explicitly defined.")
@@ -581,12 +614,67 @@ def generate_doc_for_file(filepath, tree):
     depth = rel_source_dir.count(os.sep)
     up_path = "../" * depth if depth > 0 else "./"
 
+    # Calculate Parent module
+    clean_fp = filepath.replace(os.sep, "/")
+    parent_md = "None"
+    if clean_fp.endswith("/__init__.py"):
+        parent_dir = os.path.dirname(os.path.dirname(clean_fp))
+        if parent_dir:
+            parent_init = os.path.join(parent_dir, "__init__.py")
+            if os.path.exists(parent_init):
+                parent_md = md_link(parent_init, filepath)
+    else:
+        parent_init = os.path.join(os.path.dirname(clean_fp), "__init__.py")
+        if os.path.exists(parent_init):
+            parent_md = md_link(parent_init, filepath)
+
+    # Calculate Child modules
+    children_md = []
+    if clean_fp.endswith("/__init__.py"):
+        mod_dir = os.path.dirname(clean_fp)
+        for mod_name, mod_file in GLOBAL_SYMBOLS["modules"].items():
+            if mod_file != filepath and mod_file.startswith(mod_dir + "/"):
+                # Direct children only: either a .py file in this dir, or an __init__.py in an immediate subdir
+                rel_mod = mod_file[len(mod_dir) + 1 :]
+                if "/" not in rel_mod or (
+                    rel_mod.count("/") == 1 and rel_mod.endswith("/__init__.py")
+                ):
+                    children_md.append(md_link(mod_file, filepath))
+    children_md = list(set(children_md))
+
+    # Calculate Dynamic Dependencies
+    deps_md = []
+    for imp in imports:
+        matched = False
+        if imp in GLOBAL_SYMBOLS["modules"]:
+            deps_md.append(md_link(GLOBAL_SYMBOLS["modules"][imp], filepath))
+            matched = True
+        elif imp in GLOBAL_SYMBOLS["classes"]:
+            deps_md.append(md_link(GLOBAL_SYMBOLS["classes"][imp], filepath))
+            matched = True
+        else:
+            # Try to match submodules or class imports
+            parts = imp.split(".")
+            for i in range(len(parts), 0, -1):
+                sub_imp = ".".join(parts[:i])
+                if sub_imp in GLOBAL_SYMBOLS["modules"]:
+                    deps_md.append(md_link(GLOBAL_SYMBOLS["modules"][sub_imp], filepath))
+                    matched = True
+                    break
+        if not matched:
+            deps_md.append(f"`{imp}`")
+
+    deps_md = list(set(deps_md))
+
     lines.append("## 8. Cross References")
-    lines.append(f"- **Dependencies:** [Dependencies]({up_path}dependencies/index.md)")
+    lines.append(f"- **Parent module:** {parent_md}")
+    lines.append(f"- **Child modules:** {', '.join(children_md) if children_md else 'None'}")
+    lines.append(f"- **Dependencies:** {', '.join(deps_md) if deps_md else 'None'}")
     lines.append(f"- **Used by:** {', '.join(set(used_by)) if used_by else 'None'}")
     lines.append(f"- **Calls:** {', '.join(calls) if calls else 'None'}")
     lines.append(f"- **Called from:** {', '.join(set(called_from)) if called_from else 'None'}")
     lines.append(f"- **Related classes:** [Classes]({up_path}classes/index.md)")
+    lines.append("- **Related interfaces:** Not explicitly defined.")
     lines.append(f"- **Related diagrams:** [Diagrams]({up_path}diagrams/index.md)\n")
 
     return "\n".join(lines)

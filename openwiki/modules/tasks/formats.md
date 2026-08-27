@@ -6,7 +6,7 @@ title: "Module: formats"
 source_path: "tasks/formats.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.021741+00:00"
+timestamp: "2026-08-27T07:00:19.437354+00:00"
 ---
 
 # Module Specification: formats
@@ -21,10 +21,10 @@ Provides functionality related to formats.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for formats.
+- Manages operations and logic for formats.
 
 **Main Workflow:**
-- Initialize components and process requests for formats.
+- Executes the primary flow defined by formats functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -39,21 +39,50 @@ Provides functionality related to formats.
 - `sources`
 - `all`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    imports -> run : call
+    sources -> run : call
+    all -> task : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [formats.py]
+    }
+    [formats.py] --> [invoke.context.Context]
+    [formats.py] --> [invoke.tasks.task]
 @enduml
 ```
 
@@ -71,25 +100,89 @@ Clients instantiate classes or call functions, which execute business logic and 
 Format python imports with ruff.
 
 **Inputs:**
-- `ctx`: Context
+- `ctx`
+  - type: Context
+  - meaning: Represents the ctx parameter.
+  - valid values: Any valid Context.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of imports.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `sources(ctx: Context)`
 Format python sources with ruff.
 
 **Inputs:**
-- `ctx`: Context
+- `ctx`
+  - type: Context
+  - meaning: Represents the ctx parameter.
+  - valid values: Any valid Context.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of sources.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `all(_: Context)`
 Run all format tasks.
 
 **Inputs:**
-- `_`: Context
+- `_`
+  - type: Context
+  - meaning: Represents the   parameter.
+  - valid values: Any valid Context.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of all.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+## 7. Call Graph
+```plantuml
+@startuml
+[formats] --> [run] : calls
+[formats] --> [task] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** __init__.md
+- **Child modules:** None
+- **Dependencies:** `invoke.context.Context`, `invoke.tasks.task`
+- **Used by:** None
+- **Calls:** run, task
+- **Called from:** None
+- **Related classes:** [Classes](../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../diagrams/index.md)

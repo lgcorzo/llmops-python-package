@@ -6,7 +6,7 @@ title: "Module: hatchet_workflows"
 source_path: "src/autogen_team/infrastructure/orchestration/hatchet_workflows.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.932527+00:00"
+timestamp: "2026-08-27T07:00:19.329150+00:00"
 ---
 
 # Module Specification: hatchet_workflows
@@ -21,10 +21,10 @@ Provides functionality related to hatchet workflows.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for hatchet_workflows.
+- Manages operations and logic for hatchet workflows.
 
 **Main Workflow:**
-- Initialize components and process requests for hatchet_workflows.
+- Executes the primary flow defined by hatchet workflows functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -39,21 +39,54 @@ Provides functionality related to hatchet workflows.
 **Exported Functions:**
 - `run_inference`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    run_inference -> InferenceJob : call
+    run_inference -> str : call
+    run_inference -> run : call
+    run_inference -> get : call
+    run_inference -> task : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [hatchet_workflows.py]
+    }
+    [hatchet_workflows.py] --> [typing.Any]
+    [hatchet_workflows.py] --> [autogen_team.application.jobs.inference]
+    [hatchet_workflows.py] --> [autogen_team.infrastructure.services.HatchetService]
+    [hatchet_workflows.py] --> [hatchet_sdk.Context]
 @enduml
 ```
 
@@ -73,8 +106,52 @@ Clients instantiate classes or call functions, which execute business logic and 
 Run the inference job.
 
 **Inputs:**
-- `input`: Any
-- `context`: Context
+- `input`
+  - type: Any
+  - meaning: Represents the input parameter.
+  - valid values: Any valid Any.
+  - optional?: False
+  - default value: None
+- `context`
+  - type: Context
+  - meaning: Represents the context parameter.
+  - valid values: Any valid Context.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Any`
+- return type: `dict[str, Any]`
+- semantic meaning: Returns the result of run inference.
+- possible null values: Yes, if dict[str, Any] allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+## 7. Call Graph
+```plantuml
+@startuml
+[hatchet_workflows] --> [HatchetService] : calls
+[hatchet_workflows] --> [InferenceJob] : calls
+[hatchet_workflows] --> [str] : calls
+[hatchet_workflows] --> [run] : calls
+[hatchet_workflows] --> [get] : calls
+[hatchet_workflows] --> [workflow] : calls
+[hatchet_workflows] --> [task] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** None
+- **Child modules:** None
+- **Dependencies:** `hatchet_sdk.Context`, `autogen_team.infrastructure.services.HatchetService`, `autogen_team.application.jobs.inference`, `typing.Any`
+- **Used by:** None
+- **Calls:** HatchetService, InferenceJob, str, run, get, workflow, task
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

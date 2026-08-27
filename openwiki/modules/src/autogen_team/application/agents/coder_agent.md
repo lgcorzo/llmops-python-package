@@ -6,7 +6,7 @@ title: "Module: coder_agent"
 source_path: "src/autogen_team/application/agents/coder_agent.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.968787+00:00"
+timestamp: "2026-08-27T07:00:19.369191+00:00"
 ---
 
 # Module Specification: coder_agent
@@ -21,10 +21,10 @@ Provides functionality related to coder agent.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for coder_agent.
+- Manages operations and logic for coder agent.
 
 **Main Workflow:**
-- Initialize components and process requests for coder_agent.
+- Executes the primary flow defined by coder agent functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -39,15 +39,24 @@ Provides functionality related to coder agent.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -55,8 +64,28 @@ Clients instantiate classes or call functions, which execute business logic and 
 @startuml
     class CoderAgent {
         +__init__() : None
-        +execute_task() : Any
+        +execute_task() : Dict[str, Any]
     }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [coder_agent.py]
+    }
+    [coder_agent.py] --> [typing.Any]
+    [coder_agent.py] --> [typing.Dict]
+    [coder_agent.py] --> [typing.cast]
+    [coder_agent.py] --> [autogen_team.infrastructure.client.mcp_client.MCPClient]
 @enduml
 ```
 
@@ -81,24 +110,33 @@ Uses the MCP 'execute_code' tool.
 
 #### Attributes
 - `client`
+  - Type: Any
+  - Purpose: Represents the client property.
+  - Constraints: Not explicitly defined.
 
 #### Methods
 ##### `__init__(self) -> None` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+**Description:** Executes the   init   operation.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+- return type: `None`
+- semantic meaning: Returns the result of   init  .
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -106,22 +144,33 @@ instance = CoderAgent()
 result = instance.__init__()
 ```
 
-##### `execute_task(self, task: Dict[...]) -> Any` (Public)
-**Description:** Executes the execute_task operation, mutating state or calculating derived values as necessary.
+##### `execute_task(self, task: Dict[str, Any]) -> Dict[str, Any]` (Public)
+**Description:** Executes the execute task operation.
 
 **Inputs:**
-- `task`: Dict[...]
+- `task`
+  - type: Dict[str, Any]
+  - meaning: Represents the task parameter.
+  - valid values: Any valid Dict[str, Any].
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the execute_task action.
+- return type: `Dict[str, Any]`
+- semantic meaning: Returns the result of execute task.
+- possible null values: Yes, if Dict[str, Any] allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -130,3 +179,26 @@ result = instance.execute_task(...)
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[coder_agent] --> [connect] : calls
+[coder_agent] --> [print] : calls
+[coder_agent] --> [call_tool] : calls
+[coder_agent] --> [cast] : calls
+[coder_agent] --> [disconnect] : calls
+[coder_agent] --> [get] : calls
+[coder_agent] --> [MCPClient] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** None
+- **Child modules:** None
+- **Dependencies:** `typing.Dict`, `typing.cast`, `typing.Any`, `autogen_team.infrastructure.client.mcp_client.MCPClient`
+- **Used by:** ../workflows/autonomous_mission.md, ../../../../Scripts/verify_agent_mcp.md, ../../../../tests/application/agents/test_agents.md
+- **Calls:** connect, print, call_tool, cast, disconnect, get, MCPClient
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

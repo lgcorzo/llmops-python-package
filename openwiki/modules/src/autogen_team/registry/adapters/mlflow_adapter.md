@@ -6,7 +6,7 @@ title: "Module: mlflow_adapter"
 source_path: "src/autogen_team/registry/adapters/mlflow_adapter.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.948179+00:00"
+timestamp: "2026-08-27T07:00:19.345079+00:00"
 ---
 
 # Module Specification: mlflow_adapter
@@ -21,10 +21,10 @@ Provides functionality related to mlflow adapter.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for mlflow_adapter.
+- Manages operations and logic for mlflow adapter.
 
 **Main Workflow:**
-- Initialize components and process requests for mlflow_adapter.
+- Executes the primary flow defined by mlflow adapter functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -59,15 +59,24 @@ Provides functionality related to mlflow adapter.
 - `uri_for_model_version`
 - `uri_for_model_alias_or_version`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -80,10 +89,10 @@ Clients instantiate classes or call functions, which execute business logic and 
         +save() : Info
     }
     class Loader {
-        +load() : Any
+        +load() : 'Loader.Adapter'
     }
     class CustomLoader {
-        +load() : Any
+        +load() : 'CustomLoader.Adapter'
     }
     class Register {
         +register() : Version
@@ -91,6 +100,42 @@ Clients instantiate classes or call functions, which execute business logic and 
     class MlflowRegister {
         +register() : Version
     }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    uri_for_model_alias_or_version -> isinstance : call
+    uri_for_model_alias_or_version -> uri_for_model_version : call
+    uri_for_model_alias_or_version -> str : call
+    uri_for_model_alias_or_version -> uri_for_model_alias : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [mlflow_adapter.py]
+    }
+    [mlflow_adapter.py] --> [abc]
+    [mlflow_adapter.py] --> [json]
+    [mlflow_adapter.py] --> [os]
+    [mlflow_adapter.py] --> [typing]
+    [mlflow_adapter.py] --> [typing.Any]
+    [mlflow_adapter.py] --> [typing.Dict]
+    [mlflow_adapter.py] --> [mlflow]
+    [mlflow_adapter.py] --> [mlflow.entities]
+    [mlflow_adapter.py] --> [mlflow.entities.model_registry]
+    [mlflow_adapter.py] --> [mlflow.models.model]
+    [mlflow_adapter.py] --> [pandas]
+    [mlflow_adapter.py] --> [pydantic]
+    [mlflow_adapter.py] --> [mlflow.pyfunc.model.PythonModel]
+    [mlflow_adapter.py] --> [mlflow.pyfunc.model.PythonModelContext]
+    [mlflow_adapter.py] --> [autogen_team.core.schemas]
+    [mlflow_adapter.py] --> [autogen_team.infrastructure.utils.signers]
+    [mlflow_adapter.py] --> [autogen_team.models.entities]
 @enduml
 ```
 
@@ -132,7 +177,7 @@ Parameters:
 - None found.
 
 #### Methods
-##### `save(self, model: Any, signature: Any, input_example: Any) -> Info` (Public)
+##### `save(self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info` (Public)
 **Description:** Save a model in the model registry.
 
 Args:
@@ -144,20 +189,41 @@ Returns:
     Info: model saving information.
 
 **Inputs:**
-- `model`: Any
-- `signature`: Any
-- `input_example`: Any
+- `model`
+  - type: models.Model
+  - meaning: Represents the model parameter.
+  - valid values: Any valid models.Model.
+  - optional?: False
+  - default value: None
+- `signature`
+  - type: signers.Signature
+  - meaning: Represents the signature parameter.
+  - valid values: Any valid signers.Signature.
+  - optional?: False
+  - default value: None
+- `input_example`
+  - type: schemas.Inputs
+  - meaning: Represents the input example parameter.
+  - valid values: Any valid schemas.Inputs.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Info`
-- Semantic Meaning: The resulting value after processing the save action.
+- return type: `Info`
+- semantic meaning: Returns the result of save.
+- possible null values: Yes, if Info allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -176,24 +242,45 @@ https://mlflow.org/blog/custom-pyfunc
 - None found.
 
 #### Methods
-##### `save(self, model: Any, signature: Any, input_example: Any) -> Info` (Public)
-**Description:** Executes the save operation, mutating state or calculating derived values as necessary.
+##### `save(self, model: models.Model, signature: signers.Signature, input_example: schemas.Inputs) -> Info` (Public)
+**Description:** Executes the save operation.
 
 **Inputs:**
-- `model`: Any
-- `signature`: Any
-- `input_example`: Any
+- `model`
+  - type: models.Model
+  - meaning: Represents the model parameter.
+  - valid values: Any valid models.Model.
+  - optional?: False
+  - default value: None
+- `signature`
+  - type: signers.Signature
+  - meaning: Represents the signature parameter.
+  - valid values: Any valid signers.Signature.
+  - optional?: False
+  - default value: None
+- `input_example`
+  - type: schemas.Inputs
+  - meaning: Represents the input example parameter.
+  - valid values: Any valid schemas.Inputs.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Info`
-- Semantic Meaning: The resulting value after processing the save action.
+- return type: `Info`
+- semantic meaning: Returns the result of save.
+- possible null values: Yes, if Info allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -211,7 +298,7 @@ e.g., to switch between deserialization flavors.
 - None found.
 
 #### Methods
-##### `load(self, uri: str) -> Any` (Public)
+##### `load(self, uri: str) -> 'Loader.Adapter'` (Public)
 **Description:** Load a model from the model registry.
 
 Args:
@@ -221,18 +308,29 @@ Returns:
     Loader.Adapter: model loaded.
 
 **Inputs:**
-- `uri`: str
+- `uri`
+  - type: str
+  - meaning: Represents the uri parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the load action.
+- return type: `'Loader.Adapter'`
+- semantic meaning: Returns the result of load.
+- possible null values: Yes, if 'Loader.Adapter' allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -249,22 +347,33 @@ https://mlflow.org/docs/latest/python_api/mlflow.pyfunc.html
 - None found.
 
 #### Methods
-##### `load(self, uri: str) -> Any` (Public)
-**Description:** Executes the load operation, mutating state or calculating derived values as necessary.
+##### `load(self, uri: str) -> 'CustomLoader.Adapter'` (Public)
+**Description:** Executes the load operation.
 
 **Inputs:**
-- `uri`: str
+- `uri`
+  - type: str
+  - meaning: Represents the uri parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the load action.
+- return type: `'CustomLoader.Adapter'`
+- semantic meaning: Returns the result of load.
+- possible null values: Yes, if 'CustomLoader.Adapter' allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -296,19 +405,35 @@ Returns:
     Version: information about the registered model.
 
 **Inputs:**
-- `name`: str
-- `model_uri`: str
+- `name`
+  - type: str
+  - meaning: Represents the name parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
+- `model_uri`
+  - type: str
+  - meaning: Represents the model uri parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Version`
-- Semantic Meaning: The resulting value after processing the register action.
+- return type: `Version`
+- semantic meaning: Returns the result of register.
+- possible null values: Yes, if Version allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -326,22 +451,38 @@ https://mlflow.org/docs/latest/model-registry.html
 
 #### Methods
 ##### `register(self, name: str, model_uri: str) -> Version` (Public)
-**Description:** Executes the register operation, mutating state or calculating derived values as necessary.
+**Description:** Executes the register operation.
 
 **Inputs:**
-- `name`: str
-- `model_uri`: str
+- `name`
+  - type: str
+  - meaning: Represents the name parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
+- `model_uri`
+  - type: str
+  - meaning: Represents the model uri parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Version`
-- Semantic Meaning: The resulting value after processing the register action.
+- return type: `Version`
+- semantic meaning: Returns the result of register.
+- possible null values: Yes, if Version allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -360,11 +501,31 @@ Returns:
     str: model URI as "models:/name@alias".
 
 **Inputs:**
-- `name`: str
-- `alias`: str
+- `name`
+  - type: str
+  - meaning: Represents the name parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
+- `alias`
+  - type: str
+  - meaning: Represents the alias parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `str`
+- return type: `str`
+- semantic meaning: Returns the result of uri for model alias.
+- possible null values: Yes, if str allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `uri_for_model_version(name: str, version: str)`
 Create a model URI from a model name and a version.
@@ -377,13 +538,33 @@ Returns:
     str: model URI as "models:/name/version."
 
 **Inputs:**
-- `name`: str
-- `version`: str
+- `name`
+  - type: str
+  - meaning: Represents the name parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
+- `version`
+  - type: str
+  - meaning: Represents the version parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `str`
+- return type: `str`
+- semantic meaning: Returns the result of uri for model version.
+- possible null values: Yes, if str allows it.
+- exceptions: Standard execution exceptions.
 
-### `uri_for_model_alias_or_version(name: str, alias_or_version: Any)`
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+### `uri_for_model_alias_or_version(name: str, alias_or_version: str | int)`
 Create a model URi from a model name and an alias or version.
 
 Args:
@@ -394,8 +575,68 @@ Returns:
     str: model URI as "models:/name@alias" or "models:/name/version" based on input.
 
 **Inputs:**
-- `name`: str
-- `alias_or_version`: Any
+- `name`
+  - type: str
+  - meaning: Represents the name parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
+- `alias_or_version`
+  - type: str | int
+  - meaning: Represents the alias or version parameter.
+  - valid values: Any valid str | int.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `str`
+- return type: `str`
+- semantic meaning: Returns the result of uri for model alias or version.
+- possible null values: Yes, if str allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+## 7. Call Graph
+```plantuml
+@startuml
+[mlflow_adapter] --> [predict] : calls
+[mlflow_adapter] --> [print] : calls
+[mlflow_adapter] --> [uri_for_model_alias] : calls
+[mlflow_adapter] --> [save_model] : calls
+[mlflow_adapter] --> [mkdtemp] : calls
+[mlflow_adapter] --> [uri_for_model_version] : calls
+[mlflow_adapter] --> [abspath] : calls
+[mlflow_adapter] --> [ModelInfo] : calls
+[mlflow_adapter] --> [join] : calls
+[mlflow_adapter] --> [load_context] : calls
+[mlflow_adapter] --> [Outputs] : calls
+[mlflow_adapter] --> [makedirs] : calls
+[mlflow_adapter] --> [load] : calls
+[mlflow_adapter] --> [Adapter] : calls
+[mlflow_adapter] --> [log_model] : calls
+[mlflow_adapter] --> [register_model] : calls
+[mlflow_adapter] --> [isinstance] : calls
+[mlflow_adapter] --> [load_model] : calls
+[mlflow_adapter] --> [open] : calls
+[mlflow_adapter] --> [str] : calls
+[mlflow_adapter] --> [now] : calls
+[mlflow_adapter] --> [isoformat] : calls
+[mlflow_adapter] --> [DataFrame] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** __init__.md
+- **Child modules:** None
+- **Dependencies:** `os`, `mlflow.entities`, `mlflow.models.model`, `mlflow.pyfunc.model.PythonModelContext`, `pandas`, `typing`, `autogen_team.infrastructure.utils.signers`, `typing.Dict`, `mlflow`, `autogen_team.core.schemas`, `autogen_team.models.entities`, `abc`, `typing.Any`, `json`, `mlflow.entities.model_registry`, `pydantic`, `mlflow.pyfunc.model.PythonModel`
+- **Used by:** ../../application/jobs/training.md, ../../../../tests/registry/adapters/test_registries.md, ../../application/jobs/inference.md, ../../application/jobs/explanations.md, ../../infrastructure/messaging/kafka_app.md, ../../application/jobs/hatchet_inference.md, ../../../../tests/conftest.md
+- **Calls:** predict, print, uri_for_model_alias, save_model, mkdtemp, uri_for_model_version, abspath, ModelInfo, join, load_context, Outputs, makedirs, load, Adapter, log_model, register_model, isinstance, load_model, open, str, now, isoformat, DataFrame
+- **Called from:** ../../application/jobs/inference.md, ../../application/jobs/explanations.md, ../../application/jobs/evaluations.md, ../../../../tests/registry/adapters/test_registries.md
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

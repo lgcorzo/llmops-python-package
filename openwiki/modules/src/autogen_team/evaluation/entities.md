@@ -6,7 +6,7 @@ title: "Module: entities"
 source_path: "src/autogen_team/evaluation/entities.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.953321+00:00"
+timestamp: "2026-08-27T07:00:19.352196+00:00"
 ---
 
 # Module Specification: entities
@@ -21,10 +21,10 @@ Provides functionality related to entities.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for entities.
+- Manages operations and logic for entities.
 
 **Main Workflow:**
-- Initialize components and process requests for entities.
+- Executes the primary flow defined by entities functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -36,15 +36,24 @@ Provides functionality related to entities.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -52,6 +61,23 @@ Clients instantiate classes or call functions, which execute business logic and 
 @startuml
     class MetricResult {
     }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [entities.py]
+    }
+    [entities.py] --> [dataclasses.dataclass]
 @enduml
 ```
 
@@ -72,3 +98,16 @@ Represents a metric evaluation result.
 
 #### Methods
 ## 6. Module Functions
+## 7. Call Graph
+- No public API calls detected.
+
+## 8. Cross References
+- **Parent module:** __init__.md
+- **Child modules:** None
+- **Dependencies:** `dataclasses.dataclass`
+- **Used by:** None
+- **Calls:** None
+- **Called from:** None
+- **Related classes:** [Classes](../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../diagrams/index.md)

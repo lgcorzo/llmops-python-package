@@ -6,7 +6,7 @@ title: "Module: retrieve_context"
 source_path: "src/autogen_team/application/mcp/tools/retrieve_context.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.981210+00:00"
+timestamp: "2026-08-27T07:00:19.385869+00:00"
 ---
 
 # Module Specification: retrieve_context
@@ -21,10 +21,10 @@ Provides functionality related to retrieve context.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for retrieve_context.
+- Manages operations and logic for retrieve context.
 
 **Main Workflow:**
-- Initialize components and process requests for retrieve_context.
+- Executes the primary flow defined by retrieve context functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -40,21 +40,60 @@ Provides functionality related to retrieve context.
 **Exported Functions:**
 - `retrieve_context`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    retrieve_context -> post : call
+    retrieve_context -> strip : call
+    retrieve_context -> type : call
+    retrieve_context -> error : call
+    retrieve_context -> get : call
+    retrieve_context -> raise_for_status : call
+    retrieve_context -> AsyncClient : call
+    retrieve_context -> Timeout : call
+    retrieve_context -> json : call
+    retrieve_context -> Env : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [retrieve_context.py]
+    }
+    [retrieve_context.py] --> [__future__.annotations]
+    [retrieve_context.py] --> [typing]
+    [retrieve_context.py] --> [loguru.logger]
+    [retrieve_context.py] --> [httpx]
+    [retrieve_context.py] --> [autogen_team.infrastructure.io.osvariables.Env]
 @enduml
 ```
 
@@ -82,8 +121,55 @@ Returns:
     Dict with matching documents and graph context.
 
 **Inputs:**
-- `query`: str
-- `collection_name`: str
+- `query`
+  - type: str
+  - meaning: Represents the query parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
+- `collection_name`
+  - type: str
+  - meaning: Represents the collection name parameter.
+  - valid values: Any valid str.
+  - optional?: True
+  - default value: 'default'
 
 **Output:**
-- Return Type: `Any`
+- return type: `T.Dict[str, T.Any]`
+- semantic meaning: Returns the result of retrieve context.
+- possible null values: Yes, if T.Dict[str, T.Any] allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+## 7. Call Graph
+```plantuml
+@startuml
+[retrieve_context] --> [post] : calls
+[retrieve_context] --> [strip] : calls
+[retrieve_context] --> [type] : calls
+[retrieve_context] --> [error] : calls
+[retrieve_context] --> [get] : calls
+[retrieve_context] --> [raise_for_status] : calls
+[retrieve_context] --> [AsyncClient] : calls
+[retrieve_context] --> [Timeout] : calls
+[retrieve_context] --> [json] : calls
+[retrieve_context] --> [Env] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** __init__.md
+- **Child modules:** None
+- **Dependencies:** `autogen_team.infrastructure.io.osvariables.Env`, `__future__.annotations`, `typing`, `loguru.logger`, `httpx`
+- **Used by:** None
+- **Calls:** post, strip, type, error, get, raise_for_status, AsyncClient, Timeout, json, Env
+- **Called from:** ../../../../../tests/application/mcp/tools/test_retrieve_context.md
+- **Related classes:** [Classes](../../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../../diagrams/index.md)

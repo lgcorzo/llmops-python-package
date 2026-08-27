@@ -6,7 +6,7 @@ title: "Module: searchers"
 source_path: "src/autogen_team/infrastructure/utils/searchers.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.926258+00:00"
+timestamp: "2026-08-27T07:00:19.321070+00:00"
 ---
 
 # Module Specification: searchers
@@ -21,10 +21,10 @@ Provides functionality related to searchers.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for searchers.
+- Manages operations and logic for searchers.
 
 **Main Workflow:**
-- Initialize components and process requests for searchers.
+- Executes the primary flow defined by searchers functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -45,15 +45,24 @@ Provides functionality related to searchers.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -65,6 +74,31 @@ Clients instantiate classes or call functions, which execute business logic and 
     class GridCVSearcher {
         +search() : Results
     }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [searchers.py]
+    }
+    [searchers.py] --> [abc]
+    [searchers.py] --> [typing]
+    [searchers.py] --> [pandas]
+    [searchers.py] --> [pydantic]
+    [searchers.py] --> [sklearn.model_selection]
+    [searchers.py] --> [autogen_team.core.schemas]
+    [searchers.py] --> [autogen_team.evaluation.metrics]
+    [searchers.py] --> [autogen_team.infrastructure.utils.splitters]
+    [searchers.py] --> [autogen_team.models.entities]
 @enduml
 ```
 
@@ -98,7 +132,7 @@ Parameters:
 - None found.
 
 #### Methods
-##### `search(self, model: Any, metric: Any, inputs: Any, targets: Any, cv: CrossValidation) -> Results` (Public)
+##### `search(self, model: models.Model, metric: metrics.Metric, inputs: schemas.Inputs, targets: schemas.Targets, cv: CrossValidation) -> Results` (Public)
 **Description:** Search the best model for the given inputs and targets.
 
 Args:
@@ -112,22 +146,53 @@ Returns:
     Results: all the results of the searcher execution process.
 
 **Inputs:**
-- `model`: Any
-- `metric`: Any
-- `inputs`: Any
-- `targets`: Any
-- `cv`: CrossValidation
+- `model`
+  - type: models.Model
+  - meaning: Represents the model parameter.
+  - valid values: Any valid models.Model.
+  - optional?: False
+  - default value: None
+- `metric`
+  - type: metrics.Metric
+  - meaning: Represents the metric parameter.
+  - valid values: Any valid metrics.Metric.
+  - optional?: False
+  - default value: None
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Represents the inputs parameter.
+  - valid values: Any valid schemas.Inputs.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: schemas.Targets
+  - meaning: Represents the targets parameter.
+  - valid values: Any valid schemas.Targets.
+  - optional?: False
+  - default value: None
+- `cv`
+  - type: CrossValidation
+  - meaning: Represents the cv parameter.
+  - valid values: Any valid CrossValidation.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Results`
-- Semantic Meaning: The resulting value after processing the search action.
+- return type: `Results`
+- semantic meaning: Returns the result of search.
+- possible null values: Yes, if Results allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -151,26 +216,57 @@ Parameters:
 - None found.
 
 #### Methods
-##### `search(self, model: Any, metric: Any, inputs: Any, targets: Any, cv: CrossValidation) -> Results` (Public)
-**Description:** Executes the search operation, mutating state or calculating derived values as necessary.
+##### `search(self, model: models.Model, metric: metrics.Metric, inputs: schemas.Inputs, targets: schemas.Targets, cv: CrossValidation) -> Results` (Public)
+**Description:** Executes the search operation.
 
 **Inputs:**
-- `model`: Any
-- `metric`: Any
-- `inputs`: Any
-- `targets`: Any
-- `cv`: CrossValidation
+- `model`
+  - type: models.Model
+  - meaning: Represents the model parameter.
+  - valid values: Any valid models.Model.
+  - optional?: False
+  - default value: None
+- `metric`
+  - type: metrics.Metric
+  - meaning: Represents the metric parameter.
+  - valid values: Any valid metrics.Metric.
+  - optional?: False
+  - default value: None
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Represents the inputs parameter.
+  - valid values: Any valid schemas.Inputs.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: schemas.Targets
+  - meaning: Represents the targets parameter.
+  - valid values: Any valid schemas.Targets.
+  - optional?: False
+  - default value: None
+- `cv`
+  - type: CrossValidation
+  - meaning: Represents the cv parameter.
+  - valid values: Any valid CrossValidation.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Results`
-- Semantic Meaning: The resulting value after processing the search action.
+- return type: `Results`
+- semantic meaning: Returns the result of search.
+- possible null values: Yes, if Results allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -178,3 +274,22 @@ result = GridCVSearcher.search(..., ..., ..., ..., ...)
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[searchers] --> [DataFrame] : calls
+[searchers] --> [fit] : calls
+[searchers] --> [GridSearchCV] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** __init__.md
+- **Child modules:** None
+- **Dependencies:** `pandas`, `typing`, `autogen_team.models.entities`, `autogen_team.core.schemas`, `abc`, `autogen_team.evaluation.metrics`, `pydantic`, `sklearn.model_selection`, `autogen_team.infrastructure.utils.splitters`
+- **Used by:** ../../application/jobs/tuning.md, ../../../../tests/infrastructure/utils/test_searchers.md, ../../../../tests/conftest.md
+- **Calls:** DataFrame, fit, GridSearchCV
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

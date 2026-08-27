@@ -6,7 +6,7 @@ title: "Module: __init__"
 source_path: "src/autogen_team/infrastructure/services/__init__.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.914120+00:00"
+timestamp: "2026-08-27T07:00:19.305361+00:00"
 ---
 
 # Module Specification: __init__
@@ -21,10 +21,10 @@ Provides functionality related to   init  .
 - Services
 
 **Responsibilities:**
-- Manage and execute operations for __init__.
+- Manages operations and logic for   init  .
 
 **Main Workflow:**
-- Initialize components and process requests for __init__.
+- Executes the primary flow defined by   init   functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -42,21 +42,53 @@ Provides functionality related to   init  .
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Services" {
+        [__init__.py]
+    }
+    [__init__.py] --> [alert_service.AlertsService]
+    [__init__.py] --> [hatchet_service.HatchetService]
+    [__init__.py] --> [logger_service.LoggerService]
+    [__init__.py] --> [logger_service.PropagateHandler]
+    [__init__.py] --> [logger_service.Service]
+    [__init__.py] --> [mcp_service.MCPService]
+    [__init__.py] --> [mlflow_service.MlflowService]
 @enduml
 ```
 
@@ -75,3 +107,16 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
+## 7. Call Graph
+- No public API calls detected.
+
+## 8. Cross References
+- **Parent module:** ../__init__.md
+- **Child modules:** hatchet_service.md, logger_service.md, alert_service.md, mcp_service.md, mlflow_service.md, sandbox_service.md
+- **Dependencies:** `mcp_service.MCPService`, `alert_service.AlertsService`, `hatchet_service.HatchetService`, `logger_service.LoggerService`, `mlflow_service.MlflowService`, `logger_service.Service`, `logger_service.PropagateHandler`
+- **Used by:** None
+- **Calls:** None
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

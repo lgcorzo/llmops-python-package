@@ -6,7 +6,7 @@ title: "Module: tuning"
 source_path: "src/autogen_team/application/jobs/tuning.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.991332+00:00"
+timestamp: "2026-08-27T07:00:19.400094+00:00"
 ---
 
 # Module Specification: tuning
@@ -21,10 +21,10 @@ Provides functionality related to tuning.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for tuning.
+- Manages operations and logic for tuning.
 
 **Main Workflow:**
-- Initialize components and process requests for tuning.
+- Executes the primary flow defined by tuning functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -46,23 +46,59 @@ Provides functionality related to tuning.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     class TuningJob {
-        +run() : Any
+        +run() : base.Locals
     }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [tuning.py]
+    }
+    [tuning.py] --> [typing]
+    [tuning.py] --> [mlflow]
+    [tuning.py] --> [pydantic]
+    [tuning.py] --> [autogen_team.application.jobs.base]
+    [tuning.py] --> [autogen_team.core.schemas]
+    [tuning.py] --> [autogen_team.data_access.adapters.datasets]
+    [tuning.py] --> [autogen_team.evaluation.metrics]
+    [tuning.py] --> [autogen_team.infrastructure.services]
+    [tuning.py] --> [autogen_team.infrastructure.utils.searchers]
+    [tuning.py] --> [autogen_team.infrastructure.utils.splitters]
+    [tuning.py] --> [autogen_team.models.entities]
 @enduml
 ```
 
@@ -103,22 +139,28 @@ Parameters:
 - None found.
 
 #### Methods
-##### `run(self) -> Any` (Public)
+##### `run(self) -> base.Locals` (Public)
 **Description:** Run the tuning job in context.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the run action.
+- return type: `base.Locals`
+- semantic meaning: Returns the result of run.
+- possible null values: Yes, if base.Locals allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -126,3 +168,38 @@ result = TuningJob.run()
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[tuning] --> [RunConfig] : calls
+[tuning] --> [AutogenMetric] : calls
+[tuning] --> [Field] : calls
+[tuning] --> [search] : calls
+[tuning] --> [load_context_path] : calls
+[tuning] --> [locals] : calls
+[tuning] --> [run_context] : calls
+[tuning] --> [notify] : calls
+[tuning] --> [TimeSeriesSplitter] : calls
+[tuning] --> [logger] : calls
+[tuning] --> [read] : calls
+[tuning] --> [GridCVSearcher] : calls
+[tuning] --> [debug] : calls
+[tuning] --> [check] : calls
+[tuning] --> [info] : calls
+[tuning] --> [to_dict] : calls
+[tuning] --> [lineage] : calls
+[tuning] --> [BaselineAutogenModel] : calls
+[tuning] --> [log_input] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** __init__.md
+- **Child modules:** None
+- **Dependencies:** `autogen_team.application.jobs.base`, `typing`, `autogen_team.models.entities`, `mlflow`, `autogen_team.core.schemas`, `autogen_team.data_access.adapters.datasets`, `autogen_team.infrastructure.services`, `autogen_team.evaluation.metrics`, `autogen_team.infrastructure.utils.searchers`, `pydantic`, `autogen_team.infrastructure.utils.splitters`
+- **Used by:** ../../../../tests/application/jobs/test_tuning.md
+- **Calls:** RunConfig, AutogenMetric, Field, search, load_context_path, locals, run_context, notify, TimeSeriesSplitter, logger, read, GridCVSearcher, debug, check, info, to_dict, lineage, BaselineAutogenModel, log_input
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

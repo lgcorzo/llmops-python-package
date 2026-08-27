@@ -6,7 +6,7 @@ title: "Module: signers"
 source_path: "src/autogen_team/infrastructure/utils/signers.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.929843+00:00"
+timestamp: "2026-08-27T07:00:19.325973+00:00"
 ---
 
 # Module Specification: signers
@@ -21,10 +21,10 @@ Provides functionality related to signers.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for signers.
+- Manages operations and logic for signers.
 
 **Main Workflow:**
-- Initialize components and process requests for signers.
+- Executes the primary flow defined by signers functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -42,15 +42,24 @@ Provides functionality related to signers.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -62,6 +71,28 @@ Clients instantiate classes or call functions, which execute business logic and 
     class InferSigner {
         +sign() : Signature
     }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [signers.py]
+    }
+    [signers.py] --> [abc]
+    [signers.py] --> [typing]
+    [signers.py] --> [mlflow]
+    [signers.py] --> [pydantic]
+    [signers.py] --> [mlflow.models.signature]
+    [signers.py] --> [autogen_team.core.schemas]
 @enduml
 ```
 
@@ -91,7 +122,7 @@ https://mlflow.org/docs/latest/models.html#model-signature-and-input-example
 - None found.
 
 #### Methods
-##### `sign(self, inputs: Any, outputs: Any) -> Signature` (Public)
+##### `sign(self, inputs: schemas.Inputs, outputs: schemas.Outputs) -> Signature` (Public)
 **Description:** Generate a model signature from its inputs/outputs.
 
 Args:
@@ -102,19 +133,35 @@ Returns:
     Signature: signature of the model.
 
 **Inputs:**
-- `inputs`: Any
-- `outputs`: Any
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Represents the inputs parameter.
+  - valid values: Any valid schemas.Inputs.
+  - optional?: False
+  - default value: None
+- `outputs`
+  - type: schemas.Outputs
+  - meaning: Represents the outputs parameter.
+  - valid values: Any valid schemas.Outputs.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Signature`
-- Semantic Meaning: The resulting value after processing the sign action.
+- return type: `Signature`
+- semantic meaning: Returns the result of sign.
+- possible null values: Yes, if Signature allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -129,23 +176,39 @@ Generate model signatures from inputs/outputs data.
 - None found.
 
 #### Methods
-##### `sign(self, inputs: Any, outputs: Any) -> Signature` (Public)
-**Description:** Executes the sign operation, mutating state or calculating derived values as necessary.
+##### `sign(self, inputs: schemas.Inputs, outputs: schemas.Outputs) -> Signature` (Public)
+**Description:** Executes the sign operation.
 
 **Inputs:**
-- `inputs`: Any
-- `outputs`: Any
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Represents the inputs parameter.
+  - valid values: Any valid schemas.Inputs.
+  - optional?: False
+  - default value: None
+- `outputs`
+  - type: schemas.Outputs
+  - meaning: Represents the outputs parameter.
+  - valid values: Any valid schemas.Outputs.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Signature`
-- Semantic Meaning: The resulting value after processing the sign action.
+- return type: `Signature`
+- semantic meaning: Returns the result of sign.
+- possible null values: Yes, if Signature allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -153,3 +216,20 @@ result = InferSigner.sign(..., ...)
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[signers] --> [infer_signature] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** __init__.md
+- **Child modules:** None
+- **Dependencies:** `typing`, `mlflow.models.signature`, `mlflow`, `autogen_team.core.schemas`, `abc`, `pydantic`
+- **Used by:** ../../../../tests/infrastructure/utils/test_signers.md, ../../../../tests/conftest.md, ../../application/jobs/training.md
+- **Calls:** infer_signature
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

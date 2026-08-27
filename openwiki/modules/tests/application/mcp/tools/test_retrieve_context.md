@@ -6,7 +6,7 @@ title: "Module: test_retrieve_context"
 source_path: "tests/application/mcp/tools/test_retrieve_context.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.110286+00:00"
+timestamp: "2026-08-27T07:00:19.565046+00:00"
 ---
 
 # Module Specification: test_retrieve_context
@@ -21,10 +21,10 @@ Provides functionality related to test retrieve context.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_retrieve_context.
+- Manages operations and logic for test retrieve context.
 
 **Main Workflow:**
-- Initialize components and process requests for test_retrieve_context.
+- Executes the primary flow defined by test retrieve context functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -43,21 +43,64 @@ Provides functionality related to test retrieve context.
 - `test_retrieve_context_empty_query`
 - `test_retrieve_context_r2r_error`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    test_retrieve_context_valid_query -> len : call
+    test_retrieve_context_valid_query -> type : call
+    test_retrieve_context_valid_query -> AsyncMock : call
+    test_retrieve_context_valid_query -> MagicMock : call
+    test_retrieve_context_valid_query -> patch : call
+    test_retrieve_context_valid_query -> retrieve_context : call
+    test_retrieve_context_empty_query -> retrieve_context : call
+    test_retrieve_context_r2r_error -> type : call
+    test_retrieve_context_r2r_error -> AsyncMock : call
+    test_retrieve_context_r2r_error -> MagicMock : call
+    test_retrieve_context_r2r_error -> patch : call
+    test_retrieve_context_r2r_error -> Exception : call
+    test_retrieve_context_r2r_error -> retrieve_context : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [test_retrieve_context.py]
+    }
+    [test_retrieve_context.py] --> [__future__.annotations]
+    [test_retrieve_context.py] --> [unittest.mock.AsyncMock]
+    [test_retrieve_context.py] --> [unittest.mock.MagicMock]
+    [test_retrieve_context.py] --> [unittest.mock.patch]
+    [test_retrieve_context.py] --> [pytest]
+    [test_retrieve_context.py] --> [autogen_team.application.mcp.tools.retrieve_context.retrieve_context]
 @enduml
 ```
 
@@ -82,7 +125,17 @@ Test retrieve_context returns documents for a valid query.
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test retrieve context valid query.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_retrieve_context_empty_query()`
 Test retrieve_context with empty query returns error.
@@ -91,7 +144,17 @@ Test retrieve_context with empty query returns error.
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test retrieve context empty query.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_retrieve_context_r2r_error()`
 Test retrieve_context handles R2R connection error.
@@ -100,4 +163,38 @@ Test retrieve_context handles R2R connection error.
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test retrieve context r2r error.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+## 7. Call Graph
+```plantuml
+@startuml
+[test_retrieve_context] --> [len] : calls
+[test_retrieve_context] --> [type] : calls
+[test_retrieve_context] --> [AsyncMock] : calls
+[test_retrieve_context] --> [MagicMock] : calls
+[test_retrieve_context] --> [patch] : calls
+[test_retrieve_context] --> [Exception] : calls
+[test_retrieve_context] --> [retrieve_context] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** None
+- **Child modules:** None
+- **Dependencies:** `pytest`, `__future__.annotations`, `unittest.mock.patch`, `unittest.mock.AsyncMock`, `autogen_team.application.mcp.tools.retrieve_context.retrieve_context`, `unittest.mock.MagicMock`
+- **Used by:** None
+- **Calls:** len, type, AsyncMock, MagicMock, patch, Exception, retrieve_context
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

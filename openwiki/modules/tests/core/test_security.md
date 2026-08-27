@@ -6,7 +6,7 @@ title: "Module: test_security"
 source_path: "tests/core/test_security.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.084520+00:00"
+timestamp: "2026-08-27T07:00:19.532611+00:00"
 ---
 
 # Module Specification: test_security
@@ -21,10 +21,10 @@ Provides functionality related to test security.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_security.
+- Manages operations and logic for test security.
 
 **Main Workflow:**
-- Initialize components and process requests for test_security.
+- Executes the primary flow defined by test security functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -44,21 +44,68 @@ Provides functionality related to test security.
 - `test_safe_join_absolute_escape`
 - `test_safe_join_directory_prefix_edge_case`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    test_safe_join_valid -> join : call
+    test_safe_join_valid -> str : call
+    test_safe_join_valid -> safe_join : call
+    test_safe_join_nested_valid -> join : call
+    test_safe_join_nested_valid -> str : call
+    test_safe_join_nested_valid -> safe_join : call
+    test_safe_join_traversal -> safe_join : call
+    test_safe_join_traversal -> str : call
+    test_safe_join_traversal -> raises : call
+    test_safe_join_traversal_complex -> safe_join : call
+    test_safe_join_traversal_complex -> str : call
+    test_safe_join_traversal_complex -> raises : call
+    test_safe_join_absolute_escape -> safe_join : call
+    test_safe_join_absolute_escape -> str : call
+    test_safe_join_absolute_escape -> raises : call
+    test_safe_join_directory_prefix_edge_case -> makedirs : call
+    test_safe_join_directory_prefix_edge_case -> safe_join : call
+    test_safe_join_directory_prefix_edge_case -> str : call
+    test_safe_join_directory_prefix_edge_case -> raises : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [test_security.py]
+    }
+    [test_security.py] --> [os]
+    [test_security.py] --> [pathlib]
+    [test_security.py] --> [pytest]
+    [test_security.py] --> [autogen_team.core.security.safe_join]
 @enduml
 ```
 
@@ -74,56 +121,168 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_safe_join_valid(tmp_path: Any)`
+### `test_safe_join_valid(tmp_path: pathlib.Path)`
 Test safe_join with valid relative paths.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`
+  - type: pathlib.Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid pathlib.Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test safe join valid.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
-### `test_safe_join_nested_valid(tmp_path: Any)`
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+### `test_safe_join_nested_valid(tmp_path: pathlib.Path)`
 Test safe_join with nested valid paths.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`
+  - type: pathlib.Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid pathlib.Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test safe join nested valid.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
-### `test_safe_join_traversal(tmp_path: Any)`
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+### `test_safe_join_traversal(tmp_path: pathlib.Path)`
 Test safe_join prevents directory traversal.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`
+  - type: pathlib.Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid pathlib.Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test safe join traversal.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
-### `test_safe_join_traversal_complex(tmp_path: Any)`
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+### `test_safe_join_traversal_complex(tmp_path: pathlib.Path)`
 Test safe_join prevents complex traversal.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`
+  - type: pathlib.Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid pathlib.Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test safe join traversal complex.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
-### `test_safe_join_absolute_escape(tmp_path: Any)`
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+### `test_safe_join_absolute_escape(tmp_path: pathlib.Path)`
 Test safe_join prevents absolute paths escaping base.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`
+  - type: pathlib.Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid pathlib.Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test safe join absolute escape.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
-### `test_safe_join_directory_prefix_edge_case(tmp_path: Any)`
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+### `test_safe_join_directory_prefix_edge_case(tmp_path: pathlib.Path)`
 Test that safe_join handles directory prefix edge cases correctly.
 
 **Inputs:**
-- `tmp_path`: Any
+- `tmp_path`
+  - type: pathlib.Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid pathlib.Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test safe join directory prefix edge case.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+## 7. Call Graph
+```plantuml
+@startuml
+[test_security] --> [makedirs] : calls
+[test_security] --> [safe_join] : calls
+[test_security] --> [join] : calls
+[test_security] --> [str] : calls
+[test_security] --> [raises] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** None
+- **Child modules:** None
+- **Dependencies:** `pathlib`, `pytest`, `os`, `autogen_team.core.security.safe_join`
+- **Used by:** None
+- **Calls:** makedirs, safe_join, join, str, raises
+- **Called from:** None
+- **Related classes:** [Classes](../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../diagrams/index.md)

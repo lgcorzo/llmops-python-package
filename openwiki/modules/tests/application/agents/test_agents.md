@@ -6,7 +6,7 @@ title: "Module: test_agents"
 source_path: "tests/application/agents/test_agents.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.097412+00:00"
+timestamp: "2026-08-27T07:00:19.546929+00:00"
 ---
 
 # Module Specification: test_agents
@@ -21,10 +21,10 @@ Provides functionality related to test agents.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_agents.
+- Manages operations and logic for test agents.
 
 **Main Workflow:**
-- Initialize components and process requests for test_agents.
+- Executes the primary flow defined by test agents functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -47,21 +47,70 @@ Provides functionality related to test agents.
 - `test_reviewer_agent_review_changes`
 - `test_tester_agent_run_tests`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    mock_mcp_client -> MagicMock : call
+    mock_mcp_client -> patch : call
+    mock_mcp_client -> cast : call
+    mock_mcp_client -> AsyncMock : call
+    test_coder_agent_execute_task -> execute_task : call
+    test_coder_agent_execute_task -> assert_called_with : call
+    test_coder_agent_execute_task -> assert_called_once : call
+    test_coder_agent_execute_task -> CoderAgent : call
+    test_planner_agent_create_plan -> assert_called_with : call
+    test_planner_agent_create_plan -> create_plan : call
+    test_planner_agent_create_plan -> PlannerAgent : call
+    test_reviewer_agent_review_changes -> review_changes : call
+    test_reviewer_agent_review_changes -> ReviewerAgent : call
+    test_reviewer_agent_review_changes -> assert_called_with : call
+    test_tester_agent_run_tests -> run_tests : call
+    test_tester_agent_run_tests -> TesterAgent : call
+    test_tester_agent_run_tests -> assert_called_with : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [test_agents.py]
+    }
+    [test_agents.py] --> [pytest]
+    [test_agents.py] --> [typing]
+    [test_agents.py] --> [typing.Any]
+    [test_agents.py] --> [unittest.mock.MagicMock]
+    [test_agents.py] --> [autogen_team.application.agents.coder_agent.CoderAgent]
+    [test_agents.py] --> [autogen_team.application.agents.planner_agent.PlannerAgent]
+    [test_agents.py] --> [autogen_team.application.agents.reviewer_agent.ReviewerAgent]
+    [test_agents.py] --> [autogen_team.application.agents.tester_agent.TesterAgent]
 @enduml
 ```
 
@@ -82,46 +131,152 @@ Clients instantiate classes or call functions, which execute business logic and 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
 ### `mock_mcp_client(mocker: Any)`
-Executes the mock_mcp_client operation.
+Executes the mock mcp client operation.
 
 **Inputs:**
-- `mocker`: Any
+- `mocker`
+  - type: Any
+  - meaning: Represents the mocker parameter.
+  - valid values: Any valid Any.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `MagicMock`
+- return type: `MagicMock`
+- semantic meaning: Returns the result of mock mcp client.
+- possible null values: Yes, if MagicMock allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_coder_agent_execute_task(mock_mcp_client: MagicMock)`
-Executes the test_coder_agent_execute_task operation.
+Executes the test coder agent execute task operation.
 
 **Inputs:**
-- `mock_mcp_client`: MagicMock
+- `mock_mcp_client`
+  - type: MagicMock
+  - meaning: Represents the mock mcp client parameter.
+  - valid values: Any valid MagicMock.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test coder agent execute task.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_planner_agent_create_plan(mock_mcp_client: MagicMock)`
-Executes the test_planner_agent_create_plan operation.
+Executes the test planner agent create plan operation.
 
 **Inputs:**
-- `mock_mcp_client`: MagicMock
+- `mock_mcp_client`
+  - type: MagicMock
+  - meaning: Represents the mock mcp client parameter.
+  - valid values: Any valid MagicMock.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test planner agent create plan.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_reviewer_agent_review_changes(mock_mcp_client: MagicMock)`
-Executes the test_reviewer_agent_review_changes operation.
+Executes the test reviewer agent review changes operation.
 
 **Inputs:**
-- `mock_mcp_client`: MagicMock
+- `mock_mcp_client`
+  - type: MagicMock
+  - meaning: Represents the mock mcp client parameter.
+  - valid values: Any valid MagicMock.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test reviewer agent review changes.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_tester_agent_run_tests(mock_mcp_client: MagicMock)`
-Executes the test_tester_agent_run_tests operation.
+Executes the test tester agent run tests operation.
 
 **Inputs:**
-- `mock_mcp_client`: MagicMock
+- `mock_mcp_client`
+  - type: MagicMock
+  - meaning: Represents the mock mcp client parameter.
+  - valid values: Any valid MagicMock.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test tester agent run tests.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+## 7. Call Graph
+```plantuml
+@startuml
+[test_agents] --> [run_tests] : calls
+[test_agents] --> [assert_called_with] : calls
+[test_agents] --> [TesterAgent] : calls
+[test_agents] --> [assert_called_once] : calls
+[test_agents] --> [AsyncMock] : calls
+[test_agents] --> [PlannerAgent] : calls
+[test_agents] --> [MagicMock] : calls
+[test_agents] --> [cast] : calls
+[test_agents] --> [patch] : calls
+[test_agents] --> [create_plan] : calls
+[test_agents] --> [execute_task] : calls
+[test_agents] --> [review_changes] : calls
+[test_agents] --> [ReviewerAgent] : calls
+[test_agents] --> [CoderAgent] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** None
+- **Child modules:** None
+- **Dependencies:** `pytest`, `autogen_team.application.agents.coder_agent.CoderAgent`, `typing`, `autogen_team.application.agents.reviewer_agent.ReviewerAgent`, `typing.Any`, `autogen_team.application.agents.tester_agent.TesterAgent`, `unittest.mock.MagicMock`, `autogen_team.application.agents.planner_agent.PlannerAgent`
+- **Used by:** None
+- **Calls:** run_tests, assert_called_with, TesterAgent, assert_called_once, AsyncMock, PlannerAgent, MagicMock, cast, patch, create_plan, execute_task, review_changes, ReviewerAgent, CoderAgent
+- **Called from:** None
+- **Related classes:** [Classes](../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../diagrams/index.md)

@@ -6,7 +6,7 @@ title: "Module: test_run_tests"
 source_path: "tests/application/mcp/tools/test_run_tests.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.105422+00:00"
+timestamp: "2026-08-27T07:00:19.556041+00:00"
 ---
 
 # Module Specification: test_run_tests
@@ -21,10 +21,10 @@ Provides functionality related to test run tests.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_run_tests.
+- Manages operations and logic for test run tests.
 
 **Main Workflow:**
-- Initialize components and process requests for test_run_tests.
+- Executes the primary flow defined by test run tests functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -54,21 +54,101 @@ Provides functionality related to test run tests.
 - `test_subprocess_sandbox_exception`
 - `test_firecracker_sandbox_run_tests_loop_running`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    test_run_tests_passing -> MagicMock : call
+    test_run_tests_passing -> patch : call
+    test_run_tests_passing -> run_tests : call
+    test_run_tests_passing -> str : call
+    test_run_tests_failing -> MagicMock : call
+    test_run_tests_failing -> patch : call
+    test_run_tests_failing -> run_tests : call
+    test_run_tests_failing -> str : call
+    test_run_tests_timeout -> TimeoutExpired : call
+    test_run_tests_timeout -> patch : call
+    test_run_tests_timeout -> run_tests : call
+    test_run_tests_timeout -> str : call
+    test_subprocess_sandbox_direct -> isinstance : call
+    test_subprocess_sandbox_direct -> SubprocessSandbox : call
+    test_subprocess_sandbox_direct -> run_tests : call
+    test_run_tests_path_traversal -> run_tests : call
+    test_run_tests_path_traversal -> str : call
+    test_run_tests_delete_action -> run_tests : call
+    test_run_tests_delete_action -> str : call
+    test_run_tests_delete_action -> mkdir : call
+    test_run_tests_delete_action -> assert_called_once : call
+    test_run_tests_delete_action -> MagicMock : call
+    test_run_tests_delete_action -> patch : call
+    test_run_tests_delete_action -> write_text : call
+    test_firecracker_sandbox_run_tests_success -> assert_called_once_with : call
+    test_firecracker_sandbox_run_tests_success -> run_tests : call
+    test_firecracker_sandbox_run_tests_success -> assert_called_once : call
+    test_firecracker_sandbox_run_tests_success -> AsyncMock : call
+    test_firecracker_sandbox_run_tests_success -> MagicMock : call
+    test_firecracker_sandbox_run_tests_success -> patch : call
+    test_firecracker_sandbox_run_tests_success -> FirecrackerSandbox : call
+    test_firecracker_sandbox_run_tests_failure -> run_tests : call
+    test_firecracker_sandbox_run_tests_failure -> AsyncMock : call
+    test_firecracker_sandbox_run_tests_failure -> MagicMock : call
+    test_firecracker_sandbox_run_tests_failure -> patch : call
+    test_firecracker_sandbox_run_tests_failure -> Exception : call
+    test_firecracker_sandbox_run_tests_failure -> FirecrackerSandbox : call
+    test_subprocess_sandbox_exception -> SubprocessSandbox : call
+    test_subprocess_sandbox_exception -> patch : call
+    test_subprocess_sandbox_exception -> run_tests : call
+    test_subprocess_sandbox_exception -> RuntimeError : call
+    test_firecracker_sandbox_run_tests_loop_running -> run_tests : call
+    test_firecracker_sandbox_run_tests_loop_running -> assert_called_once : call
+    test_firecracker_sandbox_run_tests_loop_running -> MagicMock : call
+    test_firecracker_sandbox_run_tests_loop_running -> patch : call
+    test_firecracker_sandbox_run_tests_loop_running -> FirecrackerSandbox : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [test_run_tests.py]
+    }
+    [test_run_tests.py] --> [__future__.annotations]
+    [test_run_tests.py] --> [typing]
+    [test_run_tests.py] --> [pathlib.Path]
+    [test_run_tests.py] --> [unittest.mock.MagicMock]
+    [test_run_tests.py] --> [unittest.mock.patch]
+    [test_run_tests.py] --> [unittest.mock.AsyncMock]
+    [test_run_tests.py] --> [pytest]
+    [test_run_tests.py] --> [autogen_team.application.mcp.tools.run_tests.SubprocessSandbox]
+    [test_run_tests.py] --> [autogen_team.application.mcp.tools.run_tests.FirecrackerSandbox]
+    [test_run_tests.py] --> [autogen_team.application.mcp.tools.run_tests.run_tests]
 @enduml
 ```
 
@@ -90,35 +170,95 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_run_tests_passing(sample_changes: Any, tmp_path: Path)`
+### `test_run_tests_passing(sample_changes: T.Dict[str, T.Any], tmp_path: Path)`
 Test run_tests with passing tests.
 
 **Inputs:**
-- `sample_changes`: Any
-- `tmp_path`: Path
+- `sample_changes`
+  - type: T.Dict[str, T.Any]
+  - meaning: Represents the sample changes parameter.
+  - valid values: Any valid T.Dict[str, T.Any].
+  - optional?: False
+  - default value: None
+- `tmp_path`
+  - type: Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test run tests passing.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
-### `test_run_tests_failing(sample_changes: Any, tmp_path: Path)`
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+### `test_run_tests_failing(sample_changes: T.Dict[str, T.Any], tmp_path: Path)`
 Test run_tests with failing tests.
 
 **Inputs:**
-- `sample_changes`: Any
-- `tmp_path`: Path
+- `sample_changes`
+  - type: T.Dict[str, T.Any]
+  - meaning: Represents the sample changes parameter.
+  - valid values: Any valid T.Dict[str, T.Any].
+  - optional?: False
+  - default value: None
+- `tmp_path`
+  - type: Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test run tests failing.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
-### `test_run_tests_timeout(sample_changes: Any, tmp_path: Path)`
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+### `test_run_tests_timeout(sample_changes: T.Dict[str, T.Any], tmp_path: Path)`
 Test run_tests handles subprocess timeout.
 
 **Inputs:**
-- `sample_changes`: Any
-- `tmp_path`: Path
+- `sample_changes`
+  - type: T.Dict[str, T.Any]
+  - meaning: Represents the sample changes parameter.
+  - valid values: Any valid T.Dict[str, T.Any].
+  - optional?: False
+  - default value: None
+- `tmp_path`
+  - type: Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test run tests timeout.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_subprocess_sandbox_direct()`
 Test SubprocessSandbox.run_tests returns expected structure.
@@ -127,26 +267,71 @@ Test SubprocessSandbox.run_tests returns expected structure.
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test subprocess sandbox direct.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
-### `test_run_tests_path_traversal(sample_changes: Any, tmp_path: Path)`
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+### `test_run_tests_path_traversal(sample_changes: T.Dict[str, T.Any], tmp_path: Path)`
 Test run_tests prevents path traversal.
 
 **Inputs:**
-- `sample_changes`: Any
-- `tmp_path`: Path
+- `sample_changes`
+  - type: T.Dict[str, T.Any]
+  - meaning: Represents the sample changes parameter.
+  - valid values: Any valid T.Dict[str, T.Any].
+  - optional?: False
+  - default value: None
+- `tmp_path`
+  - type: Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test run tests path traversal.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_run_tests_delete_action(tmp_path: Path)`
 Test run_tests with delete action.
 
 **Inputs:**
-- `tmp_path`: Path
+- `tmp_path`
+  - type: Path
+  - meaning: Represents the tmp path parameter.
+  - valid values: Any valid Path.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test run tests delete action.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_firecracker_sandbox_run_tests_success()`
 Test FirecrackerSandbox.run_tests success path.
@@ -155,7 +340,17 @@ Test FirecrackerSandbox.run_tests success path.
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test firecracker sandbox run tests success.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_firecracker_sandbox_run_tests_failure()`
 Test FirecrackerSandbox.run_tests error handling.
@@ -164,7 +359,17 @@ Test FirecrackerSandbox.run_tests error handling.
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test firecracker sandbox run tests failure.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_subprocess_sandbox_exception()`
 Test SubprocessSandbox.run_tests generic exception.
@@ -173,7 +378,17 @@ Test SubprocessSandbox.run_tests generic exception.
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test subprocess sandbox exception.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 ### `test_firecracker_sandbox_run_tests_loop_running()`
 Test FirecrackerSandbox.run_tests when event loop is already running.
@@ -182,4 +397,46 @@ Test FirecrackerSandbox.run_tests when event loop is already running.
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Returns the result of test firecracker sandbox run tests loop running.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+## 7. Call Graph
+```plantuml
+@startuml
+[test_run_tests] --> [assert_called_once_with] : calls
+[test_run_tests] --> [run_tests] : calls
+[test_run_tests] --> [str] : calls
+[test_run_tests] --> [mkdir] : calls
+[test_run_tests] --> [assert_called_once] : calls
+[test_run_tests] --> [AsyncMock] : calls
+[test_run_tests] --> [MagicMock] : calls
+[test_run_tests] --> [TimeoutExpired] : calls
+[test_run_tests] --> [patch] : calls
+[test_run_tests] --> [write_text] : calls
+[test_run_tests] --> [RuntimeError] : calls
+[test_run_tests] --> [isinstance] : calls
+[test_run_tests] --> [SubprocessSandbox] : calls
+[test_run_tests] --> [Exception] : calls
+[test_run_tests] --> [FirecrackerSandbox] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** None
+- **Child modules:** None
+- **Dependencies:** `pathlib.Path`, `pytest`, `__future__.annotations`, `unittest.mock.patch`, `typing`, `unittest.mock.AsyncMock`, `autogen_team.application.mcp.tools.run_tests.run_tests`, `autogen_team.application.mcp.tools.run_tests.SubprocessSandbox`, `autogen_team.application.mcp.tools.run_tests.FirecrackerSandbox`, `unittest.mock.MagicMock`
+- **Used by:** None
+- **Calls:** assert_called_once_with, run_tests, str, mkdir, assert_called_once, AsyncMock, MagicMock, TimeoutExpired, patch, write_text, RuntimeError, isinstance, SubprocessSandbox, Exception, FirecrackerSandbox
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

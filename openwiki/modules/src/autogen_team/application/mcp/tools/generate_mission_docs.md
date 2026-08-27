@@ -6,7 +6,7 @@ title: "Module: generate_mission_docs"
 source_path: "src/autogen_team/application/mcp/tools/generate_mission_docs.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.982836+00:00"
+timestamp: "2026-08-27T07:00:19.387864+00:00"
 ---
 
 # Module Specification: generate_mission_docs
@@ -21,10 +21,10 @@ Provides functionality related to generate mission docs.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for generate_mission_docs.
+- Manages operations and logic for generate mission docs.
 
 **Main Workflow:**
-- Initialize components and process requests for generate_mission_docs.
+- Executes the primary flow defined by generate mission docs functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -40,21 +40,58 @@ Provides functionality related to generate mission docs.
 **Exported Functions:**
 - `generate_mission_docs`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    generate_mission_docs -> format : call
+    generate_mission_docs -> acompletion : call
+    generate_mission_docs -> MCPService : call
+    generate_mission_docs -> loads : call
+    generate_mission_docs -> cast : call
+    generate_mission_docs -> get : call
+    generate_mission_docs -> dumps : call
+    generate_mission_docs -> get_prompt : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [generate_mission_docs.py]
+    }
+    [generate_mission_docs.py] --> [__future__.annotations]
+    [generate_mission_docs.py] --> [json]
+    [generate_mission_docs.py] --> [typing]
+    [generate_mission_docs.py] --> [litellm]
+    [generate_mission_docs.py] --> [autogen_team.infrastructure.services.mcp_service.MCPService]
 @enduml
 ```
 
@@ -71,7 +108,7 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `generate_mission_docs(mission_id: str, mission_context: Any)`
+### `generate_mission_docs(mission_id: str, mission_context: T.Dict[str, T.Any])`
 Generate Mermaid diagrams and documentation for a mission.
 
 Args:
@@ -82,8 +119,53 @@ Returns:
     A dict containing generated Mermaid diagrams and documentation.
 
 **Inputs:**
-- `mission_id`: str
-- `mission_context`: Any
+- `mission_id`
+  - type: str
+  - meaning: Represents the mission id parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
+- `mission_context`
+  - type: T.Dict[str, T.Any]
+  - meaning: Represents the mission context parameter.
+  - valid values: Any valid T.Dict[str, T.Any].
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Any`
+- return type: `T.Dict[str, T.Any]`
+- semantic meaning: Returns the result of generate mission docs.
+- possible null values: Yes, if T.Dict[str, T.Any] allows it.
+- exceptions: Standard execution exceptions.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+## 7. Call Graph
+```plantuml
+@startuml
+[generate_mission_docs] --> [format] : calls
+[generate_mission_docs] --> [acompletion] : calls
+[generate_mission_docs] --> [MCPService] : calls
+[generate_mission_docs] --> [loads] : calls
+[generate_mission_docs] --> [cast] : calls
+[generate_mission_docs] --> [get] : calls
+[generate_mission_docs] --> [dumps] : calls
+[generate_mission_docs] --> [get_prompt] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** __init__.md
+- **Child modules:** None
+- **Dependencies:** `autogen_team.infrastructure.services.mcp_service.MCPService`, `__future__.annotations`, `typing`, `litellm`, `json`
+- **Used by:** None
+- **Calls:** format, acompletion, MCPService, loads, cast, get, dumps, get_prompt
+- **Called from:** ../../../../../tests/application/mcp/tools/test_generate_mission_docs.md
+- **Related classes:** [Classes](../../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../../diagrams/index.md)

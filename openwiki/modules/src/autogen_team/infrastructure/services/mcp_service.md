@@ -6,7 +6,7 @@ title: "Module: mcp_service"
 source_path: "src/autogen_team/infrastructure/services/mcp_service.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.916736+00:00"
+timestamp: "2026-08-27T07:00:19.308195+00:00"
 ---
 
 # Module Specification: mcp_service
@@ -21,10 +21,10 @@ Provides functionality related to mcp service.
 - Services
 
 **Responsibilities:**
-- Manage and execute operations for mcp_service.
+- Manages operations and logic for mcp service.
 
 **Main Workflow:**
-- Initialize components and process requests for mcp_service.
+- Executes the primary flow defined by mcp service functions and classes.
 
 ## 2. Dependencies
 **Imports:**
@@ -43,15 +43,24 @@ Provides functionality related to mcp service.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -62,8 +71,32 @@ Clients instantiate classes or call functions, which execute business logic and 
         +_load_prompts() : None
         +get_prompt() : str
         +stop() : None
-        +r2r_client() : Any
+        +r2r_client() : httpx.AsyncClient
     }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Services" {
+        [mcp_service.py]
+    }
+    [mcp_service.py] --> [__future__.annotations]
+    [mcp_service.py] --> [typing]
+    [mcp_service.py] --> [typing.ClassVar]
+    [mcp_service.py] --> [httpx]
+    [mcp_service.py] --> [litellm]
+    [mcp_service.py] --> [pydantic.Field]
+    [mcp_service.py] --> [autogen_team.infrastructure.io.osvariables.Env]
+    [mcp_service.py] --> [logger_service.Service]
 @enduml
 ```
 
@@ -106,60 +139,69 @@ Parameters:
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+- return type: `None`
+- semantic meaning: Returns the result of start.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = MCPService.start()
 ```
 
-##### `_load_prompts(self) -> None` (Public)
-**Description:** Load prompts from YAML file.
+##### `_load_prompts(self) -> None` (Private)
+**Purpose:** Load prompts from YAML file.
 
-**Inputs:**
+**Parameters:**
 - None
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the _load_prompts action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-result = MCPService._load_prompts()
-```
+**Return value:**
+- `None`
 
 ##### `get_prompt(self, tool_name: str, key: str) -> str` (Public)
 **Description:** Get a specific prompt for a tool and key.
 
 **Inputs:**
-- `tool_name`: str
-- `key`: str
+- `tool_name`
+  - type: str
+  - meaning: Represents the tool name parameter.
+  - valid values: Any valid str.
+  - optional?: False
+  - default value: None
+- `key`
+  - type: str
+  - meaning: Represents the key parameter.
+  - valid values: Any valid str.
+  - optional?: True
+  - default value: 'system'
 
 **Output:**
-- Return Type: `str`
-- Semantic Meaning: The resulting value after processing the get_prompt action.
+- return type: `str`
+- semantic meaning: Returns the result of get prompt.
+- possible null values: Yes, if str allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -173,37 +215,49 @@ result = MCPService.get_prompt(..., ...)
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the stop action.
+- return type: `None`
+- semantic meaning: Returns the result of stop.
+- possible null values: Yes, if None allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = MCPService.stop()
 ```
 
-##### `r2r_client(self) -> Any` (Public)
+##### `r2r_client(self) -> httpx.AsyncClient` (Public)
 **Description:** Return the R2R async HTTP client.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the r2r_client action.
+- return type: `httpx.AsyncClient`
+- semantic meaning: Returns the result of r2r client.
+- possible null values: Yes, if httpx.AsyncClient allows it.
+- exceptions: Standard execution exceptions.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -211,3 +265,32 @@ result = MCPService.r2r_client()
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[mcp_service] --> [str] : calls
+[mcp_service] --> [_load_prompts] : calls
+[mcp_service] --> [Env] : calls
+[mcp_service] --> [Field] : calls
+[mcp_service] --> [parse_file] : calls
+[mcp_service] --> [cast] : calls
+[mcp_service] --> [get] : calls
+[mcp_service] --> [start] : calls
+[mcp_service] --> [to_object] : calls
+[mcp_service] --> [RuntimeError] : calls
+[mcp_service] --> [AsyncClient] : calls
+[mcp_service] --> [Timeout] : calls
+[mcp_service] --> [exists] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Parent module:** __init__.md
+- **Child modules:** None
+- **Dependencies:** `typing.ClassVar`, `autogen_team.infrastructure.io.osvariables.Env`, `__future__.annotations`, `typing`, `pydantic.Field`, `logger_service.Service`, `litellm`, `httpx`
+- **Used by:** ../../application/mcp/tools/generate_mission_docs.md, ../../../../tests/infrastructure/services/test_mcp_service.md, ../../application/mcp/tools/plan_mission.md, ../../application/mcp/tools/execute_code.md, ../../application/mcp/tools/security_review.md
+- **Calls:** str, _load_prompts, Env, Field, parse_file, cast, get, start, to_object, RuntimeError, AsyncClient, Timeout, exists
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related interfaces:** Not explicitly defined.
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)
