@@ -6,7 +6,7 @@ title: "Module: splitters"
 source_path: "src/autogen_team/infrastructure/utils/splitters.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.928018+00:00"
+timestamp: "2026-08-28T06:32:33.038585+00:00"
 ---
 
 # Module Specification: splitters
@@ -21,10 +21,10 @@ Provides functionality related to splitters.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for splitters.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for splitters.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -44,15 +44,24 @@ Provides functionality related to splitters.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -70,6 +79,44 @@ Clients instantiate classes or call functions, which execute business logic and 
         +split() : TrainTestSplits
         +get_n_splits() : int
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "infrastructure" {
+                package "utils" {
+                    [splitters.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [splitters.py]
+    }
+    [splitters.py] --> [abc]
+    [splitters.py] --> [typing]
+    [splitters.py] --> [numpy]
+    [splitters.py] --> [numpy.typing]
+    [splitters.py] --> [pydantic]
+    [splitters.py] --> [sklearn.model_selection]
+    [splitters.py] --> [autogen_team.core.schemas]
 @enduml
 ```
 
@@ -100,7 +147,7 @@ e.g., split between a train/test subsets.
 - None found.
 
 #### Methods
-##### `split(self, inputs: Any, targets: Any, groups: Any) -> TrainTestSplits` (Public)
+##### `split(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> TrainTestSplits` (Public)
 **Description:** Split a dataframe into subsets.
 
 Args:
@@ -112,27 +159,48 @@ Returns:
     TrainTestSplits: iterator over the dataframe train/test splits.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: schemas.Targets
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `groups`
+  - type: Index | None
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: True
+  - default value: None
 
 **Output:**
-- Return Type: `TrainTestSplits`
-- Semantic Meaning: The resulting value after processing the split action.
+- return type: `TrainTestSplits`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = Splitter.split(..., ..., ...)
 ```
 
-##### `get_n_splits(self, inputs: Any, targets: Any, groups: Any) -> int` (Public)
+##### `get_n_splits(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> int` (Public)
 **Description:** Get the number of splits generated.
 
 Args:
@@ -144,20 +212,41 @@ Returns:
     int: number of splits generated.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: schemas.Targets
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `groups`
+  - type: Index | None
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: True
+  - default value: None
 
 **Output:**
-- Return Type: `int`
-- Semantic Meaning: The resulting value after processing the get_n_splits action.
+- return type: `int`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -177,48 +266,90 @@ Parameters:
 - None found.
 
 #### Methods
-##### `split(self, inputs: Any, targets: Any, groups: Any) -> TrainTestSplits` (Public)
-**Description:** Executes the split operation, mutating state or calculating derived values as necessary.
+##### `split(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> TrainTestSplits` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: schemas.Targets
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `groups`
+  - type: Index | None
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: True
+  - default value: None
 
 **Output:**
-- Return Type: `TrainTestSplits`
-- Semantic Meaning: The resulting value after processing the split action.
+- return type: `TrainTestSplits`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = TrainTestSplitter.split(..., ..., ...)
 ```
 
-##### `get_n_splits(self, inputs: Any, targets: Any, groups: Any) -> int` (Public)
-**Description:** Executes the get_n_splits operation, mutating state or calculating derived values as necessary.
+##### `get_n_splits(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> int` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: schemas.Targets
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `groups`
+  - type: Index | None
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: True
+  - default value: None
 
 **Output:**
-- Return Type: `int`
-- Semantic Meaning: The resulting value after processing the get_n_splits action.
+- return type: `int`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -238,48 +369,90 @@ Parameters:
 - None found.
 
 #### Methods
-##### `split(self, inputs: Any, targets: Any, groups: Any) -> TrainTestSplits` (Public)
-**Description:** Executes the split operation, mutating state or calculating derived values as necessary.
+##### `split(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> TrainTestSplits` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: schemas.Targets
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `groups`
+  - type: Index | None
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: True
+  - default value: None
 
 **Output:**
-- Return Type: `TrainTestSplits`
-- Semantic Meaning: The resulting value after processing the split action.
+- return type: `TrainTestSplits`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = TimeSeriesSplitter.split(..., ..., ...)
 ```
 
-##### `get_n_splits(self, inputs: Any, targets: Any, groups: Any) -> int` (Public)
-**Description:** Executes the get_n_splits operation, mutating state or calculating derived values as necessary.
+##### `get_n_splits(self, inputs: schemas.Inputs, targets: schemas.Targets, groups: Index | None) -> int` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `inputs`: Any
-- `targets`: Any
-- `groups`: Any
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: schemas.Targets
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `groups`
+  - type: Index | None
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: True
+  - default value: None
 
 **Output:**
-- Return Type: `int`
-- Semantic Meaning: The resulting value after processing the get_n_splits action.
+- return type: `int`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -287,3 +460,21 @@ result = TimeSeriesSplitter.get_n_splits(..., ..., ...)
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[splitters] --> [split] : calls
+[splitters] --> [len] : calls
+[splitters] --> [arange] : calls
+[splitters] --> [train_test_split] : calls
+[splitters] --> [TimeSeriesSplit] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** ../../../../tests/conftest.md, ../../application/jobs/tuning.md, ../../application/jobs/training.md, ../../../../tests/infrastructure/utils/test_splitters.md
+- **Calls:** split, len, arange, train_test_split, TimeSeriesSplit
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

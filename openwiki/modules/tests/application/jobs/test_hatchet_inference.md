@@ -6,7 +6,7 @@ title: "Module: test_hatchet_inference"
 source_path: "tests/application/jobs/test_hatchet_inference.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.127313+00:00"
+timestamp: "2026-08-28T06:32:33.286760+00:00"
 ---
 
 # Module Specification: test_hatchet_inference
@@ -21,10 +21,10 @@ Provides functionality related to test hatchet inference.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_hatchet_inference.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_hatchet_inference.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -43,21 +43,76 @@ Provides functionality related to test hatchet inference.
 - `test_hatchet_inference_job_trigger`
 - `test_hatchet_inference_job_failure`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "tests" {
+        package "application" {
+            package "jobs" {
+                [test_hatchet_inference.py]
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    test_hatchet_inference_job_trigger -> run : call
+    test_hatchet_inference_job_trigger -> assert_called_once : call
+    test_hatchet_inference_job_trigger -> Mock : call
+    test_hatchet_inference_job_trigger -> HatchetInferenceJob : call
+    test_hatchet_inference_job_failure -> raises : call
+    test_hatchet_inference_job_failure -> patch : call
+    test_hatchet_inference_job_failure -> Exception : call
+    test_hatchet_inference_job_failure -> Mock : call
+    test_hatchet_inference_job_failure -> HatchetInferenceJob : call
+    test_hatchet_inference_job_failure -> assert_called_with : call
+    test_hatchet_inference_job_failure -> run : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [test_hatchet_inference.py]
+    }
+    [test_hatchet_inference.py] --> [pytest]
+    [test_hatchet_inference.py] --> [pytest_mock]
+    [test_hatchet_inference.py] --> [unittest.mock.patch]
+    [test_hatchet_inference.py] --> [autogen_team.application.jobs.hatchet_inference.HatchetInferenceJob]
+    [test_hatchet_inference.py] --> [autogen_team.data_access.adapters.datasets]
+    [test_hatchet_inference.py] --> [autogen_team.infrastructure.services]
+    [test_hatchet_inference.py] --> [autogen_team.registry.adapters.mlflow_adapter]
 @enduml
 ```
 
@@ -76,32 +131,162 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_hatchet_inference_job_trigger(mocker: Any, mlflow_service: Any, alerts_service: Any, logger_service: Any, inputs_reader: Any, tmp_outputs_writer: Any, loader: Any)`
-Executes the test_hatchet_inference_job_trigger operation.
+### `test_hatchet_inference_job_trigger(mocker: pm.MockerFixture, mlflow_service: services.MlflowService, alerts_service: services.AlertsService, logger_service: services.LoggerService, inputs_reader: datasets.ParquetReader, tmp_outputs_writer: datasets.ParquetWriter, loader: registries.CustomLoader) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `mocker`: Any
-- `mlflow_service`: Any
-- `alerts_service`: Any
-- `logger_service`: Any
-- `inputs_reader`: Any
-- `tmp_outputs_writer`: Any
-- `loader`: Any
+- `mocker`
+  - type: pm.MockerFixture
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `mlflow_service`
+  - type: services.MlflowService
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `alerts_service`
+  - type: services.AlertsService
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `logger_service`
+  - type: services.LoggerService
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `inputs_reader`
+  - type: datasets.ParquetReader
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `tmp_outputs_writer`
+  - type: datasets.ParquetWriter
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `loader`
+  - type: registries.CustomLoader
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
-### `test_hatchet_inference_job_failure(mocker: Any, mlflow_service: Any, alerts_service: Any, logger_service: Any, inputs_reader: Any, tmp_outputs_writer: Any, loader: Any)`
-Executes the test_hatchet_inference_job_failure operation.
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_hatchet_inference_job_trigger(..., ..., ..., ..., ..., ..., ...)
+```
+
+### `test_hatchet_inference_job_failure(mocker: pm.MockerFixture, mlflow_service: services.MlflowService, alerts_service: services.AlertsService, logger_service: services.LoggerService, inputs_reader: datasets.ParquetReader, tmp_outputs_writer: datasets.ParquetWriter, loader: registries.CustomLoader) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `mocker`: Any
-- `mlflow_service`: Any
-- `alerts_service`: Any
-- `logger_service`: Any
-- `inputs_reader`: Any
-- `tmp_outputs_writer`: Any
-- `loader`: Any
+- `mocker`
+  - type: pm.MockerFixture
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `mlflow_service`
+  - type: services.MlflowService
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `alerts_service`
+  - type: services.AlertsService
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `logger_service`
+  - type: services.LoggerService
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `inputs_reader`
+  - type: datasets.ParquetReader
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `tmp_outputs_writer`
+  - type: datasets.ParquetWriter
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `loader`
+  - type: registries.CustomLoader
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_hatchet_inference_job_failure(..., ..., ..., ..., ..., ..., ...)
+```
+
+## 7. Call Graph
+```plantuml
+@startuml
+[test_hatchet_inference] --> [assert_called_once] : calls
+[test_hatchet_inference] --> [raises] : calls
+[test_hatchet_inference] --> [Exception] : calls
+[test_hatchet_inference] --> [patch] : calls
+[test_hatchet_inference] --> [Mock] : calls
+[test_hatchet_inference] --> [HatchetInferenceJob] : calls
+[test_hatchet_inference] --> [assert_called_with] : calls
+[test_hatchet_inference] --> [run] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../dependencies/index.md)
+- **Used by:** None
+- **Calls:** assert_called_once, raises, Exception, patch, Mock, HatchetInferenceJob, assert_called_with, run
+- **Called from:** None
+- **Related classes:** [Classes](../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../diagrams/index.md)

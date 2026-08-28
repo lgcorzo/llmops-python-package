@@ -6,7 +6,7 @@ title: "Module: test_metrics"
 source_path: "tests/evaluation/metrics/test_metrics.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.089404+00:00"
+timestamp: "2026-08-28T06:32:33.241748+00:00"
 ---
 
 # Module Specification: test_metrics
@@ -21,10 +21,10 @@ Provides functionality related to test metrics.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_metrics.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_metrics.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -51,15 +51,24 @@ Provides functionality related to test metrics.
 **Exported Functions:**
 - `mock_schemas`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -77,6 +86,49 @@ Clients instantiate classes or call functions, which execute business logic and 
     class TestThreshold {
         +test_to_mlflow() : None
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "tests" {
+        package "evaluation" {
+            package "metrics" {
+                [test_metrics.py]
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    mock_schemas -> fixture : call
+    mock_schemas -> patch : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [test_metrics.py]
+    }
+    [test_metrics.py] --> [typing.Any]
+    [test_metrics.py] --> [typing.Dict]
+    [test_metrics.py] --> [typing.Iterator]
+    [test_metrics.py] --> [typing.List]
+    [test_metrics.py] --> [typing.Literal]
+    [test_metrics.py] --> [typing.Optional]
+    [test_metrics.py] --> [unittest.mock.MagicMock]
+    [test_metrics.py] --> [unittest.mock.patch]
+    [test_metrics.py] --> [pandas]
+    [test_metrics.py] --> [pytest]
+    [test_metrics.py] --> [autogen_team.evaluation.metrics.AutogenConversationMetric]
+    [test_metrics.py] --> [autogen_team.evaluation.metrics.AutogenMetric]
+    [test_metrics.py] --> [autogen_team.evaluation.metrics.Threshold]
 @enduml
 ```
 
@@ -109,21 +161,27 @@ Provides state and behavior management for TestMetricIntegration.
 
 #### Methods
 ##### `test_scorer_flow(self) -> None` (Public)
-**Description:** Executes the test_scorer_flow operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the test_scorer_flow action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -138,26 +196,57 @@ Provides state and behavior management for TestAutogenTextMetric.
 - None found.
 
 #### Methods
-##### `test_score(self, metric_type: Literal[...], y_true: List[...], y_pred: List[...], expected: float, threshold: Optional[...]) -> None` (Public)
-**Description:** Executes the test_score operation, mutating state or calculating derived values as necessary.
+##### `test_score(self, metric_type: Literal['exact_match', 'similarity', 'length_ratio'], y_true: List[str], y_pred: List[str], expected: float, threshold: Optional[float]) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `metric_type`: Literal[...]
-- `y_true`: List[...]
-- `y_pred`: List[...]
-- `expected`: float
-- `threshold`: Optional[...]
+- `metric_type`
+  - type: Literal['exact_match', 'similarity', 'length_ratio']
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `y_true`
+  - type: List[str]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `y_pred`
+  - type: List[str]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `expected`
+  - type: float
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `threshold`
+  - type: Optional[float]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the test_score action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -172,25 +261,51 @@ Provides state and behavior management for TestAutogenConversationMetric.
 - None found.
 
 #### Methods
-##### `test_score(self, metadata: List[...], check_term: bool, check_err: bool, expected: float) -> None` (Public)
-**Description:** Executes the test_score operation, mutating state or calculating derived values as necessary.
+##### `test_score(self, metadata: List[Dict[str, Any]], check_term: bool, check_err: bool, expected: float) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `metadata`: List[...]
-- `check_term`: bool
-- `check_err`: bool
-- `expected`: float
+- `metadata`
+  - type: List[Dict[str, Any]]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `check_term`
+  - type: bool
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `check_err`
+  - type: bool
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `expected`
+  - type: float
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the test_score action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -206,22 +321,38 @@ Provides state and behavior management for TestThreshold.
 
 #### Methods
 ##### `test_to_mlflow(self, threshold: float, greater_is_better: bool) -> None` (Public)
-**Description:** Executes the test_to_mlflow operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
-- `threshold`: float
-- `greater_is_better`: bool
+- `threshold`
+  - type: float
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `greater_is_better`
+  - type: bool
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the test_to_mlflow action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -229,11 +360,58 @@ result = TestThreshold.test_to_mlflow(..., ...)
 ```
 
 ## 6. Module Functions
-### `mock_schemas()`
-Executes the mock_schemas operation.
+### `mock_schemas() -> Iterator[MagicMock]` (Public)
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
+- return type: `Iterator[MagicMock]`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = mock_schemas()
+```
+
+## 7. Call Graph
+```plantuml
+@startuml
+[test_metrics] --> [Series] : calls
+[test_metrics] --> [main] : calls
+[test_metrics] --> [assert_called_once_with] : calls
+[test_metrics] --> [approx] : calls
+[test_metrics] --> [MagicMock] : calls
+[test_metrics] --> [patch] : calls
+[test_metrics] --> [to_mlflow] : calls
+[test_metrics] --> [Threshold] : calls
+[test_metrics] --> [scorer] : calls
+[test_metrics] --> [score] : calls
+[test_metrics] --> [parametrize] : calls
+[test_metrics] --> [fixture] : calls
+[test_metrics] --> [AutogenConversationMetric] : calls
+[test_metrics] --> [AutogenMetric] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../dependencies/index.md)
+- **Used by:** None
+- **Calls:** Series, main, assert_called_once_with, approx, MagicMock, patch, to_mlflow, Threshold, scorer, score, parametrize, fixture, AutogenConversationMetric, AutogenMetric
+- **Called from:** None
+- **Related classes:** [Classes](../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../diagrams/index.md)

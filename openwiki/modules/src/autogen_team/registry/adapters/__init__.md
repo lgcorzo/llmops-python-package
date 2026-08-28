@@ -6,7 +6,7 @@ title: "Module: __init__"
 source_path: "src/autogen_team/registry/adapters/__init__.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.943943+00:00"
+timestamp: "2026-08-28T06:32:33.055154+00:00"
 ---
 
 # Module Specification: __init__
@@ -21,10 +21,10 @@ Provides functionality related to   init  .
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for __init__.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for __init__.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -50,21 +50,76 @@ Provides functionality related to   init  .
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "registry" {
+                package "adapters" {
+                    [__init__.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [__init__.py]
+    }
+    [__init__.py] --> [mlflow_adapter.Alias]
+    [__init__.py] --> [mlflow_adapter.CustomLoader]
+    [__init__.py] --> [mlflow_adapter.CustomSaver]
+    [__init__.py] --> [mlflow_adapter.Info]
+    [__init__.py] --> [mlflow_adapter.Loader]
+    [__init__.py] --> [mlflow_adapter.LoaderKind]
+    [__init__.py] --> [mlflow_adapter.MlflowRegister]
+    [__init__.py] --> [mlflow_adapter.Register]
+    [__init__.py] --> [mlflow_adapter.RegisterKind]
+    [__init__.py] --> [mlflow_adapter.Saver]
+    [__init__.py] --> [mlflow_adapter.SaverKind]
+    [__init__.py] --> [mlflow_adapter.Version]
+    [__init__.py] --> [mlflow_adapter.uri_for_model_alias]
+    [__init__.py] --> [mlflow_adapter.uri_for_model_alias_or_version]
+    [__init__.py] --> [mlflow_adapter.uri_for_model_version]
 @enduml
 ```
 
@@ -91,3 +146,13 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
+## 7. Call Graph
+- No public API calls detected.
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** None
+- **Calls:** None
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

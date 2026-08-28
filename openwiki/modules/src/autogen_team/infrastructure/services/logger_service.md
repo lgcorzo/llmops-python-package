@@ -6,7 +6,7 @@ title: "Module: logger_service"
 source_path: "src/autogen_team/infrastructure/services/logger_service.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.920852+00:00"
+timestamp: "2026-08-28T06:32:33.029264+00:00"
 ---
 
 # Module Specification: logger_service
@@ -21,10 +21,10 @@ Provides functionality related to logger service.
 - Services
 
 **Responsibilities:**
-- Manage and execute operations for logger_service.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for logger_service.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -53,15 +53,24 @@ Provides functionality related to logger service.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -76,8 +85,55 @@ Clients instantiate classes or call functions, which execute business logic and 
     }
     class LoggerService {
         +start() : None
-        +logger() : Any
+        +logger() : loguru.Logger
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "infrastructure" {
+                package "services" {
+                    [logger_service.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Services" {
+        [logger_service.py]
+    }
+    [logger_service.py] --> [__future__.annotations]
+    [logger_service.py] --> [abc]
+    [logger_service.py] --> [logging]
+    [logger_service.py] --> [sys]
+    [logger_service.py] --> [loguru]
+    [logger_service.py] --> [pydantic]
+    [logger_service.py] --> [opentelemetry.trace]
+    [logger_service.py] --> [opentelemetry._logs.set_logger_provider]
+    [logger_service.py] --> [opentelemetry.exporter.otlp.proto.http._log_exporter.OTLPLogExporter]
+    [logger_service.py] --> [opentelemetry.exporter.otlp.proto.http.trace_exporter.OTLPSpanExporter]
+    [logger_service.py] --> [opentelemetry.sdk._logs.LoggerProvider]
+    [logger_service.py] --> [opentelemetry.sdk._logs.LoggingHandler]
+    [logger_service.py] --> [opentelemetry.sdk._logs.export.BatchLogRecordProcessor]
+    [logger_service.py] --> [opentelemetry.sdk.resources.Resource]
+    [logger_service.py] --> [opentelemetry.sdk.trace.TracerProvider]
+    [logger_service.py] --> [opentelemetry.sdk.trace.export.BatchSpanProcessor]
 @enduml
 ```
 
@@ -112,22 +168,33 @@ Provides state and behavior management for PropagateHandler.
 - None found.
 
 #### Methods
-##### `emit(self, record: Any) -> None` (Public)
-**Description:** Executes the emit operation, mutating state or calculating derived values as necessary.
+##### `emit(self, record: logging.LogRecord) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `record`: Any
+- `record`
+  - type: logging.LogRecord
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the emit action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -149,15 +216,21 @@ Base class for a global service.
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -171,15 +244,21 @@ result = Service.start()
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the stop action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -197,43 +276,55 @@ https://loguru.readthedocs.io/en/stable/api/logger.html
 
 #### Methods
 ##### `start(self) -> None` (Public)
-**Description:** Executes the start operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = LoggerService.start()
 ```
 
-##### `logger(self) -> Any` (Public)
+##### `logger(self) -> loguru.Logger` (Public)
 **Description:** Return the main logger.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the logger action.
+- return type: `loguru.Logger`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -241,3 +332,38 @@ result = LoggerService.logger()
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[logger_service] --> [info] : calls
+[logger_service] --> [TracerProvider] : calls
+[logger_service] --> [LoggerProvider] : calls
+[logger_service] --> [set_logger_provider] : calls
+[logger_service] --> [model_dump] : calls
+[logger_service] --> [get] : calls
+[logger_service] --> [BatchSpanProcessor] : calls
+[logger_service] --> [addHandler] : calls
+[logger_service] --> [basicConfig] : calls
+[logger_service] --> [add] : calls
+[logger_service] --> [add_span_processor] : calls
+[logger_service] --> [getLogger] : calls
+[logger_service] --> [handle] : calls
+[logger_service] --> [remove] : calls
+[logger_service] --> [PropagateHandler] : calls
+[logger_service] --> [OTLPSpanExporter] : calls
+[logger_service] --> [create] : calls
+[logger_service] --> [set_tracer_provider] : calls
+[logger_service] --> [OTLPLogExporter] : calls
+[logger_service] --> [LoggingHandler] : calls
+[logger_service] --> [add_log_record_processor] : calls
+[logger_service] --> [BatchLogRecordProcessor] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** ../../application/jobs/base.md, ../../../../tests/conftest.md
+- **Calls:** info, TracerProvider, LoggerProvider, set_logger_provider, model_dump, get, BatchSpanProcessor, addHandler, basicConfig, add, add_span_processor, getLogger, handle, remove, PropagateHandler, OTLPSpanExporter, create, set_tracer_provider, OTLPLogExporter, LoggingHandler, add_log_record_processor, BatchLogRecordProcessor
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

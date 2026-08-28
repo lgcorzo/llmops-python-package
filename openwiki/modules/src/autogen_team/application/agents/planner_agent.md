@@ -6,7 +6,7 @@ title: "Module: planner_agent"
 source_path: "src/autogen_team/application/agents/planner_agent.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.970392+00:00"
+timestamp: "2026-08-28T06:32:33.081110+00:00"
 ---
 
 # Module Specification: planner_agent
@@ -21,10 +21,10 @@ Provides functionality related to planner agent.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for planner_agent.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for planner_agent.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -39,15 +39,24 @@ Provides functionality related to planner agent.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -55,8 +64,43 @@ Clients instantiate classes or call functions, which execute business logic and 
 @startuml
     class PlannerAgent {
         +__init__() : None
-        +create_plan() : Any
+        +create_plan() : Dict[str, Any]
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "application" {
+                package "agents" {
+                    [planner_agent.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [planner_agent.py]
+    }
+    [planner_agent.py] --> [typing.Any]
+    [planner_agent.py] --> [typing.Dict]
+    [planner_agent.py] --> [typing.cast]
+    [planner_agent.py] --> [autogen_team.infrastructure.client.mcp_client.MCPClient]
 @enduml
 ```
 
@@ -81,24 +125,33 @@ Uses the MCP 'plan_mission' tool.
 
 #### Attributes
 - `client`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 
 #### Methods
 ##### `__init__(self) -> None` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -106,23 +159,39 @@ instance = PlannerAgent()
 result = instance.__init__()
 ```
 
-##### `create_plan(self, goal: str, repository_path: str) -> Any` (Public)
+##### `create_plan(self, goal: str, repository_path: str) -> Dict[str, Any]` (Public)
 **Description:** Calls the `plan_mission` tool via MCP.
 
 **Inputs:**
-- `goal`: str
-- `repository_path`: str
+- `goal`
+  - type: str
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `repository_path`
+  - type: str
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the create_plan action.
+- return type: `Dict[str, Any]`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -131,3 +200,22 @@ result = instance.create_plan(..., ...)
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[planner_agent] --> [cast] : calls
+[planner_agent] --> [disconnect] : calls
+[planner_agent] --> [connect] : calls
+[planner_agent] --> [print] : calls
+[planner_agent] --> [MCPClient] : calls
+[planner_agent] --> [call_tool] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** ../../../../tests/application/agents/test_agents.md, ../workflows/autonomous_mission.md, ../../../../Scripts/verify_agent_mcp.md
+- **Calls:** cast, disconnect, connect, print, MCPClient, call_tool
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

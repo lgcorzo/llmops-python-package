@@ -6,7 +6,7 @@ title: "Module: osvariables"
 source_path: "src/autogen_team/infrastructure/io/osvariables.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.922888+00:00"
+timestamp: "2026-08-28T06:32:33.032543+00:00"
 ---
 
 # Module Specification: osvariables
@@ -21,10 +21,10 @@ Provides functionality related to osvariables.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for osvariables.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for osvariables.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -40,25 +40,69 @@ Provides functionality related to osvariables.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     class Singleton {
-        +__new__() : Any
+        +__new__() : 'Singleton'
     }
     class Env {
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "infrastructure" {
+                package "io" {
+                    [osvariables.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [osvariables.py]
+    }
+    [osvariables.py] --> [typing.Dict]
+    [osvariables.py] --> [typing.Type]
+    [osvariables.py] --> [pydantic_settings.BaseSettings]
+    [osvariables.py] --> [pydantic_settings.SettingsConfigDict]
 @enduml
 ```
 
@@ -81,27 +125,14 @@ Provides state and behavior management for Singleton.
 - None found.
 
 #### Methods
-##### `__new__(cls: Type[...]) -> Any` (Public)
-**Description:** Executes the __new__ operation, mutating state or calculating derived values as necessary.
+##### `__new__(cls: Type['Singleton']) -> 'Singleton'` (Private)
+**Purpose:** No description provided.
 
-**Inputs:**
-- `cls`: Type[...]
+**Parameters:**
+- `cls`: Type['Singleton']
 
-**Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the __new__ action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-result = Singleton.__new__(...)
-```
+**Return value:**
+- `'Singleton'`
 
 ### `Env` ([`src/autogen_team/infrastructure/io/osvariables.py`](/src/autogen_team/infrastructure/io/osvariables.py))
 #### Overview
@@ -112,3 +143,19 @@ Provides state and behavior management for Env.
 
 #### Methods
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[osvariables] --> [SettingsConfigDict] : calls
+[osvariables] --> [__new__] : calls
+[osvariables] --> [super] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** ../client/mcp_client.md, ../services/mlflow_service.md, ../services/mcp_service.md, ../../../../tests/infrastructure/io/test_osvariables_fix.md, ../../application/mcp/tools/index_code.md, ../../application/mcp/tools/retrieve_context.md, ../services/hatchet_service.md
+- **Calls:** SettingsConfigDict, __new__, super
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

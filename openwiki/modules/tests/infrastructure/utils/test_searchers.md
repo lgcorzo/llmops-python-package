@@ -6,7 +6,7 @@ title: "Module: test_searchers"
 source_path: "tests/infrastructure/utils/test_searchers.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.064590+00:00"
+timestamp: "2026-08-28T06:32:33.207798+00:00"
 ---
 
 # Module Specification: test_searchers
@@ -21,10 +21,10 @@ Provides functionality related to test searchers.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_searchers.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_searchers.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -40,21 +40,70 @@ Provides functionality related to test searchers.
 **Exported Functions:**
 - `test_grid_cv_searcher`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "tests" {
+        package "infrastructure" {
+            package "utils" {
+                [test_searchers.py]
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    test_grid_cv_searcher -> search : call
+    test_grid_cv_searcher -> values : call
+    test_grid_cv_searcher -> len : call
+    test_grid_cv_searcher -> set : call
+    test_grid_cv_searcher -> sum : call
+    test_grid_cv_searcher -> GridCVSearcher : call
+    test_grid_cv_searcher -> float : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [test_searchers.py]
+    }
+    [test_searchers.py] --> [autogen_team.core.schemas]
+    [test_searchers.py] --> [autogen_team.evaluation.metrics]
+    [test_searchers.py] --> [autogen_team.infrastructure.utils.searchers]
+    [test_searchers.py] --> [autogen_team.infrastructure.utils.splitters]
+    [test_searchers.py] --> [autogen_team.models.entities]
 @enduml
 ```
 
@@ -71,15 +120,80 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_grid_cv_searcher(model: Any, metric: Any, inputs: Any, targets: Any, train_test_splitter: Any)`
-Executes the test_grid_cv_searcher operation.
+### `test_grid_cv_searcher(model: models.Model, metric: metrics.Metric, inputs: schemas.Inputs, targets: schemas.Targets, train_test_splitter: splitters.Splitter) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `model`: Any
-- `metric`: Any
-- `inputs`: Any
-- `targets`: Any
-- `train_test_splitter`: Any
+- `model`
+  - type: models.Model
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `metric`
+  - type: metrics.Metric
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: schemas.Targets
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `train_test_splitter`
+  - type: splitters.Splitter
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_grid_cv_searcher(..., ..., ..., ..., ...)
+```
+
+## 7. Call Graph
+```plantuml
+@startuml
+[test_searchers] --> [search] : calls
+[test_searchers] --> [values] : calls
+[test_searchers] --> [len] : calls
+[test_searchers] --> [set] : calls
+[test_searchers] --> [sum] : calls
+[test_searchers] --> [GridCVSearcher] : calls
+[test_searchers] --> [float] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../dependencies/index.md)
+- **Used by:** None
+- **Calls:** search, values, len, set, sum, GridCVSearcher, float
+- **Called from:** None
+- **Related classes:** [Classes](../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../diagrams/index.md)

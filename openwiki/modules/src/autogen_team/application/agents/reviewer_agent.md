@@ -6,7 +6,7 @@ title: "Module: reviewer_agent"
 source_path: "src/autogen_team/application/agents/reviewer_agent.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.967690+00:00"
+timestamp: "2026-08-28T06:32:33.078136+00:00"
 ---
 
 # Module Specification: reviewer_agent
@@ -21,10 +21,10 @@ Provides functionality related to reviewer agent.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for reviewer_agent.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for reviewer_agent.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -38,15 +38,24 @@ Provides functionality related to reviewer agent.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -56,6 +65,40 @@ Clients instantiate classes or call functions, which execute business logic and 
         +__init__() : None
         +review_changes() : ReviewResult
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "application" {
+                package "agents" {
+                    [reviewer_agent.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [reviewer_agent.py]
+    }
+    [reviewer_agent.py] --> [typing.List]
+    [reviewer_agent.py] --> [autogen_team.infrastructure.client.mcp_client.MCPClient]
+    [reviewer_agent.py] --> [autogen_team.infrastructure.messaging.a2a_protocol.ReviewResult]
 @enduml
 ```
 
@@ -79,24 +122,33 @@ Uses the MCP 'security_review' tool.
 
 #### Attributes
 - `client`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 
 #### Methods
 ##### `__init__(self) -> None` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -104,23 +156,39 @@ instance = ReviewerAgent()
 result = instance.__init__()
 ```
 
-##### `review_changes(self, mission_id: str, file_changes: List[...]) -> ReviewResult` (Public)
+##### `review_changes(self, mission_id: str, file_changes: List[str]) -> ReviewResult` (Public)
 **Description:** Calls the `security_review` tool via MCP.
 
 **Inputs:**
-- `mission_id`: str
-- `file_changes`: List[...]
+- `mission_id`
+  - type: str
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `file_changes`
+  - type: List[str]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `ReviewResult`
-- Semantic Meaning: The resulting value after processing the review_changes action.
+- return type: `ReviewResult`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -129,3 +197,24 @@ result = instance.review_changes(..., ...)
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[reviewer_agent] --> [ReviewResult] : calls
+[reviewer_agent] --> [disconnect] : calls
+[reviewer_agent] --> [get] : calls
+[reviewer_agent] --> [connect] : calls
+[reviewer_agent] --> [print] : calls
+[reviewer_agent] --> [MCPClient] : calls
+[reviewer_agent] --> [join] : calls
+[reviewer_agent] --> [call_tool] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** ../../../../tests/application/agents/test_agents.md, ../workflows/autonomous_mission.md, ../../../../Scripts/verify_agent_mcp.md
+- **Calls:** ReviewResult, disconnect, get, connect, print, MCPClient, join, call_tool
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)
