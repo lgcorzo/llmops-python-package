@@ -6,7 +6,7 @@ title: "Module: hatchet_inference"
 source_path: "src/autogen_team/application/jobs/hatchet_inference.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.003174+00:00"
+timestamp: "2026-08-28T06:32:33.118517+00:00"
 ---
 
 # Module Specification: hatchet_inference
@@ -21,10 +21,10 @@ Provides functionality related to hatchet inference.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for hatchet_inference.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for hatchet_inference.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -41,23 +41,69 @@ Provides functionality related to hatchet inference.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     class HatchetInferenceJob {
-        +run() : Any
+        +run() : base.Locals
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "application" {
+                package "jobs" {
+                    [hatchet_inference.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [hatchet_inference.py]
+    }
+    [hatchet_inference.py] --> [typing]
+    [hatchet_inference.py] --> [pydantic]
+    [hatchet_inference.py] --> [autogen_team.application.jobs.base]
+    [hatchet_inference.py] --> [autogen_team.data_access.adapters.datasets]
+    [hatchet_inference.py] --> [autogen_team.infrastructure.services]
+    [hatchet_inference.py] --> [autogen_team.registry.adapters.mlflow_adapter]
 @enduml
 ```
 
@@ -92,22 +138,28 @@ Parameters:
 - None found.
 
 #### Methods
-##### `run(self) -> Any` (Public)
-**Description:** Executes the run operation, mutating state or calculating derived values as necessary.
+##### `run(self) -> base.Locals` (Public)
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the run action.
+- return type: `base.Locals`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -115,3 +167,27 @@ result = HatchetInferenceJob.run()
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[hatchet_inference] --> [debug] : calls
+[hatchet_inference] --> [run_workflow] : calls
+[hatchet_inference] --> [locals] : calls
+[hatchet_inference] --> [info] : calls
+[hatchet_inference] --> [HatchetService] : calls
+[hatchet_inference] --> [exception] : calls
+[hatchet_inference] --> [notify] : calls
+[hatchet_inference] --> [Field] : calls
+[hatchet_inference] --> [CustomLoader] : calls
+[hatchet_inference] --> [model_dump] : calls
+[hatchet_inference] --> [logger] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** ../../../../tests/application/jobs/test_hatchet_inference.md
+- **Calls:** debug, run_workflow, locals, info, HatchetService, exception, notify, Field, CustomLoader, model_dump, logger
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

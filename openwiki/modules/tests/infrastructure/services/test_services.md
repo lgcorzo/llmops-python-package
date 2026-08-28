@@ -6,7 +6,7 @@ title: "Module: test_services"
 source_path: "tests/infrastructure/services/test_services.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.056712+00:00"
+timestamp: "2026-08-28T06:32:33.197481+00:00"
 ---
 
 # Module Specification: test_services
@@ -21,10 +21,10 @@ Provides functionality related to test services.
 - Services
 
 **Responsibilities:**
-- Manage and execute operations for test_services.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_services.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -44,21 +44,84 @@ Provides functionality related to test services.
 - `test_alerts_service`
 - `test_mlflow_service`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "tests" {
+        package "infrastructure" {
+            package "services" {
+                [test_services.py]
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    test_logger_service -> debug : call
+    test_logger_service -> error : call
+    test_logger_service -> logger : call
+    test_alerts_service -> AlertsService : call
+    test_alerts_service -> assert_called_once : call
+    test_alerts_service -> patch : call
+    test_alerts_service -> readouterr : call
+    test_alerts_service -> parametrize : call
+    test_alerts_service -> notify : call
+    test_alerts_service -> assert_not_called : call
+    test_mlflow_service -> run_context : call
+    test_mlflow_service -> values : call
+    test_mlflow_service -> get_run : call
+    test_mlflow_service -> client : call
+    test_mlflow_service -> get_tracking_uri : call
+    test_mlflow_service -> get_registry_uri : call
+    test_mlflow_service -> items : call
+    test_mlflow_service -> RunConfig : call
+    test_mlflow_service -> get_experiment_by_name : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Services" {
+        [test_services.py]
+    }
+    [test_services.py] --> [_pytest.capture]
+    [test_services.py] --> [_pytest.logging]
+    [test_services.py] --> [mlflow]
+    [test_services.py] --> [plyer]
+    [test_services.py] --> [pytest]
+    [test_services.py] --> [pytest_mock]
+    [test_services.py] --> [autogen_team.infrastructure.services]
 @enduml
 ```
 
@@ -77,32 +140,152 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_logger_service(logger_service: Any, logger_caplog: Any)`
-Executes the test_logger_service operation.
+### `test_logger_service(logger_service: services.LoggerService, logger_caplog: pl.LogCaptureFixture) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `logger_service`: Any
-- `logger_caplog`: Any
+- `logger_service`
+  - type: services.LoggerService
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `logger_caplog`
+  - type: pl.LogCaptureFixture
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
-### `test_alerts_service(enable: bool, mocker: Any, capsys: Any)`
-Executes the test_alerts_service operation.
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_logger_service(..., ...)
+```
+
+### `test_alerts_service(enable: bool, mocker: pm.MockerFixture, capsys: pc.CaptureFixture[str]) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `enable`: bool
-- `mocker`: Any
-- `capsys`: Any
+- `enable`
+  - type: bool
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `mocker`
+  - type: pm.MockerFixture
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `capsys`
+  - type: pc.CaptureFixture[str]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
-### `test_mlflow_service(mlflow_service: Any)`
-Executes the test_mlflow_service operation.
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_alerts_service(..., ..., ...)
+```
+
+### `test_mlflow_service(mlflow_service: services.MlflowService) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `mlflow_service`: Any
+- `mlflow_service`
+  - type: services.MlflowService
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_mlflow_service(...)
+```
+
+## 7. Call Graph
+```plantuml
+@startuml
+[test_services] --> [assert_called_once] : calls
+[test_services] --> [client] : calls
+[test_services] --> [readouterr] : calls
+[test_services] --> [RunConfig] : calls
+[test_services] --> [notify] : calls
+[test_services] --> [assert_not_called] : calls
+[test_services] --> [debug] : calls
+[test_services] --> [patch] : calls
+[test_services] --> [get_registry_uri] : calls
+[test_services] --> [parametrize] : calls
+[test_services] --> [run_context] : calls
+[test_services] --> [items] : calls
+[test_services] --> [logger] : calls
+[test_services] --> [error] : calls
+[test_services] --> [AlertsService] : calls
+[test_services] --> [values] : calls
+[test_services] --> [get_run] : calls
+[test_services] --> [get_tracking_uri] : calls
+[test_services] --> [get_experiment_by_name] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../dependencies/index.md)
+- **Used by:** None
+- **Calls:** assert_called_once, client, readouterr, RunConfig, notify, assert_not_called, debug, patch, get_registry_uri, parametrize, run_context, items, logger, error, AlertsService, values, get_run, get_tracking_uri, get_experiment_by_name
+- **Called from:** None
+- **Related classes:** [Classes](../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../diagrams/index.md)

@@ -6,7 +6,7 @@ title: "Module: test_registries"
 source_path: "tests/registry/adapters/test_registries.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.083239+00:00"
+timestamp: "2026-08-28T06:32:33.233737+00:00"
 ---
 
 # Module Specification: test_registries
@@ -21,10 +21,10 @@ Provides functionality related to test registries.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_registries.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_registries.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -43,21 +43,83 @@ Provides functionality related to test registries.
 - `test_uri_for_model_alias_or_version`
 - `test_custom_pipeline`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "tests" {
+        package "registry" {
+            package "adapters" {
+                [test_registries.py]
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    test_uri_for_model_alias -> uri_for_model_alias : call
+    test_uri_for_model_version -> str : call
+    test_uri_for_model_version -> uri_for_model_version : call
+    test_uri_for_model_alias_or_version -> str : call
+    test_uri_for_model_alias_or_version -> uri_for_model_version : call
+    test_uri_for_model_alias_or_version -> uri_for_model_alias_or_version : call
+    test_uri_for_model_alias_or_version -> uri_for_model_alias : call
+    test_custom_pipeline -> load : call
+    test_custom_pipeline -> MlflowRegister : call
+    test_custom_pipeline -> run_context : call
+    test_custom_pipeline -> str : call
+    test_custom_pipeline -> save : call
+    test_custom_pipeline -> get : call
+    test_custom_pipeline -> RunConfig : call
+    test_custom_pipeline -> predict : call
+    test_custom_pipeline -> register : call
+    test_custom_pipeline -> check : call
+    test_custom_pipeline -> CustomLoader : call
+    test_custom_pipeline -> uri_for_model_version : call
+    test_custom_pipeline -> CustomSaver : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [test_registries.py]
+    }
+    [test_registries.py] --> [autogen_team.core.schemas]
+    [test_registries.py] --> [autogen_team.infrastructure.services]
+    [test_registries.py] --> [autogen_team.infrastructure.utils.signers]
+    [test_registries.py] --> [autogen_team.models.entities]
+    [test_registries.py] --> [autogen_team.registry.adapters.mlflow_adapter]
 @enduml
 ```
 
@@ -74,41 +136,166 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_uri_for_model_alias()`
-Executes the test_uri_for_model_alias operation.
+### `test_uri_for_model_alias() -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
-### `test_uri_for_model_version()`
-Executes the test_uri_for_model_version operation.
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_uri_for_model_alias()
+```
+
+### `test_uri_for_model_version() -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
-### `test_uri_for_model_alias_or_version()`
-Executes the test_uri_for_model_alias_or_version operation.
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_uri_for_model_version()
+```
+
+### `test_uri_for_model_alias_or_version() -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
-### `test_custom_pipeline(model: Any, inputs: Any, signature: Any, mlflow_service: Any)`
-Executes the test_custom_pipeline operation.
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_uri_for_model_alias_or_version()
+```
+
+### `test_custom_pipeline(model: models.Model, inputs: schemas.Inputs, signature: signers.Signature, mlflow_service: services.MlflowService) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `model`: Any
-- `inputs`: Any
-- `signature`: Any
-- `mlflow_service`: Any
+- `model`
+  - type: models.Model
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `signature`
+  - type: signers.Signature
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `mlflow_service`
+  - type: services.MlflowService
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_custom_pipeline(..., ..., ..., ...)
+```
+
+## 7. Call Graph
+```plantuml
+@startuml
+[test_registries] --> [load] : calls
+[test_registries] --> [MlflowRegister] : calls
+[test_registries] --> [run_context] : calls
+[test_registries] --> [str] : calls
+[test_registries] --> [save] : calls
+[test_registries] --> [uri_for_model_alias_or_version] : calls
+[test_registries] --> [get] : calls
+[test_registries] --> [RunConfig] : calls
+[test_registries] --> [predict] : calls
+[test_registries] --> [register] : calls
+[test_registries] --> [uri_for_model_alias] : calls
+[test_registries] --> [check] : calls
+[test_registries] --> [CustomLoader] : calls
+[test_registries] --> [uri_for_model_version] : calls
+[test_registries] --> [CustomSaver] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../dependencies/index.md)
+- **Used by:** None
+- **Calls:** load, MlflowRegister, run_context, str, save, uri_for_model_alias_or_version, get, RunConfig, predict, register, uri_for_model_alias, check, CustomLoader, uri_for_model_version, CustomSaver
+- **Called from:** None
+- **Related classes:** [Classes](../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../diagrams/index.md)

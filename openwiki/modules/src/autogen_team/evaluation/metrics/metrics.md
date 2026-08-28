@@ -6,7 +6,7 @@ title: "Module: metrics"
 source_path: "src/autogen_team/evaluation/metrics/metrics.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.957106+00:00"
+timestamp: "2026-08-28T06:32:33.067648+00:00"
 ---
 
 # Module Specification: metrics
@@ -21,10 +21,10 @@ Provides functionality related to metrics.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for metrics.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for metrics.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -50,15 +50,24 @@ Provides functionality related to metrics.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -81,6 +90,49 @@ Clients instantiate classes or call functions, which execute business logic and 
     class Threshold {
         +to_mlflow() : MlflowThreshold
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "evaluation" {
+                package "metrics" {
+                    [metrics.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [metrics.py]
+    }
+    [metrics.py] --> [__future__.annotations]
+    [metrics.py] --> [abc]
+    [metrics.py] --> [typing]
+    [metrics.py] --> [difflib.SequenceMatcher]
+    [metrics.py] --> [typing.Optional]
+    [metrics.py] --> [typing.cast]
+    [metrics.py] --> [mlflow]
+    [metrics.py] --> [pandas]
+    [metrics.py] --> [pydantic]
+    [metrics.py] --> [mlflow.metrics.MetricValue]
+    [metrics.py] --> [autogen_team.core.schemas]
+    [metrics.py] --> [autogen_team.models.entities]
 @enduml
 ```
 
@@ -118,7 +170,7 @@ Parameters:
 - None found.
 
 #### Methods
-##### `score(self, targets: Any, outputs: Any) -> float` (Public)
+##### `score(self, targets: pd.DataFrame, outputs: pd.DataFrame) -> float` (Public)
 **Description:** Score the outputs against the targets.
 
 Args:
@@ -129,26 +181,42 @@ Returns:
     float: single result from the metric computation.
 
 **Inputs:**
-- `targets`: Any
-- `outputs`: Any
+- `targets`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `outputs`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the score action.
+- return type: `float`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = Metric.score(..., ...)
 ```
 
-##### `scorer(self, model: Any, inputs: Any, targets: Any) -> float` (Public)
+##### `scorer(self, model: models.Model, inputs: schemas.Inputs, targets: pd.DataFrame) -> float` (Public)
 **Description:** Score model outputs against targets.
 
 Args:
@@ -160,20 +228,41 @@ Returns:
     float: single result from the metric computation.
 
 **Inputs:**
-- `model`: Any
-- `inputs`: Any
-- `targets`: Any
+- `model`
+  - type: models.Model
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `inputs`
+  - type: schemas.Inputs
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the scorer action.
+- return type: `float`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -190,15 +279,21 @@ Returns:
 - None
 
 **Output:**
-- Return Type: `MlflowMetric`
-- Semantic Meaning: The resulting value after processing the to_mlflow action.
+- return type: `MlflowMetric`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -217,97 +312,74 @@ Parameters:
 - None found.
 
 #### Methods
-##### `score(self, targets: Any, outputs: Any) -> float` (Public)
-**Description:** Executes the score operation, mutating state or calculating derived values as necessary.
+##### `score(self, targets: pd.DataFrame, outputs: pd.DataFrame) -> float` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `targets`: Any
-- `outputs`: Any
+- `targets`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `outputs`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the score action.
+- return type: `float`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = AutogenMetric.score(..., ...)
 ```
 
-##### `_exact_match_score(self, y_true: Any, y_pred: Any) -> float` (Public)
-**Description:** Executes the _exact_match_score operation, mutating state or calculating derived values as necessary.
+##### `_exact_match_score(self, y_true: pd.Series[str], y_pred: pd.Series[str]) -> float` (Private)
+**Purpose:** No description provided.
 
-**Inputs:**
-- `y_true`: Any
-- `y_pred`: Any
+**Parameters:**
+- `y_true`: pd.Series[str]
+- `y_pred`: pd.Series[str]
 
-**Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the _exact_match_score action.
+**Return value:**
+- `float`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+##### `_similarity_score(self, y_true: pd.Series[str], y_pred: pd.Series[str]) -> float` (Private)
+**Purpose:** No description provided.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+**Parameters:**
+- `y_true`: pd.Series[str]
+- `y_pred`: pd.Series[str]
 
-**Example:**
-```python
-result = AutogenMetric._exact_match_score(..., ...)
-```
+**Return value:**
+- `float`
 
-##### `_similarity_score(self, y_true: Any, y_pred: Any) -> float` (Public)
-**Description:** Executes the _similarity_score operation, mutating state or calculating derived values as necessary.
+##### `_length_ratio(self, y_true: pd.Series[str], y_pred: pd.Series[str]) -> float` (Private)
+**Purpose:** No description provided.
 
-**Inputs:**
-- `y_true`: Any
-- `y_pred`: Any
+**Parameters:**
+- `y_true`: pd.Series[str]
+- `y_pred`: pd.Series[str]
 
-**Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the _similarity_score action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-result = AutogenMetric._similarity_score(..., ...)
-```
-
-##### `_length_ratio(self, y_true: Any, y_pred: Any) -> float` (Public)
-**Description:** Executes the _length_ratio operation, mutating state or calculating derived values as necessary.
-
-**Inputs:**
-- `y_true`: Any
-- `y_pred`: Any
-
-**Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the _length_ratio action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-result = AutogenMetric._length_ratio(..., ...)
-```
+**Return value:**
+- `float`
 
 ### `AutogenConversationMetric` ([`src/autogen_team/evaluation/metrics/metrics.py`](/src/autogen_team/evaluation/metrics/metrics.py))
 #### Overview
@@ -321,23 +393,39 @@ Parameters:
 - None found.
 
 #### Methods
-##### `score(self, targets: Any, outputs: Any) -> float` (Public)
-**Description:** Executes the score operation, mutating state or calculating derived values as necessary.
+##### `score(self, targets: pd.DataFrame, outputs: pd.DataFrame) -> float` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `targets`: Any
-- `outputs`: Any
+- `targets`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `outputs`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `float`
-- Semantic Meaning: The resulting value after processing the score action.
+- return type: `float`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -369,15 +457,21 @@ Returns:
 - None
 
 **Output:**
-- Return Type: `MlflowThreshold`
-- Semantic Meaning: The resulting value after processing the to_mlflow action.
+- return type: `MlflowThreshold`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -385,3 +479,38 @@ result = Threshold.to_mlflow()
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[metrics] --> [mean] : calls
+[metrics] --> [cast] : calls
+[metrics] --> [replace] : calls
+[metrics] --> [combine] : calls
+[metrics] --> [_length_ratio] : calls
+[metrics] --> [len] : calls
+[metrics] --> [DataFrame] : calls
+[metrics] --> [MlflowMetric] : calls
+[metrics] --> [apply] : calls
+[metrics] --> [get] : calls
+[metrics] --> [_exact_match_score] : calls
+[metrics] --> [float] : calls
+[metrics] --> [SequenceMatcher] : calls
+[metrics] --> [ratio] : calls
+[metrics] --> [ValueError] : calls
+[metrics] --> [make_metric] : calls
+[metrics] --> [MetricThreshold] : calls
+[metrics] --> [reset_index] : calls
+[metrics] --> [score] : calls
+[metrics] --> [_similarity_score] : calls
+[metrics] --> [predict] : calls
+[metrics] --> [Field] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** ../../application/jobs/evaluations.md, ../../application/jobs/tuning.md, ../../../../tests/application/jobs/test_evaluations.md, ../../../../tests/evaluation/metrics/test_metrics.md, ../../../../tests/conftest.md, ../../application/jobs/training.md
+- **Calls:** mean, cast, replace, combine, _length_ratio, len, DataFrame, MlflowMetric, apply, get, _exact_match_score, float, SequenceMatcher, ratio, ValueError, make_metric, MetricThreshold, reset_index, score, _similarity_score, predict, Field
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

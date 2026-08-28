@@ -6,7 +6,7 @@ title: "Module: mcp_client"
 source_path: "src/autogen_team/infrastructure/client/mcp_client.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.931099+00:00"
+timestamp: "2026-08-28T06:32:33.042297+00:00"
 ---
 
 # Module Specification: mcp_client
@@ -21,10 +21,10 @@ Provides functionality related to mcp client.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for mcp_client.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for mcp_client.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -44,15 +44,24 @@ Provides functionality related to mcp client.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
@@ -64,6 +73,46 @@ Clients instantiate classes or call functions, which execute business logic and 
         +disconnect() : None
         +call_tool() : Any
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "infrastructure" {
+                package "client" {
+                    [mcp_client.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [mcp_client.py]
+    }
+    [mcp_client.py] --> [json]
+    [mcp_client.py] --> [os]
+    [mcp_client.py] --> [typing.Any]
+    [mcp_client.py] --> [typing.Dict]
+    [mcp_client.py] --> [typing.Optional]
+    [mcp_client.py] --> [autogen_team.infrastructure.io.osvariables.Env]
+    [mcp_client.py] --> [mcp.ClientSession]
+    [mcp_client.py] --> [mcp.StdioServerParameters]
+    [mcp_client.py] --> [mcp.client.stdio.stdio_client]
 @enduml
 ```
 
@@ -92,8 +141,17 @@ Client for interacting with the MCP Server.
 
 #### Attributes
 - `env`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 - `session`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 - `_exit_stack`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 
 #### Methods
 ##### `__init__(self) -> None` (Public)
@@ -103,15 +161,21 @@ Client for interacting with the MCP Server.
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -126,15 +190,21 @@ result = instance.__init__()
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the connect action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -149,15 +219,21 @@ result = instance.connect()
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the disconnect action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -165,7 +241,7 @@ instance = MCPClient()
 result = instance.disconnect()
 ```
 
-##### `call_tool(self, name: str, arguments: Dict[...]) -> Any` (Public)
+##### `call_tool(self, name: str, arguments: Dict[str, Any]) -> Any` (Public)
 **Description:** Call a tool on the MCP Server.
 
 Args:
@@ -176,19 +252,35 @@ Returns:
     The result of the tool execution.
 
 **Inputs:**
-- `name`: str
-- `arguments`: Dict[...]
+- `name`
+  - type: str
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `arguments`
+  - type: Dict[str, Any]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the call_tool action.
+- return type: `Any`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -197,3 +289,29 @@ result = instance.call_tool(..., ...)
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[mcp_client] --> [__aenter__] : calls
+[mcp_client] --> [hasattr] : calls
+[mcp_client] --> [copy] : calls
+[mcp_client] --> [loads] : calls
+[mcp_client] --> [__aexit__] : calls
+[mcp_client] --> [connect] : calls
+[mcp_client] --> [ClientSession] : calls
+[mcp_client] --> [StdioServerParameters] : calls
+[mcp_client] --> [Env] : calls
+[mcp_client] --> [initialize] : calls
+[mcp_client] --> [stdio_client] : calls
+[mcp_client] --> [RuntimeError] : calls
+[mcp_client] --> [call_tool] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** ../../../../tests/infrastructure/client/test_mcp_client.md, ../../application/agents/coder_agent.md, ../../application/agents/tester_agent.md, ../../../../Scripts/test_mcp_client_simple.md, ../../application/agents/planner_agent.md, ../../application/agents/documentation_agent.md, ../../application/agents/reviewer_agent.md
+- **Calls:** __aenter__, hasattr, copy, loads, __aexit__, connect, ClientSession, StdioServerParameters, Env, initialize, stdio_client, RuntimeError, call_tool
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

@@ -6,7 +6,7 @@ title: "Module: datasets"
 source_path: "src/autogen_team/data_access/adapters/datasets.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.006586+00:00"
+timestamp: "2026-08-28T06:32:33.121063+00:00"
 ---
 
 # Module Specification: datasets
@@ -21,10 +21,10 @@ Provides functionality related to datasets.
 - Repositories
 
 **Responsibilities:**
-- Manage and execute operations for datasets.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for datasets.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -43,26 +43,35 @@ Provides functionality related to datasets.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     class Reader {
-        +read() : Any
+        +read() : pd.DataFrame
         +lineage() : Lineage
     }
     class ParquetReader {
-        +read() : Any
+        +read() : pd.DataFrame
         +lineage() : Lineage
     }
     class Writer {
@@ -71,6 +80,42 @@ Clients instantiate classes or call functions, which execute business logic and 
     class ParquetWriter {
         +write() : None
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "data_access" {
+                package "adapters" {
+                    [datasets.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Repositories" {
+        [datasets.py]
+    }
+    [datasets.py] --> [abc]
+    [datasets.py] --> [typing]
+    [datasets.py] --> [mlflow.data.pandas_dataset]
+    [datasets.py] --> [pandas]
+    [datasets.py] --> [pydantic]
 @enduml
 ```
 
@@ -100,7 +145,7 @@ Parameters:
 - None found.
 
 #### Methods
-##### `read(self) -> Any` (Public)
+##### `read(self) -> pd.DataFrame` (Public)
 **Description:** Read a dataframe from a dataset.
 
 Returns:
@@ -110,22 +155,28 @@ Returns:
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the read action.
+- return type: `pd.DataFrame`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = Reader.read()
 ```
 
-##### `lineage(self, name: str, data: Any, targets: Any, predictions: Any) -> Lineage` (Public)
+##### `lineage(self, name: str, data: pd.DataFrame, targets: str | None, predictions: str | None) -> Lineage` (Public)
 **Description:** Generate lineage information.
 
 Args:
@@ -138,21 +189,47 @@ Returns:
     Lineage: lineage information.
 
 **Inputs:**
-- `name`: str
-- `data`: Any
-- `targets`: Any
-- `predictions`: Any
+- `name`
+  - type: str
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `data`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: str | None
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: True
+  - default value: None
+- `predictions`
+  - type: str | None
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: True
+  - default value: None
 
 **Output:**
-- Return Type: `Lineage`
-- Semantic Meaning: The resulting value after processing the lineage action.
+- return type: `Lineage`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -170,47 +247,79 @@ Parameters:
 - None found.
 
 #### Methods
-##### `read(self) -> Any` (Public)
-**Description:** Executes the read operation, mutating state or calculating derived values as necessary.
+##### `read(self) -> pd.DataFrame` (Public)
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the read action.
+- return type: `pd.DataFrame`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
 result = ParquetReader.read()
 ```
 
-##### `lineage(self, name: str, data: Any, targets: Any, predictions: Any) -> Lineage` (Public)
-**Description:** Executes the lineage operation, mutating state or calculating derived values as necessary.
+##### `lineage(self, name: str, data: pd.DataFrame, targets: str | None, predictions: str | None) -> Lineage` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `name`: str
-- `data`: Any
-- `targets`: Any
-- `predictions`: Any
+- `name`
+  - type: str
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `data`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `targets`
+  - type: str | None
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: True
+  - default value: None
+- `predictions`
+  - type: str | None
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: True
+  - default value: None
 
 **Output:**
-- Return Type: `Lineage`
-- Semantic Meaning: The resulting value after processing the lineage action.
+- return type: `Lineage`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -228,25 +337,36 @@ e.g., to write file, database, cloud storage, ...
 - None found.
 
 #### Methods
-##### `write(self, data: Any) -> None` (Public)
+##### `write(self, data: pd.DataFrame) -> None` (Public)
 **Description:** Write a dataframe to a dataset.
 
 Args:
     data (pd.DataFrame): dataframe representation.
 
 **Inputs:**
-- `data`: Any
+- `data`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the write action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -264,22 +384,33 @@ Parameters:
 - None found.
 
 #### Methods
-##### `write(self, data: Any) -> None` (Public)
-**Description:** Executes the write operation, mutating state or calculating derived values as necessary.
+##### `write(self, data: pd.DataFrame) -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `data`: Any
+- `data`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the write action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -287,3 +418,20 @@ result = ParquetWriter.write(...)
 ```
 
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[datasets] --> [read_parquet] : calls
+[datasets] --> [head] : calls
+[datasets] --> [from_pandas] : calls
+[datasets] --> [to_parquet] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** ../../../../tests/conftest.md, ../../../../tests/data_access/adapters/test_datasets.md
+- **Calls:** read_parquet, head, from_pandas, to_parquet
+- **Called from:** None
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

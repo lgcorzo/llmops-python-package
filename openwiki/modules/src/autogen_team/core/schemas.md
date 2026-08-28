@@ -6,7 +6,7 @@ title: "Module: schemas"
 source_path: "src/autogen_team/core/schemas.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.950213+00:00"
+timestamp: "2026-08-28T06:32:33.062216+00:00"
 ---
 
 # Module Specification: schemas
@@ -21,10 +21,10 @@ Provides functionality related to schemas.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for schemas.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for schemas.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -46,22 +46,31 @@ Provides functionality related to schemas.
 **Exported Functions:**
 - None
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     class Schema {
-        +check() : Any
+        +check() : papd.DataFrame[TSchema]
     }
     class MetadataSchema {
     }
@@ -75,6 +84,40 @@ Clients instantiate classes or call functions, which execute business logic and 
     }
     class FeatureImportancesSchema {
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "core" {
+                [schemas.py]
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    ' No functions for sequence
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [schemas.py]
+    }
+    [schemas.py] --> [typing]
+    [schemas.py] --> [pandas]
+    [schemas.py] --> [pandera]
+    [schemas.py] --> [pandera.typing]
+    [schemas.py] --> [pandera.typing.common]
 @enduml
 ```
 
@@ -101,7 +144,7 @@ e.g., to communicate and validate its fields.
 - None found.
 
 #### Methods
-##### `check(cls: Any, data: Any) -> Any` (Public)
+##### `check(cls: T.Type[TSchema], data: pd.DataFrame) -> papd.DataFrame[TSchema]` (Public)
 **Description:** Check the dataframe with this schema.
 
 Args:
@@ -111,19 +154,35 @@ Returns:
     papd.DataFrame[TSchema]: validated dataframe.
 
 **Inputs:**
-- `cls`: Any
-- `data`: Any
+- `cls`
+  - type: T.Type[TSchema]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `data`
+  - type: pd.DataFrame
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the check action.
+- return type: `papd.DataFrame[TSchema]`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -179,3 +238,23 @@ Schema for feature importances.
 
 #### Methods
 ## 6. Module Functions
+## 7. Call Graph
+```plantuml
+@startuml
+[schemas] --> [TypeVar] : calls
+[schemas] --> [cast] : calls
+[schemas] --> [DataFrame] : calls
+[schemas] --> [validate] : calls
+[schemas] --> [check] : calls
+[schemas] --> [print] : calls
+[schemas] --> [Field] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../dependencies/index.md)
+- **Used by:** None
+- **Calls:** TypeVar, cast, DataFrame, validate, check, print, Field
+- **Called from:** None
+- **Related classes:** [Classes](../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../diagrams/index.md)

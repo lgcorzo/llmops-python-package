@@ -161,6 +161,26 @@ def generate_uml_sequence(filepath, tree):
     return uml
 
 
+def generate_uml_package(filepath):
+    uml = ["```plantuml", "@startuml"]
+    parts = os.path.dirname(filepath).lstrip("./").split(os.sep)
+    if parts and parts[0]:
+        current_indent = "    "
+        for p in parts:
+            uml.append(f'{current_indent}package "{p}" {{')
+            current_indent += "    "
+
+        uml.append(f"{current_indent}[{os.path.basename(filepath)}]")
+
+        for _ in parts:
+            current_indent = current_indent[:-4]
+            uml.append(f"{current_indent}}}")
+    else:
+        uml.append(f"    [{os.path.basename(filepath)}]")
+    uml.extend(["@enduml", "```"])
+    return uml
+
+
 def generate_uml_component(filepath):
     uml = ["```plantuml", "@startuml"]
     layer = GLOBAL_SYMBOLS["layer"].get(filepath, "Unknown")
@@ -310,6 +330,9 @@ def generate_doc_for_file(filepath, tree):
     lines.append("## 4. UML 2.0 Diagrams")
     lines.append("### Class Diagram")
     lines.extend(generate_uml_diagram(classes))
+    lines.append("")
+    lines.append("### Package Diagram")
+    lines.extend(generate_uml_package(filepath))
     lines.append("")
     lines.append("### Sequence Diagram")
     lines.extend(generate_uml_sequence(filepath, tree))
@@ -498,55 +521,91 @@ def generate_doc_for_file(filepath, tree):
             input_args.append(f"{arg.arg}: {get_arg_type(arg)}")
         inputs_str = ", ".join(input_args)
 
-        lines.append(f"### `{func.name}({inputs_str})`")
-        func_doc = ast.get_docstring(func)
-        if func_doc:
-            lines.append(func_doc)
-        else:
-            lines.append("No description provided.")
-        lines.append("")
-        lines.append("**Inputs:**")
-
-        has_params = False
-        num_defaults = len(func.args.defaults) if func.args.defaults else 0
-        num_args = len(func.args.args)
-        default_offset = num_args - num_defaults
-        for i, arg in enumerate(func.args.args):
-            has_params = True
-            arg_type = get_arg_type(arg)
-            default_val = "None"
-            is_optional = "False"
-            if i >= default_offset:
-                try:
-                    default_val = ast.unparse(func.args.defaults[i - default_offset])
-                    is_optional = "True"
-                except Exception:
-                    default_val = "Unknown"
-
-            lines.append(f"- `{arg.arg}`")
-            lines.append(f"  - type: {arg_type}")
-            lines.append("  - meaning: Not explicitly defined.")
-            lines.append("  - valid values: Not explicitly defined.")
-            lines.append(f"  - optional?: {is_optional}")
-            lines.append(f"  - default value: {default_val}")
-
-        if not has_params:
-            lines.append("- None")
-        lines.append("")
-        lines.append("**Output:**")
+        is_private = func.name.startswith("_")
+        visibility = "Private" if is_private else "Public"
         ret_type = get_return_type(func)
-        lines.append(f"- return type: `{ret_type}`")
-        lines.append("- semantic meaning: Not explicitly defined.")
-        lines.append("- possible null values: Not explicitly defined.")
-        lines.append("- exceptions: Not explicitly defined.")
-        lines.append("")
-        lines.append("**Side Effects:**")
-        lines.append("- Database updates: Not explicitly defined.")
-        lines.append("- File operations: Not explicitly defined.")
-        lines.append("- Network calls: Not explicitly defined.")
-        lines.append("- Cache: Not explicitly defined.")
-        lines.append("- State changes: Not explicitly defined.")
-        lines.append("")
+
+        lines.append(f"### `{func.name}({inputs_str}) -> {ret_type}` ({visibility})")
+        func_doc = ast.get_docstring(func)
+
+        if is_private:
+            if func_doc:
+                lines.append(f"**Purpose:** {func_doc}")
+            else:
+                lines.append("**Purpose:** No description provided.")
+            lines.append("")
+            lines.append("**Parameters:**")
+            has_params = False
+            for arg in func.args.args:
+                has_params = True
+                arg_type = get_arg_type(arg)
+                lines.append(f"- `{arg.arg}`: {arg_type}")
+            if not has_params:
+                lines.append("- None")
+            lines.append("")
+            lines.append("**Return value:**")
+            lines.append(f"- `{ret_type}`")
+            lines.append("")
+        else:
+            if func_doc:
+                lines.append(f"**Description:** {func_doc}")
+            else:
+                lines.append("**Description:** No description provided.")
+            lines.append("")
+            lines.append("**Inputs:**")
+
+            has_params = False
+            num_defaults = len(func.args.defaults) if func.args.defaults else 0
+            num_args = len(func.args.args)
+            default_offset = num_args - num_defaults
+            for i, arg in enumerate(func.args.args):
+                has_params = True
+                arg_type = get_arg_type(arg)
+                default_val = "None"
+                is_optional = "False"
+                if i >= default_offset:
+                    try:
+                        default_val = ast.unparse(func.args.defaults[i - default_offset])
+                        is_optional = "True"
+                    except Exception:
+                        default_val = "Unknown"
+
+                lines.append(f"- `{arg.arg}`")
+                lines.append(f"  - type: {arg_type}")
+                lines.append("  - meaning: Not explicitly defined.")
+                lines.append("  - valid values: Not explicitly defined.")
+                lines.append(f"  - optional?: {is_optional}")
+                lines.append(f"  - default value: {default_val}")
+
+            if not has_params:
+                lines.append("- None")
+            lines.append("")
+            lines.append("**Output:**")
+            lines.append(f"- return type: `{ret_type}`")
+            lines.append("- semantic meaning: Not explicitly defined.")
+            lines.append("- possible null values: Not explicitly defined.")
+            lines.append("- exceptions: Not explicitly defined.")
+            lines.append("")
+            lines.append("**Side Effects:**")
+            lines.append("- Database updates: Not explicitly defined.")
+            lines.append("- File operations: Not explicitly defined.")
+            lines.append("- Network calls: Not explicitly defined.")
+            lines.append("- Cache: Not explicitly defined.")
+            lines.append("- State changes: Not explicitly defined.")
+            lines.append("")
+            lines.append("**Complexity:**")
+            lines.append("- Time Complexity: Not explicitly defined.")
+            lines.append("- Space Complexity: Not explicitly defined.")
+            lines.append("")
+            lines.append("**Example:**")
+            lines.append("```python")
+            ex_args = []
+            for arg in func.args.args:
+                ex_args.append("...")
+            ex_args_str = ", ".join(ex_args)
+            lines.append(f"result = {func.name}({ex_args_str})")
+            lines.append("```")
+            lines.append("")
 
     called_from = []
     used_by = []

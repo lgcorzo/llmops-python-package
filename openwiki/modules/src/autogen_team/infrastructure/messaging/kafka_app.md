@@ -6,7 +6,7 @@ title: "Module: kafka_app"
 source_path: "src/autogen_team/infrastructure/messaging/kafka_app.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:32.939357+00:00"
+timestamp: "2026-08-28T06:32:33.049315+00:00"
 ---
 
 # Module Specification: kafka_app
@@ -21,10 +21,10 @@ Provides functionality related to kafka app.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for kafka_app.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for kafka_app.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -66,22 +66,31 @@ Provides functionality related to kafka app.
 - `health_check`
 - `main`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     class PredictionRequest {
-        +validate_model() : Any
+        +validate_model() : DataFrameBase[InputsSchema]
     }
     class PredictionResponse {
     }
@@ -99,6 +108,88 @@ Clients instantiate classes or call functions, which execute business logic and 
         +_close_consumer() : None
         +stop() : None
     }
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "src" {
+        package "autogen_team" {
+            package "infrastructure" {
+                package "messaging" {
+                    [kafka_app.py]
+                }
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    health_check -> get : call
+    main -> update : call
+    main -> info : call
+    main -> getenv : call
+    main -> start : call
+    main -> replace : call
+    main -> hasattr : call
+    main -> DataFrame : call
+    main -> check : call
+    main -> str : call
+    main -> MlflowService : call
+    main -> PredictionResponse : call
+    main -> to_numpy : call
+    main -> print : call
+    main -> tolist : call
+    main -> warning : call
+    main -> load : call
+    main -> error : call
+    main -> isdir : call
+    main -> copy : call
+    main -> predict : call
+    main -> FastAPIKafkaService : call
+    main -> CustomLoader : call
+    main -> startswith : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [kafka_app.py]
+    }
+    [kafka_app.py] --> [json]
+    [kafka_app.py] --> [logging]
+    [kafka_app.py] --> [os]
+    [kafka_app.py] --> [signal]
+    [kafka_app.py] --> [sys]
+    [kafka_app.py] --> [threading]
+    [kafka_app.py] --> [time]
+    [kafka_app.py] --> [typing.Any]
+    [kafka_app.py] --> [typing.Callable]
+    [kafka_app.py] --> [typing.Dict]
+    [kafka_app.py] --> [typing.Optional]
+    [kafka_app.py] --> [pandas]
+    [kafka_app.py] --> [uvicorn]
+    [kafka_app.py] --> [confluent_kafka.Consumer]
+    [kafka_app.py] --> [confluent_kafka.KafkaError]
+    [kafka_app.py] --> [confluent_kafka.Producer]
+    [kafka_app.py] --> [fastapi.FastAPI]
+    [kafka_app.py] --> [pandera.typing.common.DataFrameBase]
+    [kafka_app.py] --> [pydantic.BaseModel]
+    [kafka_app.py] --> [autogen_team.infrastructure.io]
+    [kafka_app.py] --> [autogen_team.core.schemas.InputsSchema]
+    [kafka_app.py] --> [autogen_team.core.schemas.Outputs]
+    [kafka_app.py] --> [autogen_team.infrastructure.services]
+    [kafka_app.py] --> [autogen_team.registry.adapters.mlflow_adapter.CustomLoader]
+    [kafka_app.py] --> [types]
+    [kafka_app.py] --> [autogen_team.registry]
+    [kafka_app.py] --> [autogen_team.registry.adapters.mlflow_adapter.CustomSaver]
+    [kafka_app.py] --> [autogen_team.models]
 @enduml
 ```
 
@@ -145,22 +236,28 @@ Request model for prediction.
 - None found.
 
 #### Methods
-##### `validate_model(self) -> Any` (Public)
+##### `validate_model(self) -> DataFrameBase[InputsSchema]` (Public)
 **Description:** Validates the input data against InputsSchema.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the validate_model action.
+- return type: `DataFrameBase[InputsSchema]`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -184,36 +281,94 @@ Service for deploying a FastAPI application with a Kafka producer and consumer.
 
 #### Attributes
 - `server_thread`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 - `stop_event`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 - `prediction_callback`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 - `producer_config`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 - `consumer_config`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 - `input_topic`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 - `output_topic`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 - `producer`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 - `consumer`
+  - Type: Any
+  - Purpose: Not explicitly defined.
+  - Constraints: Not explicitly defined.
 
 #### Methods
-##### `__init__(self, prediction_callback: Callable[...], producer_config: Dict[...], consumer_config: Dict[...], input_topic: str, output_topic: str) -> Any` (Public)
-**Description:** Executes the __init__ operation, mutating state or calculating derived values as necessary.
+##### `__init__(self, prediction_callback: Callable[[PredictionRequest], PredictionResponse], producer_config: Dict[str, Any], consumer_config: Dict[str, Any], input_topic: str, output_topic: str) -> Any` (Public)
+**Description:** No description provided.
 
 **Inputs:**
-- `prediction_callback`: Callable[...]
-- `producer_config`: Dict[...]
-- `consumer_config`: Dict[...]
-- `input_topic`: str
-- `output_topic`: str
+- `prediction_callback`
+  - type: Callable[[PredictionRequest], PredictionResponse]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `producer_config`
+  - type: Dict[str, Any]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `consumer_config`
+  - type: Dict[str, Any]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `input_topic`
+  - type: str
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `output_topic`
+  - type: str
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the __init__ action.
+- return type: `Any`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -221,23 +376,39 @@ instance = FastAPIKafkaService()
 result = instance.__init__(..., ..., ..., ..., ...)
 ```
 
-##### `delivery_report(self, err: Optional[...], msg: Any) -> None` (Public)
+##### `delivery_report(self, err: Optional[KafkaError], msg: Any) -> None` (Public)
 **Description:** Called once for each message produced to indicate delivery result.
 
 **Inputs:**
-- `err`: Optional[...]
-- `msg`: Any
+- `err`
+  - type: Optional[KafkaError]
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
+- `msg`
+  - type: Any
+  - meaning: Not explicitly defined.
+  - valid values: Not explicitly defined.
+  - optional?: False
+  - default value: None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the delivery_report action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -252,15 +423,21 @@ result = instance.delivery_report(..., ...)
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the start action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -268,189 +445,77 @@ instance = FastAPIKafkaService()
 result = instance.start()
 ```
 
-##### `_initialize_kafka_producer(self) -> None` (Public)
-**Description:** Initialize Kafka producer.
+##### `_initialize_kafka_producer(self) -> None` (Private)
+**Purpose:** Initialize Kafka producer.
 
-**Inputs:**
+**Parameters:**
 - None
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the _initialize_kafka_producer action.
+**Return value:**
+- `None`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+##### `_initialize_kafka_consumer(self) -> None` (Private)
+**Purpose:** Initialize Kafka consumer.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = FastAPIKafkaService()
-result = instance._initialize_kafka_producer()
-```
-
-##### `_initialize_kafka_consumer(self) -> None` (Public)
-**Description:** Initialize Kafka consumer.
-
-**Inputs:**
+**Parameters:**
 - None
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the _initialize_kafka_consumer action.
+**Return value:**
+- `None`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+##### `_run_server(self) -> None` (Private)
+**Purpose:** Run the FastAPI server.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = FastAPIKafkaService()
-result = instance._initialize_kafka_consumer()
-```
-
-##### `_run_server(self) -> None` (Public)
-**Description:** Run the FastAPI server.
-
-**Inputs:**
+**Parameters:**
 - None
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the _run_server action.
+**Return value:**
+- `None`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+##### `_consume_messages(self) -> None` (Private)
+**Purpose:** Consume messages from Kafka topic and produce predictions.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = FastAPIKafkaService()
-result = instance._run_server()
-```
-
-##### `_consume_messages(self) -> None` (Public)
-**Description:** Consume messages from Kafka topic and produce predictions.
-
-**Inputs:**
+**Parameters:**
 - None
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the _consume_messages action.
+**Return value:**
+- `None`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+##### `_poll_message(self) -> Any` (Private)
+**Purpose:** Poll message from Kafka consumer.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = FastAPIKafkaService()
-result = instance._consume_messages()
-```
-
-##### `_poll_message(self) -> Any` (Public)
-**Description:** Poll message from Kafka consumer.
-
-**Inputs:**
+**Parameters:**
 - None
 
-**Output:**
-- Return Type: `Any`
-- Semantic Meaning: The resulting value after processing the _poll_message action.
+**Return value:**
+- `Any`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+##### `_handle_message_error(self, msg: Any) -> bool` (Private)
+**Purpose:** Handle errors in polled messages.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = FastAPIKafkaService()
-result = instance._poll_message()
-```
-
-##### `_handle_message_error(self, msg: Any) -> bool` (Public)
-**Description:** Handle errors in polled messages.
-
-**Inputs:**
+**Parameters:**
 - `msg`: Any
 
-**Output:**
-- Return Type: `bool`
-- Semantic Meaning: The resulting value after processing the _handle_message_error action.
+**Return value:**
+- `bool`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+##### `_process_message(self, msg: Any) -> None` (Private)
+**Purpose:** Process a valid Kafka message.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = FastAPIKafkaService()
-result = instance._handle_message_error(...)
-```
-
-##### `_process_message(self, msg: Any) -> None` (Public)
-**Description:** Process a valid Kafka message.
-
-**Inputs:**
+**Parameters:**
 - `msg`: Any
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the _process_message action.
+**Return value:**
+- `None`
 
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+##### `_close_consumer(self) -> None` (Private)
+**Purpose:** Close the Kafka consumer.
 
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = FastAPIKafkaService()
-result = instance._process_message(...)
-```
-
-##### `_close_consumer(self) -> None` (Public)
-**Description:** Close the Kafka consumer.
-
-**Inputs:**
+**Parameters:**
 - None
 
-**Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the _close_consumer action.
-
-**Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
-
-**Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
-
-**Example:**
-```python
-instance = FastAPIKafkaService()
-result = instance._close_consumer()
-```
+**Return value:**
+- `None`
 
 ##### `stop(self) -> None` (Public)
 **Description:** Stop the FastAPI application and Kafka consumer.
@@ -459,15 +524,21 @@ result = instance._close_consumer()
 - None
 
 **Output:**
-- Return Type: `None`
-- Semantic Meaning: The resulting value after processing the stop action.
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
 **Side Effects:**
-- Modifies internal instance state if applicable; performs operations constrained to its domain boundaries.
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
 
 **Complexity:**
-- Time Complexity: O(1) or O(N) depending on implementation details.
-- Space Complexity: O(1) auxiliary space expected.
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
 
 **Example:**
 ```python
@@ -476,20 +547,140 @@ result = instance.stop()
 ```
 
 ## 6. Module Functions
-### `health_check()`
-Simple health check endpoint to verify that the service is running.
+### `health_check() -> Dict[str, str]` (Public)
+**Description:** Simple health check endpoint to verify that the service is running.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `Any`
+- return type: `Dict[str, str]`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
-### `main()`
-Executes the main operation.
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = health_check()
+```
+
+### `main() -> None` (Public)
+**Description:** No description provided.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = main()
+```
+
+## 7. Call Graph
+```plantuml
+@startuml
+[kafka_app] --> [main] : calls
+[kafka_app] --> [poll] : calls
+[kafka_app] --> [value] : calls
+[kafka_app] --> [update] : calls
+[kafka_app] --> [validate] : calls
+[kafka_app] --> [info] : calls
+[kafka_app] --> [getenv] : calls
+[kafka_app] --> [_run_server] : calls
+[kafka_app] --> [is_set] : calls
+[kafka_app] --> [start] : calls
+[kafka_app] --> [replace] : calls
+[kafka_app] --> [Producer] : calls
+[kafka_app] --> [debug] : calls
+[kafka_app] --> [hasattr] : calls
+[kafka_app] --> [flush] : calls
+[kafka_app] --> [_initialize_kafka_consumer] : calls
+[kafka_app] --> [Event] : calls
+[kafka_app] --> [DataFrame] : calls
+[kafka_app] --> [_handle_message_error] : calls
+[kafka_app] --> [get] : calls
+[kafka_app] --> [int] : calls
+[kafka_app] --> [FastAPI] : calls
+[kafka_app] --> [Consumer] : calls
+[kafka_app] --> [basicConfig] : calls
+[kafka_app] --> [topic] : calls
+[kafka_app] --> [clear] : calls
+[kafka_app] --> [_process_message] : calls
+[kafka_app] --> [check] : calls
+[kafka_app] --> [getLogger] : calls
+[kafka_app] --> [str] : calls
+[kafka_app] --> [MlflowService] : calls
+[kafka_app] --> [setLevel] : calls
+[kafka_app] --> [encode] : calls
+[kafka_app] --> [PredictionResponse] : calls
+[kafka_app] --> [to_numpy] : calls
+[kafka_app] --> [produce] : calls
+[kafka_app] --> [set] : calls
+[kafka_app] --> [partition] : calls
+[kafka_app] --> [subscribe] : calls
+[kafka_app] --> [loads] : calls
+[kafka_app] --> [sleep] : calls
+[kafka_app] --> [print] : calls
+[kafka_app] --> [run] : calls
+[kafka_app] --> [commit] : calls
+[kafka_app] --> [exception] : calls
+[kafka_app] --> [PredictionRequest] : calls
+[kafka_app] --> [tolist] : calls
+[kafka_app] --> [_close_consumer] : calls
+[kafka_app] --> [warning] : calls
+[kafka_app] --> [startswith] : calls
+[kafka_app] --> [load] : calls
+[kafka_app] --> [error] : calls
+[kafka_app] --> [ModuleType] : calls
+[kafka_app] --> [isdir] : calls
+[kafka_app] --> [copy] : calls
+[kafka_app] --> [close] : calls
+[kafka_app] --> [Thread] : calls
+[kafka_app] --> [predict] : calls
+[kafka_app] --> [prediction_callback] : calls
+[kafka_app] --> [dumps] : calls
+[kafka_app] --> [FastAPIKafkaService] : calls
+[kafka_app] --> [_initialize_kafka_producer] : calls
+[kafka_app] --> [kill] : calls
+[kafka_app] --> [getpid] : calls
+[kafka_app] --> [code] : calls
+[kafka_app] --> [decode] : calls
+[kafka_app] --> [CustomLoader] : calls
+[kafka_app] --> [_poll_message] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../../dependencies/index.md)
+- **Used by:** ../../../../tests/infrastructure/messaging/test_kafka_security.md, ../../../../tests/repro_kafka_log.md, ../../../../tests/infrastructure/messaging/test_kafka_app.md
+- **Calls:** main, poll, value, update, validate, info, getenv, _run_server, is_set, start, replace, Producer, debug, hasattr, flush, _initialize_kafka_consumer, Event, DataFrame, _handle_message_error, get, int, FastAPI, Consumer, basicConfig, topic, clear, _process_message, check, getLogger, str, MlflowService, setLevel, encode, PredictionResponse, to_numpy, produce, set, partition, subscribe, loads, sleep, print, run, commit, exception, PredictionRequest, tolist, _close_consumer, warning, startswith, load, error, ModuleType, isdir, copy, close, Thread, predict, prediction_callback, dumps, FastAPIKafkaService, _initialize_kafka_producer, kill, getpid, code, decode, CustomLoader, _poll_message
+- **Called from:** ../../../../skills/validate/scripts/okf_validate.md, ../../../../tests/infrastructure/messaging/test_kafka_app.md, ../../../../Scripts/verify_agent_mcp.md, ../../../../Scripts/run_hatchet_worker.md, ../../../../Scripts/trigger_mission.md, ../../../../tests/repro_kafka_log.md, ../../../../skills/validate/scripts/convert_links.md, ../../../../tests/test_scripts.md, ../../../../tests/evaluation/metrics/test_metrics.md, ../../../../Scripts/test_mcp_client_simple.md, ../../../../Scripts/send_kafka_test.md, ../../__main__.md, ../../../../tests/registry/adapters/test_security_mlflow_adapter.md
+- **Related classes:** [Classes](../../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../../diagrams/index.md)

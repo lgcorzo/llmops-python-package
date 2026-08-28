@@ -6,7 +6,7 @@ title: "Module: test_documentation_agent"
 source_path: "tests/application/agents/test_documentation_agent.py"
 description: "AST-generated documentation for the module."
 tags: ["generated", "ast"]
-timestamp: "2026-08-06T06:46:33.099045+00:00"
+timestamp: "2026-08-28T06:32:33.251177+00:00"
 ---
 
 # Module Specification: test_documentation_agent
@@ -21,10 +21,10 @@ Provides functionality related to test documentation agent.
 - Infrastructure/Other
 
 **Responsibilities:**
-- Manage and execute operations for test_documentation_agent.
+- Not explicitly defined.
 
 **Main Workflow:**
-- Initialize components and process requests for test_documentation_agent.
+- Not explicitly defined.
 
 ## 2. Dependencies
 **Imports:**
@@ -40,21 +40,73 @@ Provides functionality related to test documentation agent.
 - `test_documentation_agent_generate_docs_success`
 - `test_documentation_agent_generate_docs_failure`
 
+**Exported Interfaces:**
+- Not explicitly defined.
+
+**Public API:**
+- Not explicitly defined.
+
 ## 3. Architecture & Execution
 ### Internal Architecture
-Follows standard modular design, encapsulating state and behavior within defined classes and functions.
+Not explicitly defined.
 
 ### Execution Flow
-Sequential execution of defined functions and class methods.
+Not explicitly defined.
 
 ### Sequence Explanation
-Clients instantiate classes or call functions, which execute business logic and return results.
+Not explicitly defined.
+
+### Examples
+Not explicitly defined.
 
 ## 4. UML 2.0 Diagrams
 ### Class Diagram
 ```plantuml
 @startuml
     ' No classes found in module
+@enduml
+```
+
+### Package Diagram
+```plantuml
+@startuml
+    package "tests" {
+        package "application" {
+            package "agents" {
+                [test_documentation_agent.py]
+            }
+        }
+    }
+@enduml
+```
+
+### Sequence Diagram
+```plantuml
+@startuml
+    test_documentation_agent_generate_docs_success -> assert_called_once : call
+    test_documentation_agent_generate_docs_success -> assert_called_once_with : call
+    test_documentation_agent_generate_docs_success -> patch : call
+    test_documentation_agent_generate_docs_success -> generate_docs : call
+    test_documentation_agent_generate_docs_success -> DocumentationAgent : call
+    test_documentation_agent_generate_docs_failure -> assert_called_once : call
+    test_documentation_agent_generate_docs_failure -> raises : call
+    test_documentation_agent_generate_docs_failure -> Exception : call
+    test_documentation_agent_generate_docs_failure -> patch : call
+    test_documentation_agent_generate_docs_failure -> generate_docs : call
+    test_documentation_agent_generate_docs_failure -> DocumentationAgent : call
+@enduml
+```
+
+### Component Diagram
+```plantuml
+@startuml
+    package "Infrastructure/Other" {
+        [test_documentation_agent.py]
+    }
+    [test_documentation_agent.py] --> [pytest]
+    [test_documentation_agent.py] --> [unittest.mock.AsyncMock]
+    [test_documentation_agent.py] --> [unittest.mock.patch]
+    [test_documentation_agent.py] --> [autogen_team.application.agents.documentation_agent.DocumentationAgent]
 @enduml
 ```
 
@@ -70,20 +122,79 @@ Clients instantiate classes or call functions, which execute business logic and 
 
 ## 5. Class & Method Specifications
 ## 6. Module Functions
-### `test_documentation_agent_generate_docs_success()`
-Test DocumentationAgent.generate_docs success path.
+### `test_documentation_agent_generate_docs_success() -> None` (Public)
+**Description:** Test DocumentationAgent.generate_docs success path.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
 
-### `test_documentation_agent_generate_docs_failure()`
-Test DocumentationAgent.generate_docs exception handling.
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_documentation_agent_generate_docs_success()
+```
+
+### `test_documentation_agent_generate_docs_failure() -> None` (Public)
+**Description:** Test DocumentationAgent.generate_docs exception handling.
 
 **Inputs:**
 - None
 
 **Output:**
-- Return Type: `None`
+- return type: `None`
+- semantic meaning: Not explicitly defined.
+- possible null values: Not explicitly defined.
+- exceptions: Not explicitly defined.
+
+**Side Effects:**
+- Database updates: Not explicitly defined.
+- File operations: Not explicitly defined.
+- Network calls: Not explicitly defined.
+- Cache: Not explicitly defined.
+- State changes: Not explicitly defined.
+
+**Complexity:**
+- Time Complexity: Not explicitly defined.
+- Space Complexity: Not explicitly defined.
+
+**Example:**
+```python
+result = test_documentation_agent_generate_docs_failure()
+```
+
+## 7. Call Graph
+```plantuml
+@startuml
+[test_documentation_agent] --> [assert_called_once] : calls
+[test_documentation_agent] --> [assert_called_once_with] : calls
+[test_documentation_agent] --> [raises] : calls
+[test_documentation_agent] --> [patch] : calls
+[test_documentation_agent] --> [Exception] : calls
+[test_documentation_agent] --> [generate_docs] : calls
+[test_documentation_agent] --> [DocumentationAgent] : calls
+@enduml
+```
+
+## 8. Cross References
+- **Dependencies:** [Dependencies](../../../../dependencies/index.md)
+- **Used by:** None
+- **Calls:** assert_called_once, assert_called_once_with, raises, patch, Exception, generate_docs, DocumentationAgent
+- **Called from:** None
+- **Related classes:** [Classes](../../../../classes/index.md)
+- **Related diagrams:** [Diagrams](../../../../diagrams/index.md)
