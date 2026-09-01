@@ -2,6 +2,7 @@ import os
 import ast
 import shutil
 import argparse
+import re
 import subprocess
 from datetime import datetime, timezone
 
@@ -41,13 +42,27 @@ def get_changed_files():
         output = subprocess.check_output(
             ["git", "diff", "--name-only", "main...HEAD"], universal_newlines=True
         )
-        return [f for f in output.splitlines() if f.endswith(".py") and os.path.exists(f)]
+        return [
+            f
+            for f in output.splitlines()
+            if f.endswith(".py")
+            and os.path.exists(f)
+            and f not in IGNORED_DIRS
+            and "openwiki" not in f
+        ]
     except subprocess.CalledProcessError:
         try:
             output = subprocess.check_output(
                 ["git", "diff", "--name-only", "HEAD"], universal_newlines=True
             )
-            return [f for f in output.splitlines() if f.endswith(".py") and os.path.exists(f)]
+            return [
+                f
+                for f in output.splitlines()
+                if f.endswith(".py")
+                and os.path.exists(f)
+                and f not in IGNORED_DIRS
+                and "openwiki" not in f
+            ]
         except subprocess.CalledProcessError:
             return []
 
@@ -651,6 +666,99 @@ def generate_doc_for_file(filepath, tree):
     return "\n".join(lines)
 
 
+def validate_documentation(py_files):
+    missing_docs = 0
+    for filepath in py_files:
+        tree, _ = parse_file(filepath)
+        if not tree:
+            continue
+        classes = extract_classes(tree)
+        functions = extract_functions(tree)
+        for cls in classes:
+            if not ast.get_docstring(cls):
+                print(f"Warning: Public class {cls.name} in {filepath} is missing documentation.")
+                missing_docs += 1
+            for node in cls.body:
+                if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                    if not node.name.startswith("_") or node.name == "__init__":
+                        if not ast.get_docstring(node):
+                            print(
+                                f"Warning: Public method {cls.name}.{node.name} in {filepath} is missing documentation."
+                            )
+                            missing_docs += 1
+        for func in functions:
+            if not func.name.startswith("_"):
+                if not ast.get_docstring(func):
+                    print(
+                        f"Warning: Public function {func.name} in {filepath} is missing documentation."
+                    )
+                    missing_docs += 1
+
+    if missing_docs > 0:
+        print(f"Documentation validation finished with {missing_docs} warnings.")
+    else:
+        print("Documentation validation passed successfully.")
+
+
+def validate_links(directory="openwiki"):
+    broken_links = 0
+    all_files = []
+    for dirpath, _, filenames in os.walk(directory):
+        for f in filenames:
+            if f.endswith(".md"):
+                all_files.append(os.path.join(dirpath, f))
+
+    for filepath in all_files:
+        with open(filepath, "r", encoding="utf-8") as f:
+            text = f.read()
+
+        # Match standard markdown links [text](link)
+        links = re.findall(r"\[([^\]]+)\]\(([^)]+)\)", text)
+        for _, link in links:
+            # Skip external links and anchors
+            if link.startswith("http") or link.startswith("#"):
+                continue
+
+            # Handle absolute links from root
+            if link.startswith("/"):
+                target_path = link.lstrip("/")
+            else:
+                target_path = os.path.normpath(os.path.join(os.path.dirname(filepath), link))
+
+            # Check if file exists, if it points to a markdown file
+            if target_path.endswith(".md"):
+                if not os.path.exists(target_path) and not os.path.exists(
+                    os.path.join("openwiki", target_path)
+                ):
+                    print(f"Broken link in {filepath}: {link} -> {target_path}")
+                    broken_links += 1
+
+    if broken_links > 0:
+        print(f"Validation failed: found {broken_links} broken links.")
+    else:
+        print("Link validation passed successfully.")
+
+
+def generate_dependency_graph():
+    os.makedirs(os.path.join("openwiki", "dependencies"), exist_ok=True)
+    graph_path = os.path.join("openwiki", "dependencies", "graph.md")
+
+    lines = ["# Project Dependency Graph", "", "```plantuml", "@startuml"]
+
+    for fp, imps in GLOBAL_SYMBOLS.get("imports", {}).items():
+        module_name = os.path.basename(fp).replace(".py", "")
+        for imp in imps:
+            # We only want to plot inter-module dependencies if needed, or all of them.
+            # Here we just output the top level imports or internal ones.
+            lines.append(f"    [{module_name}] --> [{imp}]")
+
+    lines.append("@enduml")
+    lines.append("```")
+
+    with open(graph_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+
+
 def update_indexes(py_files):
     summary_lines = [
         "# Summary",
@@ -762,6 +870,7 @@ def update_indexes(py_files):
                     f"- [{fn_name}]({os.path.relpath(target_md, os.path.join('openwiki', folder))})"
                 )
         elif folder == "dependencies":
+            lines.append("- [Dependency Graph](graph.md)")
             for fp, imps in sorted(GLOBAL_SYMBOLS["imports"].items()):
                 if imps:
                     lines.append(f"- `{os.path.basename(fp)}` depends on: {', '.join(imps[:5])}...")
@@ -825,8 +934,14 @@ def main():
 
     if args.mode == "full":
         update_indexes(py_files)
+        generate_dependency_graph()
+        validate_documentation(py_files)
+        validate_links("openwiki")
     else:
         update_indexes(get_python_files("."))
+        generate_dependency_graph()
+        validate_documentation(py_files)
+        validate_links("openwiki")
 
 
 if __name__ == "__main__":
