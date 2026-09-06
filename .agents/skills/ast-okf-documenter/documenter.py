@@ -1,5 +1,6 @@
 import os
 import ast
+import re
 import shutil
 import argparse
 import subprocess
@@ -64,6 +65,14 @@ def parse_file(filepath):
 
 def extract_classes(tree):
     return [node for node in tree.body if isinstance(node, ast.ClassDef)]
+
+
+def split_camel_case(name):
+    return re.sub('([a-z])([A-Z])', r'\1 \2', name).lower()
+
+
+def split_snake_case(name):
+    return name.replace('_', ' ').strip().lower()
 
 
 def extract_functions(tree):
@@ -352,8 +361,9 @@ def generate_doc_for_file(filepath, tree):
         if cls_doc:
             lines.append(cls_doc)
         else:
+            heuristic_name = split_camel_case(cls.name)
             lines.append(
-                f"Provides state and behavior management for {cls.name.replace('Agent', ' Agent')}."
+                f"Provides state and behavior management for {heuristic_name}."
             )
         lines.append("")
 
@@ -424,7 +434,8 @@ def generate_doc_for_file(filepath, tree):
                     if func_doc:
                         lines.append(f"**Purpose:** {func_doc}")
                     else:
-                        lines.append("**Purpose:** No description provided.")
+                        heuristic_name = split_snake_case(node.name)
+                        lines.append(f"**Purpose:** Handles {heuristic_name}.")
                     lines.append("")
                     lines.append("**Parameters:**")
                     has_params = False
@@ -444,7 +455,8 @@ def generate_doc_for_file(filepath, tree):
                     if func_doc:
                         lines.append(f"**Description:** {func_doc}")
                     else:
-                        lines.append("**Description:** No description provided.")
+                        heuristic_name = split_snake_case(node.name)
+                        lines.append(f"**Description:** Handles {heuristic_name}.")
                     lines.append("")
                     lines.append("**Inputs:**")
                     has_params = False
@@ -532,7 +544,8 @@ def generate_doc_for_file(filepath, tree):
             if func_doc:
                 lines.append(f"**Purpose:** {func_doc}")
             else:
-                lines.append("**Purpose:** No description provided.")
+                heuristic_name = split_snake_case(func.name)
+                lines.append(f"**Purpose:** Handles {heuristic_name}.")
             lines.append("")
             lines.append("**Parameters:**")
             has_params = False
@@ -550,7 +563,8 @@ def generate_doc_for_file(filepath, tree):
             if func_doc:
                 lines.append(f"**Description:** {func_doc}")
             else:
-                lines.append("**Description:** No description provided.")
+                heuristic_name = split_snake_case(func.name)
+                lines.append(f"**Description:** Handles {heuristic_name}.")
             lines.append("")
             lines.append("**Inputs:**")
 
@@ -772,6 +786,46 @@ def update_indexes(py_files):
             f.write("\n".join(lines))
 
 
+def validate_docs():
+    broken_links = []
+    link_pattern = re.compile(r'\[.*?\]\((.*?)\)')
+
+    for dirpath, _, filenames in os.walk("openwiki"):
+        for f in filenames:
+            if f.endswith(".md"):
+                file_path = os.path.join(dirpath, f)
+                with open(file_path, "r", encoding="utf-8") as file:
+                    content = file.read()
+
+                links = link_pattern.findall(content)
+                for link in links:
+                    if link.startswith("http") or link.startswith("#"):
+                        continue
+
+                    # Remove hash fragments if any in local links
+                    link_no_hash = link.split('#')[0]
+                    if not link_no_hash:
+                        continue
+
+                    if link_no_hash.startswith("/"):
+                        # absolute to root repo
+                        target_path = link_no_hash.lstrip("/")
+                    else:
+                        # relative to current file
+                        target_path = os.path.normpath(os.path.join(dirpath, link_no_hash))
+
+                    if not os.path.exists(target_path):
+                        broken_links.append(f"Broken link in {file_path}: {link} -> {target_path}")
+
+    if broken_links:
+        print(f"Found {len(broken_links)} broken links:")
+        for bl in broken_links[:10]:
+            print(bl)
+        if len(broken_links) > 10:
+            print("...")
+        raise ValueError(f"Found {len(broken_links)} broken links in generated documentation.")
+
+
 def build_okf_folders():
     folders = [
         "architecture",
@@ -827,6 +881,8 @@ def main():
         update_indexes(py_files)
     else:
         update_indexes(get_python_files("."))
+
+    validate_docs()
 
 
 if __name__ == "__main__":
