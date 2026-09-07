@@ -163,9 +163,9 @@ class SandboxService:
                 file_path = safe_join("/tmp", file_path)  # nosec B108
             else:
                 file_path = safe_join(os.getcwd(), file_path)
-        except ValueError as e:
-            logger.error(f"Security Error in upload_artifact: {e}")
-            raise ValueError(f"Security Error: Invalid file path {file_path}") from e
+        except ValueError:
+            logger.exception("Security Error in upload_artifact")
+            raise ValueError("Security Error: Invalid file path")
 
         s3_endpoint = os.getenv(
             "MLFLOW_S3_ENDPOINT_URL", "http://mlflow-minio-hl.storage.svc.cluster.local:9000"
