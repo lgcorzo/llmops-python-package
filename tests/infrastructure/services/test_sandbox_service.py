@@ -128,6 +128,16 @@ async def test_upload_artifact(sandbox_service: SandboxService, tmp_path: Path) 
 
 
 @pytest.mark.asyncio
+async def test_upload_artifact_invalid_path_no_leak(sandbox_service: SandboxService) -> None:
+    sensitive_path = "../../../etc/passwd"
+    with pytest.raises(ValueError) as exc_info:
+        await sandbox_service.upload_artifact("test_id", sensitive_path, "test-bucket")
+
+    assert str(exc_info.value) == "Security Error: Invalid file path"
+    assert sensitive_path not in str(exc_info.value)
+
+
+@pytest.mark.asyncio
 async def test_run_python_tests(sandbox_service: SandboxService) -> None:
     with patch.object(sandbox_service, "execute", new_callable=AsyncMock) as mock_execute:
         await sandbox_service.run_python_tests("test_id", "/workspace")
