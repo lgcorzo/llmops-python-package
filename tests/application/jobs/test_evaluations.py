@@ -159,7 +159,7 @@ def test_evaluations_job(
     assert (
         experiment.name == mlflow_service.experiment_name
     ), "Mlflow Experiment name should be the same!"
-    runs = mlflow_service.client().search_runs(experiment_ids=experiment.experiment_id)
+    runs = mlflow_service.client().search_runs(experiment_ids=[experiment.experiment_id])
     assert len(runs) == 2, "There should be a two Mlflow run for training and evaluations!"
     assert metric.name in runs[0].data.metrics, "Metric should be logged in Mlflow!"
     assert runs[0].info.status == "FINISHED", "Mlflow run status should be set as FINISHED!"

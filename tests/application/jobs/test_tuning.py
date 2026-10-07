@@ -104,7 +104,7 @@ def test_tuning_job(
         experiment.name == mlflow_service.experiment_name
     ), "Mlflow experiment name should be the same!"
 
-    runs = client.search_runs(experiment_ids=experiment.experiment_id)
+    runs = client.search_runs(experiment_ids=[experiment.experiment_id])
     assert len(runs) == len(out["results"]) + 1, "Mlflow should have 1 run per result + parent!"
     # - alerting service
     assert "Tuning Job Finished" in capsys.readouterr().out, "Alerting service should be called!"
