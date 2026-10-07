@@ -66,3 +66,15 @@ async def test_plan_mission_malformed_response(sample_goal: str) -> None:
     assert "error" in result
     assert "Failed to parse" in result["error"]
     assert result["parallel_tasks"] == []
+
+
+@pytest.mark.asyncio
+async def test_plan_mission_exception_handling(sample_goal: str) -> None:
+    """Test plan_mission handles exceptions from litellm securely."""
+    with patch("autogen_team.application.mcp.tools.plan_mission.litellm") as mock_litellm:
+        mock_litellm.acompletion = AsyncMock(side_effect=RuntimeError("LLM service unavailable"))
+        result = await plan_mission(sample_goal)
+
+    assert result["goal"] == sample_goal
+    assert result["parallel_tasks"] == []
+    assert result["error"] == "Internal error: Failed to decompose goal into tasks."

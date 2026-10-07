@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 import typing as T
 
+from loguru import logger
+
 import litellm
 
 from autogen_team.infrastructure.services.mcp_service import MCPService
@@ -38,17 +40,27 @@ async def generate_mission_docs(
         file_changes=json.dumps(mission_context.get("file_changes", []), indent=2),
     )
 
-    response = await litellm.acompletion(
-        model=mcp_service.litellm_model,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": formatted_instructions},
-        ],
-        api_base=mcp_service.litellm_api_base,
-        api_key=mcp_service.litellm_api_key,
-        response_format={"type": "json_object"},
-        temperature=0.2,
-    )
+    try:
+        response = await litellm.acompletion(
+            model=mcp_service.litellm_model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": formatted_instructions},
+            ],
+            api_base=mcp_service.litellm_api_base,
+            api_key=mcp_service.litellm_api_key,
+            response_format={"type": "json_object"},
+            temperature=0.2,
+            timeout=120.0,
+        )
+    except Exception as e:
+        logger.exception(f"LiteLLM error in generate_mission_docs: {e}")
+        return {
+            "mission_id": mission_id,
+            "diagrams": {},
+            "summary": "No summary generated.",
+            "error": "Internal error: Failed to generate mission documentation.",
+        }
 
     content = response.choices[0].message.content or "{}"
 
