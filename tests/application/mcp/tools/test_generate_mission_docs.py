@@ -73,3 +73,24 @@ async def test_generate_mission_docs_invalid_json() -> None:
 
     assert "error" in result
     assert "Failed to parse LLM response" in result["error"]
+
+
+@pytest.mark.asyncio
+async def test_generate_mission_docs_exception_handling() -> None:
+    """Test generate_mission_docs handles exceptions from litellm securely."""
+    mission_id = "test-mission"
+    mission_context = {"goal": "test"}
+
+    with (
+        patch("litellm.acompletion", side_effect=RuntimeError("LLM API error")),
+        patch(
+            "autogen_team.infrastructure.services.mcp_service.MCPService.get_prompt",
+            return_value="prompt",
+        ),
+    ):
+        result = await generate_mission_docs(mission_id, mission_context)
+
+    assert result["mission_id"] == mission_id
+    assert result["diagrams"] == {}
+    assert result["summary"] == "No summary generated."
+    assert result["error"] == "Internal error: Failed to generate mission documentation."
