@@ -30,6 +30,21 @@ Missions are managed through **Hatchet** (yielding durable state and parallel "f
 
 ---
 
+## 🛡️ Dark Gravity Integration & Technological Sovereignty Policy
+
+This package operates as the **Agentic Intelligence & LLMOps Engine** within the **[Dark Gravity Autonomous CA/CD Software Factory](https://github.com/lgcorzo/rust_CACD_autonomous_factory)** ([Architecture Knowledge Base](https://notebook.google.com/notebook/116d5f03-2fb0-4fa7-bd7c-1c9849920abc)).
+
+### 1. Architectural Role in Dark Gravity
+- **Agent Cognition & Tooling:** Drives the cognitive worker nodes (`agents` namespace) and the Model Context Protocol (MCP) server for multi-agent autonomous planning (`Rustant`), coding (`ZeroClaw`), and verification.
+- **OpenWiki & ISO Compliance:** Governs architectural documentation following **ISO/IEC/IEEE 42010:2022** and **ISO/IEC/IEEE 15289:2019**, ensuring zero symbol drift (Orphan Symbol Rate $\text{OSR} < 5\%$) across mission lifecycles.
+- **Context Persistence in S3 & Vector DB:** Connects directly with the sovereign S3 storage tier (`r2r-documents` and `semantica-provenance` buckets) and PostgreSQL CNPG `pgvector` for long-term memory retrieval.
+
+### 2. Supply-Chain Sovereignty & Independent Maintenance
+- **Sovereignty Against Closed-Source AI APIs:** Designed to run with local ternary/open weights (Bonsai 27B Ternario, Qwen 2.5 Coder 7B) through LiteLLM with air-gapped zero-ingress governance, eliminating critical external API single points of failure.
+- **Autonomous Supply-Chain Auditing:** Maintained independently under `@lgcorzo` with continuous dependency scanning and strict zeroize memory sanitization.
+
+---
+
 ## Table of Contents
 
 - [Install](#install)
