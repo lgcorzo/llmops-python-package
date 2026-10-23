@@ -25,7 +25,7 @@ packages = [{ include = "autogen_team", from = "src" }]
 # DEPENDENCIES
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.11,<3.13"
 loguru = "^0.7.2"
 matplotlib = "^3.9.0"
 mlflow = "^3.15.0"
@@ -62,7 +62,7 @@ e2b-code-interpreter = "^2.4.0"
 pygments = ">=2.20.0"
 cryptography = ">=50.0.0"
 nltk = ">=3.10.3"
-pillow = ">=12.1.1"
+pillow = ">=13.0.0"
 protobuf = ">=5.29.6"
 python-multipart = ">=0.0.32"
 
