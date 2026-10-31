@@ -919,7 +919,7 @@ files = [
 [package.dependencies]
 jmespath = ">=0.7.1,<2.0.0"
 python-dateutil = ">=2.1,<3.0.0"
-urllib3 = ">=1.25.4,<2.2.0 || >2.2.0,<3"
+urllib3 = ">=1.25.4,!=2.2.0,<3"
 
 [package.extras]
 crt = ["awscrt (==0.36.0)"]
@@ -1896,7 +1896,7 @@ files = [
 
 [package.dependencies]
 google-auth = ">=2.0,<3.0"
-protobuf = ">=4.25.8,<5.26.dev0 || >5.29.0,<5.29.1 || >5.29.1,<5.29.2 || >5.29.2,<5.29.3 || >5.29.3,<5.29.4 || >5.29.4,<6.30.0 || >6.30.0,<6.30.1 || >6.30.1,<6.31.0 || >6.31.0,<8.0"
+protobuf = ">=4.25.8,<5.26 || >=5.29.dev0,!=5.29.0,!=5.29.1,!=5.29.2,!=5.29.3,!=5.29.4,!=6.30.0,!=6.30.1,!=6.31.0,<8.0"
 requests = ">=2.28.1,<3"
 urllib3 = ">=1.26,<3"
 
@@ -3351,7 +3351,7 @@ files = [
 ]
 
 [package.dependencies]
-protobuf = ">=3.20.2,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<7.0.0"
+protobuf = ">=4.25.8,<8.0.0"
 
 [package.extras]
 grpc = ["grpcio (>=1.44.0,<2.0.0)"]
@@ -3656,7 +3656,7 @@ files = [
 
 [package.dependencies]
 grpcio = ">=1.71.2"
-protobuf = ">=5.26.1,<6.0.dev0"
+protobuf = ">=5.26.1,<6.0"
 setuptools = "*"
 
 [[package]]
@@ -5918,7 +5918,7 @@ cli = ["click[cli] (>=8.1.7,<9.0.0)", "loguru[cli] (>=0.7.2,<0.8.0)"]
 type = "git"
 url = "https://github.com/lgcorzo/mocogpt.git"
 reference = "HEAD"
-resolved_reference = "bca796fae2cf7b793704af122f7c451a8b79e8c9"
+resolved_reference = "52ab848bf0ba1c8e6d81ad1800a5389076ae10bd"
 
 [[package]]
 name = "msal"
@@ -9718,14 +9718,14 @@ unleash = ["UnleashClient (>=6.0.1)"]
 
 [[package]]
 name = "setuptools"
-version = "83.0.0"
+version = "84.1.0"
 description = "Most extensible Python build backend with support for C/C++ extension modules"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "setuptools-83.0.0-py3-none-any.whl", hash = "sha256:29b23c360f22f414dc7336bb39178cc7bcbf6021ed2733cde173f09dba19abb3"},
-    {file = "setuptools-83.0.0.tar.gz", hash = "sha256:025bccbbf0fa05b6192bc64ae1e7b16e001fd6d6d4d5de03c97b1c1ade523bef"},
+    {file = "setuptools-84.1.0-py3-none-any.whl", hash = "sha256:5231689c6ac8156cd155cfb98c3fd6fb252c3e7e9bd3d78b64d3c55f132624c9"},
+    {file = "setuptools-84.1.0.tar.gz", hash = "sha256:23657205b63d4d31395ab917815247f694aafad28cd21316bf5fd45a51048ea0"},
 ]
 
 [package.extras]
@@ -11471,4 +11471,4 @@ type = ["pytest-mypy (>=1.0.1) ; platform_python_implementation != \"PyPy\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.13"
-content-hash = "a0f6849e0b4ab39d088a11bbaa76ec652fc410b82e7c33d40c4e92aa571343c7"
+content-hash = "799507b09839e382eb98065bcbc0b822e096d95034a0ec237bb259749888628e"
