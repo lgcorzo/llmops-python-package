@@ -252,7 +252,7 @@ class BaselineAutogenModel(Model):
 
         try:
             # Create the message using agent_framework ChatMessage
-            message = ChatMessage(text=content, role="user")
+            message = ChatMessage(role="user", contents=content)
 
             # Use get_response instead of create
             response: ChatResponse = await self._model_client.get_response(messages=[message])
