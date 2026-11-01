@@ -214,7 +214,7 @@ class FastAPIKafkaService:
             else:
                 logger.error("Kafka producer is not initialized.")
             if self.consumer:
-                self.consumer.commit(msg)
+                self.consumer.commit(message=msg)
         except Exception:
             logger.exception("Error during Kafka production/commit:")
 

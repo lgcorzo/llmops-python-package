@@ -246,7 +246,7 @@ def test_process_message(
     service.prediction_callback.assert_called_once()
     service.producer.produce.assert_called_once()
     service.producer.flush.assert_called_once()
-    service.consumer.commit.assert_called_once_with(msg)
+    service.consumer.commit.assert_called_once_with(message=msg)
 
 
 @patch("json.loads")
