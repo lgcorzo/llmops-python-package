@@ -18,7 +18,7 @@ The codebase enforces strict separation of concerns to handle the deep complexit
 
 - **`core/`**: Shared kernel (schemas, business-independent exceptions, security protocols).
 - **`application/`**: Orchestrates use-cases without knowing infrastructure details. Includes Hatchet **Workflows** (e.g., `autonomous_mission.py`), the **Agents** themselves, and the **MCP Server**.
-- **`infrastructure/`**: The outermost layer connecting to the world. Encompasses A2A (Agent-to-Agent) Kafka messaging protocols, Hatchet API clients, MinIO connections, and Firecracker MicroVM Sandbox Services.
+- **`infrastructure/`**: The outermost layer connecting to the world. Encompasses A2A (Agent-to-Agent) Kafka messaging protocols, Hatchet API clients, MinIO connections, and container sandbox execution interfaces (with gVisor `runsc` used in cluster deployments; Firecracker MicroVM integration is `PLANNED` / `DESIGNED`).
 - **Bounded Contexts**: Independent domains such as `models`, `data_access`, `registry`, and `evaluation` operate with dedicated Data Adapter and Repository patterns.
 
 ### 2. Solid LLMOps Foundation
@@ -60,7 +60,7 @@ This package operates as the **Agentic Intelligence & LLMOps Engine** within the
 
 ### Prerequisites
 
-- [Python >= 3.10](https://www.python.org/downloads/)
+- [Python >= 3.11, < 3.13](https://www.python.org/downloads/) (per `pyproject.toml`)
 - [Poetry >= 1.8.2](https://python-poetry.org/)
 
 ### Installation
